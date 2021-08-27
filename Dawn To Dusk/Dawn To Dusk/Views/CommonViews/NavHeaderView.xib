@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NavHeaderView" customModule="Dawn_To_Dusk" customModuleProvider="target">
+            <connections>
+                <outlet property="CartBTN" destination="A7a-kb-4M4" id="CGm-6r-pra"/>
+                <outlet property="LogoutBTN" destination="S1H-3t-jDe" id="JTw-yW-gHN"/>
+                <outlet property="TitleLBL" destination="fO8-7Y-vB2" id="xZY-o7-9R4"/>
+                <outlet property="imageView" destination="LHr-j7-hwa" id="pBJ-XN-L8L"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="321" height="75"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mappin.and.ellipse" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="LHr-j7-hwa">
+                    <rect key="frame" x="15" y="27.666666666666671" width="20" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="CNM-dm-sED"/>
+                        <constraint firstAttribute="width" constant="20" id="mPz-HE-RG2"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fO8-7Y-vB2">
+                    <rect key="frame" x="45" y="10" width="221" height="55"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A7a-kb-4M4">
+                    <rect key="frame" x="276" y="22.666666666666671" width="30" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="30" id="2f0-2W-CTp"/>
+                        <constraint firstAttribute="height" constant="30" id="X95-1J-tdg"/>
+                    </constraints>
+                    <state key="normal" image="cart.fill" catalog="system"/>
+                    <connections>
+                        <action selector="TappedButton:" destination="-1" eventType="touchUpInside" id="kfE-a5-pyT"/>
+                    </connections>
+                </button>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S1H-3t-jDe">
+                    <rect key="frame" x="276" y="22.666666666666671" width="30" height="30"/>
+                    <state key="normal" image="power" catalog="system"/>
+                    <connections>
+                        <action selector="TappedButton:" destination="-1" eventType="touchUpInside" id="83R-JW-lzk"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="LHr-j7-hwa" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="1i0-15-Dgy"/>
+                <constraint firstAttribute="trailing" secondItem="A7a-kb-4M4" secondAttribute="trailing" constant="15" id="5wo-Nm-6dv"/>
+                <constraint firstItem="A7a-kb-4M4" firstAttribute="height" secondItem="S1H-3t-jDe" secondAttribute="height" id="8Rh-i6-qcf"/>
+                <constraint firstItem="S1H-3t-jDe" firstAttribute="top" secondItem="A7a-kb-4M4" secondAttribute="top" id="D8p-SG-tcU"/>
+                <constraint firstItem="fO8-7Y-vB2" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="I3D-Gg-pN6"/>
+                <constraint firstItem="A7a-kb-4M4" firstAttribute="leading" secondItem="fO8-7Y-vB2" secondAttribute="trailing" constant="10" id="aJo-RA-8x5"/>
+                <constraint firstAttribute="bottom" secondItem="fO8-7Y-vB2" secondAttribute="bottom" constant="10" id="aWf-Fs-qqm"/>
+                <constraint firstItem="A7a-kb-4M4" firstAttribute="width" secondItem="S1H-3t-jDe" secondAttribute="width" id="bD5-Gj-xo5"/>
+                <constraint firstItem="S1H-3t-jDe" firstAttribute="trailing" secondItem="A7a-kb-4M4" secondAttribute="trailing" id="cFE-Mh-D3y"/>
+                <constraint firstItem="fO8-7Y-vB2" firstAttribute="leading" secondItem="LHr-j7-hwa" secondAttribute="trailing" constant="10" id="dOP-mA-BYa"/>
+                <constraint firstItem="LHr-j7-hwa" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="mz5-uH-IH7"/>
+                <constraint firstItem="A7a-kb-4M4" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="nP7-db-sR7"/>
+                <constraint firstItem="S1H-3t-jDe" firstAttribute="bottom" secondItem="A7a-kb-4M4" secondAttribute="bottom" id="sKs-lr-eS5"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="335.50724637681162" y="150.33482142857142"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="cart.fill" catalog="system" width="128" height="102"/>
+        <image name="mappin.and.ellipse" catalog="system" width="118" height="128"/>
+        <image name="power" catalog="system" width="128" height="124"/>
+    </resources>
+</document>

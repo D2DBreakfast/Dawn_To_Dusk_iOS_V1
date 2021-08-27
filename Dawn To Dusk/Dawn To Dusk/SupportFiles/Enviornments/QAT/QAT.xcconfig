@@ -1,0 +1,26 @@
+//
+//  QAT.xcconfig
+//  Dawn To Dusk
+//
+//  Created by Hiren on 11/08/21.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+//Server URLS and Other Configuration Keys
+
+timeout_interval                = 120
+
+protocol                        = https
+server_url                      = gxauth.apimachine.com
+DomainFolder                    = /gx/user
+
+LoginApi                        = /login
+
+ForgotpasswordRequestAPI        = /password/forgot/request
+ForgotpasswordConfirmAPI        = /password/forgot/confirm
+
+SignupApi                       = /signup
+
+ChangePasswordAPI               = /password/change

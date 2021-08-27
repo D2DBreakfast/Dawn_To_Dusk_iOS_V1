@@ -1,1 +1,2 @@
-# Dawn_To_Dusk_iOS_V1
+# Dawn-to-Dusk
+UTICO Food Application

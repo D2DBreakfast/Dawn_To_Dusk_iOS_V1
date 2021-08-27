@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="dark"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GlobalSearchVC" customModule="Dawn_To_Dusk" customModuleProvider="target">
+            <connections>
+                <outlet property="ListTBL" destination="dai-hp-mQh" id="T5b-58-VaC"/>
+                <outlet property="NodataFoundView" destination="0t2-bx-3HE" id="ILB-wt-fB4"/>
+                <outlet property="SearchBar" destination="y7M-1d-a4E" id="4Ef-v6-R4w"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search Here" translatesAutoresizingMaskIntoConstraints="NO" id="y7M-1d-a4E">
+                    <rect key="frame" x="0.0" y="44" width="414" height="51"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="barTintColor" systemColor="systemBackgroundColor"/>
+                    <textInputTraits key="textInputTraits" returnKeyType="go"/>
+                </searchBar>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dai-hp-mQh" customClass="TPKeyboardAvoidingTableView">
+                    <rect key="frame" x="0.0" y="95" width="414" height="767"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="sectionIndexBackgroundColor" systemColor="systemBackgroundColor"/>
+                </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0t2-bx-3HE" customClass="NodataView" customModule="Dawn_To_Dusk" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="95" width="414" height="767"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="image" keyPath="image" value="NodataIMG"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="0t2-bx-3HE" firstAttribute="trailing" secondItem="dai-hp-mQh" secondAttribute="trailing" id="2TP-nh-DA9"/>
+                <constraint firstItem="y7M-1d-a4E" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="2nn-Ed-qM9"/>
+                <constraint firstItem="0t2-bx-3HE" firstAttribute="leading" secondItem="dai-hp-mQh" secondAttribute="leading" id="3dI-S1-hqD"/>
+                <constraint firstItem="y7M-1d-a4E" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="6ek-vk-NNn"/>
+                <constraint firstItem="0t2-bx-3HE" firstAttribute="height" secondItem="dai-hp-mQh" secondAttribute="height" id="Ayg-Ka-kbW"/>
+                <constraint firstItem="dai-hp-mQh" firstAttribute="top" secondItem="y7M-1d-a4E" secondAttribute="bottom" id="Dtb-Oj-D53"/>
+                <constraint firstItem="dai-hp-mQh" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="Eg9-dh-2ZH"/>
+                <constraint firstItem="0t2-bx-3HE" firstAttribute="top" secondItem="dai-hp-mQh" secondAttribute="top" id="Ghl-ay-He3"/>
+                <constraint firstItem="0t2-bx-3HE" firstAttribute="width" secondItem="dai-hp-mQh" secondAttribute="width" id="NGA-tT-TJq"/>
+                <constraint firstItem="dai-hp-mQh" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="alW-CD-trS"/>
+                <constraint firstItem="dai-hp-mQh" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="avD-Yy-mIA"/>
+                <constraint firstItem="y7M-1d-a4E" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="qHg-as-EVO"/>
+                <constraint firstItem="0t2-bx-3HE" firstAttribute="bottom" secondItem="dai-hp-mQh" secondAttribute="bottom" id="tco-YZ-o3g"/>
+            </constraints>
+            <point key="canvasLocation" x="83" y="141"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="NodataIMG" width="639" height="374"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

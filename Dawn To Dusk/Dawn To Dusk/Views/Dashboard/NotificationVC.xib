@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NotificationVC" customModule="Dawn_To_Dusk" customModuleProvider="target">
+            <connections>
+                <outlet property="ListTBL" destination="l0R-sy-dHJ" id="egs-MT-jji"/>
+                <outlet property="NodataFoundView" destination="o5C-S0-VN8" id="pIF-wy-TJ2"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o5C-S0-VN8" customClass="NodataView" customModule="Dawn_To_Dusk" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="image" keyPath="image" value="NodataIMG"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="l0R-sy-dHJ" customClass="TPKeyboardAvoidingTableView">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="sectionIndexBackgroundColor" systemColor="systemBackgroundColor"/>
+                </tableView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="l0R-sy-dHJ" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="AT0-c2-iwV"/>
+                <constraint firstItem="l0R-sy-dHJ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="AYo-9z-F7t"/>
+                <constraint firstItem="l0R-sy-dHJ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="Bzr-KZ-Ar4"/>
+                <constraint firstItem="o5C-S0-VN8" firstAttribute="leading" secondItem="l0R-sy-dHJ" secondAttribute="leading" id="FiJ-lb-Ps0"/>
+                <constraint firstItem="o5C-S0-VN8" firstAttribute="height" secondItem="l0R-sy-dHJ" secondAttribute="height" id="IoS-mj-9hR"/>
+                <constraint firstItem="o5C-S0-VN8" firstAttribute="top" secondItem="l0R-sy-dHJ" secondAttribute="top" id="KCb-W9-bT4"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="l0R-sy-dHJ" secondAttribute="bottom" id="Twg-Ex-vID"/>
+                <constraint firstItem="o5C-S0-VN8" firstAttribute="bottom" secondItem="l0R-sy-dHJ" secondAttribute="bottom" id="XuR-yI-t5m"/>
+                <constraint firstItem="o5C-S0-VN8" firstAttribute="width" secondItem="l0R-sy-dHJ" secondAttribute="width" id="mzE-na-yIr"/>
+                <constraint firstItem="o5C-S0-VN8" firstAttribute="trailing" secondItem="l0R-sy-dHJ" secondAttribute="trailing" id="z4R-cF-tYI"/>
+            </constraints>
+            <point key="canvasLocation" x="139" y="104"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="NodataIMG" width="639" height="374"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
