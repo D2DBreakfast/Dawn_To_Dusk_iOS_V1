@@ -364,8 +364,8 @@ extension UIViewController {
     
     @IBAction func TappedCartBTN(_ sender: UIButton) {
         // Pending Carts
-        let cart = CartManageVC.init(nibName: "CartManageVC", bundle: nil)
-        self.navigationController?.pushViewController(cart, animated: true)
+//        let cart = CartManageVC.init(nibName: "CartManageVC", bundle: nil)
+//        self.navigationController?.pushViewController(cart, animated: true)
     }
     
     func reloadViewFromNib() {

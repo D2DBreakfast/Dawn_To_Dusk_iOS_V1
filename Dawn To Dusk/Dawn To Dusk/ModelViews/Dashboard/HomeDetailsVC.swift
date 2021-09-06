@@ -657,10 +657,10 @@ extension HomeDetailsVC: UITableViewDelegate, UITableViewDataSource {
             
         case .History:
             // Pending Carts
-            let details = HomeDetailsVC.init(nibName: "HomeDetailsVC", bundle: nil)
-            details.DetailType = .HistoryDetails
-//            cart.CartItems = self.HistoryArry[indexPath.row]
-            self.navigationController?.pushViewController(details, animated: true)
+//            let details = HomeDetailsVC.init(nibName: "HomeDetailsVC", bundle: nil)
+//            details.DetailType = .HistoryDetails
+////            cart.CartItems = self.HistoryArry[indexPath.row]
+//            self.navigationController?.pushViewController(details, animated: true)
             break
             
         case .Address:
@@ -713,9 +713,9 @@ extension HomeDetailsVC: UITableViewDelegate, UITableViewDataSource {
             }
             else {
                 // Pending Carts
-                let details = HomeDetailsVC.init(nibName: "HomeDetailsVC", bundle: nil)
-                details.DetailType = .HistoryDetails
-                self.navigationController?.pushViewController(details, animated: true)
+//                let details = HomeDetailsVC.init(nibName: "HomeDetailsVC", bundle: nil)
+//                details.DetailType = .HistoryDetails
+//                self.navigationController?.pushViewController(details, animated: true)
             }
             break
             
