@@ -255,7 +255,7 @@ class CartConfigureCell: UITableViewCell {
         
         self.ItemValueLBL.text = String.init(format: "%@ %@", (getdefaultCountry()?.symbol)!, price.formatprice())
         self.ShippingLBL.text = "Shipping"
-        self.ShippingValueLBL.text = String.init(format: "@ %@", (getdefaultCountry()?.symbol)!, shiping.formatprice())
+        self.ShippingValueLBL.text = String.init(format: "%@ %@", (getdefaultCountry()?.symbol)!, shiping.formatprice())
         self.VATLBL.text = "Vat (5%)"
         self.VATValueLBL.text = String.init(format: "%@ %@", (getdefaultCountry()?.symbol)!, vat.formatprice())
         self.CouponLBL.text = "Coupon Code"
