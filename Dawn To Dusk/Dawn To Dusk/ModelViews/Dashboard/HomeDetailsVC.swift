@@ -659,7 +659,7 @@ extension HomeDetailsVC: UITableViewDelegate, UITableViewDataSource {
             // Pending Carts
 //            let details = HomeDetailsVC.init(nibName: "HomeDetailsVC", bundle: nil)
 //            details.DetailType = .HistoryDetails
-////            cart.CartItems = self.HistoryArry[indexPath.row]
+////            details.CartItems = self.HistoryArry[indexPath.row]
 //            self.navigationController?.pushViewController(details, animated: true)
             break
             

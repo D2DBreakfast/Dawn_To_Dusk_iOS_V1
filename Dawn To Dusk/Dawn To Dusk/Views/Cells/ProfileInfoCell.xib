@@ -40,7 +40,7 @@ Joshi</string>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="rbK-dt-tvn">
-                                                <rect key="frame" x="0.0" y="141" width="249" height="46"/>
+                                                <rect key="frame" x="0.0" y="141" width="249" height="79"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ky-4U-kHp">
                                                         <rect key="frame" x="0.0" y="0.0" width="249" height="19"/>
@@ -52,7 +52,7 @@ Joshi</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="abc@gmail.com" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aRp-0P-oEe">
-                                                        <rect key="frame" x="0.0" y="24" width="249" height="22"/>
+                                                        <rect key="frame" x="0.0" y="24" width="249" height="55"/>
                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -60,7 +60,7 @@ Joshi</string>
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="bom-dS-7vl">
-                                                <rect key="frame" x="0.0" y="197" width="249" height="46"/>
+                                                <rect key="frame" x="0.0" y="230" width="249" height="48"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mobile no" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dgw-wh-PVi">
                                                         <rect key="frame" x="0.0" y="0.0" width="249" height="19"/>
@@ -72,7 +72,7 @@ Joshi</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+91 9876543210" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xoe-wf-NSw">
-                                                        <rect key="frame" x="0.0" y="24" width="249" height="22"/>
+                                                        <rect key="frame" x="0.0" y="24" width="249" height="24"/>
                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -80,7 +80,7 @@ Joshi</string>
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="8Pm-vq-Qhh">
-                                                <rect key="frame" x="0.0" y="253" width="249" height="83"/>
+                                                <rect key="frame" x="0.0" y="288" width="249" height="48"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nhF-5V-nF6">
                                                         <rect key="frame" x="0.0" y="0.0" width="249" height="19"/>
@@ -92,7 +92,7 @@ Joshi</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Pasadena, California" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Vc-Hi-fEO">
-                                                        <rect key="frame" x="0.0" y="24" width="249" height="59"/>
+                                                        <rect key="frame" x="0.0" y="24" width="249" height="24"/>
                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -106,14 +106,13 @@ Joshi</string>
                                             <constraint firstItem="dgw-wh-PVi" firstAttribute="height" secondItem="5ky-4U-kHp" secondAttribute="height" id="FGG-KC-CZq"/>
                                             <constraint firstItem="rbK-dt-tvn" firstAttribute="top" secondItem="BVq-Hq-Y4Q" secondAttribute="bottom" constant="10" id="UlA-Vv-MAI"/>
                                             <constraint firstItem="BVq-Hq-Y4Q" firstAttribute="top" secondItem="V3W-qD-VIb" secondAttribute="top" constant="5" id="VFJ-ev-Thi"/>
-                                            <constraint firstItem="8Pm-vq-Qhh" firstAttribute="top" secondItem="rbK-dt-tvn" secondAttribute="bottom" constant="66" id="W0k-T1-Ofi"/>
+                                            <constraint firstItem="8Pm-vq-Qhh" firstAttribute="top" secondItem="rbK-dt-tvn" secondAttribute="bottom" priority="250" constant="66" id="W0k-T1-Ofi"/>
                                             <constraint firstItem="8Pm-vq-Qhh" firstAttribute="leading" secondItem="V3W-qD-VIb" secondAttribute="leading" id="WIb-fs-4Gi"/>
                                             <constraint firstItem="8Pm-vq-Qhh" firstAttribute="top" secondItem="bom-dS-7vl" secondAttribute="bottom" constant="10" id="ZCU-Ty-Adc"/>
                                             <constraint firstAttribute="bottom" secondItem="8Pm-vq-Qhh" secondAttribute="bottom" constant="10" id="biO-bk-PDr"/>
                                             <constraint firstItem="bom-dS-7vl" firstAttribute="top" secondItem="rbK-dt-tvn" secondAttribute="bottom" constant="10" id="clg-0l-j2g"/>
                                             <constraint firstAttribute="trailing" secondItem="rbK-dt-tvn" secondAttribute="trailing" id="dEU-7i-RGH"/>
                                             <constraint firstItem="nhF-5V-nF6" firstAttribute="height" secondItem="5ky-4U-kHp" secondAttribute="height" id="m5L-Gi-IUN"/>
-                                            <constraint firstItem="bom-dS-7vl" firstAttribute="top" secondItem="BVq-Hq-Y4Q" secondAttribute="bottom" constant="66" id="p8g-7c-Hg2"/>
                                             <constraint firstItem="bom-dS-7vl" firstAttribute="leading" secondItem="V3W-qD-VIb" secondAttribute="leading" id="sO3-gU-cgw"/>
                                             <constraint firstItem="rbK-dt-tvn" firstAttribute="leading" secondItem="V3W-qD-VIb" secondAttribute="leading" id="u08-Qj-37a"/>
                                             <constraint firstAttribute="trailing" secondItem="8Pm-vq-Qhh" secondAttribute="trailing" id="ubf-g0-F6c"/>
