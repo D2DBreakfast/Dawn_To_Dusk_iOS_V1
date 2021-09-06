@@ -8,11 +8,11 @@ import Foundation
 import SwiftyJSON
 
 class NotificationData2 {
-
-	let notification: [NotificationModels]?
-
-	init(_ json: JSON) {
-		notification = json["notification"].arrayValue.map { NotificationModels($0) }
-	}
-
+    
+    let notification: [NotificationModels]?
+    
+    init(_ json: JSON) {
+        notification = json["notification"].arrayValue.map { NotificationModels($0) }
+    }
+    
 }

@@ -8,11 +8,11 @@ import Foundation
 import SwiftyJSON
 
 struct CategoryData {
-
+    
     let category: [CategoryModels]?
-
+    
     init(_ json: JSON) {
         category = json["category"].arrayValue.map { CategoryModels($0) }
     }
-
+    
 }

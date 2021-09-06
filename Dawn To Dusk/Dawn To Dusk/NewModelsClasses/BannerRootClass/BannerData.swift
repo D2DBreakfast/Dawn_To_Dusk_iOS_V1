@@ -8,11 +8,11 @@ import Foundation
 import SwiftyJSON
 
 class BannerData {
-
-	let Banner: [BannerModels]?
-
-	init(_ json: JSON) {
-		Banner = json["banner"].arrayValue.map { BannerModels($0) }
-	}
-
+    
+    let Banner: [BannerModels]?
+    
+    init(_ json: JSON) {
+        Banner = json["banner"].arrayValue.map { BannerModels($0) }
+    }
+    
 }
