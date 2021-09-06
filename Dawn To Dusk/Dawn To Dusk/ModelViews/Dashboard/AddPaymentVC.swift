@@ -7,9 +7,13 @@
 
 import UIKit
 
+enum CardType {
+    case Credit, Debit
+}
+
 class AddPaymentVC: BaseClassVC {
 
-    //    MARK:- Varaible Definces
+    //    MARK:- IBOutlet Definces
     //    MARK:-
     
     @IBOutlet weak var ScrollView: TPKeyboardAvoidingScrollView!
@@ -25,6 +29,15 @@ class AddPaymentVC: BaseClassVC {
     @IBOutlet weak var TXTCVV: UITextField!
     @IBOutlet weak var ValidView: UIView!
     @IBOutlet weak var TXTValid: UITextField!
+    @IBOutlet weak var CardTypeview: UIStackView!
+    @IBOutlet weak var CreditView: UIView!
+    @IBOutlet weak var CreditCheckImg: UIImageView!
+    @IBOutlet weak var CreditValue: UILabel!
+    @IBOutlet weak var CreditBTN: UIButton!
+    @IBOutlet weak var DebitView: UIView!
+    @IBOutlet weak var DebitCheckImg: UIImageView!
+    @IBOutlet weak var DebitValue: UILabel!
+    @IBOutlet weak var DebitBTN: UIButton!
     @IBOutlet weak var AddCardBTN: UIButton!
     
     @IBOutlet weak var BankStack: UIStackView!
@@ -41,6 +54,12 @@ class AddPaymentVC: BaseClassVC {
     @IBOutlet weak var CodeView: UIView!
     @IBOutlet weak var TXTCode: UITextField!
     @IBOutlet weak var AddBankBTN: UIButton!
+    
+    //    MARK:- Varaible Definces
+    //    MARK:-
+    
+    var Selected_cardType: CardType = .Credit
+    
     
     //    MARK:- View Cycle
     //    MARK:-
@@ -91,6 +110,22 @@ class AddPaymentVC: BaseClassVC {
         self.ValidView.layer.cornerRadius = 10
         
         self.TXTValid.placeholder = "Month / Year"
+        
+        self.CreditView.clipsToBounds = true
+        self.CreditView.backgroundColor = ModeBG_Color
+        self.CreditView.layer.cornerRadius = 10
+        
+        self.Selected_cardType = .Credit
+        
+        self.CreditCheckImg.image = UIImage.init(named: "CheckMarkIC")
+        self.CreditCheckImg.tintColor = UIColor.colorWithHexString(hexStr: GetDefaultTheme()!)
+        
+        self.DebitView.clipsToBounds = true
+        self.DebitView.backgroundColor = ModeBG_Color
+        self.DebitView.layer.cornerRadius = 10
+        
+        self.DebitCheckImg.image = UIImage.init(systemName: "circle")
+        self.DebitCheckImg.tintColor = UIColor.colorWithHexString(hexStr: GetDefaultTheme()!)
         
         self.AddCardBTN.GetThemeButtonwithBorder()
         self.AddCardBTN.setTitle("Add Card", for: .normal)
@@ -152,6 +187,16 @@ class AddPaymentVC: BaseClassVC {
     @IBAction func TappedAddButton(_ sender: UIButton) {
         if sender == self.AddCardBTN {
             
+        }
+        else if sender == self.CreditBTN {
+            self.Selected_cardType = .Credit
+            self.CreditCheckImg.image = UIImage.init(named: "CheckMarkIC")
+            self.DebitCheckImg.image = UIImage.init(systemName: "circle")
+        }
+        else if sender == self.DebitBTN {
+            self.Selected_cardType = .Debit
+            self.CreditCheckImg.image = UIImage.init(systemName: "circle")
+            self.DebitCheckImg.image = UIImage.init(named: "CheckMarkIC")
         }
         else {
             

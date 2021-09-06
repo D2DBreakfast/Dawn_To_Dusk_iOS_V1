@@ -19,8 +19,17 @@
                 <outlet property="CardNameView" destination="u3b-Ak-9DK" id="XzW-E9-vTg"/>
                 <outlet property="CardNoView" destination="sNO-vi-sH6" id="Wx7-t5-ac2"/>
                 <outlet property="CardStack" destination="1ek-Vx-R5B" id="GCq-Zj-gt0"/>
+                <outlet property="CardTypeview" destination="50u-fU-DRL" id="PGW-ce-Xgl"/>
                 <outlet property="CodeView" destination="fAd-ck-Reu" id="mBo-X1-KFi"/>
                 <outlet property="ConfirmView" destination="dsG-nF-YFi" id="mcw-Kd-4sE"/>
+                <outlet property="CreditBTN" destination="zoO-91-Akl" id="N3K-yv-f02"/>
+                <outlet property="CreditCheckImg" destination="mxJ-Pn-egZ" id="hoZ-fM-PJG"/>
+                <outlet property="CreditValue" destination="EJ9-rJ-5kj" id="pdE-UR-lAZ"/>
+                <outlet property="CreditView" destination="O9t-bX-1xH" id="yzO-x1-KWf"/>
+                <outlet property="DebitBTN" destination="PoW-aD-ic4" id="kGK-Rq-fle"/>
+                <outlet property="DebitCheckImg" destination="z5A-W7-FKH" id="WrT-jd-3LG"/>
+                <outlet property="DebitValue" destination="aVr-Hu-wAn" id="3A9-VT-VG0"/>
+                <outlet property="DebitView" destination="cxi-6M-0MG" id="pfm-ox-ZV6"/>
                 <outlet property="IFCSView" destination="CxH-v6-YIN" id="eqo-Qj-AcW"/>
                 <outlet property="MainStack" destination="s9i-oo-f0m" id="pdG-hi-WAt"/>
                 <outlet property="NameView" destination="IdN-IE-iPh" id="BrZ-wh-H8H"/>
@@ -48,10 +57,10 @@
                     <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="s9i-oo-f0m">
-                            <rect key="frame" x="25" y="40" width="364" height="960"/>
+                            <rect key="frame" x="25" y="40" width="364" height="1040"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="1ek-Vx-R5B">
-                                    <rect key="frame" x="0.0" y="0.0" width="364" height="290"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="364" height="370"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u3b-Ak-9DK">
                                             <rect key="frame" x="0.0" y="0.0" width="364" height="50"/>
@@ -127,8 +136,79 @@
                                                 </view>
                                             </subviews>
                                         </stackView>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eTJ-ht-0Kp">
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="50u-fU-DRL">
                                             <rect key="frame" x="0.0" y="240" width="364" height="50"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O9t-bX-1xH">
+                                                    <rect key="frame" x="0.0" y="0.0" width="167" height="50"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CheckMarkIC" translatesAutoresizingMaskIntoConstraints="NO" id="mxJ-Pn-egZ">
+                                                            <rect key="frame" x="10" y="10" width="30" height="30"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="30" id="4KI-W1-UMC"/>
+                                                                <constraint firstAttribute="width" constant="30" id="bAh-wI-dwl"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Credit Card" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EJ9-rJ-5kj">
+                                                            <rect key="frame" x="50" y="15" width="107" height="20.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zoO-91-Akl">
+                                                            <rect key="frame" x="0.0" y="0.0" width="167" height="50"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <connections>
+                                                                <action selector="TappedAddButton:" destination="-1" eventType="touchUpInside" id="7nv-zE-pjU"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="bottom" secondItem="mxJ-Pn-egZ" secondAttribute="bottom" constant="10" id="CCP-wn-F9j"/>
+                                                        <constraint firstItem="EJ9-rJ-5kj" firstAttribute="centerY" secondItem="O9t-bX-1xH" secondAttribute="centerY" id="DyV-TI-IrD"/>
+                                                        <constraint firstItem="mxJ-Pn-egZ" firstAttribute="leading" secondItem="O9t-bX-1xH" secondAttribute="leading" constant="10" id="H5K-3J-c4c"/>
+                                                        <constraint firstAttribute="trailing" secondItem="EJ9-rJ-5kj" secondAttribute="trailing" constant="10" id="uqw-9j-PZE"/>
+                                                        <constraint firstItem="EJ9-rJ-5kj" firstAttribute="leading" secondItem="mxJ-Pn-egZ" secondAttribute="trailing" constant="10" id="xyE-N4-WrH"/>
+                                                        <constraint firstItem="mxJ-Pn-egZ" firstAttribute="top" secondItem="O9t-bX-1xH" secondAttribute="top" constant="10" id="yfa-9d-5Yn"/>
+                                                    </constraints>
+                                                </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cxi-6M-0MG">
+                                                    <rect key="frame" x="197" y="0.0" width="167" height="50"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="z5A-W7-FKH">
+                                                            <rect key="frame" x="10" y="10.5" width="30" height="29"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="30" id="ae9-LB-D8K"/>
+                                                                <constraint firstAttribute="width" constant="30" id="esh-aT-qNn"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Debit Card" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aVr-Hu-wAn">
+                                                            <rect key="frame" x="50" y="15" width="107" height="20.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PoW-aD-ic4">
+                                                            <rect key="frame" x="0.0" y="0.0" width="167" height="50"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <connections>
+                                                                <action selector="TappedAddButton:" destination="-1" eventType="touchUpInside" id="kV2-Fd-j4K"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <constraints>
+                                                        <constraint firstItem="z5A-W7-FKH" firstAttribute="leading" secondItem="cxi-6M-0MG" secondAttribute="leading" constant="10" id="Anc-yJ-2sf"/>
+                                                        <constraint firstItem="z5A-W7-FKH" firstAttribute="top" secondItem="cxi-6M-0MG" secondAttribute="top" constant="10" id="CPE-Lw-QxM"/>
+                                                        <constraint firstAttribute="trailing" secondItem="aVr-Hu-wAn" secondAttribute="trailing" constant="10" id="IMn-Tf-wV5"/>
+                                                        <constraint firstItem="aVr-Hu-wAn" firstAttribute="leading" secondItem="z5A-W7-FKH" secondAttribute="trailing" constant="10" id="OK1-DM-u8Q"/>
+                                                        <constraint firstItem="aVr-Hu-wAn" firstAttribute="centerY" secondItem="cxi-6M-0MG" secondAttribute="centerY" id="Xrq-Ku-qB5"/>
+                                                        <constraint firstAttribute="bottom" secondItem="z5A-W7-FKH" secondAttribute="bottom" constant="10" id="yp3-du-3kO"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                        </stackView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eTJ-ht-0Kp">
+                                            <rect key="frame" x="0.0" y="320" width="364" height="50"/>
                                             <state key="normal" title="Add Card"/>
                                             <connections>
                                                 <action selector="TappedAddButton:" destination="-1" eventType="touchUpInside" id="wIm-dh-Bef"/>
@@ -138,7 +218,6 @@
                                     <constraints>
                                         <constraint firstItem="SfP-Ab-OLG" firstAttribute="leading" secondItem="1ek-Vx-R5B" secondAttribute="leading" id="0lh-2Q-m47"/>
                                         <constraint firstAttribute="trailing" secondItem="SfP-Ab-OLG" secondAttribute="trailing" id="10q-Hc-xGR"/>
-                                        <constraint firstItem="eTJ-ht-0Kp" firstAttribute="top" secondItem="SfP-Ab-OLG" secondAttribute="bottom" constant="30" id="4Qd-xu-uJ7"/>
                                         <constraint firstItem="eTJ-ht-0Kp" firstAttribute="height" secondItem="u3b-Ak-9DK" secondAttribute="height" id="6Sl-0P-ytv"/>
                                         <constraint firstAttribute="trailing" secondItem="eTJ-ht-0Kp" secondAttribute="trailing" id="BUn-ee-0ef"/>
                                         <constraint firstItem="eTJ-ht-0Kp" firstAttribute="width" secondItem="u3b-Ak-9DK" secondAttribute="width" id="GLE-Bj-5Af"/>
@@ -150,15 +229,19 @@
                                         <constraint firstAttribute="bottom" secondItem="eTJ-ht-0Kp" secondAttribute="bottom" id="Z8S-hH-Aqz"/>
                                         <constraint firstAttribute="trailing" secondItem="sNO-vi-sH6" secondAttribute="trailing" id="ZBm-46-I3H"/>
                                         <constraint firstItem="eTJ-ht-0Kp" firstAttribute="leading" secondItem="1ek-Vx-R5B" secondAttribute="leading" id="eLy-RQ-7dP"/>
+                                        <constraint firstAttribute="trailing" secondItem="50u-fU-DRL" secondAttribute="trailing" id="ebD-Tw-Zmn"/>
                                         <constraint firstItem="sNO-vi-sH6" firstAttribute="leading" secondItem="1ek-Vx-R5B" secondAttribute="leading" id="fIq-iv-DYS"/>
                                         <constraint firstItem="u3b-Ak-9DK" firstAttribute="leading" secondItem="1ek-Vx-R5B" secondAttribute="leading" id="fnY-El-Unx"/>
+                                        <constraint firstItem="50u-fU-DRL" firstAttribute="top" secondItem="SfP-Ab-OLG" secondAttribute="bottom" constant="30" id="hcQ-It-D0P"/>
                                         <constraint firstItem="sNO-vi-sH6" firstAttribute="height" secondItem="u3b-Ak-9DK" secondAttribute="height" id="mwP-Vd-vVj"/>
                                         <constraint firstItem="SfP-Ab-OLG" firstAttribute="width" secondItem="u3b-Ak-9DK" secondAttribute="width" id="o4t-E2-21w"/>
                                         <constraint firstItem="SfP-Ab-OLG" firstAttribute="top" secondItem="sNO-vi-sH6" secondAttribute="bottom" constant="30" id="oUh-jY-6S5"/>
+                                        <constraint firstItem="eTJ-ht-0Kp" firstAttribute="top" secondItem="50u-fU-DRL" secondAttribute="bottom" constant="30" id="v9Z-ln-hD5"/>
+                                        <constraint firstItem="50u-fU-DRL" firstAttribute="leading" secondItem="1ek-Vx-R5B" secondAttribute="leading" id="wfH-5K-aMZ"/>
                                     </constraints>
                                 </stackView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yIk-Au-NFz">
-                                    <rect key="frame" x="0.0" y="320" width="364" height="80"/>
+                                    <rect key="frame" x="0.0" y="400" width="364" height="80"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="63" translatesAutoresizingMaskIntoConstraints="NO" id="ffI-Jh-W00">
                                             <rect key="frame" x="30" y="25" width="304" height="30"/>
@@ -207,7 +290,7 @@
                                     </constraints>
                                 </view>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="hUS-6h-63g">
-                                    <rect key="frame" x="0.0" y="430" width="364" height="530"/>
+                                    <rect key="frame" x="0.0" y="510" width="364" height="530"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IdN-IE-iPh">
                                             <rect key="frame" x="0.0" y="0.0" width="364" height="50"/>
@@ -384,6 +467,8 @@
         </view>
     </objects>
     <resources>
+        <image name="CheckMarkIC" width="26" height="26"/>
+        <image name="circle" catalog="system" width="128" height="121"/>
         <systemColor name="opaqueSeparatorColor">
             <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
