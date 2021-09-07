@@ -56,21 +56,21 @@ class HomeListingVC: BaseClassVC {
     
     var SelectedMainCat: CategoryModelClass!
     var MainCatArry: [CategoryModelClass] = [
-        CategoryModelClass.init(id: 0, catName: "Order", catImage: "", catdes: "", isveg: false),
-        CategoryModelClass.init(id: 1, catName: "Meal", catImage: "", catdes: "", isveg: false)
+        CategoryModelClass.init(id: 0, catName: "Order"),
+        CategoryModelClass.init(id: 1, catName: "Meal")
     ]
     
     var SelectedSubCat: CategoryModelClass!
     var SubCatArry: [CategoryModelClass] = [
-        CategoryModelClass.init(id: 1, catName: "Eggs", catImage: "", catdes: "", isveg: false),
-        CategoryModelClass.init(id: 2, catName: "SandWich", catImage: "", catdes: "", isveg: false),
-        CategoryModelClass.init(id: 3, catName: "South", catImage: "", catdes: "", isveg: false),
-        CategoryModelClass.init(id: 4, catName: "Breakfast", catImage: "", catdes: "", isveg: false),
-        CategoryModelClass.init(id: 5, catName: "Brinner", catImage: "", catdes: "", isveg: false),
-        CategoryModelClass.init(id: 6, catName: "Lunch", catImage: "", catdes: "", isveg: false)
+        CategoryModelClass.init(id: 1, catName: "Eggs"),
+        CategoryModelClass.init(id: 2, catName: "SandWich"),
+        CategoryModelClass.init(id: 3, catName: "South"),
+        CategoryModelClass.init(id: 4, catName: "Breakfast"),
+        CategoryModelClass.init(id: 5, catName: "Brinner"),
+        CategoryModelClass.init(id: 6, catName: "Lunch")
     ]
     var Bannerarry: [BannerModelClass] = [
-        BannerModelClass.init(id: 0, bannerName: "Package 0", bannerImage: "https://source.unsplash.com/random/200x200", bannerdes: "", bannerTitle: "Package 0")
+        BannerModelClass.init(id: 0, bannerName: "Package 0", bannerImage: "https://source.unsplash.com/random/200x200", bannerdes: randomString(), bannerTitle: "Package 0")
     ]
     
     var FilterWithSub: Bool = true
@@ -110,7 +110,7 @@ class HomeListingVC: BaseClassVC {
         self.navheaderView.fillinfo(title: "Home")
         navigationItem.titleView = self.navheaderView
         if !self.hasLocationPermission() {
-            self.navigationController?.view.makeToast("We wont be able to get your current location please, try it again!".localized(), duration: 3.0, position: .top, title: "User Location failed".localized(), image: nil)
+            self.navigationController?.view.makeToast("We are unable to get your current location please, try it again!".localized(), duration: 3.0, position: .top, title: "User Location failed".localized(), image: nil)
         }
     }
     
@@ -364,7 +364,7 @@ extension HomeListingVC: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        self.navigationController?.view.makeToast("We wont be able to get your current location please, try it again!".localized(), duration: 3.0, position: .top, title: "User Location failed".localized(), image: nil)
+        self.navigationController?.view.makeToast("We are unable to get your current location please, try it again!".localized(), duration: 3.0, position: .top, title: "User Location failed".localized(), image: nil)
     }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {

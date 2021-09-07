@@ -1,5 +1,5 @@
 //
-//  UserProfileVC.swift
+//  UserAccountVC.swift
 //  Dawn To Dusk
 //
 //  Created by Hiren on 26/07/21.
@@ -23,7 +23,7 @@ class UserProfilesOption {
 }
 
 
-class UserProfileVC: BaseClassVC {
+class UserAccountVC: BaseClassVC {
     
     //    MARK:- IBoutlet Defines
     //    MARK:-
@@ -78,7 +78,7 @@ class UserProfileVC: BaseClassVC {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navheaderView.fillinfo(title: "User Profile", isUserProfile: SharedUserInfo.shared.IsUserLoggedin()!)
+        self.navheaderView.fillinfo(title: "Accounts", isUserProfile: SharedUserInfo.shared.IsUserLoggedin()!)
         toogleTabbar(hide: false)
         self.navigationController?.navigationBar.isHidden = false
         self.setupUI()
@@ -88,8 +88,8 @@ class UserProfileVC: BaseClassVC {
         super.viewDidLoad()
         navigationItem.titleView = self.navheaderView
         if !self.hasLocationPermission() {
-            self.navigationController?.view.makeToast("We wont be able to get your current location please, try it again!".localized(), duration: 3.0, position: .top, title: "User Location failed".localized(), image: nil)
-//            AlertView.showSingleAlertVC(withTitle: "User Location failed".localized(), withMessage: "We wont be able to get your current location please, try it again!".localized(), withconfirmbtn: "OK".localized(), withcontroller: self, withTureBlock: {
+            self.navigationController?.view.makeToast("We are unable to get your current location please, try it again!".localized(), duration: 3.0, position: .top, title: "User Location failed".localized(), image: nil)
+//            AlertView.showSingleAlertVC(withTitle: "User Location failed".localized(), withMessage: "We are unable to get your current location please, try it again!".localized(), withconfirmbtn: "OK".localized(), withcontroller: self, withTureBlock: {
 //                _ = self.hasLocationPermission()
 //            })
         }
@@ -150,7 +150,7 @@ class UserProfileVC: BaseClassVC {
 //MARK:- Location methods
 //MARK:-
 
-extension UserProfileVC: CLLocationManagerDelegate {
+extension UserAccountVC: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
@@ -172,8 +172,8 @@ extension UserProfileVC: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        self.navigationController?.view.makeToast("We wont be able to get your current location please, try it again!".localized(), duration: 3.0, position: .top, title: "User Location failed".localized(), image: nil)
-//        AlertView.showSingleAlertVC(withTitle: "User Location failed".localized(), withMessage: "We wont be able to get your current location please, try it again!".localized(), withconfirmbtn: "OK".localized(), withcontroller: self, withTureBlock: {
+        self.navigationController?.view.makeToast("We are unable to get your current location please, try it again!".localized(), duration: 3.0, position: .top, title: "User Location failed".localized(), image: nil)
+//        AlertView.showSingleAlertVC(withTitle: "User Location failed".localized(), withMessage: "We are unable to get your current location please, try it again!".localized(), withconfirmbtn: "OK".localized(), withcontroller: self, withTureBlock: {
 //            _ = self.hasLocationPermission()
 //        })
     }
@@ -192,7 +192,7 @@ extension UserProfileVC: CLLocationManagerDelegate {
 //MARK:- UITableViewDelegate
 //MARK:-
 
-extension UserProfileVC: UITableViewDelegate, UITableViewDataSource {
+extension UserAccountVC: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
@@ -273,9 +273,9 @@ extension UserProfileVC: UITableViewDelegate, UITableViewDataSource {
                     
                 case 3:
                     // Pending Carts
-//                    let vc = HomeDetailsVC.init(nibName: "HomeDetailsVC", bundle: nil)
-//                    vc.DetailType = .History
-//                    self.navigationController?.pushViewController(vc, animated: true)
+                    let vc = HomeDetailsVC.init(nibName: "HomeDetailsVC", bundle: nil)
+                    vc.DetailType = .History
+                    self.navigationController?.pushViewController(vc, animated: true)
                     break
                     
                 case 4:

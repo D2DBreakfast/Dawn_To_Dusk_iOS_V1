@@ -45,10 +45,10 @@ func DummyVeg_non() -> Bool? {
 func DummyMainCat() -> CategoryModelClass? {
     let ids = Int.random(in: 0..<2)
     if ids == 0 {
-        return CategoryModelClass.init(id: ids, catName: "Order", catImage: dummyIMG(), catdes: randomString(length: 5), isveg: DummyVeg_non())
+        return CategoryModelClass.init(id: ids, catName: "Order")
     }
     else {
-        return CategoryModelClass.init(id: ids, catName: "Meal", catImage: dummyIMG(), catdes: randomString(length: 5), isveg: DummyVeg_non())
+        return CategoryModelClass.init(id: ids, catName: "Meal")
     }
 }
 
@@ -78,7 +78,7 @@ func DummySUbCat() -> CategoryModelClass? {
         title = "Eggs"
         break
     }
-    return CategoryModelClass.init(id: ids, catName: title, catImage: dummyIMG(), catdes: randomString(length: 5), isveg: DummyVeg_non())
+    return CategoryModelClass.init(id: ids, catName: title)
 }
 
 func DummyFoodListing2() -> [FoodModelClass]? {
@@ -86,10 +86,10 @@ func DummyFoodListing2() -> [FoodModelClass]? {
     
     for i in 0...25 {
         let ids = Int.random(in: 1..<7)
-        let cat = CategoryModelClass.init(id: 123, catName: "Order", catImage: dummyIMG(), catdes: randomString(length: 5), isveg: i % 2 == 0 ? true : false)
+        let cat = CategoryModelClass.init(id: 123, catName: "Order")
         let subtitle = ids == 1 ? "Eggs" : ids == 2 ? "SandWich" : ids == 3 ? "South" : ids == 4 ? "Breakfast" : ids == 5 ? "Brinner" : "Lunch"
         print("SUb cate title: \(subtitle) and id: \(ids)")
-        let subcat = CategoryModelClass.init(id: ids, catName: subtitle, catImage: dummyIMG(), catdes: randomString(length: 5), isveg: i % 2 == 0 ? true : false)
+        let subcat = CategoryModelClass.init(id: ids, catName: subtitle)
         food.append(FoodModelClass.init(id: randomID(digits: 2), title: randomString(length: 5), foodimage: dummyIMG(), gallery: dummygallery(), foodShortdesc: randomString(length: 20), foodLongdesc: randomString(length: 80), price: DummyPrice(), cattegory: cat, subCattegory: subcat, nutriInfo: randomString(length: 80), info: randomString(length: 80), isveg: i % 2 == 0 ? true : false))
     }
     return food
@@ -128,7 +128,7 @@ func dummyNotification() -> [NotificationModelClass] {
 }
 
 func DummCartdata() -> CartListModelClass? {
-    let cart = CartListModelClass.init(id: randomID(digits: 2), title: randomString(length: 5), foodimage: randomString(length: 5), gallery: dummygallery(), foodShortdesc: randomString(length: 5), foodLongdesc: randomString(length: 5), price: DummyPrice(), cattegory: CategoryModelClass.init(id: randomID(digits: 2), catName: randomString(length: 5), catImage: dummyIMG(), catdes: randomString(length: 5), isveg: DummyVeg_non()), subCattegory: CategoryModelClass.init(id: randomID(digits: 2), catName: randomString(length: 5), catImage: dummyIMG(), catdes: randomString(length: 5), isveg: DummyVeg_non()), nutriInfo: randomString(length: 5), info: randomString(length: 5), isveg: true, mealimage: randomString(length: 5), mealShortdesc: randomString(length: 5), mealLongdesc: randomString(length: 5), terms: randomString(length: 5), works: randomString(length: 5), fooditems: [FoodModelClass.init(id: randomID(digits: 2), title: randomString(length: 5), foodimage: dummyIMG(), gallery: dummygallery(), foodShortdesc: randomString(length: 20), foodLongdesc: randomString(length: 80), price: DummyPrice(), cattegory: DummyMainCat(), subCattegory: DummySUbCat(), nutriInfo: randomString(length: 80), info: randomString(length: 80), isveg: DummyVeg_non())], mealitems: [MealModelClass.init(id: randomID(digits: 2), title: randomString(length: 5), mealimage: dummyIMG(), gallery: dummygallery(), mealShortdesc: randomString(length: 20), mealLongdesc: randomString(length: 50), price: DummyPrice(), cattegory: DummyMainCat(), subCattegory: DummySUbCat(), nutriInfo: randomString(length: 80), terms: randomString(length: 80), works: randomString(length: 80), isveg: DummyVeg_non(), items: DummyFoodListing())])
+    let cart = CartListModelClass.init(id: randomID(digits: 2), title: randomString(length: 5), foodimage: randomString(length: 5), gallery: dummygallery(), foodShortdesc: randomString(length: 5), foodLongdesc: randomString(length: 5), price: DummyPrice(), cattegory: CategoryModelClass.init(id: randomID(digits: 2), catName: randomString(length: 5)), subCattegory: CategoryModelClass.init(id: randomID(digits: 2), catName: randomString(length: 5)), nutriInfo: randomString(length: 5), info: randomString(length: 5), isveg: true, mealimage: randomString(length: 5), mealShortdesc: randomString(length: 5), mealLongdesc: randomString(length: 5), terms: randomString(length: 5), works: randomString(length: 5), fooditems: [FoodModelClass.init(id: randomID(digits: 2), title: randomString(length: 5), foodimage: dummyIMG(), gallery: dummygallery(), foodShortdesc: randomString(length: 20), foodLongdesc: randomString(length: 80), price: DummyPrice(), cattegory: DummyMainCat(), subCattegory: DummySUbCat(), nutriInfo: randomString(length: 80), info: randomString(length: 80), isveg: DummyVeg_non())], mealitems: [MealModelClass.init(id: randomID(digits: 2), title: randomString(length: 5), mealimage: dummyIMG(), gallery: dummygallery(), mealShortdesc: randomString(length: 20), mealLongdesc: randomString(length: 50), price: DummyPrice(), cattegory: DummyMainCat(), subCattegory: DummySUbCat(), nutriInfo: randomString(length: 80), terms: randomString(length: 80), works: randomString(length: 80), isveg: DummyVeg_non(), items: DummyFoodListing())])
     return cart
 }
 

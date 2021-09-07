@@ -70,7 +70,7 @@ class HomeDashboardVC: UITabBarController {
             createNavViewController(viewController: HomeListingVC.init(nibName: "HomeListingVC", bundle: nil), title: "Home", imageName: "Home.tab"),
             createNavViewController(viewController: GlobalSearchVC.init(nibName: "GlobalSearchVC", bundle: nil), title: "Search", imageName: "Search.tab"),
             createNavViewController(viewController: NotificationVC.init(nibName: "NotificationVC", bundle: nil), title: "Notification", imageName: "Bell.tab"),
-            createNavViewController(viewController: UserProfileVC.init(nibName: "UserProfileVC", bundle: nil), title: "Profile", imageName: "Profile.tab")
+            createNavViewController(viewController: UserAccountVC.init(nibName: "UserAccountVC", bundle: nil), title: "Profile", imageName: "Profile.tab")
         ]
         tabBar.isHidden = true
         tabBar.tintColor = UIColor.colorWithHexString(hexStr: GetDefaultTheme()!)
