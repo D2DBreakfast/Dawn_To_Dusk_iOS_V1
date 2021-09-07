@@ -67,6 +67,7 @@ class NotificationVC: BaseClassVC {
         super.viewWillAppear(animated)
         toogleTabbar(hide: false)
         self.navigationController?.navigationBar.isHidden = false
+        self.ListTBL.layoutSubviews()
     }
     
     override func viewDidLoad() {
@@ -112,6 +113,10 @@ class NotificationVC: BaseClassVC {
     }
     
     override func setupUI() {
+        
+        self.ListTBL.rowHeight = UITableView.automaticDimension
+        self.ListTBL.estimatedRowHeight = UITableView.automaticDimension
+        
         self.ListTBL.delegate = self
         self.ListTBL.dataSource = self
         self.ListTBL.reloadData()

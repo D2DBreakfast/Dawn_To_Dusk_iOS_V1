@@ -74,10 +74,23 @@ class HomeDetailsVC: BaseClassVC {
         header.type = .coverFlow2
         header.bounceDistance = 15
         header.isPagingEnabled = true
-        //        header.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         header.delegate = self
         header.dataSource = self
         return header
+    }()
+    
+    lazy var SectionHeader: UIView = {
+        let view = UIView.init(frame: CGRect.init(x: 0, y: 0, width: Screen_width, height: 40))
+        view.backgroundColor = ModeBG_Color
+        view.addSubview(self.Sectiontitle)
+        return view
+    }()
+    
+    lazy var Sectiontitle: UILabel = {
+        let lbl = UILabel.init(frame: CGRect.init(x: 20, y: 10, width: Screen_width - 20, height: 30))
+        lbl.font = UIFont.boldSystemFont(ofSize: 24)
+        lbl.textColor = UIColor.label
+        return lbl
     }()
     
     fileprivate var singleDate: Date = Date()
@@ -93,6 +106,7 @@ class HomeDetailsVC: BaseClassVC {
         super.viewWillAppear(animated)
         toogleTabbar(hide: true)
         self.setupUI()
+        self.DetailTBL.layoutSubviews()
     }
     
     override func viewDidLoad() {
@@ -112,7 +126,11 @@ class HomeDetailsVC: BaseClassVC {
         self.DetailTBL.register(UINib.init(nibName: "CartItemCell", bundle: nil), forCellReuseIdentifier: "CartItemCell")
         self.DetailTBL.register(UINib.init(nibName: "CartConfigureCell", bundle: nil), forCellReuseIdentifier: "CartConfigureCell")
         self.DetailTBL.register(UINib.init(nibName: "RunningOrderTrackCell", bundle: nil), forCellReuseIdentifier: "RunningOrderTrackCell")
+        self.DetailTBL.register(UINib.init(nibName: "RunningOrderCell", bundle: nil), forCellReuseIdentifier: "RunningOrderCell")
         self.DetailTBL.allowsSelection = true
+        
+        self.DetailTBL.rowHeight = UITableView.automaticDimension
+        self.DetailTBL.estimatedRowHeight = UITableView.automaticDimension
         
         self.DetailTBL.delegate = self
         self.DetailTBL.dataSource = self
@@ -183,7 +201,7 @@ class HomeDetailsVC: BaseClassVC {
             self.DetailTBL.backgroundColor = ModeBG_Color
             self.DetailTBL.separatorStyle = .none
             self.view.backgroundColor = ModeBG_Color
-            self.title = "History"
+            self.title = "Order History"
             self.SetupNavBarforback()
             self.NodataFoundView.isHidden = true
             self.DetailTBL.isHidden = false
@@ -354,10 +372,7 @@ extension HomeDetailsVC: iCarouselDataSource, iCarouselDelegate {
             
         case .Meals:
             return (self.MealDetails.gallery?.count)!
-            
-        case .Banner:
-            return 0
-            
+        
         case .Notification:
             return self.notificationDetails.gallery!.count
             
@@ -375,10 +390,6 @@ extension HomeDetailsVC: iCarouselDataSource, iCarouselDelegate {
             
         case .Meals:
             imageURL = self.MealDetails.gallery![index]
-            break
-            
-        case .Banner:
-            imageURL = ""
             break
             
         case .Notification:
@@ -445,7 +456,7 @@ extension HomeDetailsVC {
             return 1
             
         case .History:
-            return 1
+            return 2
             
         case .Address:
             return 1
@@ -507,7 +518,7 @@ extension HomeDetailsVC {
             return 1
             
         case .History:
-            return self.HistoryArry?.count
+            return section == 0 ? self.HistoryArry?.count : self.HistoryArry?.count
             
         case .HistoryDetails:
             return self.GetRowFromSection(section: section)
@@ -551,21 +562,34 @@ extension HomeDetailsVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return (self.DetailType == .Meals && section == 1) ? 40 : 0
+        switch self.DetailType {
+        case .Meals:
+            return section == 1 ? 40 : 0
+        case .History:
+            return 40
+        default:
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if self.DetailType == .Meals && section == 1 {
-            let view = UIView.init(frame: CGRect.init(x: 0, y: 0, width: Screen_width, height: 40))
-            view.backgroundColor = ModeBG_Color
-            let lbl = UILabel.init(frame: CGRect.init(x: 20, y: 10, width: Screen_width - 20, height: 30))
-            lbl.text = "Upcoming Meals"
-            lbl.font = UIFont.boldSystemFont(ofSize: 24)
-            lbl.textColor = UIColor.label
-            view.addSubview(lbl)
-            return view
+        switch self.DetailType {
+        case .Meals:
+            if section == 1 {
+                self.Sectiontitle.text = "Upcoming Meals"
+                return self.SectionHeader
+            }
+            else {
+                return nil
+            }
+            
+        case .History:
+            self.Sectiontitle.text = section == 0 ? "Running Orders" : "Completed Orders"
+            return self.SectionHeader
+            
+        default:
+            return nil
         }
-        return nil
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -657,10 +681,17 @@ extension HomeDetailsVC: UITableViewDelegate, UITableViewDataSource {
             
         case .History:
             // Pending Carts
-//            let details = HomeDetailsVC.init(nibName: "HomeDetailsVC", bundle: nil)
-//            details.DetailType = .HistoryDetails
-////            details.CartItems = self.HistoryArry[indexPath.row]
-//            self.navigationController?.pushViewController(details, animated: true)
+//            if indexPath.section == 0 {
+//                let vc = HomeDetailsVC(nibName: "HomeDetailsVC", bundle: nil)
+//                vc.DetailType = .TrackOrder
+//                self.navigationController!.pushViewController(vc, animated: true)
+//            }
+//            else {
+//                let details = HomeDetailsVC.init(nibName: "HomeDetailsVC", bundle: nil)
+//                details.DetailType = .HistoryDetails
+//                //            details.CartItems = self.HistoryArry[indexPath.row]
+//                self.navigationController?.pushViewController(details, animated: true)
+//            }
             break
             
         case .Address:
@@ -827,9 +858,22 @@ extension HomeDetailsVC {
     
     //    TODO:- History Config Cells
     func HistoryConfigCell(indexPath: IndexPath) -> UITableViewCell {
-        let cell: HomeFoodListCell = self.DetailTBL.dequeueReusableCell(withIdentifier: "HomeFoodListCell") as! HomeFoodListCell
-        cell.setupHistorycell(history: self.HistoryArry![indexPath.row], indexPath: indexPath)
-        return cell
+        if indexPath.section == 0 {
+            let cell: RunningOrderCell = self.DetailTBL.dequeueReusableCell(withIdentifier: "RunningOrderCell") as! RunningOrderCell
+            cell.setuptrackdata()
+            cell.didTappedActionBlock = {
+                // Pending Carts
+//                let vc = HomeDetailsVC(nibName: "HomeDetailsVC", bundle: nil)
+//                vc.DetailType = .TrackOrder
+//                self.navigationController!.pushViewController(vc, animated: true)
+            }
+            return cell
+        }
+        else {
+            let cell: HomeFoodListCell = self.DetailTBL.dequeueReusableCell(withIdentifier: "HomeFoodListCell") as! HomeFoodListCell
+            cell.setupHistorycell(history: self.HistoryArry![indexPath.row], indexPath: indexPath)
+            return cell
+        }
     }
     
     //    TODO:- Cart History Details Cells
