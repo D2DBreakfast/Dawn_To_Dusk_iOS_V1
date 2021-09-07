@@ -52,7 +52,7 @@ class HomeDetailsVC: BaseClassVC {
     
     var FoodDetails: FoodModelClass!
     var MealDetails: MealModelClass!
-    var BannerDetails: BannerModelClass! = BannerModelClass.init(id: 0, bannerName: "Package 0", bannerImage: "https://source.unsplash.com/random/200x200", bannerdes: "", bannerTitle: "Package 0")
+    var BannerDetails: BannerModelClass! = BannerModelClass.init(id: 0, bannerName: "Package 0", bannerImage: "https://source.unsplash.com/random/200x200", bannerdes: randomString(), bannerTitle: "Package 0")
     
     var notificationDetails: NotificationModelClass!
     var AddressArry: [CommunityModelClass] = DummyCommunitydata()!

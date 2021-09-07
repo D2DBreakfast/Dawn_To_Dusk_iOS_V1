@@ -57,7 +57,7 @@ class NotificationVC: BaseClassVC {
     
     var notificationarry: [NotificationModelClass] = dummyNotification()
     var Bannerarry: [BannerModelClass] = [
-        BannerModelClass.init(id: 0, bannerName: "Package 0", bannerImage: "https://source.unsplash.com/random/200x200", bannerdes: "", bannerTitle: "Package 0")
+        BannerModelClass.init(id: 0, bannerName: "Package 0", bannerImage: "https://source.unsplash.com/random/200x200", bannerdes: randomString(), bannerTitle: "Package 0")
     ]
     
     //    MARK:- View Cycle
@@ -75,7 +75,7 @@ class NotificationVC: BaseClassVC {
         navigationItem.titleView = self.navheaderView
         self.setupUI()
         if !self.hasLocationPermission() {
-            self.navigationController?.view.makeToast("We wont be able to get your current location please, try it again!".localized(), duration: 3.0, position: .top, title: "User Location failed".localized(), image: nil)
+            self.navigationController?.view.makeToast("We are unable to get your current location please, try it again!".localized(), duration: 3.0, position: .top, title: "User Location failed".localized(), image: nil)
         }
     }
     
@@ -167,8 +167,8 @@ extension NotificationVC: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        self.navigationController?.view.makeToast("We wont be able to get your current location please, try it again!".localized(), duration: 3.0, position: .top, title: "User Location failed".localized(), image: nil)
-//        AlertView.showSingleAlertVC(withTitle: "User Location failed".localized(), withMessage: "We wont be able to get your current location please, try it again!".localized(), withconfirmbtn: "OK".localized(), withcontroller: self, withTureBlock: {
+        self.navigationController?.view.makeToast("We are unable to get your current location please, try it again!".localized(), duration: 3.0, position: .top, title: "User Location failed".localized(), image: nil)
+//        AlertView.showSingleAlertVC(withTitle: "User Location failed".localized(), withMessage: "We are unable to get your current location please, try it again!".localized(), withconfirmbtn: "OK".localized(), withcontroller: self, withTureBlock: {
 //            _ = self.hasLocationPermission()
 //        })
     }

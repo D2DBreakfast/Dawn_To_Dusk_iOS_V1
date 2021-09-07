@@ -46,23 +46,14 @@ class CategoryModelData: Codable {
 class CategoryModelClass: Codable {
     var id: Int?
     var catName: String?
-    var catImage: String?
-    var catdes: String?
-    var isveg: Bool?
 
     enum CodingKeys: String, CodingKey {
         case id = "id"
         case catName = "cat_name"
-        case catImage = "cat_image"
-        case catdes = "cat_des"
-        case isveg = "isveg"
     }
 
-    init(id: Int?, catName: String?, catImage: String?, catdes: String?, isveg: Bool?) {
+    init(id: Int?, catName: String?) {
         self.id = id
         self.catName = catName
-        self.catImage = catImage
-        self.catdes = catdes
-        self.isveg = isveg
     }
 }

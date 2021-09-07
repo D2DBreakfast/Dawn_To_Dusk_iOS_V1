@@ -73,8 +73,8 @@ class CartManageVC: BaseClassVC {
         self.view.backgroundColor = ModeBG_Color
         
         if !self.hasLocationPermission() {
-            self.navigationController?.view.makeToast("We wont be able to get your current location please, try it again!".localized(), duration: 3.0, position: .top, title: "User Location failed".localized(), image: nil)
-//            AlertView.showSingleAlertVC(withTitle: "User Location failed".localized(), withMessage: "We wont be able to get your current location please, try it again!".localized(), withconfirmbtn: "OK".localized(), withcontroller: self, withTureBlock: {
+            self.navigationController?.view.makeToast("We are unable to get your current location please, try it again!".localized(), duration: 3.0, position: .top, title: "User Location failed".localized(), image: nil)
+//            AlertView.showSingleAlertVC(withTitle: "User Location failed".localized(), withMessage: "We are unable to get your current location please, try it again!".localized(), withconfirmbtn: "OK".localized(), withcontroller: self, withTureBlock: {
 //                _ = self.hasLocationPermission()
 //            })
         }
@@ -264,8 +264,8 @@ extension CartManageVC: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        self.navigationController?.view.makeToast("We wont be able to get your current location please, try it again!".localized(), duration: 3.0, position: .top, title: "User Location failed".localized(), image: nil)
-//        AlertView.showSingleAlertVC(withTitle: "User Location failed".localized(), withMessage: "We wont be able to get your current location please, try it again!".localized(), withconfirmbtn: "OK".localized(), withcontroller: self, withTureBlock: {
+        self.navigationController?.view.makeToast("We are unable to get your current location please, try it again!".localized(), duration: 3.0, position: .top, title: "User Location failed".localized(), image: nil)
+//        AlertView.showSingleAlertVC(withTitle: "User Location failed".localized(), withMessage: "We are unable to get your current location please, try it again!".localized(), withconfirmbtn: "OK".localized(), withcontroller: self, withTureBlock: {
 //            _ = self.hasLocationPermission()
 //        })
     }
