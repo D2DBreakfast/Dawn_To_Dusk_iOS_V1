@@ -104,7 +104,7 @@ extension SceneDelegate {
     }
     
     func UpdateTheme() {
-        let oldindex: Int = UserDefaults.standard.value(forKey: DefaultThemeValue) as! Int
+        let oldindex: Int? = UserDefaults.standard.value(forKey: DefaultThemeValue) as! Int?
         let randomInt = Int.random(in: 0..<3)
         if oldindex == randomInt {
             self.UpdateTheme()
