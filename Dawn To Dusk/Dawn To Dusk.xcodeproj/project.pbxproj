@@ -94,9 +94,6 @@
 		B716B3DC26CB854800B6D4C7 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = B716B3DB26CB854800B6D4C7 /* Toast.swift */; };
 		B716B3DD26CB854800B6D4C7 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = B716B3DB26CB854800B6D4C7 /* Toast.swift */; };
 		B716B3DE26CB854800B6D4C7 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = B716B3DB26CB854800B6D4C7 /* Toast.swift */; };
-		B716B3E026CB8DE800B6D4C7 /* ServicesFailed.swift in Sources */ = {isa = PBXBuildFile; fileRef = B716B3DF26CB8DE800B6D4C7 /* ServicesFailed.swift */; };
-		B716B3E126CB8DE800B6D4C7 /* ServicesFailed.swift in Sources */ = {isa = PBXBuildFile; fileRef = B716B3DF26CB8DE800B6D4C7 /* ServicesFailed.swift */; };
-		B716B3E226CB8DE800B6D4C7 /* ServicesFailed.swift in Sources */ = {isa = PBXBuildFile; fileRef = B716B3DF26CB8DE800B6D4C7 /* ServicesFailed.swift */; };
 		B716B3E726CBA8BF00B6D4C7 /* UserInfoUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B716B3E426CBA8BF00B6D4C7 /* UserInfoUser.swift */; };
 		B716B3E826CBA8BF00B6D4C7 /* UserInfoUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B716B3E426CBA8BF00B6D4C7 /* UserInfoUser.swift */; };
 		B716B3E926CBA8BF00B6D4C7 /* UserInfoUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B716B3E426CBA8BF00B6D4C7 /* UserInfoUser.swift */; };
@@ -112,6 +109,21 @@
 		B716B3F626CBAAA900B6D4C7 /* GetOTPData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B716B3F226CBAAA900B6D4C7 /* GetOTPData.swift */; };
 		B716B3F726CBAAA900B6D4C7 /* GetOTPData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B716B3F226CBAAA900B6D4C7 /* GetOTPData.swift */; };
 		B716B3F826CBAAA900B6D4C7 /* GetOTPData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B716B3F226CBAAA900B6D4C7 /* GetOTPData.swift */; };
+		B722A10426E9E83D00A336CD /* PaymentModeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B722A0FF26E9E83C00A336CD /* PaymentModeCard.swift */; };
+		B722A10526E9E83D00A336CD /* PaymentModeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B722A0FF26E9E83C00A336CD /* PaymentModeCard.swift */; };
+		B722A10626E9E83D00A336CD /* PaymentModeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B722A0FF26E9E83C00A336CD /* PaymentModeCard.swift */; };
+		B722A10726E9E83D00A336CD /* PaymentModeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B722A10026E9E83C00A336CD /* PaymentModeData.swift */; };
+		B722A10826E9E83D00A336CD /* PaymentModeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B722A10026E9E83C00A336CD /* PaymentModeData.swift */; };
+		B722A10926E9E83D00A336CD /* PaymentModeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B722A10026E9E83C00A336CD /* PaymentModeData.swift */; };
+		B722A10A26E9E83D00A336CD /* PaymentModeBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = B722A10126E9E83C00A336CD /* PaymentModeBank.swift */; };
+		B722A10B26E9E83D00A336CD /* PaymentModeBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = B722A10126E9E83C00A336CD /* PaymentModeBank.swift */; };
+		B722A10C26E9E83D00A336CD /* PaymentModeBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = B722A10126E9E83C00A336CD /* PaymentModeBank.swift */; };
+		B722A10D26E9E83D00A336CD /* PaymentModePayment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B722A10226E9E83C00A336CD /* PaymentModePayment.swift */; };
+		B722A10E26E9E83D00A336CD /* PaymentModePayment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B722A10226E9E83C00A336CD /* PaymentModePayment.swift */; };
+		B722A10F26E9E83D00A336CD /* PaymentModePayment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B722A10226E9E83C00A336CD /* PaymentModePayment.swift */; };
+		B722A11026E9E83D00A336CD /* PaymentModeRootClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B722A10326E9E83C00A336CD /* PaymentModeRootClass.swift */; };
+		B722A11126E9E83D00A336CD /* PaymentModeRootClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B722A10326E9E83C00A336CD /* PaymentModeRootClass.swift */; };
+		B722A11226E9E83D00A336CD /* PaymentModeRootClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B722A10326E9E83C00A336CD /* PaymentModeRootClass.swift */; };
 		B731C82326A6EFB800379CCB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B731C82226A6EFB800379CCB /* AppDelegate.swift */; };
 		B731C82526A6EFB800379CCB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B731C82426A6EFB800379CCB /* SceneDelegate.swift */; };
 		B731C82726A6EFB800379CCB /* HomeLoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B731C82626A6EFB800379CCB /* HomeLoginVC.swift */; };
@@ -313,9 +325,6 @@
 		B7EE5CED26D6425F00FDD52F /* UserInfoAddres.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EE5CE826D6425E00FDD52F /* UserInfoAddres.swift */; };
 		B7EE5CEE26D6425F00FDD52F /* UserInfoAddres.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EE5CE826D6425E00FDD52F /* UserInfoAddres.swift */; };
 		B7EE5CEF26D6425F00FDD52F /* UserInfoAddres.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EE5CE826D6425E00FDD52F /* UserInfoAddres.swift */; };
-		B7EE5CF026D6425F00FDD52F /* UserInfoPaymentmode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EE5CE926D6425F00FDD52F /* UserInfoPaymentmode.swift */; };
-		B7EE5CF126D6425F00FDD52F /* UserInfoPaymentmode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EE5CE926D6425F00FDD52F /* UserInfoPaymentmode.swift */; };
-		B7EE5CF226D6425F00FDD52F /* UserInfoPaymentmode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EE5CE926D6425F00FDD52F /* UserInfoPaymentmode.swift */; };
 		B7EE5CFA26D6442500FDD52F /* CategoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EE5CF726D6442500FDD52F /* CategoryData.swift */; };
 		B7EE5CFB26D6442500FDD52F /* CategoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EE5CF726D6442500FDD52F /* CategoryData.swift */; };
 		B7EE5CFC26D6442500FDD52F /* CategoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EE5CF726D6442500FDD52F /* CategoryData.swift */; };
@@ -340,9 +349,9 @@
 		B7EE5D3326D6483100FDD52F /* FoodData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EE5D2826D6483100FDD52F /* FoodData.swift */; };
 		B7EE5D3426D6483100FDD52F /* FoodData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EE5D2826D6483100FDD52F /* FoodData.swift */; };
 		B7EE5D3526D6483100FDD52F /* FoodData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EE5D2826D6483100FDD52F /* FoodData.swift */; };
-		B7EE5D3626D6483100FDD52F /* FoodListRootClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EE5D2926D6483100FDD52F /* FoodListRootClass.swift */; };
-		B7EE5D3726D6483100FDD52F /* FoodListRootClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EE5D2926D6483100FDD52F /* FoodListRootClass.swift */; };
-		B7EE5D3826D6483100FDD52F /* FoodListRootClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EE5D2926D6483100FDD52F /* FoodListRootClass.swift */; };
+		B7EE5D3626D6483100FDD52F /* FoodRootClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EE5D2926D6483100FDD52F /* FoodRootClass.swift */; };
+		B7EE5D3726D6483100FDD52F /* FoodRootClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EE5D2926D6483100FDD52F /* FoodRootClass.swift */; };
+		B7EE5D3826D6483100FDD52F /* FoodRootClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EE5D2926D6483100FDD52F /* FoodRootClass.swift */; };
 		B7EE5D3C26D6483100FDD52F /* FoodModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EE5D2B26D6483100FDD52F /* FoodModels.swift */; };
 		B7EE5D3D26D6483100FDD52F /* FoodModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EE5D2B26D6483100FDD52F /* FoodModels.swift */; };
 		B7EE5D3E26D6483100FDD52F /* FoodModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EE5D2B26D6483100FDD52F /* FoodModels.swift */; };
@@ -467,12 +476,16 @@
 		B702029D26CD088900DADBDF /* PaymentModeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PaymentModeCell.xib; sourceTree = "<group>"; };
 		B716B3CD26CB80BE00B6D4C7 /* RRAlamofireRxAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RRAlamofireRxAPI.swift; sourceTree = "<group>"; };
 		B716B3DB26CB854800B6D4C7 /* Toast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
-		B716B3DF26CB8DE800B6D4C7 /* ServicesFailed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesFailed.swift; sourceTree = "<group>"; };
 		B716B3E426CBA8BF00B6D4C7 /* UserInfoUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoUser.swift; sourceTree = "<group>"; };
 		B716B3E526CBA8BF00B6D4C7 /* UserInfoRootClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoRootClass.swift; sourceTree = "<group>"; };
 		B716B3E626CBA8BF00B6D4C7 /* UserInfoData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoData.swift; sourceTree = "<group>"; };
 		B716B3F126CBAAA900B6D4C7 /* GetOTPRootClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetOTPRootClass.swift; sourceTree = "<group>"; };
 		B716B3F226CBAAA900B6D4C7 /* GetOTPData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetOTPData.swift; sourceTree = "<group>"; };
+		B722A0FF26E9E83C00A336CD /* PaymentModeCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentModeCard.swift; sourceTree = "<group>"; };
+		B722A10026E9E83C00A336CD /* PaymentModeData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentModeData.swift; sourceTree = "<group>"; };
+		B722A10126E9E83C00A336CD /* PaymentModeBank.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentModeBank.swift; sourceTree = "<group>"; };
+		B722A10226E9E83C00A336CD /* PaymentModePayment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentModePayment.swift; sourceTree = "<group>"; };
+		B722A10326E9E83C00A336CD /* PaymentModeRootClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentModeRootClass.swift; sourceTree = "<group>"; };
 		B731C81F26A6EFB800379CCB /* Dawn To Dusk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dawn To Dusk.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B731C82226A6EFB800379CCB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B731C82426A6EFB800379CCB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -575,7 +588,6 @@
 		B7EC693226A97723007BEE3E /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 		B7EE5CE726D6425E00FDD52F /* UserInfoCommunity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoCommunity.swift; sourceTree = "<group>"; };
 		B7EE5CE826D6425E00FDD52F /* UserInfoAddres.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoAddres.swift; sourceTree = "<group>"; };
-		B7EE5CE926D6425F00FDD52F /* UserInfoPaymentmode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoPaymentmode.swift; sourceTree = "<group>"; };
 		B7EE5CF726D6442500FDD52F /* CategoryData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryData.swift; sourceTree = "<group>"; };
 		B7EE5CF826D6442500FDD52F /* CategoryRootClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryRootClass.swift; sourceTree = "<group>"; };
 		B7EE5CF926D6442500FDD52F /* CategoryModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryModels.swift; sourceTree = "<group>"; };
@@ -584,7 +596,7 @@
 		B7EE5D0626D6459300FDD52F /* BannerModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerModels.swift; sourceTree = "<group>"; };
 		B7EE5D2626D6483100FDD52F /* MealsModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealsModels.swift; sourceTree = "<group>"; };
 		B7EE5D2826D6483100FDD52F /* FoodData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodData.swift; sourceTree = "<group>"; };
-		B7EE5D2926D6483100FDD52F /* FoodListRootClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodListRootClass.swift; sourceTree = "<group>"; };
+		B7EE5D2926D6483100FDD52F /* FoodRootClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodRootClass.swift; sourceTree = "<group>"; };
 		B7EE5D2B26D6483100FDD52F /* FoodModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodModels.swift; sourceTree = "<group>"; };
 		B7EE5D4326D64A2F00FDD52F /* NotificationListRootClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationListRootClass.swift; sourceTree = "<group>"; };
 		B7EE5D4426D64A2F00FDD52F /* NotificationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationData.swift; sourceTree = "<group>"; };
@@ -728,13 +740,21 @@
 			path = UserInfoModels;
 			sourceTree = "<group>";
 		};
-		B716B3F026CBAAA900B6D4C7 /* GetOTPModel */ = {
+		B716B3F026CBAAA900B6D4C7 /* GetOTPModels */ = {
 			isa = PBXGroup;
 			children = (
 				B716B3F226CBAAA900B6D4C7 /* GetOTPData.swift */,
 				B716B3F126CBAAA900B6D4C7 /* GetOTPRootClass.swift */,
 			);
-			path = GetOTPModel;
+			path = GetOTPModels;
+			sourceTree = "<group>";
+		};
+		B722A0FE26E9CF8400A336CD /* PlaceOrderModels */ = {
+			isa = PBXGroup;
+			children = (
+				B7EE5D5126D64CB500FDD52F /* PlaceorderModels.swift */,
+			);
+			path = PlaceOrderModels;
 			sourceTree = "<group>";
 		};
 		B731C81626A6EFB800379CCB = {
@@ -1133,7 +1153,11 @@
 		B7EE5CF426D643A400FDD52F /* PaymentModels */ = {
 			isa = PBXGroup;
 			children = (
-				B7EE5CE926D6425F00FDD52F /* UserInfoPaymentmode.swift */,
+				B722A10126E9E83C00A336CD /* PaymentModeBank.swift */,
+				B722A0FF26E9E83C00A336CD /* PaymentModeCard.swift */,
+				B722A10026E9E83C00A336CD /* PaymentModeData.swift */,
+				B722A10226E9E83C00A336CD /* PaymentModePayment.swift */,
+				B722A10326E9E83C00A336CD /* PaymentModeRootClass.swift */,
 			);
 			path = PaymentModels;
 			sourceTree = "<group>";
@@ -1141,69 +1165,68 @@
 		B7EE5CF526D643DB00FDD52F /* NewModelsClasses */ = {
 			isa = PBXGroup;
 			children = (
-				B7EE5D4F26D64CB500FDD52F /* BasicServicesRootClass */,
-				B7EE5D4226D64A2F00FDD52F /* NotificationListRootClass */,
-				B7EE5D2526D6483100FDD52F /* FoodListRootClass */,
-				B7EE5D0326D6459300FDD52F /* BannerRootClass */,
-				B7EE5CF626D6442500FDD52F /* CategoryRootClass */,
+				B722A0FE26E9CF8400A336CD /* PlaceOrderModels */,
+				B7EE5D4F26D64CB500FDD52F /* BasicServicesModels */,
+				B7EE5D4226D64A2F00FDD52F /* NotificationListModels */,
+				B7EE5D2526D6483100FDD52F /* FoodListModels */,
+				B7EE5D0326D6459300FDD52F /* BannerModels */,
+				B7EE5CF626D6442500FDD52F /* CategoryModels */,
 				B7EE5CF426D643A400FDD52F /* PaymentModels */,
 				B7EE5CF326D6438300FDD52F /* Address&CommunityModels */,
-				B716B3F026CBAAA900B6D4C7 /* GetOTPModel */,
-				B716B3DF26CB8DE800B6D4C7 /* ServicesFailed.swift */,
+				B716B3F026CBAAA900B6D4C7 /* GetOTPModels */,
 				B716B3E326CBA8BF00B6D4C7 /* UserInfoModels */,
 			);
 			path = NewModelsClasses;
 			sourceTree = "<group>";
 		};
-		B7EE5CF626D6442500FDD52F /* CategoryRootClass */ = {
+		B7EE5CF626D6442500FDD52F /* CategoryModels */ = {
 			isa = PBXGroup;
 			children = (
 				B7EE5CF726D6442500FDD52F /* CategoryData.swift */,
 				B7EE5CF926D6442500FDD52F /* CategoryModels.swift */,
 				B7EE5CF826D6442500FDD52F /* CategoryRootClass.swift */,
 			);
-			path = CategoryRootClass;
+			path = CategoryModels;
 			sourceTree = "<group>";
 		};
-		B7EE5D0326D6459300FDD52F /* BannerRootClass */ = {
+		B7EE5D0326D6459300FDD52F /* BannerModels */ = {
 			isa = PBXGroup;
 			children = (
 				B7EE5D0526D6459300FDD52F /* BannerData.swift */,
 				B7EE5D0626D6459300FDD52F /* BannerModels.swift */,
 				B7EE5D0426D6459300FDD52F /* BannerRootClass.swift */,
 			);
-			path = BannerRootClass;
+			path = BannerModels;
 			sourceTree = "<group>";
 		};
-		B7EE5D2526D6483100FDD52F /* FoodListRootClass */ = {
+		B7EE5D2526D6483100FDD52F /* FoodListModels */ = {
 			isa = PBXGroup;
 			children = (
 				B7EE5D2826D6483100FDD52F /* FoodData.swift */,
-				B7EE5D2926D6483100FDD52F /* FoodListRootClass.swift */,
+				B7EE5D2926D6483100FDD52F /* FoodRootClass.swift */,
 				B7EE5D2B26D6483100FDD52F /* FoodModels.swift */,
 				B7EE5D2626D6483100FDD52F /* MealsModels.swift */,
 			);
-			path = FoodListRootClass;
+			path = FoodListModels;
 			sourceTree = "<group>";
 		};
-		B7EE5D4226D64A2F00FDD52F /* NotificationListRootClass */ = {
+		B7EE5D4226D64A2F00FDD52F /* NotificationListModels */ = {
 			isa = PBXGroup;
 			children = (
 				B7EE5D4326D64A2F00FDD52F /* NotificationListRootClass.swift */,
 				B7EE5D4426D64A2F00FDD52F /* NotificationData.swift */,
 				B7EE5D4526D64A2F00FDD52F /* NotificationModels.swift */,
 			);
-			path = NotificationListRootClass;
+			path = NotificationListModels;
 			sourceTree = "<group>";
 		};
-		B7EE5D4F26D64CB500FDD52F /* BasicServicesRootClass */ = {
+		B7EE5D4F26D64CB500FDD52F /* BasicServicesModels */ = {
 			isa = PBXGroup;
 			children = (
 				B7EE5D5026D64CB500FDD52F /* BasicServicesRootClass.swift */,
-				B7EE5D5126D64CB500FDD52F /* PlaceorderModels.swift */,
 				B7EE5D5226D64CB500FDD52F /* BasicServicesData.swift */,
 			);
-			path = BasicServicesRootClass;
+			path = BasicServicesModels;
 			sourceTree = "<group>";
 		};
 		B7FF9E2826C38EF900D30BA6 /* QAT */ = {
@@ -1465,7 +1488,6 @@
 				B716B3DC26CB854800B6D4C7 /* Toast.swift in Sources */,
 				B76315E026B3FF1D000BA46E /* CartManageVC.swift in Sources */,
 				B745BAD526AEBFA40048ECA8 /* NavHeaderView.swift in Sources */,
-				B716B3E026CB8DE800B6D4C7 /* ServicesFailed.swift in Sources */,
 				974F63D826B4407A0087C183 /* HomeDetailCell.swift in Sources */,
 				B7EE5CFA26D6442500FDD52F /* CategoryData.swift in Sources */,
 				B745BAC526AEA0E50048ECA8 /* NotificationVC.swift in Sources */,
@@ -1485,12 +1507,12 @@
 				B7F089E226BA690E008A06BF /* TrackOrderModelClass.swift in Sources */,
 				B745BABD26AEA0BB0048ECA8 /* HomeListingVC.swift in Sources */,
 				B79210B826C27ED300D014B1 /* LocationItem.swift in Sources */,
-				B7EE5CF026D6425F00FDD52F /* UserInfoPaymentmode.swift in Sources */,
 				971D10A626C1776A0031E532 /* AddressAddVC.swift in Sources */,
 				B7EE5D5926D64CB500FDD52F /* BasicServicesData.swift in Sources */,
 				B702029226CCDC4F00DADBDF /* Reachability.m in Sources */,
 				B731C82726A6EFB800379CCB /* HomeLoginVC.swift in Sources */,
 				B77BA44D26AAA07E00E408B1 /* Environment.swift in Sources */,
+				B722A10726E9E83D00A336CD /* PaymentModeData.swift in Sources */,
 				B795232426B2AE1600E62997 /* MealModelClass.swift in Sources */,
 				B716B3CE26CB80BE00B6D4C7 /* RRAlamofireRxAPI.swift in Sources */,
 				B7EE5CEA26D6425F00FDD52F /* UserInfoCommunity.swift in Sources */,
@@ -1519,6 +1541,7 @@
 				B79210B526C27ED300D014B1 /* LocationCell.swift in Sources */,
 				B77BA47426AAA1F200E408B1 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
 				B7F089EB26BA7288008A06BF /* BasicTableCell.swift in Sources */,
+				B722A10D26E9E83D00A336CD /* PaymentModePayment.swift in Sources */,
 				B79E193F26B7D67B007F67DA /* Int+Timepiece.swift in Sources */,
 				B702029926CCDC8600DADBDF /* NetworkingRequests.swift in Sources */,
 				B7F089FA26BA9CB2008A06BF /* ProfileInfoCell.swift in Sources */,
@@ -1526,11 +1549,13 @@
 				B745BAC926AEA0F80048ECA8 /* UserAccountVC.swift in Sources */,
 				B702029526CCDC4F00DADBDF /* ReachabilityManager.m in Sources */,
 				B7B13F0A26E77AC200CAB869 /* RunningOrderCell.swift in Sources */,
-				B7EE5D3626D6483100FDD52F /* FoodListRootClass.swift in Sources */,
+				B7EE5D3626D6483100FDD52F /* FoodRootClass.swift in Sources */,
 				B783991726A9851400747324 /* CountryCell.swift in Sources */,
 				B77BA47E26AAB2FC00E408B1 /* AppUtillity.swift in Sources */,
 				B7EC692026A93D23007BEE3E /* Constants.swift in Sources */,
 				B77BA47126AAA1F200E408B1 /* TPKeyboardAvoidingScrollView.m in Sources */,
+				B722A10426E9E83D00A336CD /* PaymentModeCard.swift in Sources */,
+				B722A10A26E9E83D00A336CD /* PaymentModeBank.swift in Sources */,
 				B745BAB226AE9E7B0048ECA8 /* FloatingBarView.swift in Sources */,
 				B716B3ED26CBA8BF00B6D4C7 /* UserInfoData.swift in Sources */,
 				B7C069AA26C680B000048B54 /* AttachmentHandler.swift in Sources */,
@@ -1556,6 +1581,7 @@
 				9705FECA26B99CB5001557C4 /* ApplyCouponsModelClass.swift in Sources */,
 				B7EE5D0026D6442500FDD52F /* CategoryModels.swift in Sources */,
 				9797192C26C2DA030077DF7E /* LottieLoader.swift in Sources */,
+				B722A11026E9E83D00A336CD /* PaymentModeRootClass.swift in Sources */,
 				B702029E26CD088900DADBDF /* PaymentModeCell.swift in Sources */,
 				B79E193626B7D67B007F67DA /* Extentions.swift in Sources */,
 				B795232226B2AD4300E62997 /* FoodModelClass.swift in Sources */,
@@ -1599,11 +1625,14 @@
 				B79E194926B7D67B007F67DA /* NSDate+Timepiece.swift in Sources */,
 				B7F089DF26BA6794008A06BF /* OrderHistoryModelClass.swift in Sources */,
 				B7EC693026A976A9007BEE3E /* BaseClassVC.swift in Sources */,
+				B722A10826E9E83D00A336CD /* PaymentModeData.swift in Sources */,
+				B722A10E26E9E83D00A336CD /* PaymentModePayment.swift in Sources */,
 				B79E193A26B7D67B007F67DA /* NSDateComponents+Timepiece.swift in Sources */,
 				B77BA44E26AAA07E00E408B1 /* Environment.swift in Sources */,
 				B761FD6126C53948001EAEF5 /* FloatRatingView.swift in Sources */,
 				9797192D26C2DA030077DF7E /* LottieLoader.swift in Sources */,
 				B7FF9E4426C3AED100D30BA6 /* Reach.swift in Sources */,
+				B722A10B26E9E83D00A336CD /* PaymentModeBank.swift in Sources */,
 				B79210B026C27ED300D014B1 /* Helpers.swift in Sources */,
 				9705FECB26B99CB5001557C4 /* ApplyCouponsModelClass.swift in Sources */,
 				B716B3DD26CB854800B6D4C7 /* Toast.swift in Sources */,
@@ -1622,6 +1651,7 @@
 				B7371D9126B41936003C5851 /* iCarousel.m in Sources */,
 				B79E194026B7D67B007F67DA /* Int+Timepiece.swift in Sources */,
 				B762BE4C26CE1B1500F17AB1 /* AddPaymentVC.swift in Sources */,
+				B722A11126E9E83D00A336CD /* PaymentModeRootClass.swift in Sources */,
 				B7EE5D3D26D6483100FDD52F /* FoodModels.swift in Sources */,
 				B702029F26CD088900DADBDF /* PaymentModeCell.swift in Sources */,
 				9705FEC726B99BFA001557C4 /* CouponsModelClass.swift in Sources */,
@@ -1630,12 +1660,10 @@
 				B7EE5D5426D64CB500FDD52F /* BasicServicesRootClass.swift in Sources */,
 				B79E193726B7D67B007F67DA /* Extentions.swift in Sources */,
 				973CBAEC26BAF67000334064 /* CartItemCell.swift in Sources */,
-				B716B3E126CB8DE800B6D4C7 /* ServicesFailed.swift in Sources */,
 				B79210AA26C27ED300D014B1 /* Protocol.swift in Sources */,
 				B79E194626B7D67B007F67DA /* WWCalendarTimeSelector.swift in Sources */,
 				9705FECF26B99D54001557C4 /* CartListModelClass.swift in Sources */,
 				B77BA47B26AAA1F200E408B1 /* TPKeyboardAvoidingTableView.m in Sources */,
-				B7EE5CF126D6425F00FDD52F /* UserInfoPaymentmode.swift in Sources */,
 				B783990F26A9851400747324 /* Countries.swift in Sources */,
 				B7EE5D4D26D64A2F00FDD52F /* NotificationModels.swift in Sources */,
 				B7EE5D0126D6442500FDD52F /* CategoryModels.swift in Sources */,
@@ -1648,7 +1676,7 @@
 				B7F089DB26BA65D3008A06BF /* AddressListModelClass.swift in Sources */,
 				B79E193D26B7D67B007F67DA /* NSCalendar+Timepiece.swift in Sources */,
 				9705FEC326B99B55001557C4 /* CommunityModelClass.swift in Sources */,
-				B7EE5D3726D6483100FDD52F /* FoodListRootClass.swift in Sources */,
+				B7EE5D3726D6483100FDD52F /* FoodRootClass.swift in Sources */,
 				B716B3CF26CB80BE00B6D4C7 /* RRAlamofireRxAPI.swift in Sources */,
 				B7EE5D5A26D64CB500FDD52F /* BasicServicesData.swift in Sources */,
 				B79210AD26C27ED300D014B1 /* LocationPicker.swift in Sources */,
@@ -1658,6 +1686,7 @@
 				B7E6F0DE26CE662500CD5428 /* RunningOrderTrackCell.swift in Sources */,
 				B702029326CCDC4F00DADBDF /* Reachability.m in Sources */,
 				B7EE5D0E26D6459300FDD52F /* BannerModels.swift in Sources */,
+				B722A10526E9E83D00A336CD /* PaymentModeCard.swift in Sources */,
 				B77BA46026AAA18300E408B1 /* RegisterVC.swift in Sources */,
 				B7F089E726BA6AF2008A06BF /* GlobalSearchModelClass.swift in Sources */,
 				B7F089E326BA690E008A06BF /* TrackOrderModelClass.swift in Sources */,
@@ -1693,11 +1722,14 @@
 				B79E194A26B7D67B007F67DA /* NSDate+Timepiece.swift in Sources */,
 				B7F089E026BA6794008A06BF /* OrderHistoryModelClass.swift in Sources */,
 				B7EC693126A976A9007BEE3E /* BaseClassVC.swift in Sources */,
+				B722A10926E9E83D00A336CD /* PaymentModeData.swift in Sources */,
+				B722A10F26E9E83D00A336CD /* PaymentModePayment.swift in Sources */,
 				B79E193B26B7D67B007F67DA /* NSDateComponents+Timepiece.swift in Sources */,
 				B77BA44F26AAA07E00E408B1 /* Environment.swift in Sources */,
 				B761FD6226C53948001EAEF5 /* FloatRatingView.swift in Sources */,
 				9797192E26C2DA030077DF7E /* LottieLoader.swift in Sources */,
 				B7FF9E4526C3AED100D30BA6 /* Reach.swift in Sources */,
+				B722A10C26E9E83D00A336CD /* PaymentModeBank.swift in Sources */,
 				B79210B126C27ED300D014B1 /* Helpers.swift in Sources */,
 				9705FECC26B99CB5001557C4 /* ApplyCouponsModelClass.swift in Sources */,
 				B716B3DE26CB854800B6D4C7 /* Toast.swift in Sources */,
@@ -1716,6 +1748,7 @@
 				B7371D9226B41936003C5851 /* iCarousel.m in Sources */,
 				B79E194126B7D67B007F67DA /* Int+Timepiece.swift in Sources */,
 				B762BE4D26CE1B1500F17AB1 /* AddPaymentVC.swift in Sources */,
+				B722A11226E9E83D00A336CD /* PaymentModeRootClass.swift in Sources */,
 				B7EE5D3E26D6483100FDD52F /* FoodModels.swift in Sources */,
 				B70202A026CD088900DADBDF /* PaymentModeCell.swift in Sources */,
 				9705FEC826B99BFA001557C4 /* CouponsModelClass.swift in Sources */,
@@ -1724,12 +1757,10 @@
 				B7EE5D5526D64CB500FDD52F /* BasicServicesRootClass.swift in Sources */,
 				B79E193826B7D67B007F67DA /* Extentions.swift in Sources */,
 				973CBAED26BAF67000334064 /* CartItemCell.swift in Sources */,
-				B716B3E226CB8DE800B6D4C7 /* ServicesFailed.swift in Sources */,
 				B79210AB26C27ED300D014B1 /* Protocol.swift in Sources */,
 				B79E194726B7D67B007F67DA /* WWCalendarTimeSelector.swift in Sources */,
 				9705FED026B99D54001557C4 /* CartListModelClass.swift in Sources */,
 				B77BA47C26AAA1F200E408B1 /* TPKeyboardAvoidingTableView.m in Sources */,
-				B7EE5CF226D6425F00FDD52F /* UserInfoPaymentmode.swift in Sources */,
 				B783991026A9851400747324 /* Countries.swift in Sources */,
 				B7EE5D4E26D64A2F00FDD52F /* NotificationModels.swift in Sources */,
 				B7EE5D0226D6442500FDD52F /* CategoryModels.swift in Sources */,
@@ -1742,7 +1773,7 @@
 				B7F089DC26BA65D3008A06BF /* AddressListModelClass.swift in Sources */,
 				B79E193E26B7D67B007F67DA /* NSCalendar+Timepiece.swift in Sources */,
 				9705FEC426B99B55001557C4 /* CommunityModelClass.swift in Sources */,
-				B7EE5D3826D6483100FDD52F /* FoodListRootClass.swift in Sources */,
+				B7EE5D3826D6483100FDD52F /* FoodRootClass.swift in Sources */,
 				B716B3D026CB80BE00B6D4C7 /* RRAlamofireRxAPI.swift in Sources */,
 				B7EE5D5B26D64CB500FDD52F /* BasicServicesData.swift in Sources */,
 				B79210AE26C27ED300D014B1 /* LocationPicker.swift in Sources */,
@@ -1752,6 +1783,7 @@
 				B7E6F0DF26CE662500CD5428 /* RunningOrderTrackCell.swift in Sources */,
 				B702029426CCDC4F00DADBDF /* Reachability.m in Sources */,
 				B7EE5D0F26D6459300FDD52F /* BannerModels.swift in Sources */,
+				B722A10626E9E83D00A336CD /* PaymentModeCard.swift in Sources */,
 				B77BA46126AAA18300E408B1 /* RegisterVC.swift in Sources */,
 				B7F089E826BA6AF2008A06BF /* GlobalSearchModelClass.swift in Sources */,
 				B7F089E426BA690E008A06BF /* TrackOrderModelClass.swift in Sources */,

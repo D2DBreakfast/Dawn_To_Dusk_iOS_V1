@@ -61,6 +61,7 @@ class FoodModels : NSObject, NSCoding {
             let value = FoodModels(fromJson: itemJson)
             items.append(value)
         }
+        gallery = json["gallery"].arrayValue.map { $0.stringValue }
     }
     
     /**
@@ -114,12 +115,15 @@ class FoodModels : NSObject, NSCoding {
         if works != nil{
             dictionary["works"] = works
         }
-        if items != nil{
+        if items != nil {
             var dictionaryElements = [[String:Any]]()
             for itemElement in items {
                 dictionaryElements.append(itemElement.toDictionary())
             }
             dictionary["items"] = dictionaryElements
+        }
+        if gallery != nil {
+            dictionary["gallery"] = gallery.map { $0 }
         }
         return dictionary
     }
@@ -146,6 +150,7 @@ class FoodModels : NSObject, NSCoding {
         title = aDecoder.decodeObject(forKey: "title") as? String
         works = aDecoder.decodeObject(forKey: "works") as? String
         items = aDecoder.decodeObject(forKey: "items") as? [FoodModels]
+        gallery = aDecoder.decodeObject(forKey: "gallery") as? [String]
     }
     
     /**
@@ -201,6 +206,9 @@ class FoodModels : NSObject, NSCoding {
         }
         if items != nil{
             aCoder.encode(items, forKey: "items")
+        }
+        if gallery != nil{
+            aCoder.encode(gallery, forKey: "gallery")
         }
         
     }

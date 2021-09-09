@@ -215,7 +215,7 @@ extension NetworkingRequests {
                         else {
                             let jsonData = prettyPrintedJson.data(using: .utf8)!
                             let json = JSON(jsonData)
-                            let obj = ServicesFailed.init(fromJson: json)
+                            let obj = BasicServicesRootClass.init(fromJson: json)
                             AppUtillity.shared.NetworkIndicator(status: false)
                             failureCallback!(obj.message)
                         }
@@ -278,7 +278,7 @@ extension NetworkingRequests {
                         else {
                             let jsonData = prettyPrintedJson.data(using: .utf8)!
                             let json = JSON(jsonData)
-                            let obj = ServicesFailed.init(fromJson: json)
+                            let obj = BasicServicesRootClass.init(fromJson: json)
                             AppUtillity.shared.NetworkIndicator(status: false)
                             failureCallback!(obj.message)
                         }
@@ -340,7 +340,7 @@ extension NetworkingRequests {
                         else {
                             let jsonData = prettyPrintedJson.data(using: .utf8)!
                             let json = JSON(jsonData)
-                            let obj = ServicesFailed.init(fromJson: json)
+                            let obj = BasicServicesRootClass.init(fromJson: json)
                             AppUtillity.shared.NetworkIndicator(status: false)
                             failureCallback!(obj.message)
                         }
@@ -374,9 +374,9 @@ extension NetworkingRequests {
                 return
             }
             let json = JSON(rawValue: prettyPrintedJson)
-            let obj = FoodListRootClass.init(json!)
-            if obj.Status! && obj.Code == 200 {
-                successCallback?(obj.Data!, true)
+            let obj = FoodRootClass.init(fromJson: json!)
+            if obj.status! && obj.code == 200 {
+                successCallback?(obj.data, true)
             }
             else {
                 failureCallback?(obj.message!)
