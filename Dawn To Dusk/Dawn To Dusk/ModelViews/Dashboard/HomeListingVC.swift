@@ -54,20 +54,12 @@ class HomeListingVC: BaseClassVC {
         return header
     }()
     
-    var SelectedMainCat: CategoryModelClass!
-    var MainCatArry: [CategoryModelClass] = [
-        CategoryModelClass.init(id: 100, catName: "Order"),
-        CategoryModelClass.init(id: 200, catName: "Meal")
-    ]
+    var SelectedMainCat: CategoryModels!
+    var MainCatArry: [CategoryModels] = []
     
-    var SelectedSubCat: CategoryModelClass!
-    var SubCatArry: [CategoryModelClass] = [
-        CategoryModelClass.init(id: 10010, catName: "Sandwich"),
-        CategoryModelClass.init(id: 10020, catName: "Continental"),
-        CategoryModelClass.init(id: 10030, catName: "Healthy"),
-        CategoryModelClass.init(id: 10040, catName: "Burgers"),
-        CategoryModelClass.init(id: 10050, catName: "Indian")
-    ]
+    var SelectedSubCat: CategoryModels!
+    var SubCatArry: [CategoryModels] = []
+    
     var Bannerarry: [BannerModelClass] = [
         BannerModelClass.init(id: 0, bannerName: "Package 0", bannerImage: "https://source.unsplash.com/random/200x200", bannerdes: randomString(), bannerTitle: "Package 0")
     ]
@@ -78,8 +70,8 @@ class HomeListingVC: BaseClassVC {
     var IsSearching: Bool = false
     
     var foodArry: [FoodModels] = []
-    var mealArry: [MealModelClass] = dummyMealListing()!
-    var filtermealArry: [MealModelClass] = []
+    var mealArry: [MealsModels] = []
+    var filtermealArry: [MealsModels] = []
     
     //    MARK:- View Cycle
     //    MARK:-
@@ -142,15 +134,20 @@ class HomeListingVC: BaseClassVC {
         
         NetworkingRequests.shared.GetFoodListing(param: ListingParamDict.init(page: 1, count: 20)) { (responseObject, status) in
             if status {
-                if responseObject.orders.count > 1 {
-                    self.foodArry = responseObject.orders
+                if responseObject.data.orders.count > 1 {
+                    self.foodArry = responseObject.data.orders
+                }
+                if responseObject.data.meals.count > 1 {
+                    self.mealArry = responseObject.data.meals
                 }
             }
+            else {
+                self.navigationController?.view.makeToast(responseObject.message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
+            }
         } onFailure: { (message) in
-            
+            self.navigationController?.view.makeToast(message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
         }
 
-        
         self.SearchBar.delegate = self
         
         self.setupCategoryView()
@@ -207,6 +204,20 @@ class HomeListingVC: BaseClassVC {
     }
     
     func setupCategoryView() {
+        
+        NetworkingRequests.shared.GetCategoryListing { (catData, status) in
+            if status {
+                if catData.data.category.count != 0 {
+                    self.MainCatArry = catData.data.category
+                }
+            }
+            else {
+                self.navigationController?.view.makeToast(catData.message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
+            }
+        } onFailure: { (message) in
+            self.navigationController?.view.makeToast(message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
+        }
+
         self.CategoryView.backgroundColor = ModeBG_Color
         self.CategoryView.indicatorColor = UIColor.colorWithHexString(hexStr: GetDefaultTheme()!)
         self.CategoryView.titleFont = UIFont.boldSystemFont(ofSize: 17)
@@ -240,7 +251,7 @@ class HomeListingVC: BaseClassVC {
         return array
     }
     
-    func getMaincatOBJ(name: PintrestTitle) -> CategoryModelClass? {
+    func getMaincatOBJ(name: PintrestTitle) -> CategoryModels? {
         let Singleobj = self.MainCatArry.filter { obj in
             return obj.catName?.uppercased() == name.title!.uppercased()
         }
@@ -248,6 +259,20 @@ class HomeListingVC: BaseClassVC {
     }
     
     func setupsubcatview() {
+
+        NetworkingRequests.shared.GetSubCategoryListing(param: SubCatParamDict.init(id: self.SelectedMainCat.id)) { (subcatData, status) in
+            if status {
+                if subcatData.data.category.count != 0 {
+                    self.SubCatArry = subcatData.data.category
+                }
+            }
+            else {
+                self.navigationController?.view.makeToast(subcatData.message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
+            }
+        } onFailure: { (message) in
+            self.navigationController?.view.makeToast(message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
+        }
+        
         self.FilterSwitch.onTintColor = UIColor.colorWithHexString(hexStr: GetDefaultTheme()!)
         self.subHeaderView.backgroundColor = ModeBG_Color
         self.FilterView.backgroundColor = ModeBG_Color
@@ -271,7 +296,7 @@ class HomeListingVC: BaseClassVC {
         return array
     }
     
-    func getSubcatOBJ(name: PintrestTitle) -> CategoryModelClass? {
+    func getSubcatOBJ(name: PintrestTitle) -> CategoryModels? {
         let Singleobj = self.SubCatArry.filter { obj in
             return obj.catName?.uppercased() == name.title!.uppercased()
         }

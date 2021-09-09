@@ -83,6 +83,14 @@ struct ListingParamDict {
     }
 }
 
+struct SubCatParamDict {
+    var id: Int?
+    
+    init(id: Int?) {
+        self.id = id
+    }
+}
+
 //MARK:- Struct Define for Cart Manage
 //MARK:-
 

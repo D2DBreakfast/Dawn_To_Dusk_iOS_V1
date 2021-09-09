@@ -76,10 +76,10 @@ class HomeDetailCell: UITableViewCell {
         self.HideSkeleton()
     }
     
-    func setupmealcell(meal: MealModelClass, indexPath: IndexPath) {
+    func setupmealcell(meal: MealsModels, indexPath: IndexPath) {
         if indexPath.section == 0 && indexPath.row == 0 {
             self.TitleLBL.text = meal.title
-            self.DetailsLBL.text = meal.mealLongdesc
+            self.DetailsLBL.text = meal.longdesc
         }
         else if indexPath.section == 0 && indexPath.row == 1 {
             self.TitleLBL.text = "Nutritional Info."
