@@ -56,18 +56,17 @@ class HomeListingVC: BaseClassVC {
     
     var SelectedMainCat: CategoryModelClass!
     var MainCatArry: [CategoryModelClass] = [
-        CategoryModelClass.init(id: 0, catName: "Order"),
-        CategoryModelClass.init(id: 1, catName: "Meal")
+        CategoryModelClass.init(id: 100, catName: "Order"),
+        CategoryModelClass.init(id: 200, catName: "Meal")
     ]
     
     var SelectedSubCat: CategoryModelClass!
     var SubCatArry: [CategoryModelClass] = [
-        CategoryModelClass.init(id: 1, catName: "Eggs"),
-        CategoryModelClass.init(id: 2, catName: "SandWich"),
-        CategoryModelClass.init(id: 3, catName: "South"),
-        CategoryModelClass.init(id: 4, catName: "Breakfast"),
-        CategoryModelClass.init(id: 5, catName: "Brinner"),
-        CategoryModelClass.init(id: 6, catName: "Lunch")
+        CategoryModelClass.init(id: 10010, catName: "Sandwich"),
+        CategoryModelClass.init(id: 10020, catName: "Continental"),
+        CategoryModelClass.init(id: 10030, catName: "Healthy"),
+        CategoryModelClass.init(id: 10040, catName: "Burgers"),
+        CategoryModelClass.init(id: 10050, catName: "Indian")
     ]
     var Bannerarry: [BannerModelClass] = [
         BannerModelClass.init(id: 0, bannerName: "Package 0", bannerImage: "https://source.unsplash.com/random/200x200", bannerdes: randomString(), bannerTitle: "Package 0")
@@ -78,7 +77,7 @@ class HomeListingVC: BaseClassVC {
     var SearchSTR: String = ""
     var IsSearching: Bool = false
     
-    var foodArry: [FoodModelClass] = DummyFoodListing2()!
+    var foodArry: [FoodModels] = []
     var mealArry: [MealModelClass] = dummyMealListing()!
     var filtermealArry: [MealModelClass] = []
     
@@ -140,6 +139,18 @@ class HomeListingVC: BaseClassVC {
     }
     
     override func setupUI() {
+        
+        NetworkingRequests.shared.GetFoodListing(param: ListingParamDict.init(page: 1, count: 20)) { (responseObject, status) in
+            if status {
+                if responseObject.orders.count > 1 {
+                    self.foodArry = responseObject.orders
+                }
+            }
+        } onFailure: { (message) in
+            
+        }
+
+        
         self.SearchBar.delegate = self
         
         self.setupCategoryView()
@@ -204,7 +215,7 @@ class HomeListingVC: BaseClassVC {
         self.CategoryView.titles = self.getCatNameArray()!
         self.CategoryView.valueChange = { index in
             self.SelectedMainCat = self.getMaincatOBJ(name: index)
-            if index.id == 0 && index.title?.uppercased() == "Order".uppercased() {
+            if index.id == self.SelectedMainCat.id && index.title?.uppercased() == "Order".uppercased() {
                 self.SubCat_Height.constant = 55
                 self.subHeaderView.isHidden = false
                 self.FilterSwitch.isOn = false
@@ -286,19 +297,19 @@ class HomeListingVC: BaseClassVC {
         return count
     }
     
-    func getVegfoodOnly() -> [FoodModelClass] {
+    func getVegfoodOnly() -> [FoodModels] {
         let veg = self.foodArry.filter { obj in
             return obj.isveg == true
         }
         return veg
     }
     
-    func getbothfood() -> [FoodModelClass] {
+    func getbothfood() -> [FoodModels] {
         return self.foodArry
     }
     
-    func GetFinalFoodwithSubArry() -> [FoodModelClass] {
-        var filter: [FoodModelClass] = []
+    func GetFinalFoodwithSubArry() -> [FoodModels] {
+        var filter: [FoodModels] = []
         if self.FilterSwitch.isOn {
             let data = self.getVegfoodOnly().filter { obj in
                 return ((obj.subCattegory?.id == self.SelectedSubCat.id || obj.subCattegory?.catName?.uppercased() == self.SelectedSubCat.catName?.uppercased()) && (obj.cattegory?.id == self.SelectedMainCat.id || obj.cattegory?.catName?.uppercased() == self.SelectedMainCat.catName?.uppercased()) && obj.isveg == true)

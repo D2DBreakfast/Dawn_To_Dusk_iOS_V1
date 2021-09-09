@@ -64,9 +64,6 @@
 		9797192C26C2DA030077DF7E /* LottieLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9797192126C2DA030077DF7E /* LottieLoader.swift */; };
 		9797192D26C2DA030077DF7E /* LottieLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9797192126C2DA030077DF7E /* LottieLoader.swift */; };
 		9797192E26C2DA030077DF7E /* LottieLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9797192126C2DA030077DF7E /* LottieLoader.swift */; };
-		97D087ED26D67EF000AC3140 /* foodlisting.json in Resources */ = {isa = PBXBuildFile; fileRef = 97D087EC26D67EF000AC3140 /* foodlisting.json */; };
-		97D087EE26D67EF000AC3140 /* foodlisting.json in Resources */ = {isa = PBXBuildFile; fileRef = 97D087EC26D67EF000AC3140 /* foodlisting.json */; };
-		97D087EF26D67EF000AC3140 /* foodlisting.json in Resources */ = {isa = PBXBuildFile; fileRef = 97D087EC26D67EF000AC3140 /* foodlisting.json */; };
 		97F48ED926B1A91900413853 /* PinterestSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F48ED826B1A91900413853 /* PinterestSegment.swift */; };
 		B702028C26CCDC1300DADBDF /* RxAlamofire in Frameworks */ = {isa = PBXBuildFile; productRef = B702028B26CCDC1300DADBDF /* RxAlamofire */; };
 		B702029226CCDC4F00DADBDF /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = B702028E26CCDC4F00DADBDF /* Reachability.m */; };
@@ -142,6 +139,15 @@
 		B722A14226E9F33300A336CD /* CouponModelsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B722A14126E9F33300A336CD /* CouponModelsData.swift */; };
 		B722A14326E9F33300A336CD /* CouponModelsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B722A14126E9F33300A336CD /* CouponModelsData.swift */; };
 		B722A14426E9F33300A336CD /* CouponModelsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B722A14126E9F33300A336CD /* CouponModelsData.swift */; };
+		B722A14926EA271600A336CD /* sub-categorylist.json in Resources */ = {isa = PBXBuildFile; fileRef = B722A14626EA271600A336CD /* sub-categorylist.json */; };
+		B722A14A26EA271600A336CD /* sub-categorylist.json in Resources */ = {isa = PBXBuildFile; fileRef = B722A14626EA271600A336CD /* sub-categorylist.json */; };
+		B722A14B26EA271600A336CD /* sub-categorylist.json in Resources */ = {isa = PBXBuildFile; fileRef = B722A14626EA271600A336CD /* sub-categorylist.json */; };
+		B722A14C26EA271600A336CD /* categorylist.json in Resources */ = {isa = PBXBuildFile; fileRef = B722A14726EA271600A336CD /* categorylist.json */; };
+		B722A14D26EA271600A336CD /* categorylist.json in Resources */ = {isa = PBXBuildFile; fileRef = B722A14726EA271600A336CD /* categorylist.json */; };
+		B722A14E26EA271600A336CD /* categorylist.json in Resources */ = {isa = PBXBuildFile; fileRef = B722A14726EA271600A336CD /* categorylist.json */; };
+		B722A14F26EA271600A336CD /* foodlisting.json in Resources */ = {isa = PBXBuildFile; fileRef = B722A14826EA271600A336CD /* foodlisting.json */; };
+		B722A15026EA271600A336CD /* foodlisting.json in Resources */ = {isa = PBXBuildFile; fileRef = B722A14826EA271600A336CD /* foodlisting.json */; };
+		B722A15126EA271600A336CD /* foodlisting.json in Resources */ = {isa = PBXBuildFile; fileRef = B722A14826EA271600A336CD /* foodlisting.json */; };
 		B731C82326A6EFB800379CCB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B731C82226A6EFB800379CCB /* AppDelegate.swift */; };
 		B731C82526A6EFB800379CCB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B731C82426A6EFB800379CCB /* SceneDelegate.swift */; };
 		B731C82726A6EFB800379CCB /* HomeLoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B731C82626A6EFB800379CCB /* HomeLoginVC.swift */; };
@@ -483,7 +489,6 @@
 		97866C2926BDB2AE007F88A9 /* AddressCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddressCell.xib; sourceTree = "<group>"; };
 		9797191D26C2DA030077DF7E /* ParamStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParamStruct.swift; sourceTree = "<group>"; };
 		9797192126C2DA030077DF7E /* LottieLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LottieLoader.swift; sourceTree = "<group>"; };
-		97D087EC26D67EF000AC3140 /* foodlisting.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = foodlisting.json; sourceTree = "<group>"; };
 		97F48ED826B1A91900413853 /* PinterestSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinterestSegment.swift; sourceTree = "<group>"; };
 		B702028E26CCDC4F00DADBDF /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		B702028F26CCDC4F00DADBDF /* ReachabilityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReachabilityManager.h; sourceTree = "<group>"; };
@@ -510,6 +515,9 @@
 		B722A11C26E9F01400A336CD /* CouponModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CouponModels.swift; sourceTree = "<group>"; };
 		B722A13D26E9F31D00A336CD /* CouponModelsRootClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponModelsRootClass.swift; sourceTree = "<group>"; };
 		B722A14126E9F33300A336CD /* CouponModelsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponModelsData.swift; sourceTree = "<group>"; };
+		B722A14626EA271600A336CD /* sub-categorylist.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "sub-categorylist.json"; sourceTree = "<group>"; };
+		B722A14726EA271600A336CD /* categorylist.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = categorylist.json; sourceTree = "<group>"; };
+		B722A14826EA271600A336CD /* foodlisting.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = foodlisting.json; sourceTree = "<group>"; };
 		B731C81F26A6EFB800379CCB /* Dawn To Dusk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dawn To Dusk.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B731C82226A6EFB800379CCB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B731C82426A6EFB800379CCB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -801,6 +809,16 @@
 			path = CouponsModels;
 			sourceTree = "<group>";
 		};
+		B722A14526EA271600A336CD /* Jsondata */ = {
+			isa = PBXGroup;
+			children = (
+				B722A14626EA271600A336CD /* sub-categorylist.json */,
+				B722A14726EA271600A336CD /* categorylist.json */,
+				B722A14826EA271600A336CD /* foodlisting.json */,
+			);
+			path = Jsondata;
+			sourceTree = "<group>";
+		};
 		B731C81626A6EFB800379CCB = {
 			isa = PBXGroup;
 			children = (
@@ -1070,6 +1088,7 @@
 		B78A623626A9316D002DBD7C /* SupportFiles */ = {
 			isa = PBXGroup;
 			children = (
+				B722A14526EA271600A336CD /* Jsondata */,
 				B731C82B26A6EFB900379CCB /* Assets.xcassets */,
 				B78A623C26A93251002DBD7C /* Colors.xcassets */,
 				B77BA46626AAA1F100E408B1 /* Dawn To Dusk-Bridging-Header.h */,
@@ -1078,7 +1097,6 @@
 				B77BA44526AAA03A00E408B1 /* Enviornments */,
 				B731C82D26A6EFB900379CCB /* LaunchScreen.storyboard */,
 				B731C82826A6EFB800379CCB /* Main.storyboard */,
-				97D087EC26D67EF000AC3140 /* foodlisting.json */,
 			);
 			path = SupportFiles;
 			sourceTree = "<group>";
@@ -1434,13 +1452,14 @@
 				B7C069A626C655F800048B54 /* EditFormVC.xib in Resources */,
 				9762EFA926BAC656002F1328 /* UserOptionCell.xib in Resources */,
 				97866C2B26BDB2AE007F88A9 /* AddressCell.xib in Resources */,
+				B722A14F26EA271600A336CD /* foodlisting.json in Resources */,
+				B722A14926EA271600A336CD /* sub-categorylist.json in Resources */,
 				B78A623D26A93251002DBD7C /* Colors.xcassets in Resources */,
 				9744C79D26B1BDE300807478 /* HomeBannerCell.xib in Resources */,
 				971D10A926C1776A0031E532 /* AddressAddVC.xib in Resources */,
 				B745BAC226AEA0D40048ECA8 /* GlobalSearchVC.xib in Resources */,
 				B762BE4E26CE1B1500F17AB1 /* AddPaymentVC.xib in Resources */,
 				B792108626C25D1D00D014B1 /* LocationPickerVC.xib in Resources */,
-				97D087ED26D67EF000AC3140 /* foodlisting.json in Resources */,
 				B731C82C26A6EFB900379CCB /* Assets.xcassets in Resources */,
 				B76315DD26B3D6A3000BA46E /* HomeDetailsVC.xib in Resources */,
 				B731C82A26A6EFB800379CCB /* Main.storyboard in Resources */,
@@ -1452,6 +1471,7 @@
 				B77BA48726AAC1BC00E408B1 /* OTPVerifyVC.xib in Resources */,
 				B745BABE26AEA0BB0048ECA8 /* HomeListingVC.xib in Resources */,
 				B77BA46226AAA18300E408B1 /* RegisterVC.xib in Resources */,
+				B722A14C26EA271600A336CD /* categorylist.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1463,13 +1483,15 @@
 				B77BA45A26AAA07E00E408B1 /* Prod.plist in Resources */,
 				973CBAE726BAEEB800334064 /* SupportVC.xib in Resources */,
 				B7E6F0E126CE662500CD5428 /* RunningOrderTrackCell.xib in Resources */,
-				97D087EE26D67EF000AC3140 /* foodlisting.json in Resources */,
+				B722A14A26EA271600A336CD /* sub-categorylist.json in Resources */,
 				B7F089EF26BA7288008A06BF /* BasicTableCell.xib in Resources */,
 				B792108726C25D1D00D014B1 /* LocationPickerVC.xib in Resources */,
 				B7A57DFE26BBC6BF00653949 /* CartConfigureCell.xib in Resources */,
 				B70202A226CD088900DADBDF /* PaymentModeCell.xib in Resources */,
 				B77BA45126AAA07E00E408B1 /* Dev.plist in Resources */,
 				B7F089FF26BA9CF0008A06BF /* ProfileInfoCell.xib in Resources */,
+				B722A14D26EA271600A336CD /* categorylist.json in Resources */,
+				B722A15026EA271600A336CD /* foodlisting.json in Resources */,
 				B762BE4F26CE1B1500F17AB1 /* AddPaymentVC.xib in Resources */,
 				B77BA48826AAC1BC00E408B1 /* OTPVerifyVC.xib in Resources */,
 				B7FF9E2B26C38F8900D30BA6 /* QAT.plist in Resources */,
@@ -1493,13 +1515,15 @@
 				B77BA45B26AAA07E00E408B1 /* Prod.plist in Resources */,
 				973CBAE826BAEEB800334064 /* SupportVC.xib in Resources */,
 				B7E6F0E226CE662500CD5428 /* RunningOrderTrackCell.xib in Resources */,
-				97D087EF26D67EF000AC3140 /* foodlisting.json in Resources */,
+				B722A14B26EA271600A336CD /* sub-categorylist.json in Resources */,
 				B7F089F026BA7288008A06BF /* BasicTableCell.xib in Resources */,
 				B792108826C25D1D00D014B1 /* LocationPickerVC.xib in Resources */,
 				B7A57DFF26BBC6BF00653949 /* CartConfigureCell.xib in Resources */,
 				B70202A326CD088900DADBDF /* PaymentModeCell.xib in Resources */,
 				B77BA45226AAA07E00E408B1 /* Dev.plist in Resources */,
 				B7F08A0026BA9CF0008A06BF /* ProfileInfoCell.xib in Resources */,
+				B722A14E26EA271600A336CD /* categorylist.json in Resources */,
+				B722A15126EA271600A336CD /* foodlisting.json in Resources */,
 				B762BE5026CE1B1500F17AB1 /* AddPaymentVC.xib in Resources */,
 				B77BA48926AAC1BC00E408B1 /* OTPVerifyVC.xib in Resources */,
 				B7FF9E2C26C38F8900D30BA6 /* QAT.plist in Resources */,

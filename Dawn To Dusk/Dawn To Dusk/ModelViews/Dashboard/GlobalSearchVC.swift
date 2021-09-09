@@ -50,9 +50,9 @@ class GlobalSearchVC: BaseClassVC {
     var SearchSTR: String = ""
     var IsSearching: Bool = false
     
-    var foodArry: [FoodModelClass] = DummyFoodListing2()!
+    var foodArry: [FoodModels] = DummyFoodListing2()!
     var mealArry: [MealModelClass] = dummyMealListing()!
-    var filterfood: [FoodModelClass] = []
+    var filterfood: [FoodModels] = []
     var filtermeal: [MealModelClass] = []
     
     //    MARK:- View Cycle

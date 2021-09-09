@@ -92,6 +92,7 @@ class UserInfoCommunityRootClass : NSObject, NSCoding{
 class UserInfoCommunity : NSObject, NSCoding{
     
     var address : String!
+    var title : String!
     var id : Int!
     var lat : Float!
     var location : String!
@@ -106,6 +107,7 @@ class UserInfoCommunity : NSObject, NSCoding{
             return
         }
         address = json["address"].stringValue
+        title = json["title"].stringValue
         id = json["id"].intValue
         lat = json["lat"].floatValue
         location = json["location"].stringValue
@@ -120,6 +122,9 @@ class UserInfoCommunity : NSObject, NSCoding{
         var dictionary = [String:Any]()
         if address != nil{
             dictionary["address"] = address
+        }
+        if title != nil{
+            dictionary["title"] = title
         }
         if id != nil{
             dictionary["id"] = id
@@ -143,6 +148,7 @@ class UserInfoCommunity : NSObject, NSCoding{
     @objc required init(coder aDecoder: NSCoder)
     {
         address = aDecoder.decodeObject(forKey: "address") as? String
+        title = aDecoder.decodeObject(forKey: "title") as? String
         id = aDecoder.decodeObject(forKey: "id") as? Int
         lat = aDecoder.decodeObject(forKey: "lat") as? Float
         location = aDecoder.decodeObject(forKey: "location") as? String
@@ -158,6 +164,9 @@ class UserInfoCommunity : NSObject, NSCoding{
     {
         if address != nil{
             aCoder.encode(address, forKey: "address")
+        }
+        if title != nil{
+            aCoder.encode(title, forKey: "title")
         }
         if id != nil{
             aCoder.encode(id, forKey: "id")

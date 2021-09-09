@@ -373,8 +373,8 @@ extension NetworkingRequests {
                 failureCallback!("Error: Could print JSON in String")
                 return
             }
-            let json = JSON(rawValue: prettyPrintedJson)
-            let obj = FoodRootClass.init(fromJson: json!)
+            let jsonObject = JSON(prettyPrintedJson.data(using: .utf8)!)
+            let obj = FoodRootClass.init(fromJson: jsonObject)
             if obj.status! && obj.code == 200 {
                 successCallback?(obj.data, true)
             }

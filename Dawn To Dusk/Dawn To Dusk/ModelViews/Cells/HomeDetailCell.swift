@@ -59,10 +59,10 @@ class HomeDetailCell: UITableViewCell {
     //    MARK:- Custom Defines
     //    MARK:-
     
-    func setupfoodcell(food: FoodModelClass, indexPath: IndexPath) {
+    func setupfoodcell(food: FoodModels, indexPath: IndexPath) {
         if indexPath.section == 0 && indexPath.row == 0 {
             self.TitleLBL.text = food.title
-            self.DetailsLBL.text = food.foodLongdesc
+            self.DetailsLBL.text = food.longdesc
         }
         else if indexPath.section == 0 && indexPath.row == 1 {
             self.TitleLBL.text = "Nutritional Info."

@@ -16,7 +16,7 @@ class FoodModels : NSObject, NSCoding {
     var itemimage : String!
     var longdesc : String!
     var nutriInfo : String!
-    var price : Float!
+    var price : Double!
     var qty : Int!
     var shortdesc : String!
     var subCattegory : CategoryModels!
@@ -46,7 +46,7 @@ class FoodModels : NSObject, NSCoding {
         itemimage = json["itemimage"].stringValue
         longdesc = json["longdesc"].stringValue
         nutriInfo = json["nutri_info"].stringValue
-        price = json["price"].floatValue
+        price = json["price"].doubleValue
         qty = json["qty"].intValue
         shortdesc = json["shortdesc"].stringValue
         let subCattegoryJson = json["sub_cattegory"]
@@ -156,7 +156,7 @@ class FoodModels : NSObject, NSCoding {
         itemimage = aDecoder.decodeObject(forKey: "itemimage") as? String
         longdesc = aDecoder.decodeObject(forKey: "longdesc") as? String
         nutriInfo = aDecoder.decodeObject(forKey: "nutri_info") as? String
-        price = aDecoder.decodeObject(forKey: "price") as? Float
+        price = aDecoder.decodeObject(forKey: "price") as? Double
         qty = aDecoder.decodeObject(forKey: "qty") as? Int
         shortdesc = aDecoder.decodeObject(forKey: "shortdesc") as? String
         subCattegory = aDecoder.decodeObject(forKey: "sub_cattegory") as? CategoryModels

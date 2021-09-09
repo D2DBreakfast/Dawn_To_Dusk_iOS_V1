@@ -50,7 +50,7 @@ class HomeDetailsVC: BaseClassVC {
     //    MARK:- Variable Defines
     //    MARK:-
     
-    var FoodDetails: FoodModelClass!
+    var FoodDetails: FoodModels!
     var MealDetails: MealModelClass!
     var BannerDetails: BannerModelClass! = BannerModelClass.init(id: 0, bannerName: "Package 0", bannerImage: "https://source.unsplash.com/random/200x200", bannerdes: randomString(), bannerTitle: "Package 0")
     
