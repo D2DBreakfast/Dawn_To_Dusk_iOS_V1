@@ -124,6 +124,24 @@
 		B722A11026E9E83D00A336CD /* PaymentModeRootClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B722A10326E9E83C00A336CD /* PaymentModeRootClass.swift */; };
 		B722A11126E9E83D00A336CD /* PaymentModeRootClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B722A10326E9E83C00A336CD /* PaymentModeRootClass.swift */; };
 		B722A11226E9E83D00A336CD /* PaymentModeRootClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B722A10326E9E83C00A336CD /* PaymentModeRootClass.swift */; };
+		B722A11E26E9F01400A336CD /* OrderHistoryRootClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B722A11426E9F01400A336CD /* OrderHistoryRootClass.swift */; };
+		B722A11F26E9F01400A336CD /* OrderHistoryRootClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B722A11426E9F01400A336CD /* OrderHistoryRootClass.swift */; };
+		B722A12026E9F01400A336CD /* OrderHistoryRootClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B722A11426E9F01400A336CD /* OrderHistoryRootClass.swift */; };
+		B722A12D26E9F01400A336CD /* OrderHistoryReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = B722A11926E9F01400A336CD /* OrderHistoryReview.swift */; };
+		B722A12E26E9F01400A336CD /* OrderHistoryReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = B722A11926E9F01400A336CD /* OrderHistoryReview.swift */; };
+		B722A12F26E9F01400A336CD /* OrderHistoryReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = B722A11926E9F01400A336CD /* OrderHistoryReview.swift */; };
+		B722A13326E9F01400A336CD /* OrderHistoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B722A11B26E9F01400A336CD /* OrderHistoryData.swift */; };
+		B722A13426E9F01400A336CD /* OrderHistoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B722A11B26E9F01400A336CD /* OrderHistoryData.swift */; };
+		B722A13526E9F01400A336CD /* OrderHistoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B722A11B26E9F01400A336CD /* OrderHistoryData.swift */; };
+		B722A13626E9F01400A336CD /* CouponModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B722A11C26E9F01400A336CD /* CouponModels.swift */; };
+		B722A13726E9F01400A336CD /* CouponModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B722A11C26E9F01400A336CD /* CouponModels.swift */; };
+		B722A13826E9F01400A336CD /* CouponModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B722A11C26E9F01400A336CD /* CouponModels.swift */; };
+		B722A13E26E9F31D00A336CD /* CouponModelsRootClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B722A13D26E9F31D00A336CD /* CouponModelsRootClass.swift */; };
+		B722A13F26E9F31D00A336CD /* CouponModelsRootClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B722A13D26E9F31D00A336CD /* CouponModelsRootClass.swift */; };
+		B722A14026E9F31D00A336CD /* CouponModelsRootClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B722A13D26E9F31D00A336CD /* CouponModelsRootClass.swift */; };
+		B722A14226E9F33300A336CD /* CouponModelsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B722A14126E9F33300A336CD /* CouponModelsData.swift */; };
+		B722A14326E9F33300A336CD /* CouponModelsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B722A14126E9F33300A336CD /* CouponModelsData.swift */; };
+		B722A14426E9F33300A336CD /* CouponModelsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B722A14126E9F33300A336CD /* CouponModelsData.swift */; };
 		B731C82326A6EFB800379CCB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B731C82226A6EFB800379CCB /* AppDelegate.swift */; };
 		B731C82526A6EFB800379CCB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B731C82426A6EFB800379CCB /* SceneDelegate.swift */; };
 		B731C82726A6EFB800379CCB /* HomeLoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B731C82626A6EFB800379CCB /* HomeLoginVC.swift */; };
@@ -486,6 +504,12 @@
 		B722A10126E9E83C00A336CD /* PaymentModeBank.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentModeBank.swift; sourceTree = "<group>"; };
 		B722A10226E9E83C00A336CD /* PaymentModePayment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentModePayment.swift; sourceTree = "<group>"; };
 		B722A10326E9E83C00A336CD /* PaymentModeRootClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentModeRootClass.swift; sourceTree = "<group>"; };
+		B722A11426E9F01400A336CD /* OrderHistoryRootClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderHistoryRootClass.swift; sourceTree = "<group>"; };
+		B722A11926E9F01400A336CD /* OrderHistoryReview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderHistoryReview.swift; sourceTree = "<group>"; };
+		B722A11B26E9F01400A336CD /* OrderHistoryData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderHistoryData.swift; sourceTree = "<group>"; };
+		B722A11C26E9F01400A336CD /* CouponModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CouponModels.swift; sourceTree = "<group>"; };
+		B722A13D26E9F31D00A336CD /* CouponModelsRootClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponModelsRootClass.swift; sourceTree = "<group>"; };
+		B722A14126E9F33300A336CD /* CouponModelsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponModelsData.swift; sourceTree = "<group>"; };
 		B731C81F26A6EFB800379CCB /* Dawn To Dusk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dawn To Dusk.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B731C82226A6EFB800379CCB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B731C82426A6EFB800379CCB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -755,6 +779,26 @@
 				B7EE5D5126D64CB500FDD52F /* PlaceorderModels.swift */,
 			);
 			path = PlaceOrderModels;
+			sourceTree = "<group>";
+		};
+		B722A11326E9F01400A336CD /* OrderHistoryModels */ = {
+			isa = PBXGroup;
+			children = (
+				B722A11B26E9F01400A336CD /* OrderHistoryData.swift */,
+				B722A11926E9F01400A336CD /* OrderHistoryReview.swift */,
+				B722A11426E9F01400A336CD /* OrderHistoryRootClass.swift */,
+			);
+			path = OrderHistoryModels;
+			sourceTree = "<group>";
+		};
+		B722A13C26E9F2AA00A336CD /* CouponsModels */ = {
+			isa = PBXGroup;
+			children = (
+				B722A11C26E9F01400A336CD /* CouponModels.swift */,
+				B722A13D26E9F31D00A336CD /* CouponModelsRootClass.swift */,
+				B722A14126E9F33300A336CD /* CouponModelsData.swift */,
+			);
+			path = CouponsModels;
 			sourceTree = "<group>";
 		};
 		B731C81626A6EFB800379CCB = {
@@ -1165,6 +1209,8 @@
 		B7EE5CF526D643DB00FDD52F /* NewModelsClasses */ = {
 			isa = PBXGroup;
 			children = (
+				B722A13C26E9F2AA00A336CD /* CouponsModels */,
+				B722A11326E9F01400A336CD /* OrderHistoryModels */,
 				B722A0FE26E9CF8400A336CD /* PlaceOrderModels */,
 				B7EE5D4F26D64CB500FDD52F /* BasicServicesModels */,
 				B7EE5D4226D64A2F00FDD52F /* NotificationListModels */,
@@ -1543,6 +1589,7 @@
 				B7F089EB26BA7288008A06BF /* BasicTableCell.swift in Sources */,
 				B722A10D26E9E83D00A336CD /* PaymentModePayment.swift in Sources */,
 				B79E193F26B7D67B007F67DA /* Int+Timepiece.swift in Sources */,
+				B722A14226E9F33300A336CD /* CouponModelsData.swift in Sources */,
 				B702029926CCDC8600DADBDF /* NetworkingRequests.swift in Sources */,
 				B7F089FA26BA9CB2008A06BF /* ProfileInfoCell.swift in Sources */,
 				B7EC693326A97723007BEE3E /* extensions.swift in Sources */,
@@ -1559,6 +1606,7 @@
 				B745BAB226AE9E7B0048ECA8 /* FloatingBarView.swift in Sources */,
 				B716B3ED26CBA8BF00B6D4C7 /* UserInfoData.swift in Sources */,
 				B7C069AA26C680B000048B54 /* AttachmentHandler.swift in Sources */,
+				B722A13E26E9F31D00A336CD /* CouponModelsRootClass.swift in Sources */,
 				B716B3EA26CBA8BF00B6D4C7 /* UserInfoRootClass.swift in Sources */,
 				9705FEBE26B99318001557C4 /* VerifyOTPModelData.swift in Sources */,
 				B783991126A9851400747324 /* CountryList.swift in Sources */,
@@ -1568,6 +1616,7 @@
 				B7EE5D3326D6483100FDD52F /* FoodData.swift in Sources */,
 				9777160B26B67DD90018F379 /* AlertView.swift in Sources */,
 				B7EE5D4926D64A2F00FDD52F /* NotificationData.swift in Sources */,
+				B722A12D26E9F01400A336CD /* OrderHistoryReview.swift in Sources */,
 				9797192326C2DA030077DF7E /* ParamStruct.swift in Sources */,
 				B7EE5D3C26D6483100FDD52F /* FoodModels.swift in Sources */,
 				B783990E26A9851400747324 /* Countries.swift in Sources */,
@@ -1590,12 +1639,15 @@
 				973CBAE326BAEEB800334064 /* SupportVC.swift in Sources */,
 				B79E194826B7D67B007F67DA /* NSDate+Timepiece.swift in Sources */,
 				B761FD6026C53948001EAEF5 /* FloatRatingView.swift in Sources */,
+				B722A13626E9F01400A336CD /* CouponModels.swift in Sources */,
+				B722A11E26E9F01400A336CD /* OrderHistoryRootClass.swift in Sources */,
 				B7E6F0DD26CE662500CD5428 /* RunningOrderTrackCell.swift in Sources */,
 				B7EE5CFD26D6442500FDD52F /* CategoryRootClass.swift in Sources */,
 				B7EC692826A95B20007BEE3E /* LoginVC.swift in Sources */,
 				9705FEC626B99BFA001557C4 /* CouponsModelClass.swift in Sources */,
 				B77BA45F26AAA18300E408B1 /* RegisterVC.swift in Sources */,
 				9705FEBA26B98B16001557C4 /* NotificationModelClass.swift in Sources */,
+				B722A13326E9F01400A336CD /* OrderHistoryData.swift in Sources */,
 				B79E194526B7D67B007F67DA /* WWCalendarTimeSelector.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1608,6 +1660,7 @@
 				B792108426C25D1D00D014B1 /* LocationPickerVC.swift in Sources */,
 				B783991826A9851400747324 /* CountryCell.swift in Sources */,
 				B77BA47526AAA1F200E408B1 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
+				B722A11F26E9F01400A336CD /* OrderHistoryRootClass.swift in Sources */,
 				B702029A26CCDC8600DADBDF /* NetworkingRequests.swift in Sources */,
 				B783991526A9851400747324 /* Country.swift in Sources */,
 				B702029626CCDC4F00DADBDF /* ReachabilityManager.m in Sources */,
@@ -1622,6 +1675,7 @@
 				B77BA49126AACC0900E408B1 /* OTPTextField.swift in Sources */,
 				B79E194F26B7D67B007F67DA /* Duration.swift in Sources */,
 				9797192426C2DA030077DF7E /* ParamStruct.swift in Sources */,
+				B722A12E26E9F01400A336CD /* OrderHistoryReview.swift in Sources */,
 				B79E194926B7D67B007F67DA /* NSDate+Timepiece.swift in Sources */,
 				B7F089DF26BA6794008A06BF /* OrderHistoryModelClass.swift in Sources */,
 				B7EC693026A976A9007BEE3E /* BaseClassVC.swift in Sources */,
@@ -1636,6 +1690,7 @@
 				B79210B026C27ED300D014B1 /* Helpers.swift in Sources */,
 				9705FECB26B99CB5001557C4 /* ApplyCouponsModelClass.swift in Sources */,
 				B716B3DD26CB854800B6D4C7 /* Toast.swift in Sources */,
+				B722A13426E9F01400A336CD /* OrderHistoryData.swift in Sources */,
 				B79E194C26B7D67B007F67DA /* String+Timepiece.swift in Sources */,
 				B716B3E826CBA8BF00B6D4C7 /* UserInfoUser.swift in Sources */,
 				B7A57DFB26BBC6BF00653949 /* CartConfigureCell.swift in Sources */,
@@ -1673,8 +1728,10 @@
 				B77BA48526AAC1BC00E408B1 /* OTPVerifyVC.swift in Sources */,
 				B7F089FB26BA9CB2008A06BF /* ProfileInfoCell.swift in Sources */,
 				B77BA47826AAA1F200E408B1 /* TPKeyboardAvoidingCollectionView.m in Sources */,
+				B722A13F26E9F31D00A336CD /* CouponModelsRootClass.swift in Sources */,
 				B7F089DB26BA65D3008A06BF /* AddressListModelClass.swift in Sources */,
 				B79E193D26B7D67B007F67DA /* NSCalendar+Timepiece.swift in Sources */,
+				B722A13726E9F01400A336CD /* CouponModels.swift in Sources */,
 				9705FEC326B99B55001557C4 /* CommunityModelClass.swift in Sources */,
 				B7EE5D3726D6483100FDD52F /* FoodRootClass.swift in Sources */,
 				B716B3CF26CB80BE00B6D4C7 /* RRAlamofireRxAPI.swift in Sources */,
@@ -1683,6 +1740,7 @@
 				B7EE5CEB26D6425F00FDD52F /* UserInfoCommunity.swift in Sources */,
 				9705FEBF26B99318001557C4 /* VerifyOTPModelData.swift in Sources */,
 				B716B3F726CBAAA900B6D4C7 /* GetOTPData.swift in Sources */,
+				B722A14326E9F33300A336CD /* CouponModelsData.swift in Sources */,
 				B7E6F0DE26CE662500CD5428 /* RunningOrderTrackCell.swift in Sources */,
 				B702029326CCDC4F00DADBDF /* Reachability.m in Sources */,
 				B7EE5D0E26D6459300FDD52F /* BannerModels.swift in Sources */,
@@ -1705,6 +1763,7 @@
 				B792108526C25D1D00D014B1 /* LocationPickerVC.swift in Sources */,
 				B783991926A9851400747324 /* CountryCell.swift in Sources */,
 				B77BA47626AAA1F200E408B1 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
+				B722A12026E9F01400A336CD /* OrderHistoryRootClass.swift in Sources */,
 				B702029B26CCDC8600DADBDF /* NetworkingRequests.swift in Sources */,
 				B783991626A9851400747324 /* Country.swift in Sources */,
 				B702029726CCDC4F00DADBDF /* ReachabilityManager.m in Sources */,
@@ -1719,6 +1778,7 @@
 				B77BA49226AACC0900E408B1 /* OTPTextField.swift in Sources */,
 				B79E195026B7D67B007F67DA /* Duration.swift in Sources */,
 				9797192526C2DA030077DF7E /* ParamStruct.swift in Sources */,
+				B722A12F26E9F01400A336CD /* OrderHistoryReview.swift in Sources */,
 				B79E194A26B7D67B007F67DA /* NSDate+Timepiece.swift in Sources */,
 				B7F089E026BA6794008A06BF /* OrderHistoryModelClass.swift in Sources */,
 				B7EC693126A976A9007BEE3E /* BaseClassVC.swift in Sources */,
@@ -1733,6 +1793,7 @@
 				B79210B126C27ED300D014B1 /* Helpers.swift in Sources */,
 				9705FECC26B99CB5001557C4 /* ApplyCouponsModelClass.swift in Sources */,
 				B716B3DE26CB854800B6D4C7 /* Toast.swift in Sources */,
+				B722A13526E9F01400A336CD /* OrderHistoryData.swift in Sources */,
 				B79E194D26B7D67B007F67DA /* String+Timepiece.swift in Sources */,
 				B716B3E926CBA8BF00B6D4C7 /* UserInfoUser.swift in Sources */,
 				B7A57DFC26BBC6BF00653949 /* CartConfigureCell.swift in Sources */,
@@ -1770,8 +1831,10 @@
 				B77BA48626AAC1BC00E408B1 /* OTPVerifyVC.swift in Sources */,
 				B7F089FC26BA9CB2008A06BF /* ProfileInfoCell.swift in Sources */,
 				B77BA47926AAA1F200E408B1 /* TPKeyboardAvoidingCollectionView.m in Sources */,
+				B722A14026E9F31D00A336CD /* CouponModelsRootClass.swift in Sources */,
 				B7F089DC26BA65D3008A06BF /* AddressListModelClass.swift in Sources */,
 				B79E193E26B7D67B007F67DA /* NSCalendar+Timepiece.swift in Sources */,
+				B722A13826E9F01400A336CD /* CouponModels.swift in Sources */,
 				9705FEC426B99B55001557C4 /* CommunityModelClass.swift in Sources */,
 				B7EE5D3826D6483100FDD52F /* FoodRootClass.swift in Sources */,
 				B716B3D026CB80BE00B6D4C7 /* RRAlamofireRxAPI.swift in Sources */,
@@ -1780,6 +1843,7 @@
 				B7EE5CEC26D6425F00FDD52F /* UserInfoCommunity.swift in Sources */,
 				9705FEC026B99318001557C4 /* VerifyOTPModelData.swift in Sources */,
 				B716B3F826CBAAA900B6D4C7 /* GetOTPData.swift in Sources */,
+				B722A14426E9F33300A336CD /* CouponModelsData.swift in Sources */,
 				B7E6F0DF26CE662500CD5428 /* RunningOrderTrackCell.swift in Sources */,
 				B702029426CCDC4F00DADBDF /* Reachability.m in Sources */,
 				B7EE5D0F26D6459300FDD52F /* BannerModels.swift in Sources */,

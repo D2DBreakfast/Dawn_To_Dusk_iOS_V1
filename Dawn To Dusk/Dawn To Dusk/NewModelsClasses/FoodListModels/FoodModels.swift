@@ -25,6 +25,7 @@ class FoodModels : NSObject, NSCoding {
     var works : String!
     var gallery : [String]!
     var items : [FoodModels]!
+    var meals : [MealsModels]!
     
     
     /**
@@ -62,6 +63,12 @@ class FoodModels : NSObject, NSCoding {
             items.append(value)
         }
         gallery = json["gallery"].arrayValue.map { $0.stringValue }
+        meals = [MealsModels]()
+        let mealsArray = json["meals"].arrayValue
+        for mealsJson in mealsArray{
+            let value = MealsModels(fromJson: mealsJson)
+            meals.append(value)
+        }
     }
     
     /**
@@ -125,6 +132,13 @@ class FoodModels : NSObject, NSCoding {
         if gallery != nil {
             dictionary["gallery"] = gallery.map { $0 }
         }
+        if meals != nil{
+            var dictionaryElements = [[String:Any]]()
+            for mealsElement in meals {
+                dictionaryElements.append(mealsElement.toDictionary())
+            }
+            dictionary["meals"] = dictionaryElements
+        }
         return dictionary
     }
     
@@ -151,6 +165,7 @@ class FoodModels : NSObject, NSCoding {
         works = aDecoder.decodeObject(forKey: "works") as? String
         items = aDecoder.decodeObject(forKey: "items") as? [FoodModels]
         gallery = aDecoder.decodeObject(forKey: "gallery") as? [String]
+        meals = aDecoder.decodeObject(forKey: "meals") as? [MealsModels]
     }
     
     /**
@@ -209,6 +224,9 @@ class FoodModels : NSObject, NSCoding {
         }
         if gallery != nil{
             aCoder.encode(gallery, forKey: "gallery")
+        }
+        if meals != nil{
+            aCoder.encode(meals, forKey: "meals")
         }
         
     }
