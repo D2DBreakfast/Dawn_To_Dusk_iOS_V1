@@ -139,6 +139,7 @@ class HomeListingVC: BaseClassVC {
                 }
                 if responseObject.data.meals.count > 1 {
                     self.mealArry = responseObject.data.meals
+                    self.filtermealArry = self.mealArry
                 }
             }
             else {

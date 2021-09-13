@@ -307,6 +307,13 @@ class HomeDetailsVC: BaseClassVC {
         self.DateView.isHidden = false
         self.Price_cart_View.isHidden = false
         
+        if self.DetailType == .Meals {
+            self.DateLBL.text = "Plan Start-End date"
+        }
+        else {
+            self.DateLBL.text = "Select Delivery Date"
+        }
+        
         let priceSTR: String = String.init(format: "%@ %@", (getdefaultCountry()?.symbol)!, self.DetailType == .Food ? self.FoodDetails.price!.formatprice() : self.MealDetails.price!.formatprice())
         self.PriceLBL.text = priceSTR
         
@@ -778,7 +785,7 @@ extension HomeDetailsVC {
         }
         else {
             let cell: HomeFoodListCell = self.DetailTBL.dequeueReusableCell(withIdentifier: "HomeFoodListCell") as! HomeFoodListCell
-            cell.setupmealplan_foodcell(food: (self.MealDetails.items?[indexPath.row])!)
+            cell.setupmealplan_foodcell(meals: self.MealDetails, indexPath: indexPath)
             return cell
         }
     }
