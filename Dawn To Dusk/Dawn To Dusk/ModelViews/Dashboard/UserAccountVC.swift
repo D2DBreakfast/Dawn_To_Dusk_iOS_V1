@@ -273,9 +273,9 @@ extension UserAccountVC: UITableViewDelegate, UITableViewDataSource {
                     
                 case 3:
                     // Pending Carts
-                    let vc = HomeDetailsVC.init(nibName: "HomeDetailsVC", bundle: nil)
-                    vc.DetailType = .History
-                    self.navigationController?.pushViewController(vc, animated: true)
+//                    let vc = HomeDetailsVC.init(nibName: "HomeDetailsVC", bundle: nil)
+//                    vc.DetailType = .History
+//                    self.navigationController?.pushViewController(vc, animated: true)
                     break
                     
                 case 4:
