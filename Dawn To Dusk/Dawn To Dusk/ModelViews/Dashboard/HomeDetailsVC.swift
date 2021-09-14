@@ -13,7 +13,7 @@ enum ShowDetailType {
 }
 
 protocol DetailsShowingDelegates: AnyObject {
-    func didselectedAddress(data: CommunityModelClass?)
+    func didselectedAddress(data: UserInfoAddres?)
     func didselectedPaymentmode()
     func didselectedCoupon()
 }
@@ -54,8 +54,8 @@ class HomeDetailsVC: BaseClassVC {
     var MealDetails: MealsModels!
     var BannerDetails: BannerModelClass! = BannerModelClass.init(id: 0, bannerName: "Package 0", bannerImage: "https://source.unsplash.com/random/200x200", bannerdes: randomString(), bannerTitle: "Package 0")
     
-    var notificationDetails: NotificationModelClass!
-    var AddressArry: [CommunityModelClass] = DummyCommunitydata()!
+    var notificationDetails: NotificationModels!
+    var AddressArry: [UserInfoAddres] = []
     
     var DetailsDelegates: DetailsShowingDelegates!
     
@@ -96,8 +96,11 @@ class HomeDetailsVC: BaseClassVC {
     fileprivate var singleDate: Date = Date()
     fileprivate var multipleDates: [Date] = []
     
-    var CartItems: CartListModelClass? = DummCartdata()
-    var HistoryArry: [OrderHistoryModelData]? = DummyOrderHistory()
+//    var CartItems: CartListModelClass? = DummCartdata()
+//    var HistoryArry: [OrderHistoryModelData]? = DummyOrderHistory()
+    
+    var CartItems: CartListModelClass?
+    var HistoryArry: [OrderHistoryModelData]? = []
     
     //    MARK:- View Cycle
     //    MARK:-
@@ -128,6 +131,18 @@ class HomeDetailsVC: BaseClassVC {
         self.DetailTBL.register(UINib.init(nibName: "RunningOrderTrackCell", bundle: nil), forCellReuseIdentifier: "RunningOrderTrackCell")
         self.DetailTBL.register(UINib.init(nibName: "RunningOrderCell", bundle: nil), forCellReuseIdentifier: "RunningOrderCell")
         self.DetailTBL.allowsSelection = true
+        
+        NetworkingRequests.shared.GetAddressListing { (responseObject, status) in
+            if status || responseObject.status {
+                self.AddressArry = responseObject.data.address
+            }
+            else {
+                self.navigationController?.view.makeToast(responseObject.message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
+            }
+        } onFailure: { (message) in
+            self.navigationController?.view.makeToast(message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
+        }
+
         
         self.DetailTBL.rowHeight = UITableView.automaticDimension
         self.DetailTBL.estimatedRowHeight = UITableView.automaticDimension

@@ -38,13 +38,13 @@ class BasicTableCell: UITableViewCell {
         self.detailTextLabel!.hideSkeleton()
     }
     
-    func setupcell(data: NotificationModelClass, indexPath: IndexPath) {
+    func setupcell(data: NotificationModels, indexPath: IndexPath) {
         self.textLabel!.text = data.title
-        self.detailTextLabel!.text = data.longdesc
-        if data.gallery!.count >= 1 {
-            self.imageView?.downloadedFrom(url: URL.init(string: (data.gallery?.first)!)!)
-            self.imageView!.contentMode = .scaleAspectFill
-        }
+        self.detailTextLabel!.text = data.shortdesc
+//        if data.gallery!.count >= 1 {
+//            self.imageView?.downloadedFrom(url: URL.init(string: (data.gallery?.first)!)!)
+//            self.imageView!.contentMode = .scaleAspectFill
+//        }
         self.HideSkeleton()
     }
     

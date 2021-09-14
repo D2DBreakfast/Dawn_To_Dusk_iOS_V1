@@ -104,7 +104,7 @@ class HomeDetailCell: UITableViewCell {
         self.HideSkeleton()
     }
     
-    func setupnotificationcell(data: NotificationModelClass, indexPath: IndexPath) {
+    func setupnotificationcell(data: NotificationModels, indexPath: IndexPath) {
         self.TitleLBL.text = data.title
         self.DetailsLBL.text = data.longdesc
         self.ButtonView.isHidden = true

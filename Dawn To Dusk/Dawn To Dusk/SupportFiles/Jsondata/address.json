@@ -1,0 +1,59 @@
+{
+    "status": true,
+    "code": 200,
+    "message": "Get Address listing",
+    "data": {
+        "address": [
+            {
+                "id": 123,
+                "isprimary": true,
+                "address": "150, 1, Infantry Rd, opp. Commissioner Office, Vasanth Nagar, Bengaluru, Karnataka 560001",
+                "addresstype": "Office",
+                "lat":12.9839,
+                "long":77.5931
+            },
+            {
+                "id": 134,
+                "isprimary": false,
+                "address": "AK Estate, Off Veer Savarkar Flyover, Besides Radisson Blu Hotel, Swami Vivekananda Rd, Goregaon West, Mumbai, Maharashtra 400062",
+                "addresstype": "Office",
+                "lat":19.1735,
+                "long":72.8464
+            },
+            {
+                "id": 534,
+                "isprimary": false,
+                "address": "1 Sheikh Mohammed bin Rashid Blvd - Downtown Dubai - Dubai - United Arab Emirates",
+                "addresstype": "Office",
+                "lat":25.1972,
+                "long":55.2744
+            },
+            {
+                "id": 534,
+                "isprimary": false,
+                "address": "Burj Khalifa Street - Business Bay - Dubai - United Arab Emirates",
+                "addresstype": "Hotels",
+                "lat":25.1972,
+                "long":55.2744
+            }
+        ],
+        "community": [
+            {
+                "id": 123,
+                "address": "150, 1, Infantry Rd, opp. Commissioner Office, Vasanth Nagar, Bengaluru, Karnataka 560001",
+                "line1": "",
+                "line2": "",
+                "lat": 12345.09,
+                "long": 123456.09
+            },
+            {
+                "id": 134,
+                "address": "AK Estate, Off Veer Savarkar Flyover, Besides Radisson Blu Hotel, Swami Vivekananda Rd, Goregaon West, Mumbai, Maharashtra 400062",
+                "line1": "",
+                "line2": "",
+                "lat":19.1735,
+                "long":72.8464
+            }
+        ]
+    }
+}

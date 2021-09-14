@@ -5,90 +5,6 @@
 import Foundation 
 import SwiftyJSON
 
-
-class UserInfoCommunityRootClass : NSObject, NSCoding{
-    
-    var code : Int!
-    var data : UserInfoCommunity!
-    var status : Bool!
-    var message : String!
-    
-    
-    /**
-     * Instantiate the instance using the passed json values to set the properties values
-     */
-    init(fromJson json: JSON!){
-        if json.isEmpty{
-            return
-        }
-        code = json["code"].intValue
-        let dataJson = json["data"]
-        if !dataJson.isEmpty{
-            data = UserInfoCommunity(fromJson: dataJson)
-        }
-        status = json["status"].boolValue
-        message = json["message"].stringValue
-    }
-    
-    /**
-     * Returns all the available property values in the form of [String:Any] object where the key is the approperiate json key and the value is the value of the corresponding property
-     */
-    func toDictionary() -> [String:Any]
-    {
-        var dictionary = [String:Any]()
-        if code != nil{
-            dictionary["code"] = code
-        }
-        if data != nil{
-            dictionary["data"] = data.toDictionary()
-        }
-        if status != nil{
-            dictionary["status"] = status
-        }
-        if message != nil{
-            dictionary["message"] = message
-        }
-        return dictionary
-    }
-    
-    /**
-     * NSCoding required initializer.
-     * Fills the data from the passed decoder
-     */
-    @objc required init(coder aDecoder: NSCoder)
-    {
-        code = aDecoder.decodeObject(forKey: "code") as? Int
-        data = aDecoder.decodeObject(forKey: "data") as? UserInfoCommunity
-        status = aDecoder.decodeObject(forKey: "status") as? Bool
-        message = aDecoder.decodeObject(forKey: "message") as? String
-        
-    }
-    
-    /**
-     * NSCoding required method.
-     * Encodes mode properties into the decoder
-     */
-    func encode(with aCoder: NSCoder)
-    {
-        if code != nil{
-            aCoder.encode(code, forKey: "code")
-        }
-        if data != nil{
-            aCoder.encode(data, forKey: "data")
-        }
-        if status != nil{
-            aCoder.encode(status, forKey: "status")
-        }
-        if message != nil{
-            aCoder.encode(message, forKey: "message")
-        }
-        
-    }
-    
-}
-
-
-
 class UserInfoCommunity : NSObject, NSCoding{
     
     var address : String!
@@ -96,6 +12,8 @@ class UserInfoCommunity : NSObject, NSCoding{
     var id : Int!
     var lat : Float!
     var location : String!
+    var line1 : String!
+    var line2 : String!
     var longField : Float!
     
     
@@ -108,6 +26,8 @@ class UserInfoCommunity : NSObject, NSCoding{
         }
         address = json["address"].stringValue
         title = json["title"].stringValue
+        line1 = json["line1"].stringValue
+        line2 = json["line2"].stringValue
         id = json["id"].intValue
         lat = json["lat"].floatValue
         location = json["location"].stringValue
@@ -125,6 +45,12 @@ class UserInfoCommunity : NSObject, NSCoding{
         }
         if title != nil{
             dictionary["title"] = title
+        }
+        if line1 != nil{
+            dictionary["line1"] = line1
+        }
+        if line2 != nil{
+            dictionary["line2"] = line2
         }
         if id != nil{
             dictionary["id"] = id
@@ -153,7 +79,8 @@ class UserInfoCommunity : NSObject, NSCoding{
         lat = aDecoder.decodeObject(forKey: "lat") as? Float
         location = aDecoder.decodeObject(forKey: "location") as? String
         longField = aDecoder.decodeObject(forKey: "long") as? Float
-        
+        line1 = aDecoder.decodeObject(forKey: "line1") as? String
+        line2 = aDecoder.decodeObject(forKey: "line2") as? String
     }
     
     /**
@@ -180,7 +107,12 @@ class UserInfoCommunity : NSObject, NSCoding{
         if longField != nil{
             aCoder.encode(longField, forKey: "long")
         }
-        
+        if line1 != nil{
+            aCoder.encode(line1, forKey: "line1")
+        }
+        if line2 != nil{
+            aCoder.encode(line2, forKey: "line2")
+        }
     }
     
 }

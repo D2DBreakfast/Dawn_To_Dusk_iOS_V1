@@ -45,12 +45,13 @@ class CartManageVC: BaseClassVC {
     
     var locationManager = CLLocationManager()
     var currentLocation: CartLocation?
-    var CartItems: CartListModelClass? = DummCartdata()
+//    var CartItems: CartListModelClass? = DummCartdata()
+    var CartItems: CartListModelClass?
     var cartInvoice: CartInvoice!
     var Cartcoupon: CartCoupon = CartCoupon.init(id: 0, code: "", value: 0.0, isApply: false)
-    var CartCommunity: SelectedCommunity!
+    var CartCommunity: UserInfoCommunity!
     var CartPayment: PaymentMode!
-    var CommunityArry: [CommunityModelClass] = DummyCommunitydata()!
+    var CommunityArry: [UserInfoCommunity] = []
     
     //    MARK:- View Cycle
     //    MARK:-
@@ -77,6 +78,17 @@ class CartManageVC: BaseClassVC {
 //            AlertView.showSingleAlertVC(withTitle: "User Location failed".localized(), withMessage: "We are unable to get your current location please, try it again!".localized(), withconfirmbtn: "OK".localized(), withcontroller: self, withTureBlock: {
 //                _ = self.hasLocationPermission()
 //            })
+        }
+        
+        NetworkingRequests.shared.GetAddressListing { (responseObject, status) in
+            if status || responseObject.status {
+                self.CommunityArry = responseObject.data.community
+            }
+            else {
+                self.navigationController?.view.makeToast(responseObject.message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
+            }
+        } onFailure: { (message) in
+            self.navigationController?.view.makeToast(message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
         }
         
         self.SetupNavBarforback()
@@ -195,7 +207,7 @@ class CartManageVC: BaseClassVC {
     @IBAction func TappedDone(_ sender: UIButton) {
         if sender.tag != -1 {
             let data = self.CommunityArry[sender.tag]
-            self.CartCommunity = SelectedCommunity.init(id: data.id, title: data.address, lat: data.lat, long: data.long, line1: "", line2: "")
+            self.CartCommunity = data
             self.CommunityPopup.isHidden = true
             self.reloadcart()
         }
@@ -546,8 +558,7 @@ extension CartManageVC: UITableViewDelegate, UITableViewDataSource {
 
 extension CartManageVC: DetailsShowingDelegates {
     
-    func didselectedAddress(data: CommunityModelClass?) {
-        
+    func didselectedAddress(data: UserInfoAddres?) {
         self.reloadcart()
     }
     

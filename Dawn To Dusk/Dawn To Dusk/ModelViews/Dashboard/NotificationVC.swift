@@ -55,7 +55,7 @@ class NotificationVC: BaseClassVC {
         return header
     }()
     
-    var notificationarry: [NotificationModelClass] = dummyNotification()
+    var notificationarry: [NotificationModels] = []
     var Bannerarry: [BannerModelClass] = [
         BannerModelClass.init(id: 0, bannerName: "Package 0", bannerImage: "https://source.unsplash.com/random/200x200", bannerdes: randomString(), bannerTitle: "Package 0")
     ]
@@ -116,6 +116,17 @@ class NotificationVC: BaseClassVC {
         
         self.ListTBL.rowHeight = UITableView.automaticDimension
         self.ListTBL.estimatedRowHeight = UITableView.automaticDimension
+        
+        NetworkingRequests.shared.GetNotificationListing { (responseObject, status) in
+            if status || responseObject.status {
+                self.notificationarry = responseObject.data.notification
+            }
+            else {
+                self.navigationController?.view.makeToast(responseObject.message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
+            }
+        } onFailure: { (message) in
+            self.navigationController?.view.makeToast(message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
+        }
         
         self.ListTBL.delegate = self
         self.ListTBL.dataSource = self
