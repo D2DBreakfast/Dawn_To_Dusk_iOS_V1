@@ -1,0 +1,29 @@
+{
+  "status": true,
+  "code": 200,
+  "message": "Get category or sub category listing",
+  "data": {
+    "category": [
+      {
+        "id": 10010,
+        "cat_name": "Sandwich"
+      },
+      {
+        "id": 10020,
+        "cat_name": "Continental"
+      },
+      {
+        "id": 10030,
+        "cat_name": "Healthy"
+      },
+      {
+        "id": 10040,
+        "cat_name": "Burgers"
+      },
+      {
+        "id": 10050,
+        "cat_name": "Indian"
+      }
+    ]
+  }
+}

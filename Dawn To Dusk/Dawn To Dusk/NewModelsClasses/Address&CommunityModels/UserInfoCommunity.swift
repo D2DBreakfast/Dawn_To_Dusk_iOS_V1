@@ -5,13 +5,15 @@
 import Foundation 
 import SwiftyJSON
 
-
 class UserInfoCommunity : NSObject, NSCoding{
     
     var address : String!
+    var title : String!
     var id : Int!
     var lat : Float!
     var location : String!
+    var line1 : String!
+    var line2 : String!
     var longField : Float!
     
     
@@ -23,6 +25,9 @@ class UserInfoCommunity : NSObject, NSCoding{
             return
         }
         address = json["address"].stringValue
+        title = json["title"].stringValue
+        line1 = json["line1"].stringValue
+        line2 = json["line2"].stringValue
         id = json["id"].intValue
         lat = json["lat"].floatValue
         location = json["location"].stringValue
@@ -37,6 +42,15 @@ class UserInfoCommunity : NSObject, NSCoding{
         var dictionary = [String:Any]()
         if address != nil{
             dictionary["address"] = address
+        }
+        if title != nil{
+            dictionary["title"] = title
+        }
+        if line1 != nil{
+            dictionary["line1"] = line1
+        }
+        if line2 != nil{
+            dictionary["line2"] = line2
         }
         if id != nil{
             dictionary["id"] = id
@@ -60,11 +74,13 @@ class UserInfoCommunity : NSObject, NSCoding{
     @objc required init(coder aDecoder: NSCoder)
     {
         address = aDecoder.decodeObject(forKey: "address") as? String
+        title = aDecoder.decodeObject(forKey: "title") as? String
         id = aDecoder.decodeObject(forKey: "id") as? Int
         lat = aDecoder.decodeObject(forKey: "lat") as? Float
         location = aDecoder.decodeObject(forKey: "location") as? String
         longField = aDecoder.decodeObject(forKey: "long") as? Float
-        
+        line1 = aDecoder.decodeObject(forKey: "line1") as? String
+        line2 = aDecoder.decodeObject(forKey: "line2") as? String
     }
     
     /**
@@ -75,6 +91,9 @@ class UserInfoCommunity : NSObject, NSCoding{
     {
         if address != nil{
             aCoder.encode(address, forKey: "address")
+        }
+        if title != nil{
+            aCoder.encode(title, forKey: "title")
         }
         if id != nil{
             aCoder.encode(id, forKey: "id")
@@ -88,7 +107,12 @@ class UserInfoCommunity : NSObject, NSCoding{
         if longField != nil{
             aCoder.encode(longField, forKey: "long")
         }
-        
+        if line1 != nil{
+            aCoder.encode(line1, forKey: "line1")
+        }
+        if line2 != nil{
+            aCoder.encode(line2, forKey: "line2")
+        }
     }
     
 }

@@ -91,45 +91,73 @@ class HomeFoodListCell: UITableViewCell {
     //    MARK:- Custom Defines
     //    MARK:-
     
-    func setupmealplan_foodcell(food: FoodModelClass) {
+    func MealsitemsDay(index: Int) -> String? {
+        switch index {
+        case 0:
+            return "Sunday"
+            
+        case 1:
+            return "Monday"
+            
+        case 2:
+            return "Tuesday"
+            
+        case 3:
+            return "Wednesday"
+            
+        case 4:
+            return "Thursday"
+            
+        case 6:
+            return "Saturday"
+            
+        default:
+            return ""
+        }
+    }
+    
+    func setupmealplan_foodcell(meals: MealsModels, indexPath: IndexPath) {
+        let food = meals.items[indexPath.row]
         self.FilterView.isHidden = false
         self.OptionView.isHidden = false
-        self.FilterIMG.tintColor = food.isveg! ? UIColor.colorWithHexString(hexStr: GreenTheme) : .red
-        self.FoodIMG.downloadedFrom(url: URL.init(string: food.foodimage!)!)
+        self.FilterIMG.tintColor = meals.isveg! ? UIColor.colorWithHexString(hexStr: GreenTheme) : .red
+        self.FoodIMG.downloadedFrom(url: URL.init(string: food.itemimage!)!)
         self.FoodIMG.contentMode = .scaleToFill
         self.TitleLBL.text = food.title
-        self.DescLBL.text = food.foodShortdesc
-        let priceSTR: String = String.init(format: "%@ %@", (getdefaultCountry()?.symbol)!, food.price!.formatprice())
-        self.PriceLBL.text = priceSTR
+        self.DescLBL.text = food.shortdesc
         self.AddCartBTN.isHidden = true
+        self.PriceLBL.isHidden = false
+        self.PriceLBL.text = self.MealsitemsDay(index: indexPath.row)
         self.HideSkeleton()
     }
     
-    func setupfoodcell(food: FoodModelClass) {
+    func setupfoodcell(food: FoodModels) {
         self.FilterView.isHidden = false
         self.OptionView.isHidden = false
         self.FilterIMG.tintColor = food.isveg! ? UIColor.colorWithHexString(hexStr: GreenTheme) : .red
-        self.FoodIMG.downloadedFrom(url: URL.init(string: food.foodimage!)!)
+        self.FoodIMG.downloadedFrom(url: URL.init(string: food.itemimage!)!)
         self.FoodIMG.contentMode = .scaleToFill
         self.TitleLBL.text = food.title
-        self.DescLBL.text = food.foodShortdesc
-        let priceSTR: String = String.init(format: "%@ %@", (getdefaultCountry()?.symbol)!, food.price!.formatprice())
+        self.DescLBL.text = food.shortdesc
+        let priceSTR: String = String.init(format: "%@ %@", (getdefaultCountry()?.symbol)!, food.price.formatprice())
         self.PriceLBL.text = priceSTR
         self.AddCartBTN.isHidden = false
+        self.PriceLBL.isHidden = false
         self.HideSkeleton()
     }
     
-    func setupmealcell(meal: MealModelClass) {
+    func setupmealcell(meal: MealsModels) {
         self.FilterView.isHidden = false
         self.OptionView.isHidden = false
         self.FilterIMG.tintColor = meal.isveg! ? UIColor.colorWithHexString(hexStr: GreenTheme) : .red
-        self.FoodIMG.downloadedFrom(url: URL.init(string: meal.mealimage!)!)
+        self.FoodIMG.downloadedFrom(url: URL.init(string: meal.itemimage!)!)
         self.FoodIMG.contentMode = .scaleToFill
         self.TitleLBL.text = meal.title
-        self.DescLBL.text = meal.mealShortdesc
+        self.DescLBL.text = meal.shortdesc
         let priceSTR: String = String.init(format: "%@ %@", (getdefaultCountry()?.symbol)!, meal.price!.formatprice())
         self.PriceLBL.text = priceSTR
         self.AddCartBTN.isHidden = false
+        self.PriceLBL.isHidden = false
         self.HideSkeleton()
     }
     

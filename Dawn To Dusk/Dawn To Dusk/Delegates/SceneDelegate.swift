@@ -27,6 +27,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         #endif
         
         self.UpdateTheme()
+        UserDefaults.standard.setValue(0, forKey: DefaultThemeValue)
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
         self.window = UIWindow(windowScene: windowScene)
@@ -104,7 +105,7 @@ extension SceneDelegate {
     }
     
     func UpdateTheme() {
-        let oldindex: Int = UserDefaults.standard.value(forKey: DefaultThemeValue) as! Int
+        let oldindex: Int? = UserDefaults.standard.value(forKey: DefaultThemeValue) as! Int?
         let randomInt = Int.random(in: 0..<3)
         if oldindex == randomInt {
             self.UpdateTheme()

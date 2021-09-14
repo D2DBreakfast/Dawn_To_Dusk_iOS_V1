@@ -260,7 +260,7 @@ class Countries {
         countries.append(Country(countryCode: "VI", phoneExtension: "1", Currency: "", symbol: ""))
         countries.append(Country(countryCode: "UG", phoneExtension: "256", Currency: "", symbol: ""))
         countries.append(Country(countryCode: "UA", phoneExtension: "380", Currency: "", symbol: ""))
-        countries.append(Country(countryCode: "AE", phoneExtension: "971", Currency: "AED", symbol: "د.إ."))
+        countries.append(Country(countryCode: "AE", phoneExtension: "971", Currency: "AED", symbol: "AED"))
         countries.append(Country(countryCode: "GB", phoneExtension: "44", Currency: "", symbol: ""))
         countries.append(Country(countryCode: "US", phoneExtension: "1", Currency: "", symbol: ""))
         countries.append(Country(countryCode: "UY", phoneExtension: "598", Currency: "", symbol: ""))

@@ -54,21 +54,12 @@ class HomeListingVC: BaseClassVC {
         return header
     }()
     
-    var SelectedMainCat: CategoryModelClass!
-    var MainCatArry: [CategoryModelClass] = [
-        CategoryModelClass.init(id: 0, catName: "Order"),
-        CategoryModelClass.init(id: 1, catName: "Meal")
-    ]
+    var SelectedMainCat: CategoryModels!
+    var MainCatArry: [CategoryModels] = []
     
-    var SelectedSubCat: CategoryModelClass!
-    var SubCatArry: [CategoryModelClass] = [
-        CategoryModelClass.init(id: 1, catName: "Eggs"),
-        CategoryModelClass.init(id: 2, catName: "SandWich"),
-        CategoryModelClass.init(id: 3, catName: "South"),
-        CategoryModelClass.init(id: 4, catName: "Breakfast"),
-        CategoryModelClass.init(id: 5, catName: "Brinner"),
-        CategoryModelClass.init(id: 6, catName: "Lunch")
-    ]
+    var SelectedSubCat: CategoryModels!
+    var SubCatArry: [CategoryModels] = []
+    
     var Bannerarry: [BannerModelClass] = [
         BannerModelClass.init(id: 0, bannerName: "Package 0", bannerImage: "https://source.unsplash.com/random/200x200", bannerdes: randomString(), bannerTitle: "Package 0")
     ]
@@ -78,9 +69,9 @@ class HomeListingVC: BaseClassVC {
     var SearchSTR: String = ""
     var IsSearching: Bool = false
     
-    var foodArry: [FoodModelClass] = DummyFoodListing2()!
-    var mealArry: [MealModelClass] = dummyMealListing()!
-    var filtermealArry: [MealModelClass] = []
+    var foodArry: [FoodModels] = []
+    var mealArry: [MealsModels] = []
+    var filtermealArry: [MealsModels] = []
     
     //    MARK:- View Cycle
     //    MARK:-
@@ -140,6 +131,24 @@ class HomeListingVC: BaseClassVC {
     }
     
     override func setupUI() {
+        
+        NetworkingRequests.shared.GetFoodListing(param: ListingParamDict.init(page: 1, count: 20)) { (responseObject, status) in
+            if status {
+                if responseObject.data.orders.count > 1 {
+                    self.foodArry = responseObject.data.orders
+                }
+                if responseObject.data.meals.count > 1 {
+                    self.mealArry = responseObject.data.meals
+                    self.filtermealArry = self.mealArry
+                }
+            }
+            else {
+                self.navigationController?.view.makeToast(responseObject.message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
+            }
+        } onFailure: { (message) in
+            self.navigationController?.view.makeToast(message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
+        }
+
         self.SearchBar.delegate = self
         
         self.setupCategoryView()
@@ -196,6 +205,20 @@ class HomeListingVC: BaseClassVC {
     }
     
     func setupCategoryView() {
+        
+        NetworkingRequests.shared.GetCategoryListing { (catData, status) in
+            if status {
+                if catData.data.category.count != 0 {
+                    self.MainCatArry = catData.data.category
+                }
+            }
+            else {
+                self.navigationController?.view.makeToast(catData.message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
+            }
+        } onFailure: { (message) in
+            self.navigationController?.view.makeToast(message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
+        }
+
         self.CategoryView.backgroundColor = ModeBG_Color
         self.CategoryView.indicatorColor = UIColor.colorWithHexString(hexStr: GetDefaultTheme()!)
         self.CategoryView.titleFont = UIFont.boldSystemFont(ofSize: 17)
@@ -204,7 +227,7 @@ class HomeListingVC: BaseClassVC {
         self.CategoryView.titles = self.getCatNameArray()!
         self.CategoryView.valueChange = { index in
             self.SelectedMainCat = self.getMaincatOBJ(name: index)
-            if index.id == 0 && index.title?.uppercased() == "Order".uppercased() {
+            if index.id == self.SelectedMainCat.id && index.title?.uppercased() == "Order".uppercased() {
                 self.SubCat_Height.constant = 55
                 self.subHeaderView.isHidden = false
                 self.FilterSwitch.isOn = false
@@ -229,7 +252,7 @@ class HomeListingVC: BaseClassVC {
         return array
     }
     
-    func getMaincatOBJ(name: PintrestTitle) -> CategoryModelClass? {
+    func getMaincatOBJ(name: PintrestTitle) -> CategoryModels? {
         let Singleobj = self.MainCatArry.filter { obj in
             return obj.catName?.uppercased() == name.title!.uppercased()
         }
@@ -237,6 +260,20 @@ class HomeListingVC: BaseClassVC {
     }
     
     func setupsubcatview() {
+
+        NetworkingRequests.shared.GetSubCategoryListing(param: SubCatParamDict.init(id: self.SelectedMainCat.id)) { (subcatData, status) in
+            if status {
+                if subcatData.data.category.count != 0 {
+                    self.SubCatArry = subcatData.data.category
+                }
+            }
+            else {
+                self.navigationController?.view.makeToast(subcatData.message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
+            }
+        } onFailure: { (message) in
+            self.navigationController?.view.makeToast(message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
+        }
+        
         self.FilterSwitch.onTintColor = UIColor.colorWithHexString(hexStr: GetDefaultTheme()!)
         self.subHeaderView.backgroundColor = ModeBG_Color
         self.FilterView.backgroundColor = ModeBG_Color
@@ -260,7 +297,7 @@ class HomeListingVC: BaseClassVC {
         return array
     }
     
-    func getSubcatOBJ(name: PintrestTitle) -> CategoryModelClass? {
+    func getSubcatOBJ(name: PintrestTitle) -> CategoryModels? {
         let Singleobj = self.SubCatArry.filter { obj in
             return obj.catName?.uppercased() == name.title!.uppercased()
         }
@@ -286,19 +323,19 @@ class HomeListingVC: BaseClassVC {
         return count
     }
     
-    func getVegfoodOnly() -> [FoodModelClass] {
+    func getVegfoodOnly() -> [FoodModels] {
         let veg = self.foodArry.filter { obj in
             return obj.isveg == true
         }
         return veg
     }
     
-    func getbothfood() -> [FoodModelClass] {
+    func getbothfood() -> [FoodModels] {
         return self.foodArry
     }
     
-    func GetFinalFoodwithSubArry() -> [FoodModelClass] {
-        var filter: [FoodModelClass] = []
+    func GetFinalFoodwithSubArry() -> [FoodModels] {
+        var filter: [FoodModels] = []
         if self.FilterSwitch.isOn {
             let data = self.getVegfoodOnly().filter { obj in
                 return ((obj.subCattegory?.id == self.SelectedSubCat.id || obj.subCattegory?.catName?.uppercased() == self.SelectedSubCat.catName?.uppercased()) && (obj.cattegory?.id == self.SelectedMainCat.id || obj.cattegory?.catName?.uppercased() == self.SelectedMainCat.catName?.uppercased()) && obj.isveg == true)
@@ -507,10 +544,11 @@ extension HomeListingVC: UITableViewDelegate, UITableViewDataSource {
         cell.setupfoodcell(food: self.GetFinalFoodwithSubArry()[indexPath.row])
         cell.didCartActionBlock = {
             if SharedUserInfo.shared.IsUserLoggedin()! {
-                cell.AddCartBTN.isHidden = true
-                cell.QTY_View.isHidden = false
-                cell.QTY_Count = 1
-                cell.QTY_LBL.text = String.init(format: "%d", cell.QTY_Count)
+//                cell.AddCartBTN.isHidden = true
+//                cell.QTY_View.isHidden = false
+//                cell.QTY_Count = 1
+//                cell.QTY_LBL.text = String.init(format: "%d", cell.QTY_Count)
+                self.tableView(self.FoodListTBL, didSelectRowAt: indexPath)
             }
             else {
                 let vc = LoginVC(nibName: "LoginVC", bundle: nil)

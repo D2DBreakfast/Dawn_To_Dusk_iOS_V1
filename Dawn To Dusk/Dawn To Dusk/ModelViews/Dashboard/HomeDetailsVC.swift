@@ -13,7 +13,7 @@ enum ShowDetailType {
 }
 
 protocol DetailsShowingDelegates: AnyObject {
-    func didselectedAddress(data: CommunityModelClass?)
+    func didselectedAddress(data: UserInfoAddres?)
     func didselectedPaymentmode()
     func didselectedCoupon()
 }
@@ -50,12 +50,12 @@ class HomeDetailsVC: BaseClassVC {
     //    MARK:- Variable Defines
     //    MARK:-
     
-    var FoodDetails: FoodModelClass!
-    var MealDetails: MealModelClass!
+    var FoodDetails: FoodModels!
+    var MealDetails: MealsModels!
     var BannerDetails: BannerModelClass! = BannerModelClass.init(id: 0, bannerName: "Package 0", bannerImage: "https://source.unsplash.com/random/200x200", bannerdes: randomString(), bannerTitle: "Package 0")
     
-    var notificationDetails: NotificationModelClass!
-    var AddressArry: [CommunityModelClass] = DummyCommunitydata()!
+    var notificationDetails: NotificationModels!
+    var AddressArry: [UserInfoAddres] = []
     
     var DetailsDelegates: DetailsShowingDelegates!
     
@@ -96,8 +96,11 @@ class HomeDetailsVC: BaseClassVC {
     fileprivate var singleDate: Date = Date()
     fileprivate var multipleDates: [Date] = []
     
-    var CartItems: CartListModelClass? = DummCartdata()
-    var HistoryArry: [OrderHistoryModelData]? = DummyOrderHistory()
+//    var CartItems: CartListModelClass? = DummCartdata()
+//    var HistoryArry: [OrderHistoryModelData]? = DummyOrderHistory()
+    
+    var CartItems: CartListModelClass?
+    var HistoryArry: [OrderHistoryModelData]? = []
     
     //    MARK:- View Cycle
     //    MARK:-
@@ -128,6 +131,18 @@ class HomeDetailsVC: BaseClassVC {
         self.DetailTBL.register(UINib.init(nibName: "RunningOrderTrackCell", bundle: nil), forCellReuseIdentifier: "RunningOrderTrackCell")
         self.DetailTBL.register(UINib.init(nibName: "RunningOrderCell", bundle: nil), forCellReuseIdentifier: "RunningOrderCell")
         self.DetailTBL.allowsSelection = true
+        
+        NetworkingRequests.shared.GetAddressListing { (responseObject, status) in
+            if status || responseObject.status {
+                self.AddressArry = responseObject.data.address
+            }
+            else {
+                self.navigationController?.view.makeToast(responseObject.message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
+            }
+        } onFailure: { (message) in
+            self.navigationController?.view.makeToast(message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
+        }
+
         
         self.DetailTBL.rowHeight = UITableView.automaticDimension
         self.DetailTBL.estimatedRowHeight = UITableView.automaticDimension
@@ -306,6 +321,13 @@ class HomeDetailsVC: BaseClassVC {
         
         self.DateView.isHidden = false
         self.Price_cart_View.isHidden = false
+        
+        if self.DetailType == .Meals {
+            self.DateLBL.text = "Plan Start-End date"
+        }
+        else {
+            self.DateLBL.text = "Select Delivery Date"
+        }
         
         let priceSTR: String = String.init(format: "%@ %@", (getdefaultCountry()?.symbol)!, self.DetailType == .Food ? self.FoodDetails.price!.formatprice() : self.MealDetails.price!.formatprice())
         self.PriceLBL.text = priceSTR
@@ -778,7 +800,7 @@ extension HomeDetailsVC {
         }
         else {
             let cell: HomeFoodListCell = self.DetailTBL.dequeueReusableCell(withIdentifier: "HomeFoodListCell") as! HomeFoodListCell
-            cell.setupmealplan_foodcell(food: (self.MealDetails.items?[indexPath.row])!)
+            cell.setupmealplan_foodcell(meals: self.MealDetails, indexPath: indexPath)
             return cell
         }
     }

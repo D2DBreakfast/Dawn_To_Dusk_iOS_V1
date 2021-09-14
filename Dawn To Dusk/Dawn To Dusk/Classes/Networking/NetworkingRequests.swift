@@ -215,7 +215,7 @@ extension NetworkingRequests {
                         else {
                             let jsonData = prettyPrintedJson.data(using: .utf8)!
                             let json = JSON(jsonData)
-                            let obj = ServicesFailed.init(fromJson: json)
+                            let obj = BasicServicesRootClass.init(fromJson: json)
                             AppUtillity.shared.NetworkIndicator(status: false)
                             failureCallback!(obj.message)
                         }
@@ -278,7 +278,7 @@ extension NetworkingRequests {
                         else {
                             let jsonData = prettyPrintedJson.data(using: .utf8)!
                             let json = JSON(jsonData)
-                            let obj = ServicesFailed.init(fromJson: json)
+                            let obj = BasicServicesRootClass.init(fromJson: json)
                             AppUtillity.shared.NetworkIndicator(status: false)
                             failureCallback!(obj.message)
                         }
@@ -340,7 +340,7 @@ extension NetworkingRequests {
                         else {
                             let jsonData = prettyPrintedJson.data(using: .utf8)!
                             let json = JSON(jsonData)
-                            let obj = ServicesFailed.init(fromJson: json)
+                            let obj = BasicServicesRootClass.init(fromJson: json)
                             AppUtillity.shared.NetworkIndicator(status: false)
                             failureCallback!(obj.message)
                         }
@@ -363,8 +363,52 @@ extension NetworkingRequests {
         
     }
     
+    func GetCategoryListing(onSuccess successCallback: ((_ response: CategoryRootClass, _ status: Bool) -> Void)?, onFailure failureCallback: ((_ errorMessage: String) -> Void)?) {
+        if self.rechability.isReachable() || NetworkingRequests.isInternetAvailable() || self.checkNetworkStatus()! {
+            guard let jsonData = readLocalFile(forName: "categorylist") else { return }
+            guard let prettyPrintedJson = String(data: jsonData, encoding: .utf8) else {
+                print("Error: Could print JSON in String")
+                failureCallback!("Error: Could print JSON in String")
+                return
+            }
+            let jsonObject = JSON(prettyPrintedJson.data(using: .utf8)!)
+            let obj = CategoryRootClass.init(fromJson: jsonObject)
+            if obj.status! && obj.code == 200 {
+                successCallback?(obj, true)
+            }
+            else {
+                failureCallback?(obj.message!)
+            }
+        }
+        else {
+            
+        }
+    }
+    
+    func GetSubCategoryListing(param: SubCatParamDict,onSuccess successCallback: ((_ response: CategoryRootClass, _ status: Bool) -> Void)?, onFailure failureCallback: ((_ errorMessage: String) -> Void)?) {
+        if self.rechability.isReachable() || NetworkingRequests.isInternetAvailable() || self.checkNetworkStatus()! {
+            guard let jsonData = readLocalFile(forName: "sub-categorylist") else { return }
+            guard let prettyPrintedJson = String(data: jsonData, encoding: .utf8) else {
+                print("Error: Could print JSON in String")
+                failureCallback!("Error: Could print JSON in String")
+                return
+            }
+            let jsonObject = JSON(prettyPrintedJson.data(using: .utf8)!)
+            let obj = CategoryRootClass.init(fromJson: jsonObject)
+            if obj.status! && obj.code == 200 {
+                successCallback?(obj, true)
+            }
+            else {
+                failureCallback?(obj.message!)
+            }
+        }
+        else {
+            
+        }
+    }
+    
     func GetFoodListing(param: ListingParamDict,
-                        onSuccess successCallback: ((_ response: FoodData, _ status: Bool) -> Void)?,
+                        onSuccess successCallback: ((_ response: FoodRootClass, _ status: Bool) -> Void)?,
                         onFailure failureCallback: ((_ errorMessage: String) -> Void)?) {
         if self.rechability.isReachable() || NetworkingRequests.isInternetAvailable() || self.checkNetworkStatus()! {
             guard let jsonData = readLocalFile(forName: "foodlisting") else { return }
@@ -373,10 +417,54 @@ extension NetworkingRequests {
                 failureCallback!("Error: Could print JSON in String")
                 return
             }
-            let json = JSON(rawValue: prettyPrintedJson)
-            let obj = FoodListRootClass.init(json!)
-            if obj.Status! && obj.Code == 200 {
-                successCallback?(obj.Data!, true)
+            let jsonObject = JSON(prettyPrintedJson.data(using: .utf8)!)
+            let obj = FoodRootClass.init(fromJson: jsonObject)
+            if obj.status! && obj.code == 200 {
+                successCallback?(obj, true)
+            }
+            else {
+                failureCallback?(obj.message!)
+            }
+        }
+        else {
+            
+        }
+    }
+    
+    func GetAddressListing(onSuccess successCallback: ((_ response: UserInfoAddresRootClass, _ status: Bool) -> Void)?, onFailure failureCallback: ((_ errorMessage: String) -> Void)?) {
+        if self.rechability.isReachable() || NetworkingRequests.isInternetAvailable() || self.checkNetworkStatus()! {
+            guard let jsonData = readLocalFile(forName: "address") else { return }
+            guard let prettyPrintedJson = String(data: jsonData, encoding: .utf8) else {
+                print("Error: Could print JSON in String")
+                failureCallback!("Error: Could print JSON in String")
+                return
+            }
+            let jsonObject = JSON(prettyPrintedJson.data(using: .utf8)!)
+            let obj = UserInfoAddresRootClass.init(fromJson: jsonObject)
+            if obj.status! && obj.code == 200 {
+                successCallback?(obj, true)
+            }
+            else {
+                failureCallback?(obj.message!)
+            }
+        }
+        else {
+            
+        }
+    }
+    
+    func GetNotificationListing(onSuccess successCallback: ((_ response: NotificationRootClass2, _ status: Bool) -> Void)?, onFailure failureCallback: ((_ errorMessage: String) -> Void)?) {
+        if self.rechability.isReachable() || NetworkingRequests.isInternetAvailable() || self.checkNetworkStatus()! {
+            guard let jsonData = readLocalFile(forName: "notification") else { return }
+            guard let prettyPrintedJson = String(data: jsonData, encoding: .utf8) else {
+                print("Error: Could print JSON in String")
+                failureCallback!("Error: Could print JSON in String")
+                return
+            }
+            let jsonObject = JSON(prettyPrintedJson.data(using: .utf8)!)
+            let obj = NotificationRootClass2.init(fromJson: jsonObject)
+            if obj.status! && obj.code == 200 {
+                successCallback?(obj, true)
             }
             else {
                 failureCallback?(obj.message!)

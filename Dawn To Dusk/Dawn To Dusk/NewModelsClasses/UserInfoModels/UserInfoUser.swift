@@ -15,7 +15,7 @@ class UserInfoUser : NSObject, NSCoding{
     var fullname : String!
     var id : Int!
     var mobile : String!
-    var paymentmode : UserInfoPaymentmode!
+    var paymentmode : PaymentModePayment!
     var profileimg : String!
     
     
@@ -41,7 +41,7 @@ class UserInfoUser : NSObject, NSCoding{
         mobile = json["mobile"].stringValue
         let paymentmodeJson = json["paymentmode"]
         if !paymentmodeJson.isEmpty{
-            paymentmode = UserInfoPaymentmode(fromJson: paymentmodeJson)
+            paymentmode = PaymentModePayment(fromJson: paymentmodeJson)
         }
         profileimg = json["profileimg"].stringValue
     }
@@ -95,7 +95,7 @@ class UserInfoUser : NSObject, NSCoding{
         fullname = aDecoder.decodeObject(forKey: "fullname") as? String
         id = aDecoder.decodeObject(forKey: "id") as? Int
         mobile = aDecoder.decodeObject(forKey: "mobile") as? String
-        paymentmode = aDecoder.decodeObject(forKey: "paymentmode") as? UserInfoPaymentmode
+        paymentmode = aDecoder.decodeObject(forKey: "paymentmode") as? PaymentModePayment
         profileimg = aDecoder.decodeObject(forKey: "profileimg") as? String
         
     }
