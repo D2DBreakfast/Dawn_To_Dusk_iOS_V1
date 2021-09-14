@@ -56,6 +56,7 @@ class HomeDetailsVC: BaseClassVC {
     
     var notificationDetails: NotificationModels!
     var AddressArry: [UserInfoAddres] = []
+    var paymentarry : [PaymentModePayment] = []
     
     var DetailsDelegates: DetailsShowingDelegates!
     
@@ -130,19 +131,9 @@ class HomeDetailsVC: BaseClassVC {
         self.DetailTBL.register(UINib.init(nibName: "CartConfigureCell", bundle: nil), forCellReuseIdentifier: "CartConfigureCell")
         self.DetailTBL.register(UINib.init(nibName: "RunningOrderTrackCell", bundle: nil), forCellReuseIdentifier: "RunningOrderTrackCell")
         self.DetailTBL.register(UINib.init(nibName: "RunningOrderCell", bundle: nil), forCellReuseIdentifier: "RunningOrderCell")
+        self.DetailTBL.register(UINib.init(nibName: "PaymentModeCell", bundle: nil), forCellReuseIdentifier: "PaymentModeCell")
         self.DetailTBL.allowsSelection = true
         
-        NetworkingRequests.shared.GetAddressListing { (responseObject, status) in
-            if status || responseObject.status {
-                self.AddressArry = responseObject.data.address
-            }
-            else {
-                self.navigationController?.view.makeToast(responseObject.message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
-            }
-        } onFailure: { (message) in
-            self.navigationController?.view.makeToast(message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
-        }
-
         
         self.DetailTBL.rowHeight = UITableView.automaticDimension
         self.DetailTBL.estimatedRowHeight = UITableView.automaticDimension
@@ -232,6 +223,17 @@ class HomeDetailsVC: BaseClassVC {
             self.NodataFoundView.isHidden = true
             self.DetailTBL.isHidden = false
             
+            NetworkingRequests.shared.GetAddressListing { (responseObject, status) in
+                if status || responseObject.status {
+                    self.AddressArry = responseObject.data.address
+                }
+                else {
+                    self.navigationController?.view.makeToast(responseObject.message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
+                }
+            } onFailure: { (message) in
+                self.navigationController?.view.makeToast(message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
+            }
+            
             let cartBTN = UIButton().NavAddButton()
             cartBTN.addTarget(self, action: #selector(TappedAddBTN(_:)), for: .touchUpInside)
             self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: cartBTN)
@@ -247,6 +249,16 @@ class HomeDetailsVC: BaseClassVC {
             self.NodataFoundView.isHidden = true
             self.DetailTBL.isHidden = false
             
+            NetworkingRequests.shared.GetPaymentmodeListing { (responseObject, status) in
+                if status || responseObject.status {
+                    self.paymentarry = responseObject.data.payment
+                }
+                else {
+                    self.navigationController?.view.makeToast(responseObject.message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
+                }
+            } onFailure: { (message) in
+                self.navigationController?.view.makeToast(message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
+            }
             
             let payBTN = UIButton().NavAddButton()
             payBTN.addTarget(self, action: #selector(TappedAddPaymentBTN(_:)), for: .touchUpInside)
@@ -484,7 +496,7 @@ extension HomeDetailsVC {
             return 1
             
         case .Payment:
-            return 2
+            return 1
             
         case .Coupon:
             return 1
@@ -528,7 +540,7 @@ extension HomeDetailsVC {
             return self.AddressArry.count
             
         case .Payment:
-            return section == 0 ? 1 : self.AddressArry.count
+            return self.paymentarry.count
             
         case .Coupon:
             return 5
@@ -724,14 +736,9 @@ extension HomeDetailsVC: UITableViewDelegate, UITableViewDataSource {
             break
             
         case .Payment:
-            if indexPath.section == 0 {
-                
-            }
-            else {
-                if self.DetailsDelegates != nil {
-                    self.DetailsDelegates.didselectedPaymentmode()
-                    self.navigationController?.popViewController(animated: true)
-                }
+            if self.DetailsDelegates != nil {
+                self.DetailsDelegates.didselectedPaymentmode()
+                self.navigationController?.popViewController(animated: true)
             }
             break
             
@@ -823,7 +830,7 @@ extension HomeDetailsVC {
     func AddressConfigCell(indexPath: IndexPath) -> UITableViewCell {
         let cell: AddressCell = self.DetailTBL.dequeueReusableCell(withIdentifier: "AddressCell") as! AddressCell
         let data = self.AddressArry[indexPath.row]
-        cell.SetupCell(indexPath: indexPath, data: AddressListModelClass.init(id: data.id, isprimary: false, address: data.address))
+        cell.SetupCell(indexPath: indexPath, data: data)
         cell.didSelectAddressActionBlock = { (index) in
             if self.DetailsDelegates != nil {
                 self.DetailsDelegates.didselectedAddress(data: self.AddressArry[index!])
@@ -835,20 +842,15 @@ extension HomeDetailsVC {
     
     //    TODO:- Payment Config Cells
     func PaymentConfigCell(indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
-            let cell: UserOptionCell = self.DetailTBL.dequeueReusableCell(withIdentifier: "UserOptionCell") as! UserOptionCell
-            cell.setupPayment()
-            cell.didTappedAction1Block = {
-                
-            }
-            cell.didTappedAction2Block = {
-                
-            }
+        let data = self.paymentarry[indexPath.row]
+        if data.paymentType.uppercased() == "Card".uppercased() || data.paymentType.uppercased() == "NetBank".uppercased()  {
+            let cell: PaymentModeCell = self.DetailTBL.dequeueReusableCell(withIdentifier: "PaymentModeCell") as! PaymentModeCell
+            cell.SetupPaymentmode(indexPath: indexPath, obj: data)
             return cell
         }
         else {
             let cell: AddressCell = self.DetailTBL.dequeueReusableCell(withIdentifier: "AddressCell") as! AddressCell
-            cell.setupPaymentCell(indexPath: indexPath)
+            cell.setupPaymentCell(indexPath: indexPath, obj: data)
             cell.didSelectAddressActionBlock = { (index) in
                 if self.DetailsDelegates != nil {
                     self.DetailsDelegates.didselectedPaymentmode()

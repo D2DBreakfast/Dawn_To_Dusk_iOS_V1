@@ -38,13 +38,19 @@ class PaymentModeCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.backgroundColor = ModeBG_Color
-        self.contentView.backgroundColor = ModeBG_Color
+        self.backgroundColor = TBLBackgroundCOlor
+        self.contentView.backgroundColor = TBLBackgroundCOlor
         
         self.MainStack.backgroundColor = ModeBG_Color
         
+        self.MainStack.clipsToBounds = true
+        self.MainStack.layer.cornerRadius = 10
+        
         self.CreditCardView.clipsToBounds = true
         self.CreditCardView.layer.cornerRadius = 10
+        
+        self.BankinfoView.clipsToBounds = true
+        self.BankinfoView.layer.cornerRadius = 10
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -53,24 +59,27 @@ class PaymentModeCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func SetupCreditcard() {
-        
-        self.CreditCardView.isHidden = false
-        self.BankinfoView.isHidden = true
-        
-        self.CreditCardView.backgroundColor = UIColor.colorWithHexString(hexStr: GetDefaultTheme()!)
-        
-        self.CreditCardView.backgroundColor = ModeBG_Color
-        self.UserLBL.text = "CARD HOLDER"
-        self.validLBL.text = "VALID TILL"
-        
-    }
-    
-    func Setupbankdetail() {
-        
-        self.BankinfoView.isHidden = false
-        self.CreditCardView.isHidden = true
-        
+    func SetupPaymentmode(indexPath: IndexPath, obj: PaymentModePayment) {
+        if obj.paymentType.uppercased() == "Card".uppercased() {
+            self.CreditCardView.isHidden = false
+            self.BankinfoView.isHidden = true
+            
+            self.CreditCardView.backgroundColor = UIColor.colorWithHexString(hexStr: GetDefaultTheme()!).withAlphaComponent(0.4)
+            
+            self.UsernameLBL.text = obj.card.name
+            self.CardNoLBL.text = obj.card.cardno
+            self.ValidyearLBL.text = obj.card.month + "/" + obj.card.year
+        }
+        else {
+            self.BankinfoView.isHidden = false
+            self.CreditCardView.isHidden = true
+            self.Bank_IMG.tintColor = UIColor.white
+            self.BankinfoView.backgroundColor = UIColor.colorWithHexString(hexStr: GetDefaultTheme()!).withAlphaComponent(0.4)
+            self.NameLBL.text = obj.bank.name
+            self.AccountLBL.text = obj.bank.accountno
+            self.IFCSLBL.text = obj.bank.ifcsCode
+            self.BankLBL.text = obj.bank.bankName
+        }
     }
     
     //    MARK:- IBAction Defines

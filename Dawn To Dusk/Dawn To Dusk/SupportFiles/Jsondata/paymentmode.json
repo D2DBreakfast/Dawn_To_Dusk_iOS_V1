@@ -1,0 +1,71 @@
+{
+  "status": true,
+  "code": 200,
+  "message": "Get Payment listing",
+  "data": {
+    "payment": [
+      {
+        "id": 123,
+        "title": "Google Pay",
+        "isdefault": true,
+        "payment_type": "Third"
+      },
+      {
+        "id": 1243,
+        "title": "PhonePay",
+        "isdefault": false,
+        "payment_type": "Third"
+      },
+      {
+        "id": 12354,
+        "title": "Amazon Pay",
+        "isdefault": false,
+        "payment_type": "Third"
+      },
+      {
+        "id": 12390,
+        "title": "Dummy card 1",
+        "isdefault": false,
+        "payment_type": "Card",
+        "card": {
+          "id": 123,
+          "name": "Dummy card",
+          "cardno": "4242424242424242",
+          "month": "07",
+          "year": "2026",
+          "card_type": "credit",
+          "subcard_type": "visa"
+        }
+      },
+      {
+        "id": 1235435,
+        "title": "Dummy card 2",
+        "isdefault": false,
+        "payment_type": "Card",
+        "card": {
+          "id": 123432,
+          "name": "Dummy card",
+          "cardno": "4242424242424242",
+          "month": "07",
+          "year": "2026",
+          "card_type": "debit",
+          "subcard_type": "visa"
+        }
+      },
+      {
+        "id": 123,
+        "title": "Netbank",
+        "isdefault": false,
+        "payment_type": "NetBank",
+        "bank": {
+          "id": 1235345,
+          "name": "dummy data",
+          "accountno": "3246821374692731",
+          "bank_name": "ICICI Bank",
+          "bank_code": "ICICI",
+          "ifcs_code": "ICICI09"
+        }
+      }
+    ]
+  }
+}

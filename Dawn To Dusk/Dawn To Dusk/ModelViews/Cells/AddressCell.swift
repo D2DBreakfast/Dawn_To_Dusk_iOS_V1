@@ -35,7 +35,7 @@ class AddressCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func SetupCell(indexPath: IndexPath, data: AddressListModelClass) {
+    func SetupCell(indexPath: IndexPath, data: UserInfoAddres) {
         if data.isprimary! {
             self.CheckBoxBTN.isSelected = true
             self.CheckBoxBTN.setImage(UIImage.init(systemName: "checkmark.circle.fill"), for: .normal)
@@ -48,8 +48,8 @@ class AddressCell: UITableViewCell {
         self.AddressLBL.text = data.address
     }
     
-    func setupPaymentCell(indexPath: IndexPath, isprimary: Bool = false) {
-        if isprimary {
+    func setupPaymentCell(indexPath: IndexPath, obj: PaymentModePayment) {
+        if obj.isdefault {
             self.CheckBoxBTN.isSelected = true
             self.CheckBoxBTN.setImage(UIImage.init(systemName: "checkmark.circle.fill"), for: .normal)
         }
@@ -58,7 +58,7 @@ class AddressCell: UITableViewCell {
             self.CheckBoxBTN.setImage(UIImage.init(systemName: "circlebadge"), for: .normal)
         }
         self.CheckBoxBTN.tag = indexPath.row
-        self.AddressLBL.text = "fsadhfgkjshadgfkjhsagkfjhsagkj"
+        self.AddressLBL.text = obj.title
     }
     
     @IBAction func TappedCheckBox(_ sender: UIButton) {

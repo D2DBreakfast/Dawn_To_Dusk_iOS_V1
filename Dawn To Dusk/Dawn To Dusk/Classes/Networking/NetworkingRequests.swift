@@ -475,4 +475,49 @@ extension NetworkingRequests {
         }
     }
     
+    func GetbannerListing(onSuccess successCallback: ((_ response: BannerRootClass, _ status: Bool) -> Void)?, onFailure failureCallback: ((_ errorMessage: String) -> Void)?) {
+        if self.rechability.isReachable() || NetworkingRequests.isInternetAvailable() || self.checkNetworkStatus()! {
+            guard let jsonData = readLocalFile(forName: "banner") else { return }
+            guard let prettyPrintedJson = String(data: jsonData, encoding: .utf8) else {
+                print("Error: Could print JSON in String")
+                failureCallback!("Error: Could print JSON in String")
+                return
+            }
+            let jsonObject = JSON(prettyPrintedJson.data(using: .utf8)!)
+            let obj = BannerRootClass.init(fromJson: jsonObject)
+            if obj.status! && obj.code == 200 {
+                successCallback?(obj, true)
+            }
+            else {
+                failureCallback?(obj.message!)
+            }
+        }
+        else {
+            
+        }
+    }
+    
+    func GetPaymentmodeListing(onSuccess successCallback: ((_ response: PaymentModeRootClass, _ status: Bool) -> Void)?, onFailure failureCallback: ((_ errorMessage: String) -> Void)?) {
+        if self.rechability.isReachable() || NetworkingRequests.isInternetAvailable() || self.checkNetworkStatus()! {
+            guard let jsonData = readLocalFile(forName: "paymentmode") else { return }
+            guard let prettyPrintedJson = String(data: jsonData, encoding: .utf8) else {
+                print("Error: Could print JSON in String")
+                failureCallback!("Error: Could print JSON in String")
+                return
+            }
+            let jsonObject = JSON(prettyPrintedJson.data(using: .utf8)!)
+            let obj = PaymentModeRootClass.init(fromJson: jsonObject)
+            if obj.status! && obj.code == 200 {
+                successCallback?(obj, true)
+            }
+            else {
+                failureCallback?(obj.message!)
+            }
+        }
+        else {
+            
+        }
+    }
+    
+    
 }

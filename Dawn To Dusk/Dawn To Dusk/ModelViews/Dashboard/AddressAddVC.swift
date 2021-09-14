@@ -70,7 +70,7 @@ class AddressAddVC: BaseClassVC {
     }
     
     var AddressData: SelectedCommunity!
-    var addressobj: AddressListModelClass!
+    var addressobj: UserInfoAddres!
     
     //    MARK:- View Cycle
     //    MARK:-
