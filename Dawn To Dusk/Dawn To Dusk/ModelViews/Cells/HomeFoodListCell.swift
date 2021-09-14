@@ -91,6 +91,31 @@ class HomeFoodListCell: UITableViewCell {
     //    MARK:- Custom Defines
     //    MARK:-
     
+    func MealsitemsDay(index: Int) -> String? {
+        switch index {
+        case 0:
+            return "Sunday"
+            
+        case 1:
+            return "Monday"
+            
+        case 2:
+            return "Tuesday"
+            
+        case 3:
+            return "Wednesday"
+            
+        case 4:
+            return "Thursday"
+            
+        case 6:
+            return "Saturday"
+            
+        default:
+            return ""
+        }
+    }
+    
     func setupmealplan_foodcell(meals: MealsModels, indexPath: IndexPath) {
         let food = meals.items[indexPath.row]
         self.FilterView.isHidden = false
@@ -101,7 +126,8 @@ class HomeFoodListCell: UITableViewCell {
         self.TitleLBL.text = food.title
         self.DescLBL.text = food.shortdesc
         self.AddCartBTN.isHidden = true
-        self.PriceLBL.isHidden = true
+        self.PriceLBL.isHidden = false
+        self.PriceLBL.text = self.MealsitemsDay(index: indexPath.row)
         self.HideSkeleton()
     }
     

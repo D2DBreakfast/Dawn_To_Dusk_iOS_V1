@@ -126,7 +126,7 @@ class HomeDashboardVC: UITabBarController {
         self.view.addSubview(self.floatingTabbarView)
         if SharedUserInfo.shared.IsUserLoggedin()! {
 //            self.addTrackerview()
-            self.view.addSubview(self.TrackerVIew)
+//            self.view.addSubview(self.TrackerVIew)
         }
         self.floatingTabbarView.centerXInSuperview()
         self.floatingTabbarView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -BottomTabbarHeight).isActive = true

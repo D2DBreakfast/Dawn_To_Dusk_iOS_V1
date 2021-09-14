@@ -123,6 +123,23 @@ class GlobalSearchVC: BaseClassVC {
         
         self.SearchBar.searchTextField.textColor = PrimaryText_Color
         
+        NetworkingRequests.shared.GetFoodListing(param: ListingParamDict.init(page: 1, count: 20)) { (responseObject, status) in
+            if status {
+                if responseObject.data.orders.count > 1 {
+                    self.foodArry = responseObject.data.orders
+                }
+                if responseObject.data.meals.count > 1 {
+                    self.mealArry = responseObject.data.meals
+                    self.filtermeal = self.mealArry
+                }
+            }
+            else {
+                self.navigationController?.view.makeToast(responseObject.message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
+            }
+        } onFailure: { (message) in
+            self.navigationController?.view.makeToast(message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
+        }
+        
         self.ListTBL.delegate = self
         self.ListTBL.dataSource = self
         self.ListTBL.reloadData()
@@ -211,6 +228,25 @@ extension GlobalSearchVC: CLLocationManagerDelegate {
 
 extension GlobalSearchVC: UISearchBarDelegate {
     
+    func Searchitems(usersearch: String) {
+        self.filterfood.removeAll()
+        self.filtermeal.removeAll()
+        if usersearch.count == 0 {
+            self.filterfood = self.foodArry
+            self.filtermeal = self.mealArry
+        }
+        else {
+            self.filterfood = self.foodArry.filter({ obj in
+                return (obj.title?.lowercased().contains(usersearch.lowercased()))!
+            })
+            self.filtermeal = self.mealArry.filter({ obj in
+                return (obj.title?.lowercased().contains(usersearch.lowercased()))!
+            })
+        }
+        self.IsSearching = true
+        self.ListTBL.reloadData()
+    }
+    
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         self.SearchBar.showsCancelButton = true
         self.IsSearching = true
@@ -224,22 +260,12 @@ extension GlobalSearchVC: UISearchBarDelegate {
         let newString: NSString = currentString.replacingCharacters(in: range, with: text) as NSString
         let usersearch = newString as String
         print(usersearch)
-        self.filterfood.removeAll()
-        self.filterfood = self.foodArry.filter({ obj in
-            return (obj.title?.lowercased().contains(usersearch.lowercased()))!
-        })
-        
-        self.filtermeal.removeAll()
-        self.filtermeal = self.mealArry.filter({ obj in
-            return (obj.title?.lowercased().contains(usersearch.lowercased()))!
-        })
-        
-        self.IsSearching = true
-        self.ListTBL.reloadData()
+        self.Searchitems(usersearch: usersearch)
         return true
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.Searchitems(usersearch: self.SearchBar.text!)
         self.IsSearching = true
         self.ListTBL.reloadData()
     }

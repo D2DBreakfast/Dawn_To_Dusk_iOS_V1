@@ -27,6 +27,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         #endif
         
         self.UpdateTheme()
+        UserDefaults.standard.setValue(0, forKey: DefaultThemeValue)
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
         self.window = UIWindow(windowScene: windowScene)

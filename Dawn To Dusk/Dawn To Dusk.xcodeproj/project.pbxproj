@@ -280,7 +280,6 @@
 		B795232026B2AD0B00E62997 /* BannerModelClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B795231F26B2AD0B00E62997 /* BannerModelClass.swift */; };
 		B795232226B2AD4300E62997 /* FoodModelClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B795232126B2AD4300E62997 /* FoodModelClass.swift */; };
 		B795232426B2AE1600E62997 /* MealModelClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B795232326B2AE1600E62997 /* MealModelClass.swift */; };
-		B795232626B2C7E100E62997 /* DummyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B795232526B2C7E100E62997 /* DummyData.swift */; };
 		B79E193626B7D67B007F67DA /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79E192D26B7D67B007F67DA /* Extentions.swift */; };
 		B79E193726B7D67B007F67DA /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79E192D26B7D67B007F67DA /* Extentions.swift */; };
 		B79E193826B7D67B007F67DA /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79E192D26B7D67B007F67DA /* Extentions.swift */; };
@@ -419,6 +418,9 @@
 		B7F089FE26BA9CF0008A06BF /* ProfileInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7F089FD26BA9CF0008A06BF /* ProfileInfoCell.xib */; };
 		B7F089FF26BA9CF0008A06BF /* ProfileInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7F089FD26BA9CF0008A06BF /* ProfileInfoCell.xib */; };
 		B7F08A0026BA9CF0008A06BF /* ProfileInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7F089FD26BA9CF0008A06BF /* ProfileInfoCell.xib */; };
+		B7F70AA526F08BEE00C7721A /* DummyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F70AA426F08BEE00C7721A /* DummyData.swift */; };
+		B7F70AA626F08BEE00C7721A /* DummyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F70AA426F08BEE00C7721A /* DummyData.swift */; };
+		B7F70AA726F08BEE00C7721A /* DummyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F70AA426F08BEE00C7721A /* DummyData.swift */; };
 		B7FF9E2A26C38F8900D30BA6 /* QAT.plist in Resources */ = {isa = PBXBuildFile; fileRef = B7FF9E2926C38F8900D30BA6 /* QAT.plist */; };
 		B7FF9E2B26C38F8900D30BA6 /* QAT.plist in Resources */ = {isa = PBXBuildFile; fileRef = B7FF9E2926C38F8900D30BA6 /* QAT.plist */; };
 		B7FF9E2C26C38F8900D30BA6 /* QAT.plist in Resources */ = {isa = PBXBuildFile; fileRef = B7FF9E2926C38F8900D30BA6 /* QAT.plist */; };
@@ -595,7 +597,6 @@
 		B795231F26B2AD0B00E62997 /* BannerModelClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerModelClass.swift; sourceTree = "<group>"; };
 		B795232126B2AD4300E62997 /* FoodModelClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodModelClass.swift; sourceTree = "<group>"; };
 		B795232326B2AE1600E62997 /* MealModelClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealModelClass.swift; sourceTree = "<group>"; };
-		B795232526B2C7E100E62997 /* DummyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyData.swift; sourceTree = "<group>"; };
 		B79E192D26B7D67B007F67DA /* Extentions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
 		B79E192E26B7D67B007F67DA /* NSDateComponents+Timepiece.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDateComponents+Timepiece.swift"; sourceTree = "<group>"; };
 		B79E192F26B7D67B007F67DA /* NSCalendar+Timepiece.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSCalendar+Timepiece.swift"; sourceTree = "<group>"; };
@@ -644,6 +645,7 @@
 		B7F089EA26BA7288008A06BF /* BasicTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BasicTableCell.xib; sourceTree = "<group>"; };
 		B7F089F926BA9CB2008A06BF /* ProfileInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoCell.swift; sourceTree = "<group>"; };
 		B7F089FD26BA9CF0008A06BF /* ProfileInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileInfoCell.xib; sourceTree = "<group>"; };
+		B7F70AA426F08BEE00C7721A /* DummyData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DummyData.swift; sourceTree = "<group>"; };
 		B7FF9E2926C38F8900D30BA6 /* QAT.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = QAT.plist; sourceTree = "<group>"; };
 		B7FF9E2D26C38FE400D30BA6 /* QAT.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = QAT.xcconfig; sourceTree = "<group>"; };
 		B7FF9E4126C3A65400D30BA6 /* Dawn To Dusk.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Dawn To Dusk.entitlements"; sourceTree = "<group>"; };
@@ -977,11 +979,11 @@
 		B75C3BD926AFD3B000272E2C /* App Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				B7F70AA426F08BEE00C7721A /* DummyData.swift */,
 				9777160A26B67DD90018F379 /* AlertView.swift */,
 				B77BA47D26AAB2FC00E408B1 /* AppUtillity.swift */,
 				B7EC692E26A976A9007BEE3E /* BaseClassVC.swift */,
 				B7EC691F26A93D23007BEE3E /* Constants.swift */,
-				B795232526B2C7E100E62997 /* DummyData.swift */,
 				B7EC693226A97723007BEE3E /* extensions.swift */,
 				B75C3BDA26AFD5D200272E2C /* SharedUserInfo.swift */,
 			);
@@ -1591,7 +1593,6 @@
 				9744C7A026B1BDF800807478 /* HomeFoodListCell.swift in Sources */,
 				97F48ED926B1A91900413853 /* PinterestSegment.swift in Sources */,
 				B716B3E726CBA8BF00B6D4C7 /* UserInfoUser.swift in Sources */,
-				B795232626B2C7E100E62997 /* DummyData.swift in Sources */,
 				B77BA47A26AAA1F200E408B1 /* TPKeyboardAvoidingTableView.m in Sources */,
 				B745BAAF26AE9E7B0048ECA8 /* HomeDashboardVC.swift in Sources */,
 				B79210AC26C27ED300D014B1 /* LocationPicker.swift in Sources */,
@@ -1624,6 +1625,7 @@
 				B783991726A9851400747324 /* CountryCell.swift in Sources */,
 				B77BA47E26AAB2FC00E408B1 /* AppUtillity.swift in Sources */,
 				B7EC692026A93D23007BEE3E /* Constants.swift in Sources */,
+				B7F70AA526F08BEE00C7721A /* DummyData.swift in Sources */,
 				B77BA47126AAA1F200E408B1 /* TPKeyboardAvoidingScrollView.m in Sources */,
 				B722A10426E9E83D00A336CD /* PaymentModeCard.swift in Sources */,
 				B722A10A26E9E83D00A336CD /* PaymentModeBank.swift in Sources */,
@@ -1715,6 +1717,7 @@
 				9705FECB26B99CB5001557C4 /* ApplyCouponsModelClass.swift in Sources */,
 				B716B3DD26CB854800B6D4C7 /* Toast.swift in Sources */,
 				B722A13426E9F01400A336CD /* OrderHistoryData.swift in Sources */,
+				B7F70AA626F08BEE00C7721A /* DummyData.swift in Sources */,
 				B79E194C26B7D67B007F67DA /* String+Timepiece.swift in Sources */,
 				B716B3E826CBA8BF00B6D4C7 /* UserInfoUser.swift in Sources */,
 				B7A57DFB26BBC6BF00653949 /* CartConfigureCell.swift in Sources */,
@@ -1818,6 +1821,7 @@
 				9705FECC26B99CB5001557C4 /* ApplyCouponsModelClass.swift in Sources */,
 				B716B3DE26CB854800B6D4C7 /* Toast.swift in Sources */,
 				B722A13526E9F01400A336CD /* OrderHistoryData.swift in Sources */,
+				B7F70AA726F08BEE00C7721A /* DummyData.swift in Sources */,
 				B79E194D26B7D67B007F67DA /* String+Timepiece.swift in Sources */,
 				B716B3E926CBA8BF00B6D4C7 /* UserInfoUser.swift in Sources */,
 				B7A57DFC26BBC6BF00653949 /* CartConfigureCell.swift in Sources */,

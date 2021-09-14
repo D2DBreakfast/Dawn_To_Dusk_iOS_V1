@@ -544,10 +544,11 @@ extension HomeListingVC: UITableViewDelegate, UITableViewDataSource {
         cell.setupfoodcell(food: self.GetFinalFoodwithSubArry()[indexPath.row])
         cell.didCartActionBlock = {
             if SharedUserInfo.shared.IsUserLoggedin()! {
-                cell.AddCartBTN.isHidden = true
-                cell.QTY_View.isHidden = false
-                cell.QTY_Count = 1
-                cell.QTY_LBL.text = String.init(format: "%d", cell.QTY_Count)
+//                cell.AddCartBTN.isHidden = true
+//                cell.QTY_View.isHidden = false
+//                cell.QTY_Count = 1
+//                cell.QTY_LBL.text = String.init(format: "%d", cell.QTY_Count)
+                self.tableView(self.FoodListTBL, didSelectRowAt: indexPath)
             }
             else {
                 let vc = LoginVC(nibName: "LoginVC", bundle: nil)
