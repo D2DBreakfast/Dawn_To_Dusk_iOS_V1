@@ -15,6 +15,7 @@ enum ActionType {
 @IBDesignable class NavHeaderView: UIView {
     
     // MARK: - Properties
+    var hub: BadgeHub?
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var TitleLBL: UILabel!
@@ -55,6 +56,8 @@ enum ActionType {
             UIView.AutoresizingMask.flexibleHeight
         ]
         addSubview(view)
+        self.hub = BadgeHub(view: self.CartBTN)
+        self.hub?.moveCircleBy(x: -15, y: 15)
     }
     
     // Loads a XIB file into a view and returns this view.

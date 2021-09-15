@@ -50,14 +50,14 @@ class HomeBannerCell: UITableViewCell {
     //    MARK:- Custom Defines
     //    MARK:-
     
-    func setupcell(food: MealModelClass) {
-        self.bannerIMG.downloadedFrom(url: URL.init(string: food.mealimage!)!)
+    func setupcell(food: MealsModels) {
+        self.bannerIMG.downloadedFrom(url: URL.init(string: food.itemimage!)!)
         self.bannerIMG.contentMode = .scaleToFill
         self.HideSkeleton()
     }
     
-    func setupBannercell(food: BannerModelClass) {
-        self.bannerIMG.downloadedFrom(url: URL.init(string: food.bannerImage!)!)
+    func setupBannercell(banner: BannerModels) {
+        self.bannerIMG.downloadedFrom(url: URL.init(string: banner.bannerImage!)!)
         self.bannerIMG.contentMode = .scaleToFill
         self.HideSkeleton()
     }

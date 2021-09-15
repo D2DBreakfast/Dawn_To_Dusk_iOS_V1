@@ -60,9 +60,7 @@ class HomeListingVC: BaseClassVC {
     var SelectedSubCat: CategoryModels!
     var SubCatArry: [CategoryModels] = []
     
-    var Bannerarry: [BannerModelClass] = [
-        BannerModelClass.init(id: 0, bannerName: "Package 0", bannerImage: "https://source.unsplash.com/random/200x200", bannerdes: randomString(), bannerTitle: "Package 0")
-    ]
+    var Bannerarry: [BannerModels] = []
     
     var FilterWithSub: Bool = true
     
@@ -132,6 +130,17 @@ class HomeListingVC: BaseClassVC {
     
     override func setupUI() {
         
+        NetworkingRequests.shared.GetbannerListing { (responseObject, status) in
+            if status || responseObject.status {
+                self.Bannerarry = responseObject.data.banner
+            }
+            else {
+                self.navigationController?.view.makeToast(responseObject.message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
+            }
+        } onFailure: { (message) in
+            self.navigationController?.view.makeToast(message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
+        }
+
         NetworkingRequests.shared.GetFoodListing(param: ListingParamDict.init(page: 1, count: 20)) { (responseObject, status) in
             if status {
                 if responseObject.data.orders.count > 1 {
@@ -532,7 +541,7 @@ extension HomeListingVC: UITableViewDelegate, UITableViewDataSource {
     
     func SetupBannerCell(indexPath: IndexPath) -> UITableViewCell {
         let cell: HomeBannerCell = self.FoodListTBL.dequeueReusableCell(withIdentifier: "HomeBannerCell") as! HomeBannerCell
-        cell.setupBannercell(food: self.Bannerarry[indexPath.row])
+        cell.setupBannercell(banner: self.Bannerarry[indexPath.row])
         let tap = AppGesture(target: self, action: #selector(self.didSelectRowAt(sender:)))
         tap.indexPath = indexPath
         cell.addGestureRecognizer(tap)

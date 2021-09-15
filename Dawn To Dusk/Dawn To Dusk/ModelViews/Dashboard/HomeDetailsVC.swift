@@ -52,7 +52,7 @@ class HomeDetailsVC: BaseClassVC {
     
     var FoodDetails: FoodModels!
     var MealDetails: MealsModels!
-    var BannerDetails: BannerModelClass! = BannerModelClass.init(id: 0, bannerName: "Package 0", bannerImage: "https://source.unsplash.com/random/200x200", bannerdes: randomString(), bannerTitle: "Package 0")
+    var BannerDetails: BannerModels!
     
     var notificationDetails: NotificationModels!
     var AddressArry: [UserInfoAddres] = []
@@ -100,8 +100,8 @@ class HomeDetailsVC: BaseClassVC {
 //    var CartItems: CartListModelClass? = DummCartdata()
 //    var HistoryArry: [OrderHistoryModelData]? = DummyOrderHistory()
     
-    var CartItems: CartListModelClass?
-    var HistoryArry: [OrderHistoryModelData]? = []
+    var CartItems: OrderHistoryData?
+    var HistoryArry: [OrderHistoryData]? = []
     
     //    MARK:- View Cycle
     //    MARK:-
@@ -121,6 +121,17 @@ class HomeDetailsVC: BaseClassVC {
     //    MARK:-
     
     override func setupUI() {
+        
+        NetworkingRequests.shared.GetbannerListing { (responseObject, status) in
+            if status || responseObject.status {
+                self.BannerDetails = responseObject.data.banner.first
+            }
+            else {
+                self.navigationController?.view.makeToast(responseObject.message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
+            }
+        } onFailure: { (message) in
+            self.navigationController?.view.makeToast(message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
+        }
         
         self.DetailTBL.register(UINib.init(nibName: "HomeDetailCell", bundle: nil), forCellReuseIdentifier: "HomeDetailCell")
         self.DetailTBL.register(UINib.init(nibName: "HomeBannerCell", bundle: nil), forCellReuseIdentifier: "HomeBannerCell")
@@ -211,6 +222,19 @@ class HomeDetailsVC: BaseClassVC {
             self.SetupNavBarforback()
             self.NodataFoundView.isHidden = true
             self.DetailTBL.isHidden = false
+            
+            NetworkingRequests.shared.GetCartHistoryListing { (responseObjects, status) in
+                if status || responseObjects.status {
+                    self.HistoryArry = responseObjects.data
+                }
+                else {
+                    self.navigationController?.view.makeToast(responseObjects.message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
+                }
+            } onFailure: { (message) in
+                self.navigationController?.view.makeToast(message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
+            }
+
+            
             break
             
         case .Address:
@@ -568,11 +592,11 @@ extension HomeDetailsVC {
     //    TODO:- Setup Table HistoryDetails row Index
     func GetRowFromSection(section: Int) -> Int? {
         var rows: Int = 0
-        if section == 0 && (self.CartItems?.fooditems!.count)! >= 1 {
-            rows = (self.CartItems?.fooditems!.count)!
+        if section == 0 && (self.CartItems?.ordersitems!.count)! >= 1 {
+            rows = (self.CartItems?.ordersitems!.count)!
         }
-        else if section == 1 && (self.CartItems?.mealitems!.count)! >= 1 {
-            rows = (self.CartItems?.mealitems!.count)!
+        else if section == 1 && (self.CartItems?.mealsitems!.count)! >= 1 {
+            rows = (self.CartItems?.mealsitems!.count)!
         }
         else if section == 2 {
             rows = 6
@@ -903,9 +927,9 @@ extension HomeDetailsVC {
     //    TODO:- Cart History Details Cells
     func FOOD_ConfigCellFor(indexPath: IndexPath) -> UITableViewCell {
         
-        if (self.CartItems?.fooditems!.count)! >= 1 {
+        if (self.CartItems?.ordersitems!.count)! >= 1 {
             let cell: CartItemCell = self.DetailTBL.dequeueReusableCell(withIdentifier: "CartItemCell") as! CartItemCell
-            let food = self.CartItems?.fooditems![indexPath.row]
+            let food = self.CartItems?.ordersitems![indexPath.row]
             cell.setupfoodcell(food: food!)
             cell.DeleteBTN.isHidden = true
             return cell
@@ -917,9 +941,9 @@ extension HomeDetailsVC {
     }
     
     func MEAL_ConfigCellFor(indexPath: IndexPath) -> UITableViewCell {
-        if (self.CartItems?.mealitems!.count)! >= 1 {
+        if (self.CartItems?.mealsitems!.count)! >= 1 {
             let cell: CartItemCell = self.DetailTBL.dequeueReusableCell(withIdentifier: "CartItemCell") as! CartItemCell
-            let meal = self.CartItems?.mealitems![indexPath.row]
+            let meal = self.CartItems?.mealsitems![indexPath.row]
             cell.setupmealcell(meal: meal!)
             cell.DeleteBTN.isHidden = true
             return cell
@@ -931,7 +955,7 @@ extension HomeDetailsVC {
     
     func CART_ConfigCellFor(indexPath: IndexPath) -> UITableViewCell {
         
-        if (self.CartItems?.mealitems!.count)! >= 1 || (self.CartItems?.fooditems!.count)! >= 1 {
+        if (self.CartItems?.mealsitems!.count)! >= 1 || (self.CartItems?.ordersitems!.count)! >= 1 {
             // Delivery Date Cell Defines
             if indexPath.row == 0 {
                 let cell: CartConfigureCell = self.DetailTBL.dequeueReusableCell(withIdentifier: "CartConfigureCell") as! CartConfigureCell
@@ -992,7 +1016,7 @@ extension HomeDetailsVC {
     func SetupTrackOrder(indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell: HomeBannerCell = self.DetailTBL.dequeueReusableCell(withIdentifier: "HomeBannerCell") as! HomeBannerCell
-            cell.setupBannercell(food: self.BannerDetails)
+            cell.setupBannercell(banner: self.BannerDetails)
             cell.backgroundColor = TBLBackgroundCOlor
             cell.contentView.backgroundColor = TBLBackgroundCOlor
             return cell

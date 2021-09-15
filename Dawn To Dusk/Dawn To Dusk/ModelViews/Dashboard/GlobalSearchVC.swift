@@ -43,9 +43,7 @@ class GlobalSearchVC: BaseClassVC {
         return header
     }()
     
-    var Bannerarry: [BannerModelClass] = [
-        BannerModelClass.init(id: 0, bannerName: "Package 0", bannerImage: "https://source.unsplash.com/random/200x200", bannerdes: randomString(), bannerTitle: "Package 0")
-    ]
+    var Bannerarry: [BannerModels] = []
     
     var SearchSTR: String = ""
     var IsSearching: Bool = false
@@ -122,6 +120,17 @@ class GlobalSearchVC: BaseClassVC {
         self.SearchBar.delegate = self
         
         self.SearchBar.searchTextField.textColor = PrimaryText_Color
+        
+        NetworkingRequests.shared.GetbannerListing { (responseObject, status) in
+            if status || responseObject.status {
+                self.Bannerarry = responseObject.data.banner
+            }
+            else {
+                self.navigationController?.view.makeToast(responseObject.message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
+            }
+        } onFailure: { (message) in
+            self.navigationController?.view.makeToast(message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
+        }
         
         NetworkingRequests.shared.GetFoodListing(param: ListingParamDict.init(page: 1, count: 20)) { (responseObject, status) in
             if status {
@@ -323,7 +332,7 @@ extension GlobalSearchVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell: HomeBannerCell = tableView.dequeueReusableCell(withIdentifier: "HomeBannerCell") as! HomeBannerCell
-            cell.setupBannercell(food: self.Bannerarry[indexPath.row])
+            cell.setupBannercell(banner: self.Bannerarry[indexPath.row])
             
             let tap = AppGesture(target: self, action: #selector(self.didSelectRowAt(sender:)))
             tap.indexPath = indexPath

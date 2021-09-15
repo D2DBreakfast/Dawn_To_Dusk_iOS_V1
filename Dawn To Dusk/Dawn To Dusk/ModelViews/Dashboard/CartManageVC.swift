@@ -45,8 +45,7 @@ class CartManageVC: BaseClassVC {
     
     var locationManager = CLLocationManager()
     var currentLocation: CartLocation?
-//    var CartItems: CartListModelClass? = DummCartdata()
-    var CartItems: CartListModelClass?
+    var CartItems: OrderHistoryData?
     var cartInvoice: CartInvoice!
     var Cartcoupon: CartCoupon = CartCoupon.init(id: 0, code: "", value: 0.0, isApply: false)
     var CartCommunity: UserInfoCommunity!
@@ -91,6 +90,17 @@ class CartManageVC: BaseClassVC {
             self.navigationController?.view.makeToast(message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
         }
         
+        NetworkingRequests.shared.GetCartHistoryListing { (responseObject, status) in
+            if status || responseObject.status {
+                self.CartItems = responseObject.data.first
+            }
+            else {
+                self.navigationController?.view.makeToast(responseObject.message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
+            }
+        } onFailure: { (message) in
+            self.navigationController?.view.makeToast(message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
+        }
+
         self.SetupNavBarforback()
         self.title = "Manage Carts"
         
@@ -152,11 +162,11 @@ class CartManageVC: BaseClassVC {
     
     func GetRowFromSection(section: Int) -> Int? {
         var rows: Int = 0
-        if section == 0 && (self.CartItems?.fooditems!.count)! >= 1 {
-            rows = (self.CartItems?.fooditems!.count)!
+        if section == 0 && (self.CartItems?.ordersitems!.count)! >= 1 {
+            rows = (self.CartItems?.ordersitems!.count)!
         }
-        else if section == 1 && (self.CartItems?.mealitems!.count)! >= 1 {
-            rows = (self.CartItems?.mealitems!.count)!
+        else if section == 1 && (self.CartItems?.mealsitems!.count)! >= 1 {
+            rows = (self.CartItems?.mealsitems!.count)!
         }
         else if section == 2 {
             rows = 5
@@ -165,7 +175,7 @@ class CartManageVC: BaseClassVC {
     }
     
     func reloadcart() {
-        if (self.CartItems?.mealitems!.count)! == 0 && (self.CartItems?.fooditems!.count)! == 0 {
+        if (self.CartItems?.mealsitems!.count)! == 0 && (self.CartItems?.ordersitems!.count)! == 0 {
             self.NodataFoundView.isHidden = false
             self.ListTBL.isHidden = true
         }
@@ -334,9 +344,9 @@ extension CartManageVC: UITableViewDelegate, UITableViewDataSource {
     
     func FOOD_ConfigCellFor(indexPath: IndexPath) -> UITableViewCell {
         
-        if (self.CartItems?.fooditems!.count)! >= 1 {
+        if (self.CartItems?.ordersitems!.count)! >= 1 {
             let cell: CartItemCell = self.ListTBL.dequeueReusableCell(withIdentifier: "CartItemCell") as! CartItemCell
-            let food = self.CartItems?.fooditems![indexPath.row]
+            let food = self.CartItems?.ordersitems![indexPath.row]
             
             cell.setupfoodcell(food: food!)
             if self.cartInvoice == nil {
@@ -369,13 +379,13 @@ extension CartManageVC: UITableViewDelegate, UITableViewDataSource {
                 let priceSTR: String = String.init(format: "%@ %@", (getdefaultCountry()?.symbol)!, result.formatprice())
                 cell.PriceLBL.text = priceSTR
                 if cell.QTY_Count <= 0 {
-                    self.CartItems?.fooditems?.remove(at: indexPath.row)
+                    self.CartItems?.ordersitems?.remove(at: indexPath.row)
                     self.cartInvoice.items.remove(at: CartIndex!)
                 }
                 self.reloadcart()
             }
             cell.didDeleteActionBlock = {
-                self.CartItems?.fooditems?.remove(at: indexPath.row)
+                self.CartItems?.ordersitems?.remove(at: indexPath.row)
                 self.cartInvoice.items.remove(at: CartIndex!)
                 self.reloadcart()
             }
@@ -399,9 +409,9 @@ extension CartManageVC: UITableViewDelegate, UITableViewDataSource {
     
     func MEAL_ConfigCellFor(indexPath: IndexPath) -> UITableViewCell {
         
-        if (self.CartItems?.mealitems!.count)! >= 1 {
+        if (self.CartItems?.mealsitems!.count)! >= 1 {
             let cell: CartItemCell = self.ListTBL.dequeueReusableCell(withIdentifier: "CartItemCell") as! CartItemCell
-            let meal = self.CartItems?.mealitems![indexPath.row]
+            let meal = self.CartItems?.mealsitems![indexPath.row]
             cell.setupmealcell(meal: meal!)
             
             if self.cartInvoice == nil {
@@ -434,13 +444,13 @@ extension CartManageVC: UITableViewDelegate, UITableViewDataSource {
                 let priceSTR: String = String.init(format: "%@ %@", (getdefaultCountry()?.symbol)!, result.formatprice())
                 cell.PriceLBL.text = priceSTR
                 if cell.QTY_Count <= 0 {
-                    self.CartItems?.mealitems?.remove(at: indexPath.row)
+                    self.CartItems?.mealsitems?.remove(at: indexPath.row)
                     self.cartInvoice.items.remove(at: CartIndex!)
                 }
                 self.reloadcart()
             }
             cell.didDeleteActionBlock = {
-                self.CartItems?.mealitems?.remove(at: indexPath.row)
+                self.CartItems?.mealsitems?.remove(at: indexPath.row)
                 self.cartInvoice.items.remove(at: CartIndex!)
                 self.reloadcart()
             }
@@ -464,7 +474,7 @@ extension CartManageVC: UITableViewDelegate, UITableViewDataSource {
     
     func CART_ConfigCellFor(indexPath: IndexPath) -> UITableViewCell {
         // Shipping Cell Defines
-        if (self.CartItems?.mealitems!.count)! >= 1 || (self.CartItems?.fooditems!.count)! >= 1 {
+        if (self.CartItems?.mealsitems!.count)! >= 1 || (self.CartItems?.ordersitems!.count)! >= 1 {
             if indexPath.row == 0 {
                 let cell: CartConfigureCell = self.ListTBL.dequeueReusableCell(withIdentifier: "CartConfigureCell") as! CartConfigureCell
                 cell.Setupshoppingcell()

@@ -81,23 +81,23 @@ class CartItemCell: UITableViewCell {
     //    MARK:- Custom Defines
     //    MARK:-
     
-    func setupfoodcell(food: FoodModelClass) {
+    func setupfoodcell(food: FoodModels) {
         self.ItemIMG.tintColor = food.isveg! ? UIColor.colorWithHexString(hexStr: GreenTheme) : .red
-        self.ItemIMG.downloadedFrom(url: URL.init(string: food.foodimage!)!)
+        self.ItemIMG.downloadedFrom(url: URL.init(string: food.itemimage!)!)
         self.ItemIMG.contentMode = .scaleToFill
         self.TitleLBL.text = food.title
-        self.DescLBL.text = food.foodShortdesc
+        self.DescLBL.text = food.shortdesc
         let result:Double = Double(((food.price)! * Double(QTY_Count)))
         let priceSTR: String = String.init(format: "%@ %@", (getdefaultCountry()?.symbol)!, result.formatprice())
         self.PriceLBL.text = priceSTR
     }
     
-    func setupmealcell(meal: MealModelClass) {
+    func setupmealcell(meal: MealsModels) {
         self.ItemIMG.tintColor = meal.isveg! ? UIColor.colorWithHexString(hexStr: GreenTheme) : .red
-        self.ItemIMG.downloadedFrom(url: URL.init(string: meal.mealimage!)!)
+        self.ItemIMG.downloadedFrom(url: URL.init(string: meal.itemimage!)!)
         self.ItemIMG.contentMode = .scaleToFill
         self.TitleLBL.text = meal.title
-        self.DescLBL.text = meal.mealShortdesc
+        self.DescLBL.text = meal.shortdesc
         let result:Double = Double(((meal.price)! * Double(QTY_Count)))
         let priceSTR: String = String.init(format: "%@ %@", (getdefaultCountry()?.symbol)!, result.formatprice())
         self.PriceLBL.text = priceSTR

@@ -19,7 +19,7 @@ class CouponModelsData : NSObject, NSCoding{
             return
         }
         coupon = [CouponModels]()
-        let couponArray = json["coupon"].arrayValue
+        let couponArray = json["coupons"].arrayValue
         for couponJson in couponArray{
             let value = CouponModels(fromJson: couponJson)
             coupon.append(value)
@@ -37,7 +37,7 @@ class CouponModelsData : NSObject, NSCoding{
             for couponElement in coupon {
                 dictionaryElements.append(couponElement.toDictionary())
             }
-            dictionary["coupon"] = dictionaryElements
+            dictionary["coupons"] = dictionaryElements
         }
         return dictionary
     }
@@ -48,7 +48,7 @@ class CouponModelsData : NSObject, NSCoding{
     */
     @objc required init(coder aDecoder: NSCoder)
     {
-         coupon = aDecoder.decodeObject(forKey: "coupon") as? [CouponModels]
+         coupon = aDecoder.decodeObject(forKey: "coupons") as? [CouponModels]
 
     }
 
@@ -59,7 +59,7 @@ class CouponModelsData : NSObject, NSCoding{
     func encode(with aCoder: NSCoder)
     {
         if coupon != nil{
-            aCoder.encode(coupon, forKey: "coupon")
+            aCoder.encode(coupon, forKey: "coupons")
         }
 
     }
