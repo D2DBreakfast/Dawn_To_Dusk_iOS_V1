@@ -634,7 +634,7 @@ extension HomeDetailsVC: UITableViewDelegate, UITableViewDataSource {
         switch self.DetailType {
         case .Meals:
             if section == 1 {
-                self.Sectiontitle.text = "Upcoming Meals"
+                self.Sectiontitle.text = "Daily variants"
                 return self.SectionHeader
             }
             else {
@@ -965,7 +965,7 @@ extension HomeDetailsVC {
             // Shipping Cell Defines
             else if indexPath.row == 1 {
                 let cell: CartConfigureCell = self.DetailTBL.dequeueReusableCell(withIdentifier: "CartConfigureCell") as! CartConfigureCell
-                cell.Setupshoppingcell()
+                cell.Setupshoppingcell(indexPath: indexPath)
                 cell.HeaderView.isHidden = false
                 cell.DetailBTN.isHidden = true
                 return cell
@@ -973,7 +973,7 @@ extension HomeDetailsVC {
             // Payment Mode Cell Defines
             else if indexPath.row == 2 {
                 let cell: CartConfigureCell = self.DetailTBL.dequeueReusableCell(withIdentifier: "CartConfigureCell") as! CartConfigureCell
-                cell.SetupPaymentcell()
+                cell.SetupPaymentcell(indexPath: indexPath)
                 cell.HeaderView.isHidden = false
                 cell.DetailBTN.isHidden = true
                 return cell
@@ -981,7 +981,7 @@ extension HomeDetailsVC {
             // Invoice Cell Defines
             else if indexPath.row == 3 {
                 let cell: CartConfigureCell = self.DetailTBL.dequeueReusableCell(withIdentifier: "CartConfigureCell") as! CartConfigureCell
-                cell.SetupInvoicecell(invoiceObj: CartInvoice.init(item: [Cartitems.init(id: 0, title: "fadfsadf", price: 20, qty: 5)]), Cartcoupon: CartCoupon.init(id: 2, code: "ffsfsa", value: 20, isApply: false))
+                cell.SetupInvoicecell(invoiceObj: CartInvoice.init(item: [Cartitems.init(id: 0, title: "fadfsadf", price: 20, qty: 5)]), Cartcoupon: CartCoupon.init(id: 2, code: "ffsfsa", value: 20, isApply: false), indexPath: indexPath)
                 cell.HeaderView.isHidden = false
                 cell.DetailBTN.isHidden = true
                 return cell
@@ -1000,7 +1000,7 @@ extension HomeDetailsVC {
             // Apply OR Show Review Cell Defines
             else {
                 let cell: CartConfigureCell = self.DetailTBL.dequeueReusableCell(withIdentifier: "CartConfigureCell") as! CartConfigureCell
-                cell.ReviewSetupView()
+                cell.ReviewSetupView(indexPath: indexPath)
                 cell.didRatingActionBlock = { (rating, comments) in
                     
                 }

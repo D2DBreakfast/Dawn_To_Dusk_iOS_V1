@@ -63,6 +63,8 @@
 		B70202A126CD088900DADBDF /* PaymentModeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B702029D26CD088900DADBDF /* PaymentModeCell.xib */; };
 		B70202A226CD088900DADBDF /* PaymentModeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B702029D26CD088900DADBDF /* PaymentModeCell.xib */; };
 		B70202A326CD088900DADBDF /* PaymentModeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B702029D26CD088900DADBDF /* PaymentModeCell.xib */; };
+		B70AED2B26F3287F00D199BA /* SubCategoryCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70AED2926F3287F00D199BA /* SubCategoryCells.swift */; };
+		B70AED2C26F3287F00D199BA /* SubCategoryCells.xib in Resources */ = {isa = PBXBuildFile; fileRef = B70AED2A26F3287F00D199BA /* SubCategoryCells.xib */; };
 		B716B3CE26CB80BE00B6D4C7 /* RRAlamofireRxAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B716B3CD26CB80BE00B6D4C7 /* RRAlamofireRxAPI.swift */; };
 		B716B3CF26CB80BE00B6D4C7 /* RRAlamofireRxAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B716B3CD26CB80BE00B6D4C7 /* RRAlamofireRxAPI.swift */; };
 		B716B3D026CB80BE00B6D4C7 /* RRAlamofireRxAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B716B3CD26CB80BE00B6D4C7 /* RRAlamofireRxAPI.swift */; };
@@ -486,6 +488,8 @@
 		B702029826CCDC8500DADBDF /* NetworkingRequests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingRequests.swift; sourceTree = "<group>"; };
 		B702029C26CD088900DADBDF /* PaymentModeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentModeCell.swift; sourceTree = "<group>"; };
 		B702029D26CD088900DADBDF /* PaymentModeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PaymentModeCell.xib; sourceTree = "<group>"; };
+		B70AED2926F3287F00D199BA /* SubCategoryCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCategoryCells.swift; sourceTree = "<group>"; };
+		B70AED2A26F3287F00D199BA /* SubCategoryCells.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SubCategoryCells.xib; sourceTree = "<group>"; };
 		B716B3CD26CB80BE00B6D4C7 /* RRAlamofireRxAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RRAlamofireRxAPI.swift; sourceTree = "<group>"; };
 		B716B3DB26CB854800B6D4C7 /* Toast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		B716B3E426CBA8BF00B6D4C7 /* UserInfoUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoUser.swift; sourceTree = "<group>"; };
@@ -702,6 +706,7 @@
 				B7E6F0DB26CE662500CD5428 /* RunningOrderTrackCell.swift */,
 				9762EFA626BAC656002F1328 /* UserOptionCell.swift */,
 				B7B13F0826E77AC200CAB869 /* RunningOrderCell.swift */,
+				B70AED2926F3287F00D199BA /* SubCategoryCells.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -709,6 +714,7 @@
 		97F48ED226B1A17F00413853 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				B70AED2A26F3287F00D199BA /* SubCategoryCells.xib */,
 				B7B13F0926E77AC200CAB869 /* RunningOrderCell.xib */,
 				97866C2926BDB2AE007F88A9 /* AddressCell.xib */,
 				B7F089EA26BA7288008A06BF /* BasicTableCell.xib */,
@@ -1451,6 +1457,7 @@
 				B762BE4E26CE1B1500F17AB1 /* AddPaymentVC.xib in Resources */,
 				B792108626C25D1D00D014B1 /* LocationPickerVC.xib in Resources */,
 				B731C82C26A6EFB900379CCB /* Assets.xcassets in Resources */,
+				B70AED2C26F3287F00D199BA /* SubCategoryCells.xib in Resources */,
 				B7E8B62526F1BE32009EC4FD /* couponlist.json in Resources */,
 				B76315DD26B3D6A3000BA46E /* HomeDetailsVC.xib in Resources */,
 				B731C82A26A6EFB800379CCB /* Main.storyboard in Resources */,
@@ -1648,6 +1655,7 @@
 				B745BAC126AEA0D40048ECA8 /* GlobalSearchVC.swift in Sources */,
 				B79E194E26B7D67B007F67DA /* Duration.swift in Sources */,
 				B76315DC26B3D6A3000BA46E /* HomeDetailsVC.swift in Sources */,
+				B70AED2B26F3287F00D199BA /* SubCategoryCells.swift in Sources */,
 				B79E193C26B7D67B007F67DA /* NSCalendar+Timepiece.swift in Sources */,
 				B783991426A9851400747324 /* Country.swift in Sources */,
 				B7EE5D0026D6442500FDD52F /* CategoryModels.swift in Sources */,

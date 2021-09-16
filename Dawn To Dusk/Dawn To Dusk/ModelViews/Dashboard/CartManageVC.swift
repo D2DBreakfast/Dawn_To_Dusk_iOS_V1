@@ -477,10 +477,10 @@ extension CartManageVC: UITableViewDelegate, UITableViewDataSource {
         if (self.CartItems?.mealsitems!.count)! >= 1 || (self.CartItems?.ordersitems!.count)! >= 1 {
             if indexPath.row == 0 {
                 let cell: CartConfigureCell = self.ListTBL.dequeueReusableCell(withIdentifier: "CartConfigureCell") as! CartConfigureCell
-                cell.Setupshoppingcell()
+                cell.Setupshoppingcell(indexPath: indexPath)
                 
                 if self.CartCommunity != nil {
-                    cell.SelectedCommunityLBL.text = self.CartCommunity.title
+                    cell.SelectedCommunityLBL.text = self.CartCommunity.address
                     cell.TXTVilla.text = self.CartCommunity.line1?.count == 0 ? "" : self.CartCommunity.line1
                     cell.TXTLand.text = self.CartCommunity.line2?.count == 0 ? "" : self.CartCommunity.line2
                 }
@@ -507,7 +507,7 @@ extension CartManageVC: UITableViewDelegate, UITableViewDataSource {
             // Payment Mode Cell Defines
             else if indexPath.row == 1 {
                 let cell: CartConfigureCell = self.ListTBL.dequeueReusableCell(withIdentifier: "CartConfigureCell") as! CartConfigureCell
-                cell.SetupPaymentcell()
+                cell.SetupPaymentcell(indexPath: indexPath)
                 cell.didDetailsActionBlock = {
                     let vc = HomeDetailsVC(nibName: "HomeDetailsVC", bundle: nil)
                     vc.DetailType = .Payment
@@ -519,7 +519,7 @@ extension CartManageVC: UITableViewDelegate, UITableViewDataSource {
             // Copuon Cell Defines
             else if indexPath.row == 2 {
                 let cell: CartConfigureCell = self.ListTBL.dequeueReusableCell(withIdentifier: "CartConfigureCell") as! CartConfigureCell
-                cell.SetupCouponcell()
+                cell.SetupCouponcell(indexPath: indexPath)
                 cell.didDetailsActionBlock = {
                     let vc = HomeDetailsVC(nibName: "HomeDetailsVC", bundle: nil)
                     vc.DetailType = .Coupon
@@ -538,7 +538,7 @@ extension CartManageVC: UITableViewDelegate, UITableViewDataSource {
             }
             else if indexPath.row == 3 {
                 let cell: CartConfigureCell = self.ListTBL.dequeueReusableCell(withIdentifier: "CartConfigureCell") as! CartConfigureCell
-                cell.SetupInvoicecell(invoiceObj: self.cartInvoice, Cartcoupon: self.Cartcoupon)
+                cell.SetupInvoicecell(invoiceObj: self.cartInvoice, Cartcoupon: self.Cartcoupon, indexPath: indexPath)
                 cell.didRemoveCouponActionBlock = {
                     self.Cartcoupon.code = ""
                     self.Cartcoupon.value = 0.0
@@ -549,7 +549,7 @@ extension CartManageVC: UITableViewDelegate, UITableViewDataSource {
             }
             else {
                 let cell: CartConfigureCell = self.ListTBL.dequeueReusableCell(withIdentifier: "CartConfigureCell") as! CartConfigureCell
-                cell.AgreeSetupView()
+                cell.AgreeSetupView(indexPath: indexPath)
                 cell.didCheckoutActionBlock = {
                     
                 }

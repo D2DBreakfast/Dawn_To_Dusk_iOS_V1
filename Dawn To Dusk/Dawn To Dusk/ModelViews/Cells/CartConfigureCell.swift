@@ -164,7 +164,7 @@ class CartConfigureCell: UITableViewCell {
     //    MARK:- Custom Defines
     //    MARK:-
     
-    func Setupshoppingcell() {
+    func Setupshoppingcell(indexPath: IndexPath) {
         
         self.CommunityBTN.isSelected = false
         
@@ -192,7 +192,7 @@ class CartConfigureCell: UITableViewCell {
         self.TXTLand.placeholder = "Enter Landmark 2"
     }
     
-    func SetupPaymentcell() {
+    func SetupPaymentcell(indexPath: IndexPath) {
         self.HeaderView.isHidden = false
         self.ContainVIew.layer.borderWidth = 1
         self.TitleLBL.text = "Payment Mode"
@@ -208,7 +208,7 @@ class CartConfigureCell: UITableViewCell {
         self.DeliveryDateView.isHidden = true
     }
     
-    func SetupCouponcell() {
+    func SetupCouponcell(indexPath: IndexPath) {
         
         self.HeaderView.isHidden = false
         self.ContainVIew.layer.borderWidth = 1
@@ -224,7 +224,7 @@ class CartConfigureCell: UITableViewCell {
         
     }
     
-    func SetupInvoicecell(invoiceObj: CartInvoice, Cartcoupon: CartCoupon) {
+    func SetupInvoicecell(invoiceObj: CartInvoice, Cartcoupon: CartCoupon, indexPath: IndexPath) {
     
         self.ContainVIew.layer.borderWidth = 1
         self.HeaderView.isHidden = false
@@ -268,7 +268,7 @@ class CartConfigureCell: UITableViewCell {
         self.TotalValueLBL.textColor = UIColor.colorWithHexString(hexStr: GetDefaultTheme()!)
     }
     
-    func AgreeSetupView() {
+    func AgreeSetupView(indexPath: IndexPath) {
         self.ContainVIew.layer.borderWidth = 0.0
         self.AgreeView.isHidden = false
         self.ShippingView.isHidden = true
@@ -281,7 +281,7 @@ class CartConfigureCell: UITableViewCell {
         self.DeliveryDateView.isHidden = true
     }
     
-    func ReviewSetupView(isItShow: Bool = false) {
+    func ReviewSetupView(isItShow: Bool = false, indexPath: IndexPath) {
         self.ContainVIew.layer.borderWidth = 0.0
         self.Review.isHidden = false
         self.HeaderView.isHidden = false
@@ -350,7 +350,6 @@ class CartConfigureCell: UITableViewCell {
         self.PayStack.isHidden = true
         self.CouponStack.isHidden = true
         self.RecieptStack.isHidden = true
-        
     }
     
     //    MARK:- Action Defines

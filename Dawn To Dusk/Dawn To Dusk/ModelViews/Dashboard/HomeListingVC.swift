@@ -26,6 +26,7 @@ class HomeListingVC: BaseClassVC {
     @IBOutlet weak var filter_LBL: UILabel!
     @IBOutlet weak var FilterSwitch: UISwitch!
     @IBOutlet weak var SubCatView: PinterestSegment!
+    @IBOutlet weak var SubCatView2: UICollectionView!
     
     @IBOutlet weak var NodataFoundView: NodataView!
     @IBOutlet weak var FoodListTBL: TPKeyboardAvoidingTableView!
@@ -59,6 +60,8 @@ class HomeListingVC: BaseClassVC {
     
     var SelectedSubCat: CategoryModels!
     var SubCatArry: [CategoryModels] = []
+    var SelectedSubCatArry: [CategoryModels] = []
+    var MultipleSelect: Bool = true
     
     var Bannerarry: [BannerModels] = []
     
@@ -213,6 +216,7 @@ class HomeListingVC: BaseClassVC {
         return hasPermission
     }
     
+    // TODO: Setup Category
     func setupCategoryView() {
         
         NetworkingRequests.shared.GetCategoryListing { (catData, status) in
@@ -236,7 +240,7 @@ class HomeListingVC: BaseClassVC {
         self.CategoryView.titles = self.getCatNameArray()!
         self.CategoryView.valueChange = { index in
             self.SelectedMainCat = self.getMaincatOBJ(name: index)
-            if index.id == self.SelectedMainCat.id && index.title?.uppercased() == "Order".uppercased() {
+            if index.id == self.SelectedMainCat.id && index.title?.uppercased() == "A la Carte".uppercased() {
                 self.SubCat_Height.constant = 55
                 self.subHeaderView.isHidden = false
                 self.FilterSwitch.isOn = false
@@ -268,6 +272,7 @@ class HomeListingVC: BaseClassVC {
         return Singleobj.first
     }
     
+    // TODO: Setup SubCategory
     func setupsubcatview() {
 
         NetworkingRequests.shared.GetSubCategoryListing(param: SubCatParamDict.init(id: self.SelectedMainCat.id)) { (subcatData, status) in
@@ -283,27 +288,46 @@ class HomeListingVC: BaseClassVC {
             self.navigationController?.view.makeToast(message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
         }
         
-        self.FilterSwitch.onTintColor = UIColor.colorWithHexString(hexStr: GetDefaultTheme()!)
-        self.subHeaderView.backgroundColor = ModeBG_Color
-        self.FilterView.backgroundColor = ModeBG_Color
-        self.SubCatView.backgroundColor = ModeBG_Color
-        self.SubCatView.indicatorColor = UIColor.colorWithHexString(hexStr: GetDefaultTheme()!)
-        self.SubCatView.titleFont = UIFont.boldSystemFont(ofSize: 17)
-        self.SubCatView.normalTitleColor = UIColor.colorWithHexString(hexStr: GetDefaultTheme()!)
-        self.SubCatView.selectedTitleColor = UIColor.white
-        self.SubCatView.titles = self.getSubCatNameArray()!
-        self.SubCatView.valueChange = { index in
-            self.SelectedSubCat = self.getSubcatOBJ(name: index)
-            self.FoodListTBL.reloadData()
+        if self.MultipleSelect {
+            self.SubCatView.isHidden = true
+            self.SubCatView2.isHidden = false
+            self.SubCatView2.allowsSelection = true
+            self.SubCatView2.register(UINib(nibName:"SubCategoryCells", bundle: nil), forCellWithReuseIdentifier: "SubCategoryCells")
+            
+            self.SubCatView2.delegate = self
+            self.SubCatView2.dataSource = self
+            self.SubCatView2.reloadData()
         }
+        else  {
+            self.SubCatView.isHidden = false
+            self.SubCatView2.isHidden = true
+            self.FilterSwitch.onTintColor = UIColor.colorWithHexString(hexStr: GetDefaultTheme()!)
+            self.subHeaderView.backgroundColor = ModeBG_Color
+            self.FilterView.backgroundColor = ModeBG_Color
+            self.SubCatView.backgroundColor = ModeBG_Color
+            self.SubCatView.indicatorColor = UIColor.colorWithHexString(hexStr: GetDefaultTheme()!)
+            self.SubCatView.titleFont = UIFont.boldSystemFont(ofSize: 17)
+            self.SubCatView.normalTitleColor = UIColor.colorWithHexString(hexStr: GetDefaultTheme()!)
+            self.SubCatView.selectedTitleColor = UIColor.white
+            self.SubCatView.titles = self.getSubCatNameArray()!
+            self.SubCatView.valueChange = { index in
+                self.SelectedSubCat = self.getSubcatOBJ(name: index)
+                self.FoodListTBL.reloadData()
+            }
+            self.SubCatView.CheckUncheckvalueChange = { index in
+                self.SelectedSubCat = nil
+                self.FoodListTBL.reloadData()
+            }
+        }
+    
     }
     
     func getSubCatNameArray() -> [PintrestTitle]? {
-        let array = self.SubCatArry.compactMap { obj in
+        var final: [PintrestTitle] = [PintrestTitle.init(id: 1, title: "All")]
+        final.append(contentsOf: self.SubCatArry.compactMap { obj in
             return PintrestTitle.init(id: obj.id, title: obj.catName)
-        }
-        self.SelectedSubCat = self.getSubcatOBJ(name: array.first!)
-        return array
+        })
+        return final
     }
     
     func getSubcatOBJ(name: PintrestTitle) -> CategoryModels? {
@@ -346,22 +370,38 @@ class HomeListingVC: BaseClassVC {
     func GetFinalFoodwithSubArry() -> [FoodModels] {
         var filter: [FoodModels] = []
         if self.FilterSwitch.isOn {
-            let data = self.getVegfoodOnly().filter { obj in
-                return ((obj.subCattegory?.id == self.SelectedSubCat.id || obj.subCattegory?.catName?.uppercased() == self.SelectedSubCat.catName?.uppercased()) && (obj.cattegory?.id == self.SelectedMainCat.id || obj.cattegory?.catName?.uppercased() == self.SelectedMainCat.catName?.uppercased()) && obj.isveg == true)
-            }
-            if self.IsSearching && self.SearchSTR.count > 0 {
-                let searchData = data.filter { obj in
-                    return (obj.title?.lowercased().contains(self.SearchSTR.lowercased()))!
-                }
-                filter = searchData
+            if self.MultipleSelect {
+                 
             }
             else {
-                filter = data
+                let data = self.getVegfoodOnly().filter { obj in
+                    if self.SelectedSubCat == nil {
+                        return ((obj.cattegory?.id == self.SelectedMainCat.id) && obj.isveg == true)
+                    }
+                    else {
+                        return ((obj.subCattegory?.id == self.SelectedSubCat.id) && (obj.cattegory?.id == self.SelectedMainCat.id) && obj.isveg == true)
+                    }
+                }
+                if self.IsSearching && self.SearchSTR.count > 0 {
+                    let searchData = data.filter { obj in
+                        return (obj.title?.lowercased().contains(self.SearchSTR.lowercased()))!
+                    }
+                    filter = searchData
+                }
+                else {
+                    filter = data
+                }
             }
         }
         else {
-            let data = self.foodArry.filter { obj in
-                return ((obj.subCattegory?.id == self.SelectedSubCat.id || obj.subCattegory?.catName?.uppercased() == self.SelectedSubCat.catName?.uppercased()) && (obj.cattegory?.id == self.SelectedMainCat.id || obj.cattegory?.catName?.uppercased() == self.SelectedMainCat.catName?.uppercased()))
+            var data: [FoodModels] = []
+            if self.SelectedSubCat == nil {
+                data = self.foodArry
+            }
+            else {
+                data = self.foodArry.filter { obj in
+                    return ((obj.subCattegory?.id == self.SelectedSubCat.id) && (obj.cattegory?.id == self.SelectedMainCat.id))
+                }
             }
             if self.IsSearching && self.SearchSTR.count > 0 {
                 let searchData = data.filter { obj in
@@ -591,6 +631,72 @@ extension HomeListingVC: UITableViewDelegate, UITableViewDataSource {
         cell.addGestureRecognizer(tap)
         
         return cell
+    }
+    
+}
+
+//MARK:- CollectionView Delegate and Datasource
+//MARK:-
+extension HomeListingVC: UICollectionViewDataSource, UICollectionViewDelegate {
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.SubCatArry.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        return self.configCell(indexPath: indexPath)
+    }
+    
+    @objc func didSelectSubcatRowAt(sender : AppGesture) {
+        self.collectionView(self.SubCatView2, didSelectItemAt: sender.indexPath)
+    }
+    
+    func configCell(indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = self.SubCatView2.dequeueReusableCell(withReuseIdentifier: "SubCategoryCells", for: indexPath as IndexPath) as! SubCategoryCells
+        let tap = AppGesture(target: self, action: #selector(self.didSelectSubcatRowAt(sender:)))
+        tap.indexPath = indexPath
+        cell.addGestureRecognizer(tap)
+        let obj = self.SubCatArry[indexPath.row]
+        cell.TitleLBL.text = obj.catName
+        if self.SelectedSubCatArry.count != 0 {
+            let element = self.SelectedSubCatArry.filter { item in
+                return item.id == obj.id
+            }.first
+            if element?.id == obj.id {
+                cell.View.backgroundColor = UIColor.colorWithHexString(hexStr: GetDefaultTheme()!)
+                cell.TitleLBL.textColor = .white
+                cell.TitleLBL.font = UIFont.boldSystemFont(ofSize: 17)
+            }
+            else {
+                cell.View.backgroundColor = UIColor.clear
+                cell.TitleLBL.textColor = .label
+                cell.TitleLBL.font = UIFont.systemFont(ofSize: 15)
+            }
+        }
+        else {
+            cell.View.backgroundColor = UIColor.clear
+            cell.TitleLBL.textColor = .label
+            cell.TitleLBL.font = UIFont.systemFont(ofSize: 15)
+        }
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let data = self.SubCatArry[indexPath.row]
+        if self.SelectedSubCatArry.count == 0 {
+            self.SelectedSubCatArry.append(data)
+        }
+        else {
+            let index = self.SelectedSubCatArry.enumerated().filter({ $0.element.id == data.id }).map({ $0.offset }).first
+            if index == nil {
+                self.SelectedSubCatArry.append(data)
+            }
+            else {
+                self.SelectedSubCatArry.remove(at: index!)
+            }
+        }
+        self.SubCatView2.reloadData()
     }
     
 }

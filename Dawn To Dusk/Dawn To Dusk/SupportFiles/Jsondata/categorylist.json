@@ -6,11 +6,11 @@
     "category": [
       {
         "id": 100,
-        "cat_name": "Order"
+        "cat_name": "A la Carte"
       },
       {
         "id": 200,
-        "cat_name": "Meal"
+        "cat_name": "Package"
       }
     ]
   }
