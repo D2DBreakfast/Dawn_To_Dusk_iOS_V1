@@ -114,9 +114,9 @@ class HomeListingVC: BaseClassVC {
         switch status {
         case .unknown, .offline:
             print("Not connected")
-//            self.NodataFoundView.fillinfo(title: "No Internet", Notes: "There is no internet available in device. Please check your setting and try it again!", image: "NoInternetIMG", enable: true)
-//            self.NodataFoundView.isHidden = false
-//            self.FoodListTBL.isHidden = true
+            //            self.NodataFoundView.fillinfo(title: "No Internet", Notes: "There is no internet available in device. Please check your setting and try it again!", image: "NoInternetIMG", enable: true)
+            //            self.NodataFoundView.isHidden = false
+            //            self.FoodListTBL.isHidden = true
             break;
             
         case .online(.wwan):
@@ -143,7 +143,7 @@ class HomeListingVC: BaseClassVC {
         } onFailure: { (message) in
             self.navigationController?.view.makeToast(message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
         }
-
+        
         NetworkingRequests.shared.GetFoodListing(param: ListingParamDict.init(page: 1, count: 20)) { (responseObject, status) in
             if status {
                 if responseObject.data.orders.count > 1 {
@@ -160,7 +160,7 @@ class HomeListingVC: BaseClassVC {
         } onFailure: { (message) in
             self.navigationController?.view.makeToast(message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
         }
-
+        
         self.SearchBar.delegate = self
         
         self.setupCategoryView()
@@ -184,7 +184,7 @@ class HomeListingVC: BaseClassVC {
             self.NodataFoundView.isHidden = true
             self.FoodListTBL.isHidden = false
         }
-            
+        
     }
     
     func hasLocationPermission() -> Bool {
@@ -207,7 +207,7 @@ class HomeListingVC: BaseClassVC {
                 }
                 hasPermission = true
             @unknown default:
-                    break
+                break
             }
         } else {
             hasPermission = false
@@ -231,7 +231,7 @@ class HomeListingVC: BaseClassVC {
         } onFailure: { (message) in
             self.navigationController?.view.makeToast(message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
         }
-
+        
         self.CategoryView.backgroundColor = ModeBG_Color
         self.CategoryView.indicatorColor = UIColor.colorWithHexString(hexStr: GetDefaultTheme()!)
         self.CategoryView.titleFont = UIFont.boldSystemFont(ofSize: 17)
@@ -274,7 +274,7 @@ class HomeListingVC: BaseClassVC {
     
     // TODO: Setup SubCategory
     func setupsubcatview() {
-
+        
         NetworkingRequests.shared.GetSubCategoryListing(param: SubCatParamDict.init(id: self.SelectedMainCat.id)) { (subcatData, status) in
             if status {
                 if subcatData.data.category.count != 0 {
@@ -319,7 +319,7 @@ class HomeListingVC: BaseClassVC {
                 self.FoodListTBL.reloadData()
             }
         }
-    
+        
     }
     
     func getSubCatNameArray() -> [PintrestTitle]? {
@@ -367,11 +367,99 @@ class HomeListingVC: BaseClassVC {
         return self.foodArry
     }
     
+    func GetFoodMultiArry() -> [FoodModels]? {
+        var filter: [FoodModels] = []
+        if self.FilterSwitch.isOn {
+            if self.MultipleSelect {
+                if self.SelectedSubCatArry.count == 0 {
+                    let data = self.getVegfoodOnly().filter { obj in
+                        if self.SelectedSubCat == nil {
+                            return ((obj.cattegory?.id == self.SelectedMainCat.id) && obj.isveg == true)
+                        }
+                        else {
+                            return ((self.SelectedSubCatArry.first(where: { $0.id == obj.subCattegory?.id }) != nil) && (obj.cattegory?.id == self.SelectedMainCat.id) && obj.isveg == true)
+                        }
+                    }
+                    if self.IsSearching && self.SearchSTR.count > 0 {
+                        let searchData = data.filter { obj in
+                            return (obj.title?.lowercased().contains(self.SearchSTR.lowercased()))!
+                        }
+                        filter = searchData
+                    }
+                    else {
+                        filter = data
+                    }
+                }
+                else {
+                    let data = self.getVegfoodOnly().filter { obj in
+                        if self.SelectedSubCatArry.count == 0 {
+                            return ((obj.cattegory?.id == self.SelectedMainCat.id) && obj.isveg == true)
+                        }
+                        else {
+                            return (self.SelectedSubCatArry.first(where: { $0.id == obj.subCattegory?.id }) != nil)
+                        }
+                    }
+                    if self.IsSearching && self.SearchSTR.count > 0 {
+                        let searchData = data.filter { obj in
+                            return (obj.title?.lowercased().contains(self.SearchSTR.lowercased()))!
+                        }
+                        filter = searchData
+                    }
+                    else {
+                        filter = data
+                    }
+                }
+            }
+        }
+        else {
+            if self.MultipleSelect {
+                let data = self.getVegfoodOnly().filter { obj in
+                    if self.SelectedSubCat == nil {
+                        return ((obj.cattegory?.id == self.SelectedMainCat.id))
+                    }
+                    else {
+                        return ((self.SelectedSubCatArry.first(where: { $0.id == obj.subCattegory?.id }) != nil) && (obj.cattegory?.id == self.SelectedMainCat.id))
+                    }
+                }
+                if self.IsSearching && self.SearchSTR.count > 0 {
+                    let searchData = data.filter { obj in
+                        return (obj.title?.lowercased().contains(self.SearchSTR.lowercased()))!
+                    }
+                    filter = searchData
+                }
+                else {
+                    filter = data
+                }
+            }
+            else {
+                var data: [FoodModels] = []
+                if self.SelectedSubCat == nil {
+                    data = self.foodArry
+                }
+                else {
+                    data = self.foodArry.filter { obj in
+                        return ((self.SelectedSubCatArry.first(where: { $0.id == obj.subCattegory?.id }) != nil) && (obj.cattegory?.id == self.SelectedMainCat.id))
+                    }
+                }
+                if self.IsSearching && self.SearchSTR.count > 0 {
+                    let searchData = data.filter { obj in
+                        return (obj.title?.lowercased().contains(self.SearchSTR.lowercased()))!
+                    }
+                    filter = searchData
+                }
+                else {
+                    filter = data
+                }
+            }
+        }
+        return filter
+    }
+    
     func GetFinalFoodwithSubArry() -> [FoodModels] {
         var filter: [FoodModels] = []
         if self.FilterSwitch.isOn {
             if self.MultipleSelect {
-                 
+                filter = self.GetFoodMultiArry()!
             }
             else {
                 let data = self.getVegfoodOnly().filter { obj in
@@ -394,23 +482,28 @@ class HomeListingVC: BaseClassVC {
             }
         }
         else {
-            var data: [FoodModels] = []
-            if self.SelectedSubCat == nil {
-                data = self.foodArry
+            if self.MultipleSelect {
+                filter = self.GetFoodMultiArry()!
             }
             else {
-                data = self.foodArry.filter { obj in
-                    return ((obj.subCattegory?.id == self.SelectedSubCat.id) && (obj.cattegory?.id == self.SelectedMainCat.id))
+                var data: [FoodModels] = []
+                if self.SelectedSubCat == nil {
+                    data = self.foodArry
                 }
-            }
-            if self.IsSearching && self.SearchSTR.count > 0 {
-                let searchData = data.filter { obj in
-                    return (obj.title?.lowercased().contains(self.SearchSTR.lowercased()))!
+                else {
+                    data = self.foodArry.filter { obj in
+                        return ((obj.subCattegory?.id == self.SelectedSubCat.id) && (obj.cattegory?.id == self.SelectedMainCat.id))
+                    }
                 }
-                filter = searchData
-            }
-            else {
-                filter = data
+                if self.IsSearching && self.SearchSTR.count > 0 {
+                    let searchData = data.filter { obj in
+                        return (obj.title?.lowercased().contains(self.SearchSTR.lowercased()))!
+                    }
+                    filter = searchData
+                }
+                else {
+                    filter = data
+                }
             }
         }
         return filter
@@ -593,10 +686,10 @@ extension HomeListingVC: UITableViewDelegate, UITableViewDataSource {
         cell.setupfoodcell(food: self.GetFinalFoodwithSubArry()[indexPath.row])
         cell.didCartActionBlock = {
             if SharedUserInfo.shared.IsUserLoggedin()! {
-//                cell.AddCartBTN.isHidden = true
-//                cell.QTY_View.isHidden = false
-//                cell.QTY_Count = 1
-//                cell.QTY_LBL.text = String.init(format: "%d", cell.QTY_Count)
+                //                cell.AddCartBTN.isHidden = true
+                //                cell.QTY_View.isHidden = false
+                //                cell.QTY_Count = 1
+                //                cell.QTY_LBL.text = String.init(format: "%d", cell.QTY_Count)
                 self.tableView(self.FoodListTBL, didSelectRowAt: indexPath)
             }
             else {
@@ -638,7 +731,7 @@ extension HomeListingVC: UITableViewDelegate, UITableViewDataSource {
 //MARK:- CollectionView Delegate and Datasource
 //MARK:-
 extension HomeListingVC: UICollectionViewDataSource, UICollectionViewDelegate {
-
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.SubCatArry.count
     }
@@ -696,6 +789,7 @@ extension HomeListingVC: UICollectionViewDataSource, UICollectionViewDelegate {
                 self.SelectedSubCatArry.remove(at: index!)
             }
         }
+        self.FoodListTBL.reloadData()
         self.SubCatView2.reloadData()
     }
     
