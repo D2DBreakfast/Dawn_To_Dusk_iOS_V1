@@ -146,10 +146,9 @@ class HomeDashboardVC: UITabBarController {
     //    MARK:-
     
     @IBAction func TappedTrackBTN(_ sender: UIButton) {
-        // Pending Carts
-//        let vc = HomeDetailsVC(nibName: "HomeDetailsVC", bundle: nil)
-//        vc.DetailType = .TrackOrder
-//        self.navigationController!.pushViewController(vc, animated: true)
+        let vc = HomeDetailsVC(nibName: "HomeDetailsVC", bundle: nil)
+        vc.DetailType = .TrackOrder
+        self.navigationController!.pushViewController(vc, animated: true)
     }
     
 }

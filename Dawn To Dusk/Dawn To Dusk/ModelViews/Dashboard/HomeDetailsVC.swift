@@ -233,8 +233,6 @@ class HomeDetailsVC: BaseClassVC {
             } onFailure: { (message) in
                 self.navigationController?.view.makeToast(message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
             }
-
-            
             break
             
         case .Address:
@@ -592,7 +590,10 @@ extension HomeDetailsVC {
     //    TODO:- Setup Table HistoryDetails row Index
     func GetRowFromSection(section: Int) -> Int? {
         var rows: Int = 0
-        if section == 0 && (self.CartItems?.ordersitems!.count)! >= 1 {
+        if self.CartItems == nil {
+            rows = 0
+        }
+        else if section == 0 && (self.CartItems?.ordersitems!.count)! >= 1 {
             rows = (self.CartItems?.ordersitems!.count)!
         }
         else if section == 1 && (self.CartItems?.mealsitems!.count)! >= 1 {
@@ -738,18 +739,17 @@ extension HomeDetailsVC: UITableViewDelegate, UITableViewDataSource {
             break
             
         case .History:
-            // Pending Carts
-//            if indexPath.section == 0 {
-//                let vc = HomeDetailsVC(nibName: "HomeDetailsVC", bundle: nil)
-//                vc.DetailType = .TrackOrder
-//                self.navigationController!.pushViewController(vc, animated: true)
-//            }
-//            else {
-//                let details = HomeDetailsVC.init(nibName: "HomeDetailsVC", bundle: nil)
-//                details.DetailType = .HistoryDetails
-//                //            details.CartItems = self.HistoryArry[indexPath.row]
-//                self.navigationController?.pushViewController(details, animated: true)
-//            }
+            if indexPath.section == 0 {
+                let vc = HomeDetailsVC(nibName: "HomeDetailsVC", bundle: nil)
+                vc.DetailType = .TrackOrder
+                self.navigationController!.pushViewController(vc, animated: true)
+            }
+            else {
+                let details = HomeDetailsVC.init(nibName: "HomeDetailsVC", bundle: nil)
+                details.DetailType = .HistoryDetails
+                details.CartItems = self.HistoryArry?[indexPath.row]
+                self.navigationController?.pushViewController(details, animated: true)
+            }
             break
             
         case .Address:
@@ -796,10 +796,9 @@ extension HomeDetailsVC: UITableViewDelegate, UITableViewDataSource {
                 
             }
             else {
-                // Pending Carts
-//                let details = HomeDetailsVC.init(nibName: "HomeDetailsVC", bundle: nil)
-//                details.DetailType = .HistoryDetails
-//                self.navigationController?.pushViewController(details, animated: true)
+                let details = HomeDetailsVC.init(nibName: "HomeDetailsVC", bundle: nil)
+                details.DetailType = .HistoryDetails
+                self.navigationController?.pushViewController(details, animated: true)
             }
             break
             
@@ -910,10 +909,9 @@ extension HomeDetailsVC {
             let cell: RunningOrderCell = self.DetailTBL.dequeueReusableCell(withIdentifier: "RunningOrderCell") as! RunningOrderCell
             cell.setuptrackdata()
             cell.didTappedActionBlock = {
-                // Pending Carts
-//                let vc = HomeDetailsVC(nibName: "HomeDetailsVC", bundle: nil)
-//                vc.DetailType = .TrackOrder
-//                self.navigationController!.pushViewController(vc, animated: true)
+                let vc = HomeDetailsVC(nibName: "HomeDetailsVC", bundle: nil)
+                vc.DetailType = .TrackOrder
+                self.navigationController!.pushViewController(vc, animated: true)
             }
             return cell
         }
@@ -960,6 +958,7 @@ extension HomeDetailsVC {
             if indexPath.row == 0 {
                 let cell: CartConfigureCell = self.DetailTBL.dequeueReusableCell(withIdentifier: "CartConfigureCell") as! CartConfigureCell
                 cell.DeliverySetup(indexPath: indexPath)
+                
                 return cell
             }
             // Shipping Cell Defines

@@ -57,7 +57,9 @@ enum ActionType {
         ]
         addSubview(view)
         self.hub = BadgeHub(view: self.CartBTN)
-        self.hub?.moveCircleBy(x: -15, y: 15)
+        self.hub?.moveCircleBy(x: 10, y: 0)
+        self.hub?.blink()
+        self.hub?.increment()
     }
     
     // Loads a XIB file into a view and returns this view.
@@ -82,6 +84,8 @@ enum ActionType {
         self.LogoutBTN.tintColor = UIColor.colorWithHexString(hexStr: GetDefaultTheme()!)
         self.imageView.tintColor = UIColor.colorWithHexString(hexStr: GetDefaultTheme()!)
     }
+    
+    
     
     // MARK: - Actions
     
