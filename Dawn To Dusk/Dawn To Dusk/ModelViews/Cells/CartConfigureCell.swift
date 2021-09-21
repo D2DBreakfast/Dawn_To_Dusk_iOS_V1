@@ -48,7 +48,7 @@ class CartConfigureCell: UITableViewCell {
     @IBOutlet weak var LineIMG: UIImageView!
     @IBOutlet weak var TotalLBL: UILabel!
     @IBOutlet weak var TotalValueLBL: UILabel!
-    @IBOutlet weak var LineTop_constraint: NSLayoutConstraint!
+    @IBOutlet weak var VATTop_constraint: NSLayoutConstraint!
     
     @IBOutlet weak var AgreeView: UIView!
     @IBOutlet weak var CheckBoxBTN: UIButton!
@@ -183,7 +183,7 @@ class CartConfigureCell: UITableViewCell {
         self.Review.isHidden = true
         self.DeliveryDateView.isHidden = true
         
-        self.TitleLBL.text = "Shipping Details"
+        self.TitleLBL.text = "Delivery Details"
         self.CommunityLBL.text = "Community"
         self.SelectedCommunityLBL.text = "Select the Community"
         self.Line1LBL.text = "Landmark 1"
@@ -228,7 +228,7 @@ class CartConfigureCell: UITableViewCell {
     
         self.ContainVIew.layer.borderWidth = 1
         self.HeaderView.isHidden = false
-        self.TitleLBL.text = "Invoice"
+        self.TitleLBL.text = "Bill Details"
         self.DetailBTN.isHidden = true
         self.PayStack.isHidden = true
         self.ShippingView.isHidden = true
@@ -238,7 +238,7 @@ class CartConfigureCell: UITableViewCell {
         self.Review.isHidden = true
         self.DeliveryDateView.isHidden = true
         
-        self.ItemLBL.text = String.init(format: "Items (%d)", invoiceObj.items.count)
+        self.ItemLBL.text = String.init(format: "Items Total(%d)", invoiceObj.items.count)
         
         var coupon: Double = 0.0
         if Cartcoupon.isApply! {
@@ -251,18 +251,18 @@ class CartConfigureCell: UITableViewCell {
         let finalprice = (price + shiping + vat) - coupon
         
         self.ApplyCouponStack.isHidden = !Cartcoupon.isApply!
-        self.LineTop_constraint.constant = self.ApplyCouponStack.isHidden ? 20 : 57
+        self.VATTop_constraint.constant = self.ApplyCouponStack.isHidden ? -20 : +20
         
         self.ItemValueLBL.text = String.init(format: "%@ %@", (getdefaultCountry()?.symbol)!, price.formatprice())
-        self.ShippingLBL.text = "Shipping"
+        self.ShippingLBL.text = "Delivery Charges "
         self.ShippingValueLBL.text = String.init(format: "%@ %@", (getdefaultCountry()?.symbol)!, shiping.formatprice())
-        self.VATLBL.text = "Vat (5%)"
+        self.VATLBL.text = "VAT(5%)"
         self.VATValueLBL.text = String.init(format: "%@ %@", (getdefaultCountry()?.symbol)!, vat.formatprice())
-        self.CouponLBL.text = "Coupon Code"
+        self.CouponLBL.text = "Coupon Discount"
         self.TotalLBL.textColor = UIColor.colorWithHexString(hexStr: "#D81919")
-        self.CouponValueLBL.text = String.init(format: "%@ %@", (getdefaultCountry()?.symbol)!, coupon.formatprice())
+        self.CouponValueLBL.text = String.init(format: "- %@ %@", (getdefaultCountry()?.symbol)!, coupon.formatprice())
 
-        self.TotalLBL.text = "Total Payable Amount"
+        self.TotalLBL.text = "TOTAL To Pay"
         self.TotalLBL.textColor = UIColor.colorWithHexString(hexStr: GetDefaultTheme()!)
         self.TotalValueLBL.text = String.init(format: "%@ %@", (getdefaultCountry()?.symbol)!, finalprice.formatprice())
         self.TotalValueLBL.textColor = UIColor.colorWithHexString(hexStr: GetDefaultTheme()!)
