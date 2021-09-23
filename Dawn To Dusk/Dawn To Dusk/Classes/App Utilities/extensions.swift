@@ -317,6 +317,18 @@ extension UIViewController {
         }
     }
     
+    func statusBarColorChange() {
+        if #available(iOS 13.0, *) {
+            let statusBar = UIView(frame: UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.windowScene?.statusBarManager?.statusBarFrame ?? CGRect.zero)
+            statusBar.backgroundColor = ModeBG_Color
+            statusBar.tag = 100
+            UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.addSubview(statusBar)
+        } else {
+            let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView
+            statusBar?.backgroundColor = ModeBG_Color // UIColor.systemBackground
+        }
+    }
+
     func hideKeyboardWhenTappedAround() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
         tap.cancelsTouchesInView = false
@@ -328,6 +340,8 @@ extension UIViewController {
     }
     
     func SetupNavBarwithBack_cart() {
+        self.statusBarColorChange()
+        self.navigationController?.navigationBar.backgroundColor = ModeBG_Color
         self.navigationController?.navigationBar.isHidden = false
         self.navigationController?.navigationBar.barTintColor = ModeBG_Color
         self.navigationController?.navigationBar.barStyle = .default
@@ -337,12 +351,14 @@ extension UIViewController {
         backbtn.addTarget(self, action: #selector(TappedBackBTN(_:)), for: .touchUpInside)
         navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: backbtn)
         
-        let cartBTN = UIButton().NavCartButton()
-        cartBTN.addTarget(self, action: #selector(TappedCartBTN(_:)), for: .touchUpInside)
-        navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: cartBTN)
+//        let cartBTN = UIButton().NavCartButton()
+//        cartBTN.addTarget(self, action: #selector(TappedCartBTN(_:)), for: .touchUpInside)
+//        navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: cartBTN)
     }
     
     func SetupNavBarforback() {
+        self.statusBarColorChange()
+        self.navigationController?.navigationBar.backgroundColor = ModeBG_Color
         self.navigationController?.navigationBar.isHidden = false
         self.navigationController?.navigationBar.barTintColor = ModeBG_Color
         self.navigationController?.navigationBar.barStyle = .default
@@ -595,3 +611,21 @@ extension UITableViewCell {
         return cell
     }
 }
+
+extension UITabBar {
+    func addBadge(index:Int, counts: Int) {
+        if let tabItems = self.items {
+            let tabItem = tabItems[index]
+            tabItem.badgeValue = String.init(format: "%d", counts)
+            tabItem.badgeColor = .clear
+            tabItem.setBadgeTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.red], for: .normal)
+        }
+    }
+    func removeBadge(index:Int) {
+        if let tabItems = self.items {
+            let tabItem = tabItems[index]
+            tabItem.badgeValue = nil
+        }
+    }
+    
+ }

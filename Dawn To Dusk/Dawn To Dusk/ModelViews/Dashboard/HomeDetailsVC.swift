@@ -392,7 +392,8 @@ class HomeDetailsVC: BaseClassVC {
     @IBAction func Tappedbuttons(_ sender: UIButton) {
         if sender == self.AddCartBTN {
             if SharedUserInfo.shared.IsUserLoggedin()! {
-                self.TappedCartBTN(self.AddCartBTN)
+                NotificationCenter.default.post(name: Notification.Name(BdgeNotification), object: nil)
+//                self.TappedCartBTN(self.AddCartBTN)
             }
             else {
                 let vc = LoginVC(nibName: "LoginVC", bundle: nil)

@@ -13,7 +13,8 @@ protocol FloatingBarViewDelegate: AnyObject {
 class FloatingBarView: UIView {
 
     weak var delegate: FloatingBarViewDelegate?
-
+    var hub: BadgeHub?
+    
     var buttons: [UIButton] = []
 
     init(_ items: [String]) {
@@ -44,10 +45,10 @@ class FloatingBarView: UIView {
             let normalImage = UIImage.init(named: item)
             let selectedImage = UIImage.init(named: item)
             let button = createButton(normalImage: normalImage!, selectedImage: selectedImage!, index: index)
-            buttons.append(button)
+            self.buttons.append(button)
         }
 
-        let stackView = UIStackView(arrangedSubviews: buttons)
+        let stackView = UIStackView(arrangedSubviews: self.buttons)
 
         addSubview(stackView)
         stackView.fillSuperview(padding: .init(top: 0, left: 16, bottom: 0, right: 16))
@@ -65,6 +66,26 @@ class FloatingBarView: UIView {
         return button
     }
 
+    func setupBadgeHub(indexBD: Int, Counts: Int) {
+        for (index, button) in buttons.enumerated() {
+            if index == indexBD {
+                self.hub = BadgeHub(view: button)
+                self.hub?.moveCircleBy(x: 60, y: 15)
+                self.hub?.blink()
+                self.hub?.increment(by: Counts)
+            }
+        }
+    }
+    
+    func removeBadgeHub(indexBD: Int, Counts: Int) {
+        for (index, button) in self.buttons.enumerated() {
+            if index == indexBD {
+                print(button)
+                self.hub?.hide()
+            }
+        }
+    }
+    
     @objc
     func changeTab(_ sender: UIButton) {
         sender.pulse()
@@ -73,7 +94,7 @@ class FloatingBarView: UIView {
     }
 
     func updateUI(selectedIndex: Int) {
-        for (index, button) in buttons.enumerated() {
+        for (index, button) in self.buttons.enumerated() {
             if index == selectedIndex {
                 button.isSelected = true
                 button.tintColor = .white

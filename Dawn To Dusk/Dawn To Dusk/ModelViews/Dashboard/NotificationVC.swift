@@ -66,6 +66,7 @@ class NotificationVC: BaseClassVC {
         toogleTabbar(hide: false)
         self.navigationController?.navigationBar.isHidden = false
         self.ListTBL.layoutSubviews()
+        NotificationCenter.default.post(name: Notification.Name(RemoveBdgeNotification), object: nil)
     }
     
     override func viewDidLoad() {

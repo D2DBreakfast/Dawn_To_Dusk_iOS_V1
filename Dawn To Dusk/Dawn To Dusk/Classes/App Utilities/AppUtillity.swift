@@ -63,3 +63,8 @@ class AppUtillity: NSObject {
 class AppGesture: UITapGestureRecognizer {
     var indexPath: IndexPath = []
 }
+
+class LocalNotification: NotificationCenter {
+    var Index: Int?
+    var count: Int?
+}

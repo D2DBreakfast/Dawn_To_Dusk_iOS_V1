@@ -173,16 +173,8 @@
 		B77BA44D26AAA07E00E408B1 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77BA44626AAA07E00E408B1 /* Environment.swift */; };
 		B77BA44E26AAA07E00E408B1 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77BA44626AAA07E00E408B1 /* Environment.swift */; };
 		B77BA44F26AAA07E00E408B1 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77BA44626AAA07E00E408B1 /* Environment.swift */; };
-		B77BA45026AAA07E00E408B1 /* Dev.plist in Resources */ = {isa = PBXBuildFile; fileRef = B77BA44826AAA07E00E408B1 /* Dev.plist */; };
 		B77BA45126AAA07E00E408B1 /* Dev.plist in Resources */ = {isa = PBXBuildFile; fileRef = B77BA44826AAA07E00E408B1 /* Dev.plist */; };
 		B77BA45226AAA07E00E408B1 /* Dev.plist in Resources */ = {isa = PBXBuildFile; fileRef = B77BA44826AAA07E00E408B1 /* Dev.plist */; };
-		B77BA45326AAA07E00E408B1 /* Dev.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B77BA44926AAA07E00E408B1 /* Dev.xcconfig */; };
-		B77BA45426AAA07E00E408B1 /* Dev.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B77BA44926AAA07E00E408B1 /* Dev.xcconfig */; };
-		B77BA45526AAA07E00E408B1 /* Dev.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B77BA44926AAA07E00E408B1 /* Dev.xcconfig */; };
-		B77BA45626AAA07E00E408B1 /* Prod.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B77BA44B26AAA07E00E408B1 /* Prod.xcconfig */; };
-		B77BA45726AAA07E00E408B1 /* Prod.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B77BA44B26AAA07E00E408B1 /* Prod.xcconfig */; };
-		B77BA45826AAA07E00E408B1 /* Prod.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B77BA44B26AAA07E00E408B1 /* Prod.xcconfig */; };
-		B77BA45926AAA07E00E408B1 /* Prod.plist in Resources */ = {isa = PBXBuildFile; fileRef = B77BA44C26AAA07E00E408B1 /* Prod.plist */; };
 		B77BA45A26AAA07E00E408B1 /* Prod.plist in Resources */ = {isa = PBXBuildFile; fileRef = B77BA44C26AAA07E00E408B1 /* Prod.plist */; };
 		B77BA45B26AAA07E00E408B1 /* Prod.plist in Resources */ = {isa = PBXBuildFile; fileRef = B77BA44C26AAA07E00E408B1 /* Prod.plist */; };
 		B77BA45F26AAA18300E408B1 /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77BA45D26AAA18300E408B1 /* RegisterVC.swift */; };
@@ -416,12 +408,8 @@
 		B7F70AC526F0BAF600C7721A /* notification.json in Resources */ = {isa = PBXBuildFile; fileRef = B7F70AC426F0BAF600C7721A /* notification.json */; };
 		B7F70AC626F0BAF600C7721A /* notification.json in Resources */ = {isa = PBXBuildFile; fileRef = B7F70AC426F0BAF600C7721A /* notification.json */; };
 		B7F70AC726F0BAF600C7721A /* notification.json in Resources */ = {isa = PBXBuildFile; fileRef = B7F70AC426F0BAF600C7721A /* notification.json */; };
-		B7FF9E2A26C38F8900D30BA6 /* QAT.plist in Resources */ = {isa = PBXBuildFile; fileRef = B7FF9E2926C38F8900D30BA6 /* QAT.plist */; };
 		B7FF9E2B26C38F8900D30BA6 /* QAT.plist in Resources */ = {isa = PBXBuildFile; fileRef = B7FF9E2926C38F8900D30BA6 /* QAT.plist */; };
 		B7FF9E2C26C38F8900D30BA6 /* QAT.plist in Resources */ = {isa = PBXBuildFile; fileRef = B7FF9E2926C38F8900D30BA6 /* QAT.plist */; };
-		B7FF9E2E26C38FE400D30BA6 /* QAT.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B7FF9E2D26C38FE400D30BA6 /* QAT.xcconfig */; };
-		B7FF9E2F26C38FE400D30BA6 /* QAT.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B7FF9E2D26C38FE400D30BA6 /* QAT.xcconfig */; };
-		B7FF9E3026C38FE400D30BA6 /* QAT.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B7FF9E2D26C38FE400D30BA6 /* QAT.xcconfig */; };
 		B7FF9E4326C3AED100D30BA6 /* Reach.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FF9E4226C3AED100D30BA6 /* Reach.swift */; };
 		B7FF9E4426C3AED100D30BA6 /* Reach.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FF9E4226C3AED100D30BA6 /* Reach.swift */; };
 		B7FF9E4526C3AED100D30BA6 /* Reach.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FF9E4226C3AED100D30BA6 /* Reach.swift */; };
@@ -1369,7 +1357,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1250;
-				LastUpgradeCheck = 1250;
+				LastUpgradeCheck = 1300;
 				TargetAttributes = {
 					B731C81E26A6EFB800379CCB = {
 						CreatedOnToolsVersion = 12.5.1;
@@ -1422,10 +1410,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B7EC692B26A95B20007BEE3E /* LoginVC.xib in Resources */,
-				B77BA45626AAA07E00E408B1 /* Prod.xcconfig in Resources */,
-				B7FF9E2A26C38F8900D30BA6 /* QAT.plist in Resources */,
 				973CBAE626BAEEB800334064 /* SupportVC.xib in Resources */,
-				B77BA45326AAA07E00E408B1 /* Dev.xcconfig in Resources */,
 				B76315E126B3FF1D000BA46E /* CartManageVC.xib in Resources */,
 				B745BAC626AEA0E50048ECA8 /* NotificationVC.xib in Resources */,
 				B731C82F26A6EFB900379CCB /* LaunchScreen.storyboard in Resources */,
@@ -1435,13 +1420,10 @@
 				97A0510F26F0FC5E00E65862 /* paymentmode.json in Resources */,
 				B745BACA26AEA0F80048ECA8 /* UserAccountVC.xib in Resources */,
 				B70202A126CD088900DADBDF /* PaymentModeCell.xib in Resources */,
-				B7FF9E2E26C38FE400D30BA6 /* QAT.xcconfig in Resources */,
-				B77BA45926AAA07E00E408B1 /* Prod.plist in Resources */,
 				B7F70AB226F0910A00C7721A /* cartlist.json in Resources */,
 				974F63D926B4407A0087C183 /* HomeDetailCell.xib in Resources */,
 				B7F089FE26BA9CF0008A06BF /* ProfileInfoCell.xib in Resources */,
 				9744C7A126B1BDF800807478 /* HomeFoodListCell.xib in Resources */,
-				B77BA45026AAA07E00E408B1 /* Dev.plist in Resources */,
 				B7C069A626C655F800048B54 /* EditFormVC.xib in Resources */,
 				9762EFA926BAC656002F1328 /* UserOptionCell.xib in Resources */,
 				B7F70AAC26F0910A00C7721A /* banner.json in Resources */,
@@ -1501,14 +1483,11 @@
 				B7FF9E2B26C38F8900D30BA6 /* QAT.plist in Resources */,
 				B7C069A726C655F800048B54 /* EditFormVC.xib in Resources */,
 				B7B13F0E26E77AC200CAB869 /* RunningOrderCell.xib in Resources */,
-				B77BA45726AAA07E00E408B1 /* Prod.xcconfig in Resources */,
 				B7F70AC626F0BAF600C7721A /* notification.json in Resources */,
-				B7FF9E2F26C38FE400D30BA6 /* QAT.xcconfig in Resources */,
 				B77BA46326AAA18300E408B1 /* RegisterVC.xib in Resources */,
 				B7EC692C26A95B20007BEE3E /* LoginVC.xib in Resources */,
 				971D10AA26C1776A0031E532 /* AddressAddVC.xib in Resources */,
 				973CBAEF26BAF67000334064 /* CartItemCell.xib in Resources */,
-				B77BA45426AAA07E00E408B1 /* Dev.xcconfig in Resources */,
 				B7F70AAD26F0910A00C7721A /* banner.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1540,14 +1519,11 @@
 				B7FF9E2C26C38F8900D30BA6 /* QAT.plist in Resources */,
 				B7C069A826C655F800048B54 /* EditFormVC.xib in Resources */,
 				B7B13F0F26E77AC200CAB869 /* RunningOrderCell.xib in Resources */,
-				B77BA45826AAA07E00E408B1 /* Prod.xcconfig in Resources */,
 				B7F70AC726F0BAF600C7721A /* notification.json in Resources */,
-				B7FF9E3026C38FE400D30BA6 /* QAT.xcconfig in Resources */,
 				B77BA46426AAA18300E408B1 /* RegisterVC.xib in Resources */,
 				B7EC692D26A95B20007BEE3E /* LoginVC.xib in Resources */,
 				971D10AB26C1776A0031E532 /* AddressAddVC.xib in Resources */,
 				973CBAF026BAF67000334064 /* CartItemCell.xib in Resources */,
-				B77BA45526AAA07E00E408B1 /* Dev.xcconfig in Resources */,
 				B7F70AAE26F0910A00C7721A /* banner.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

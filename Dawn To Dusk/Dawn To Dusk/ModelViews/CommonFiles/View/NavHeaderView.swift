@@ -37,6 +37,7 @@ enum ActionType {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.backgroundColor = ModeBG_Color
         setupView()
     }
     
@@ -51,6 +52,7 @@ enum ActionType {
     fileprivate func setupView() {
         let view = viewFromNibForClass()
         view.frame = bounds
+        view.backgroundColor = ModeBG_Color
         view.autoresizingMask = [
             UIView.AutoresizingMask.flexibleWidth,
             UIView.AutoresizingMask.flexibleHeight
@@ -80,6 +82,7 @@ enum ActionType {
             self.LogoutBTN.isHidden = true
         }
         self.TitleLBL.text = title
+        self.CartBTN.isHidden = true
         self.CartBTN.tintColor = UIColor.colorWithHexString(hexStr: GetDefaultTheme()!)
         self.LogoutBTN.tintColor = UIColor.colorWithHexString(hexStr: GetDefaultTheme()!)
         self.imageView.tintColor = UIColor.colorWithHexString(hexStr: GetDefaultTheme()!)
