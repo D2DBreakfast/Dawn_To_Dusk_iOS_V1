@@ -81,6 +81,8 @@ let AppScene                            = UIApplication.shared.delegate as? Scen
 // MARK: -
 
 let DefaultThemeValue                   = "RandomTheme"
+let BdgeNotification                    = "BadgeCountNotification"
+let RemoveBdgeNotification              = "RemoveBdgeNotification"
 
 // MARK:- REST Services Keys <UserInfoData>
 let LoginUserData                       = "LoginUserInfo"

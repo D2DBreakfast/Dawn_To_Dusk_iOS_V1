@@ -1,1 +1,148 @@
-
+{
+  "status": true,
+  "code": 200,
+  "message": "Cart listing",
+  "data": [
+    {
+      "id": 100,
+      "orderid": 23432423,
+      "datetime": "",
+      "orderstatus": "completed / Pending / Running / closedbyadmin / closedbyuser",
+      "paybleamount": 1000.09,
+      "deliveryaddress": {
+        "id": 123,
+        "isprimary": true,
+        "address": "150, 1, Infantry Rd, opp. Commissioner Office, Vasanth Nagar, Bengaluru, Karnataka 560001",
+        "addresstype": "Office",
+        "lat": 12.9839,
+        "long": 77.5931
+      },
+      "community": {
+        "id": 123,
+        "address": "150, 1, Infantry Rd, opp. Commissioner Office, Vasanth Nagar, Bengaluru, Karnataka 560001",
+        "line1": "",
+        "line2": "",
+        "lat": 12345.09,
+        "long": 123456.09
+      },
+      "coupon": {
+        "id": 123,
+        "title": "",
+        "code": "",
+        "discount": 123.09,
+        "shortdesc": "",
+        "details": "",
+        "terms": "",
+        "validdatetime": ""
+      },
+      "paymentmode": {
+        "id": 12390,
+        "title": "Dummy card 1",
+        "isdefault": false,
+        "payment_type": "Card",
+        "card": {
+          "id": 123,
+          "name": "Dummy card",
+          "cardno": "4242424242424242",
+          "month": "07",
+          "year": "2026",
+          "card_type": "credit",
+          "subcard_type": "visa"
+        },
+        "bank": {
+          "id": 1235345,
+          "name": "dummy data",
+          "accountno": "3246821374692731",
+          "bank_name": "ICICI Bank",
+          "bank_code": "ICICI",
+          "ifcs_code": "ICICI09"
+        }
+      },
+      "review": {
+        "rating": 4.5,
+        "comments": ""
+      },
+      "delivery_date": "",
+      "title": "",
+      "invoice": "Invoice HTML format",
+      "invoiceURL": "Invoice PDF format URL link for download or mail it.",
+      "orders": [
+        {
+          "id": 1001001,
+          "title": "BBQ-Chicken 'n' Cheese Sandwich",
+          "itemimage": "https://source.unsplash.com/random/200x200",
+          "gallery": [
+            "https://source.unsplash.com/random/200x200"
+          ],
+          "shortdesc": "Shredded chicken, seasoned with sauces, seasonings and cheese, between toasted, chipotle mayo spread brown bread slices is all that you would need for a scrumptious anytime-meal. Trust us, you'll love it.",
+          "longdesc": "INGREDIENTS Chicken, BBQ Sauce, Brown Bread, Seasonings, Worcestershire Sauce, Dijon Mustard, Cheese, Parsley, Chipotle Mayo, Tomato Ketchup, Herbs Thyme",
+          "price": 25,
+          "qty": 4,
+          "cattegory": {
+            "id": 100,
+            "cat_name": "order"
+          },
+          "sub_cattegory": {
+            "id": 10010,
+            "cat_name": "Sandwich"
+          },
+          "nutri_info": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+          "terms": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+          "info": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+          "works": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+          "isveg": false,
+          "isPackage": false
+        }
+      ],
+      "meals": [
+        {
+          "id": 20010,
+          "title": "The Millennial Breakfast Bag - Veg",
+          "itemimage": "https://source.unsplash.com/random/200x200",
+          "gallery": [
+            "https://source.unsplash.com/random/200x200",
+            "https://source.unsplash.com/random/200x200",
+            "https://source.unsplash.com/random/200x200"
+          ],
+          "shortdesc": "Our best selling sandwiches with classic cold coffee",
+          "longdesc": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+          "price": 300,
+          "qty": 3,
+          "cattegory": {
+            "id": 200,
+            "cat_name": "Meal "
+          },
+          "nutri_info": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+          "terms": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+          "info": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+          "works": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+          "isveg": true,
+          "isPackage": true,
+          "items": [
+            {
+              "id": 2001011,
+              "title": "Avocado Sandwich with classic cold coffee",
+              "itemimage": "https://source.unsplash.com/random/200x200",
+              "shortdesc": "This sandwich has fresh avocados which are cooked in a cheesy sauce, stuffed between toasted brown bread with cheese slices giving you the best snack option anytime of the day!",
+              "qty": 1
+            },
+            {
+              "id": 2001012,
+              "title": "Spinach Corn Sandwich with Cold Coffee",
+              "itemimage": "https://source.unsplash.com/random/200x200",
+              "shortdesc": "This sandwich has fresh spinach and sweet corn which are cooked in a cheesy sauce, stuffed between toasted brown bread with cheese slices giving you the best snack option anytime of the day!",
+              "qty": 1
+            },
+            {
+              "id": 2001013,
+              "title": "Falafel Sandwich with cold coffee",
+              "itemimage": "https://source.unsplash.com/random/200x200",
+              "shortdesc": "Come experience the magic of true Mediterranean flavours with this loaded 6-inch sandwich. Falafels are drizzled with aioli sauce, layered in a freshly prepared homemade Focaccia bread, alongwith coleslaw, lettuce and topped with grated cheese.",
+              "qty": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

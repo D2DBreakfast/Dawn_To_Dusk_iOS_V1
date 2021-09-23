@@ -52,7 +52,7 @@ class HomeDetailsVC: BaseClassVC {
     
     var FoodDetails: FoodModels!
     var MealDetails: MealsModels!
-    var BannerDetails: BannerModelClass! = BannerModelClass.init(id: 0, bannerName: "Package 0", bannerImage: "https://source.unsplash.com/random/200x200", bannerdes: randomString(), bannerTitle: "Package 0")
+    var BannerDetails: BannerModels!
     
     var notificationDetails: NotificationModels!
     var AddressArry: [UserInfoAddres] = []
@@ -100,8 +100,8 @@ class HomeDetailsVC: BaseClassVC {
 //    var CartItems: CartListModelClass? = DummCartdata()
 //    var HistoryArry: [OrderHistoryModelData]? = DummyOrderHistory()
     
-    var CartItems: CartListModelClass?
-    var HistoryArry: [OrderHistoryModelData]? = []
+    var CartItems: OrderHistoryData?
+    var HistoryArry: [OrderHistoryData]? = []
     
     //    MARK:- View Cycle
     //    MARK:-
@@ -121,6 +121,17 @@ class HomeDetailsVC: BaseClassVC {
     //    MARK:-
     
     override func setupUI() {
+        
+        NetworkingRequests.shared.GetbannerListing { (responseObject, status) in
+            if status || responseObject.status {
+                self.BannerDetails = responseObject.data.banner.first
+            }
+            else {
+                self.navigationController?.view.makeToast(responseObject.message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
+            }
+        } onFailure: { (message) in
+            self.navigationController?.view.makeToast(message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
+        }
         
         self.DetailTBL.register(UINib.init(nibName: "HomeDetailCell", bundle: nil), forCellReuseIdentifier: "HomeDetailCell")
         self.DetailTBL.register(UINib.init(nibName: "HomeBannerCell", bundle: nil), forCellReuseIdentifier: "HomeBannerCell")
@@ -211,6 +222,17 @@ class HomeDetailsVC: BaseClassVC {
             self.SetupNavBarforback()
             self.NodataFoundView.isHidden = true
             self.DetailTBL.isHidden = false
+            
+            NetworkingRequests.shared.GetCartHistoryListing { (responseObjects, status) in
+                if status || responseObjects.status {
+                    self.HistoryArry = responseObjects.data
+                }
+                else {
+                    self.navigationController?.view.makeToast(responseObjects.message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
+                }
+            } onFailure: { (message) in
+                self.navigationController?.view.makeToast(message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
+            }
             break
             
         case .Address:
@@ -370,7 +392,8 @@ class HomeDetailsVC: BaseClassVC {
     @IBAction func Tappedbuttons(_ sender: UIButton) {
         if sender == self.AddCartBTN {
             if SharedUserInfo.shared.IsUserLoggedin()! {
-                self.TappedCartBTN(self.AddCartBTN)
+                NotificationCenter.default.post(name: Notification.Name(BdgeNotification), object: nil)
+//                self.TappedCartBTN(self.AddCartBTN)
             }
             else {
                 let vc = LoginVC(nibName: "LoginVC", bundle: nil)
@@ -568,11 +591,14 @@ extension HomeDetailsVC {
     //    TODO:- Setup Table HistoryDetails row Index
     func GetRowFromSection(section: Int) -> Int? {
         var rows: Int = 0
-        if section == 0 && (self.CartItems?.fooditems!.count)! >= 1 {
-            rows = (self.CartItems?.fooditems!.count)!
+        if self.CartItems == nil {
+            rows = 0
         }
-        else if section == 1 && (self.CartItems?.mealitems!.count)! >= 1 {
-            rows = (self.CartItems?.mealitems!.count)!
+        else if section == 0 && (self.CartItems?.ordersitems!.count)! >= 1 {
+            rows = (self.CartItems?.ordersitems!.count)!
+        }
+        else if section == 1 && (self.CartItems?.mealsitems!.count)! >= 1 {
+            rows = (self.CartItems?.mealsitems!.count)!
         }
         else if section == 2 {
             rows = 6
@@ -610,7 +636,7 @@ extension HomeDetailsVC: UITableViewDelegate, UITableViewDataSource {
         switch self.DetailType {
         case .Meals:
             if section == 1 {
-                self.Sectiontitle.text = "Upcoming Meals"
+                self.Sectiontitle.text = "Daily variants"
                 return self.SectionHeader
             }
             else {
@@ -714,18 +740,17 @@ extension HomeDetailsVC: UITableViewDelegate, UITableViewDataSource {
             break
             
         case .History:
-            // Pending Carts
-//            if indexPath.section == 0 {
-//                let vc = HomeDetailsVC(nibName: "HomeDetailsVC", bundle: nil)
-//                vc.DetailType = .TrackOrder
-//                self.navigationController!.pushViewController(vc, animated: true)
-//            }
-//            else {
-//                let details = HomeDetailsVC.init(nibName: "HomeDetailsVC", bundle: nil)
-//                details.DetailType = .HistoryDetails
-//                //            details.CartItems = self.HistoryArry[indexPath.row]
-//                self.navigationController?.pushViewController(details, animated: true)
-//            }
+            if indexPath.section == 0 {
+                let vc = HomeDetailsVC(nibName: "HomeDetailsVC", bundle: nil)
+                vc.DetailType = .TrackOrder
+                self.navigationController!.pushViewController(vc, animated: true)
+            }
+            else {
+                let details = HomeDetailsVC.init(nibName: "HomeDetailsVC", bundle: nil)
+                details.DetailType = .HistoryDetails
+                details.CartItems = self.HistoryArry?[indexPath.row]
+                self.navigationController?.pushViewController(details, animated: true)
+            }
             break
             
         case .Address:
@@ -772,10 +797,9 @@ extension HomeDetailsVC: UITableViewDelegate, UITableViewDataSource {
                 
             }
             else {
-                // Pending Carts
-//                let details = HomeDetailsVC.init(nibName: "HomeDetailsVC", bundle: nil)
-//                details.DetailType = .HistoryDetails
-//                self.navigationController?.pushViewController(details, animated: true)
+                let details = HomeDetailsVC.init(nibName: "HomeDetailsVC", bundle: nil)
+                details.DetailType = .HistoryDetails
+                self.navigationController?.pushViewController(details, animated: true)
             }
             break
             
@@ -886,10 +910,9 @@ extension HomeDetailsVC {
             let cell: RunningOrderCell = self.DetailTBL.dequeueReusableCell(withIdentifier: "RunningOrderCell") as! RunningOrderCell
             cell.setuptrackdata()
             cell.didTappedActionBlock = {
-                // Pending Carts
-//                let vc = HomeDetailsVC(nibName: "HomeDetailsVC", bundle: nil)
-//                vc.DetailType = .TrackOrder
-//                self.navigationController!.pushViewController(vc, animated: true)
+                let vc = HomeDetailsVC(nibName: "HomeDetailsVC", bundle: nil)
+                vc.DetailType = .TrackOrder
+                self.navigationController!.pushViewController(vc, animated: true)
             }
             return cell
         }
@@ -903,9 +926,9 @@ extension HomeDetailsVC {
     //    TODO:- Cart History Details Cells
     func FOOD_ConfigCellFor(indexPath: IndexPath) -> UITableViewCell {
         
-        if (self.CartItems?.fooditems!.count)! >= 1 {
+        if (self.CartItems?.ordersitems!.count)! >= 1 {
             let cell: CartItemCell = self.DetailTBL.dequeueReusableCell(withIdentifier: "CartItemCell") as! CartItemCell
-            let food = self.CartItems?.fooditems![indexPath.row]
+            let food = self.CartItems?.ordersitems![indexPath.row]
             cell.setupfoodcell(food: food!)
             cell.DeleteBTN.isHidden = true
             return cell
@@ -917,9 +940,9 @@ extension HomeDetailsVC {
     }
     
     func MEAL_ConfigCellFor(indexPath: IndexPath) -> UITableViewCell {
-        if (self.CartItems?.mealitems!.count)! >= 1 {
+        if (self.CartItems?.mealsitems!.count)! >= 1 {
             let cell: CartItemCell = self.DetailTBL.dequeueReusableCell(withIdentifier: "CartItemCell") as! CartItemCell
-            let meal = self.CartItems?.mealitems![indexPath.row]
+            let meal = self.CartItems?.mealsitems![indexPath.row]
             cell.setupmealcell(meal: meal!)
             cell.DeleteBTN.isHidden = true
             return cell
@@ -931,17 +954,18 @@ extension HomeDetailsVC {
     
     func CART_ConfigCellFor(indexPath: IndexPath) -> UITableViewCell {
         
-        if (self.CartItems?.mealitems!.count)! >= 1 || (self.CartItems?.fooditems!.count)! >= 1 {
+        if (self.CartItems?.mealsitems!.count)! >= 1 || (self.CartItems?.ordersitems!.count)! >= 1 {
             // Delivery Date Cell Defines
             if indexPath.row == 0 {
                 let cell: CartConfigureCell = self.DetailTBL.dequeueReusableCell(withIdentifier: "CartConfigureCell") as! CartConfigureCell
                 cell.DeliverySetup(indexPath: indexPath)
+                
                 return cell
             }
             // Shipping Cell Defines
             else if indexPath.row == 1 {
                 let cell: CartConfigureCell = self.DetailTBL.dequeueReusableCell(withIdentifier: "CartConfigureCell") as! CartConfigureCell
-                cell.Setupshoppingcell()
+                cell.Setupshoppingcell(indexPath: indexPath)
                 cell.HeaderView.isHidden = false
                 cell.DetailBTN.isHidden = true
                 return cell
@@ -949,7 +973,7 @@ extension HomeDetailsVC {
             // Payment Mode Cell Defines
             else if indexPath.row == 2 {
                 let cell: CartConfigureCell = self.DetailTBL.dequeueReusableCell(withIdentifier: "CartConfigureCell") as! CartConfigureCell
-                cell.SetupPaymentcell()
+                cell.SetupPaymentcell(indexPath: indexPath)
                 cell.HeaderView.isHidden = false
                 cell.DetailBTN.isHidden = true
                 return cell
@@ -957,7 +981,7 @@ extension HomeDetailsVC {
             // Invoice Cell Defines
             else if indexPath.row == 3 {
                 let cell: CartConfigureCell = self.DetailTBL.dequeueReusableCell(withIdentifier: "CartConfigureCell") as! CartConfigureCell
-                cell.SetupInvoicecell(invoiceObj: CartInvoice.init(item: [Cartitems.init(id: 0, title: "fadfsadf", price: 20, qty: 5)]), Cartcoupon: CartCoupon.init(id: 2, code: "ffsfsa", value: 20, isApply: false))
+                cell.SetupInvoicecell(invoiceObj: CartInvoice.init(item: [Cartitems.init(id: 0, title: "fadfsadf", price: 20, qty: 5)]), Cartcoupon: CartCoupon.init(id: 2, code: "ffsfsa", value: 20, isApply: false), indexPath: indexPath)
                 cell.HeaderView.isHidden = false
                 cell.DetailBTN.isHidden = true
                 return cell
@@ -976,7 +1000,7 @@ extension HomeDetailsVC {
             // Apply OR Show Review Cell Defines
             else {
                 let cell: CartConfigureCell = self.DetailTBL.dequeueReusableCell(withIdentifier: "CartConfigureCell") as! CartConfigureCell
-                cell.ReviewSetupView()
+                cell.ReviewSetupView(indexPath: indexPath)
                 cell.didRatingActionBlock = { (rating, comments) in
                     
                 }
@@ -992,7 +1016,7 @@ extension HomeDetailsVC {
     func SetupTrackOrder(indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell: HomeBannerCell = self.DetailTBL.dequeueReusableCell(withIdentifier: "HomeBannerCell") as! HomeBannerCell
-            cell.setupBannercell(food: self.BannerDetails)
+            cell.setupBannercell(banner: self.BannerDetails)
             cell.backgroundColor = TBLBackgroundCOlor
             cell.contentView.backgroundColor = TBLBackgroundCOlor
             return cell

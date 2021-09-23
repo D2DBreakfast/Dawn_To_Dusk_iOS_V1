@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="dark"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -18,6 +19,7 @@
                 <outlet property="NodataFoundView" destination="5DO-M4-X7B" id="kiN-aw-Sbi"/>
                 <outlet property="SearchBar" destination="Jx4-ON-iYQ" id="MIW-rR-oDm"/>
                 <outlet property="SubCatView" destination="pQh-0H-rCY" id="GYh-hs-7Aq"/>
+                <outlet property="SubCatView2" destination="2Oj-Gc-hYx" id="NbR-fb-5eW"/>
                 <outlet property="SubCat_Height" destination="nOf-kq-lBo" id="u2C-Ic-vR4"/>
                 <outlet property="TopHeaderView" destination="V6B-hx-M61" id="WGd-2N-Luz"/>
                 <outlet property="filter_LBL" destination="tjQ-oX-07k" id="6bg-dm-m4W"/>
@@ -52,22 +54,32 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JuJ-M9-AYt">
                             <rect key="frame" x="20" y="45" width="374" height="55"/>
                             <subviews>
+                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Oj-Gc-hYx">
+                                    <rect key="frame" x="81" y="15" width="293" height="40"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="m7r-Fm-dKt">
+                                        <size key="itemSize" width="128" height="128"/>
+                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    </collectionViewFlowLayout>
+                                </collectionView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pQh-0H-rCY" userLabel="SubCategory" customClass="PinterestSegment" customModule="Dawn_To_Dusk" customModuleProvider="target">
-                                    <rect key="frame" x="109" y="15" width="265" height="40"/>
+                                    <rect key="frame" x="81" y="15" width="293" height="40"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WhT-H1-zQ6">
-                                    <rect key="frame" x="0.0" y="19.5" width="104" height="31"/>
+                                    <rect key="frame" x="0.0" y="19.5" width="76" height="31"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Veg /  Non-Veg" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tjQ-oX-07k">
-                                            <rect key="frame" x="0.0" y="0.0" width="50" height="31"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Veg" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tjQ-oX-07k">
+                                            <rect key="frame" x="0.0" y="0.0" width="22" height="31"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" title="Veg" translatesAutoresizingMaskIntoConstraints="NO" id="PkP-RK-qlZ">
-                                            <rect key="frame" x="55" y="0.0" width="51" height="31"/>
+                                            <rect key="frame" x="27" y="0.0" width="51" height="31"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="onTintColor" name="ThemeColor1"/>
                                             <color key="thumbTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -76,7 +88,7 @@
                                             </connections>
                                         </switch>
                                     </subviews>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="bottom" secondItem="PkP-RK-qlZ" secondAttribute="bottom" id="DAp-nI-lbV"/>
                                         <constraint firstItem="tjQ-oX-07k" firstAttribute="top" secondItem="WhT-H1-zQ6" secondAttribute="top" id="I8T-gt-zCk"/>
@@ -88,11 +100,15 @@
                                     </constraints>
                                 </view>
                             </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
+                                <constraint firstItem="2Oj-Gc-hYx" firstAttribute="top" secondItem="pQh-0H-rCY" secondAttribute="top" id="4D9-dT-rIu"/>
+                                <constraint firstItem="2Oj-Gc-hYx" firstAttribute="bottom" secondItem="pQh-0H-rCY" secondAttribute="bottom" id="6yE-uG-hFq"/>
+                                <constraint firstItem="2Oj-Gc-hYx" firstAttribute="leading" secondItem="pQh-0H-rCY" secondAttribute="leading" id="F50-b6-XUe"/>
                                 <constraint firstItem="pQh-0H-rCY" firstAttribute="leading" secondItem="WhT-H1-zQ6" secondAttribute="trailing" constant="5" id="Fhd-Zc-Lti"/>
                                 <constraint firstItem="pQh-0H-rCY" firstAttribute="centerY" secondItem="WhT-H1-zQ6" secondAttribute="centerY" id="H1X-nd-FdQ"/>
                                 <constraint firstAttribute="bottom" secondItem="pQh-0H-rCY" secondAttribute="bottom" id="Lmp-pr-TXh"/>
+                                <constraint firstItem="2Oj-Gc-hYx" firstAttribute="trailing" secondItem="pQh-0H-rCY" secondAttribute="trailing" id="Sm5-Zv-eCg"/>
                                 <constraint firstItem="WhT-H1-zQ6" firstAttribute="leading" secondItem="JuJ-M9-AYt" secondAttribute="leading" id="XGf-W3-csZ"/>
                                 <constraint firstItem="pQh-0H-rCY" firstAttribute="top" secondItem="JuJ-M9-AYt" secondAttribute="top" constant="15" id="XZx-Gf-YSl"/>
                                 <constraint firstAttribute="height" constant="55" id="nOf-kq-lBo"/>

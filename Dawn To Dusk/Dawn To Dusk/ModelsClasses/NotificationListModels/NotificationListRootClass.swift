@@ -6,10 +6,10 @@ import Foundation
 import SwiftyJSON
 
 
-class NotificationRootClass2 : NSObject, NSCoding{
+class NotificationRootClass : NSObject, NSCoding{
 
     var code : Int!
-    var data : NotificationData2!
+    var data : NotificationData!
     var message : String!
     var status : Bool!
 
@@ -24,7 +24,7 @@ class NotificationRootClass2 : NSObject, NSCoding{
         code = json["code"].intValue
         let dataJson = json["data"]
         if !dataJson.isEmpty{
-            data = NotificationData2(fromJson: dataJson)
+            data = NotificationData(fromJson: dataJson)
         }
         message = json["message"].stringValue
         status = json["status"].boolValue
@@ -58,7 +58,7 @@ class NotificationRootClass2 : NSObject, NSCoding{
     @objc required init(coder aDecoder: NSCoder)
     {
          code = aDecoder.decodeObject(forKey: "code") as? Int
-         data = aDecoder.decodeObject(forKey: "data") as? NotificationData2
+         data = aDecoder.decodeObject(forKey: "data") as? NotificationData
          message = aDecoder.decodeObject(forKey: "message") as? String
          status = aDecoder.decodeObject(forKey: "status") as? Bool
 

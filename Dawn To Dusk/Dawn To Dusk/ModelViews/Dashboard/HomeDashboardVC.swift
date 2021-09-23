@@ -12,8 +12,9 @@ class HomeDashboardVC: UITabBarController {
     
     //    MARK:- Varaible Definces
     //    MARK:-
+    var hub: BadgeHub?
     
-    let floatingTabbarView = FloatingBarView(["Home.tab", "Search.tab", "Bell.tab", "Profile.tab"])
+    let floatingTabbarView = FloatingBarView(["Home.tab", "CartIC", "Bell.tab", "Profile.tab"])
     
     var locationManager = CLLocationManager()
     
@@ -56,6 +57,9 @@ class HomeDashboardVC: UITabBarController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
+//        NotificationCenter.default.post(name: Notification.Name(BdgeNotification), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(SetupbadgeCount), name: Notification.Name(BdgeNotification), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(Setupremovebadgecount), name: Notification.Name(RemoveBdgeNotification), object: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -68,7 +72,8 @@ class HomeDashboardVC: UITabBarController {
         SharedUserInfo.shared.isFirstLaunch = true
         viewControllers = [
             createNavViewController(viewController: HomeListingVC.init(nibName: "HomeListingVC", bundle: nil), title: "Home", imageName: "Home.tab"),
-            createNavViewController(viewController: GlobalSearchVC.init(nibName: "GlobalSearchVC", bundle: nil), title: "Search", imageName: "Search.tab"),
+//            createNavViewController(viewController: GlobalSearchVC.init(nibName: "GlobalSearchVC", bundle: nil), title: "Search", imageName: "Search.tab"),
+            createNavViewController(viewController: CartManageVC.init(nibName: "CartManageVC", bundle: nil), title: "Cart", imageName: "CartIC"),
             createNavViewController(viewController: NotificationVC.init(nibName: "NotificationVC", bundle: nil), title: "Notification", imageName: "Bell.tab"),
             createNavViewController(viewController: UserAccountVC.init(nibName: "UserAccountVC", bundle: nil), title: "Profile", imageName: "Profile.tab")
         ]
@@ -128,6 +133,7 @@ class HomeDashboardVC: UITabBarController {
 //            self.addTrackerview()
 //            self.view.addSubview(self.TrackerVIew)
         }
+        self.SetupbadgeCount()
         self.floatingTabbarView.centerXInSuperview()
         self.floatingTabbarView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -BottomTabbarHeight).isActive = true
     }
@@ -142,14 +148,47 @@ class HomeDashboardVC: UITabBarController {
         }
     }
     
+    @objc func SetupbadgeCount() {
+        if SharedUserInfo.shared.IsUserLoggedin()! {
+            NetworkingRequests.shared.GetCartHistoryListing { (responseObject, status) in
+                if status || responseObject.status {
+                    let count = responseObject.data?.first
+                    self.floatingTabbarView.setupBadgeHub(indexBD: 1, Counts: responseObject.data.count)
+                }
+                else {
+                    self.floatingTabbarView.removeBadgeHub(indexBD: 1, Counts: 0)
+                }
+            } onFailure: { (message) in
+                self.floatingTabbarView.removeBadgeHub(indexBD: 1, Counts: 0)
+            }
+            
+            NetworkingRequests.shared.GetNotificationListing { (responseObject, status) in
+                if status || responseObject.status {
+                    self.floatingTabbarView.setupBadgeHub(indexBD: 2, Counts: responseObject.data.notification.count)
+                }
+                else {
+                    self.floatingTabbarView.removeBadgeHub(indexBD: 1, Counts: 0)
+                }
+            } onFailure: { (message) in
+                self.floatingTabbarView.removeBadgeHub(indexBD: 1, Counts: 0)
+            }
+            
+        }
+    }
+    
+    @objc func Setupremovebadgecount() {
+        if SharedUserInfo.shared.IsUserLoggedin()! {
+            self.floatingTabbarView.removeBadgeHub(indexBD: 1, Counts: 0)
+        }
+    }
+    
     //    MARK:- IBAction Methods
     //    MARK:-
     
     @IBAction func TappedTrackBTN(_ sender: UIButton) {
-        // Pending Carts
-//        let vc = HomeDetailsVC(nibName: "HomeDetailsVC", bundle: nil)
-//        vc.DetailType = .TrackOrder
-//        self.navigationController!.pushViewController(vc, animated: true)
+        let vc = HomeDetailsVC(nibName: "HomeDetailsVC", bundle: nil)
+        vc.DetailType = .TrackOrder
+        self.navigationController!.pushViewController(vc, animated: true)
     }
     
 }

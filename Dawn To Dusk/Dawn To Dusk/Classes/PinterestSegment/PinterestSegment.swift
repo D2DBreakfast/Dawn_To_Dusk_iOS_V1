@@ -97,6 +97,7 @@ public class PintrestTitle: Codable {
     }
     
     public var valueChange: ((PintrestTitle) -> Void)?
+    public var CheckUncheckvalueChange: ((PintrestTitle) -> Void)?
     private var titleLabels: [UILabel] = []
     public private(set) var selectIndex = 0
 
@@ -181,7 +182,11 @@ public class PintrestTitle: Codable {
 
     private func setSelectIndex(index: Int, animated: Bool, sendAction: Bool, forceUpdate: Bool = false) {
 
-        guard (index != selectIndex || forceUpdate), index >= 0, index < titleLabels.count else { return }
+        guard (index != selectIndex || forceUpdate), index >= 0, index < titleLabels.count else {
+            CheckUncheckvalueChange?(titles[index])
+            sendActions(for: .valueChanged)
+            return
+        }
 
         let currentLabel = titleLabels[index]
         let offSetX = min(max(0, currentLabel.center.x - bounds.width / 2),

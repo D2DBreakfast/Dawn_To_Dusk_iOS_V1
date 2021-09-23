@@ -97,9 +97,9 @@ class HomeDetailCell: UITableViewCell {
         self.HideSkeleton()
     }
     
-    func setupbannercell(banner: BannerModelClass, indexPath: IndexPath) {
+    func setupbannercell(banner: BannerModels, indexPath: IndexPath) {
         self.TitleLBL.text = banner.bannerTitle
-        self.DetailsLBL.text = banner.bannerdes
+        self.DetailsLBL.text = banner.bannerDes
         self.ButtonView.isHidden = true
         self.HideSkeleton()
     }

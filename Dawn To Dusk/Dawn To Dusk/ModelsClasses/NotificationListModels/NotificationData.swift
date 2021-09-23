@@ -6,7 +6,7 @@ import Foundation
 import SwiftyJSON
 
 
-class NotificationData2 : NSObject, NSCoding{
+class NotificationData : NSObject, NSCoding{
 
     var notification : [NotificationModels]!
 

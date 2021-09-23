@@ -28,7 +28,7 @@ class CartManageVC: BaseClassVC {
             self.ListTBL.register(UINib.init(nibName: "CartItemCell", bundle: nil), forCellReuseIdentifier: "CartItemCell")
             self.ListTBL.register(UINib.init(nibName: "CartConfigureCell", bundle: nil), forCellReuseIdentifier: "CartConfigureCell")
             self.ListTBL.backgroundColor = ModeBG_Color
-//            self.ListTBL.tableFooterView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: Screen_width, height: 100))
+            self.ListTBL.tableFooterView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: Screen_width, height: 180))
         }
     }
     
@@ -43,10 +43,28 @@ class CartManageVC: BaseClassVC {
     //    MARK:- Variable Defines
     //    MARK:-
     
+    lazy var navheaderView : NavHeaderView = {
+        let header = NavHeaderView.init(frame: CGRect.init(x: 0, y: 0, width: Screen_width, height: NavBarHeight))
+        header.callbackAction = { Type in
+            if SharedUserInfo.shared.IsUserLoggedin()! {
+                if Type == .Cart {
+                    self.TappedCartBTN(UIButton().NavCartButton())
+                }
+                else {
+                    SharedUserInfo.shared.UserLogout()
+                }
+            }
+            else {
+                let vc = LoginVC(nibName: "LoginVC", bundle: nil)
+                self.navigationController!.pushViewController(vc, animated: true)
+            }
+        }
+        return header
+    }()
+    
     var locationManager = CLLocationManager()
     var currentLocation: CartLocation?
-//    var CartItems: CartListModelClass? = DummCartdata()
-    var CartItems: CartListModelClass?
+    var CartItems: OrderHistoryData?
     var cartInvoice: CartInvoice!
     var Cartcoupon: CartCoupon = CartCoupon.init(id: 0, code: "", value: 0.0, isApply: false)
     var CartCommunity: UserInfoCommunity!
@@ -58,12 +76,23 @@ class CartManageVC: BaseClassVC {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        toogleTabbar(hide: true)
+        toogleTabbar(hide: false)
+        self.view.backgroundColor = ModeBG_Color
+        self.navigationController?.navigationBar.isHidden = false
+        for item in self.view.subviews {
+            item.backgroundColor = ModeBG_Color
+        }
         self.setupUI()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navheaderView.fillinfo(title: "Manage Cart")
+        navigationItem.titleView = self.navheaderView
+        self.setupUI()
+        if !self.hasLocationPermission() {
+            self.navigationController?.view.makeToast("We are unable to get your current location please, try it again!".localized(), duration: 3.0, position: .top, title: "User Location failed".localized(), image: nil)
+        }
     }
     
     //    MARK:- User Define
@@ -75,41 +104,52 @@ class CartManageVC: BaseClassVC {
         
         if !self.hasLocationPermission() {
             self.navigationController?.view.makeToast("We are unable to get your current location please, try it again!".localized(), duration: 3.0, position: .top, title: "User Location failed".localized(), image: nil)
-//            AlertView.showSingleAlertVC(withTitle: "User Location failed".localized(), withMessage: "We are unable to get your current location please, try it again!".localized(), withconfirmbtn: "OK".localized(), withcontroller: self, withTureBlock: {
-//                _ = self.hasLocationPermission()
-//            })
         }
         
-        NetworkingRequests.shared.GetAddressListing { (responseObject, status) in
-            if status || responseObject.status {
-                self.CommunityArry = responseObject.data.community
+        if SharedUserInfo.shared.IsUserLoggedin()! {
+            NetworkingRequests.shared.GetAddressListing { (responseObject, status) in
+                if status || responseObject.status {
+                    self.CommunityArry = responseObject.data.community
+                }
+                else {
+                    self.navigationController?.view.makeToast(responseObject.message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
+                }
+            } onFailure: { (message) in
+                self.navigationController?.view.makeToast(message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
+            }
+            
+            NetworkingRequests.shared.GetCartHistoryListing { (responseObject, status) in
+                if status || responseObject.status {
+                    self.CartItems = responseObject.data.first
+                }
+                else {
+                    self.navigationController?.view.makeToast(responseObject.message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
+                }
+            } onFailure: { (message) in
+                self.navigationController?.view.makeToast(message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
+            }
+            
+            if self.CartItems == nil {
+                self.NodataFoundView.backgroundColor = ModeBG_Color
+                self.NodataFoundView.fillinfo(title: "No data available!", Notes: "There are no Data available yet!", image: "", enable: false)
+                self.NodataFoundView.isHidden = false
+                self.ListTBL.isHidden = true
             }
             else {
-                self.navigationController?.view.makeToast(responseObject.message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
+                self.NodataFoundView.isHidden = true
+                self.ListTBL.isHidden = false
+                
+                self.ListTBL.delegate = self
+                self.ListTBL.dataSource = self
+                self.ListTBL.reloadData()
             }
-        } onFailure: { (message) in
-            self.navigationController?.view.makeToast(message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
-        }
-        
-        self.SetupNavBarforback()
-        self.title = "Manage Carts"
-        
-        if self.CartItems == nil {
-            self.NodataFoundView.backgroundColor = ModeBG_Color
-            self.NodataFoundView.fillinfo(title: "No data available!", Notes: "There are no Data available yet!", image: "", enable: false)
-            self.NodataFoundView.isHidden = false
-            self.ListTBL.isHidden = true
+            self.reloadcart()
+            self.SetupCommunityPopup()
         }
         else {
-            self.NodataFoundView.isHidden = true
-            self.ListTBL.isHidden = false
-            
-            self.ListTBL.delegate = self
-            self.ListTBL.dataSource = self
-            self.ListTBL.reloadData()
+            self.ListTBL.isHidden = true
+            self.NodataFoundView.isHidden = false
         }
-        self.reloadcart()
-        self.SetupCommunityPopup()
     }
     
     func hasLocationPermission() -> Bool {
@@ -152,11 +192,11 @@ class CartManageVC: BaseClassVC {
     
     func GetRowFromSection(section: Int) -> Int? {
         var rows: Int = 0
-        if section == 0 && (self.CartItems?.fooditems!.count)! >= 1 {
-            rows = (self.CartItems?.fooditems!.count)!
+        if section == 0 && (self.CartItems?.ordersitems!.count)! >= 1 {
+            rows = (self.CartItems?.ordersitems!.count)!
         }
-        else if section == 1 && (self.CartItems?.mealitems!.count)! >= 1 {
-            rows = (self.CartItems?.mealitems!.count)!
+        else if section == 1 && (self.CartItems?.mealsitems!.count)! >= 1 {
+            rows = (self.CartItems?.mealsitems!.count)!
         }
         else if section == 2 {
             rows = 5
@@ -165,7 +205,7 @@ class CartManageVC: BaseClassVC {
     }
     
     func reloadcart() {
-        if (self.CartItems?.mealitems!.count)! == 0 && (self.CartItems?.fooditems!.count)! == 0 {
+        if (self.CartItems?.mealsitems!.count)! == 0 && (self.CartItems?.ordersitems!.count)! == 0 {
             self.NodataFoundView.isHidden = false
             self.ListTBL.isHidden = true
         }
@@ -277,9 +317,6 @@ extension CartManageVC: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         self.navigationController?.view.makeToast("We are unable to get your current location please, try it again!".localized(), duration: 3.0, position: .top, title: "User Location failed".localized(), image: nil)
-//        AlertView.showSingleAlertVC(withTitle: "User Location failed".localized(), withMessage: "We are unable to get your current location please, try it again!".localized(), withconfirmbtn: "OK".localized(), withcontroller: self, withTureBlock: {
-//            _ = self.hasLocationPermission()
-//        })
     }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
@@ -334,9 +371,9 @@ extension CartManageVC: UITableViewDelegate, UITableViewDataSource {
     
     func FOOD_ConfigCellFor(indexPath: IndexPath) -> UITableViewCell {
         
-        if (self.CartItems?.fooditems!.count)! >= 1 {
+        if (self.CartItems?.ordersitems!.count)! >= 1 {
             let cell: CartItemCell = self.ListTBL.dequeueReusableCell(withIdentifier: "CartItemCell") as! CartItemCell
-            let food = self.CartItems?.fooditems![indexPath.row]
+            let food = self.CartItems?.ordersitems![indexPath.row]
             
             cell.setupfoodcell(food: food!)
             if self.cartInvoice == nil {
@@ -369,13 +406,13 @@ extension CartManageVC: UITableViewDelegate, UITableViewDataSource {
                 let priceSTR: String = String.init(format: "%@ %@", (getdefaultCountry()?.symbol)!, result.formatprice())
                 cell.PriceLBL.text = priceSTR
                 if cell.QTY_Count <= 0 {
-                    self.CartItems?.fooditems?.remove(at: indexPath.row)
+                    self.CartItems?.ordersitems?.remove(at: indexPath.row)
                     self.cartInvoice.items.remove(at: CartIndex!)
                 }
                 self.reloadcart()
             }
             cell.didDeleteActionBlock = {
-                self.CartItems?.fooditems?.remove(at: indexPath.row)
+                self.CartItems?.ordersitems?.remove(at: indexPath.row)
                 self.cartInvoice.items.remove(at: CartIndex!)
                 self.reloadcart()
             }
@@ -399,9 +436,9 @@ extension CartManageVC: UITableViewDelegate, UITableViewDataSource {
     
     func MEAL_ConfigCellFor(indexPath: IndexPath) -> UITableViewCell {
         
-        if (self.CartItems?.mealitems!.count)! >= 1 {
+        if (self.CartItems?.mealsitems!.count)! >= 1 {
             let cell: CartItemCell = self.ListTBL.dequeueReusableCell(withIdentifier: "CartItemCell") as! CartItemCell
-            let meal = self.CartItems?.mealitems![indexPath.row]
+            let meal = self.CartItems?.mealsitems![indexPath.row]
             cell.setupmealcell(meal: meal!)
             
             if self.cartInvoice == nil {
@@ -434,13 +471,13 @@ extension CartManageVC: UITableViewDelegate, UITableViewDataSource {
                 let priceSTR: String = String.init(format: "%@ %@", (getdefaultCountry()?.symbol)!, result.formatprice())
                 cell.PriceLBL.text = priceSTR
                 if cell.QTY_Count <= 0 {
-                    self.CartItems?.mealitems?.remove(at: indexPath.row)
+                    self.CartItems?.mealsitems?.remove(at: indexPath.row)
                     self.cartInvoice.items.remove(at: CartIndex!)
                 }
                 self.reloadcart()
             }
             cell.didDeleteActionBlock = {
-                self.CartItems?.mealitems?.remove(at: indexPath.row)
+                self.CartItems?.mealsitems?.remove(at: indexPath.row)
                 self.cartInvoice.items.remove(at: CartIndex!)
                 self.reloadcart()
             }
@@ -464,13 +501,13 @@ extension CartManageVC: UITableViewDelegate, UITableViewDataSource {
     
     func CART_ConfigCellFor(indexPath: IndexPath) -> UITableViewCell {
         // Shipping Cell Defines
-        if (self.CartItems?.mealitems!.count)! >= 1 || (self.CartItems?.fooditems!.count)! >= 1 {
+        if (self.CartItems?.mealsitems!.count)! >= 1 || (self.CartItems?.ordersitems!.count)! >= 1 {
             if indexPath.row == 0 {
                 let cell: CartConfigureCell = self.ListTBL.dequeueReusableCell(withIdentifier: "CartConfigureCell") as! CartConfigureCell
-                cell.Setupshoppingcell()
+                cell.Setupshoppingcell(indexPath: indexPath)
                 
                 if self.CartCommunity != nil {
-                    cell.SelectedCommunityLBL.text = self.CartCommunity.title
+                    cell.SelectedCommunityLBL.text = self.CartCommunity.address
                     cell.TXTVilla.text = self.CartCommunity.line1?.count == 0 ? "" : self.CartCommunity.line1
                     cell.TXTLand.text = self.CartCommunity.line2?.count == 0 ? "" : self.CartCommunity.line2
                 }
@@ -497,7 +534,7 @@ extension CartManageVC: UITableViewDelegate, UITableViewDataSource {
             // Payment Mode Cell Defines
             else if indexPath.row == 1 {
                 let cell: CartConfigureCell = self.ListTBL.dequeueReusableCell(withIdentifier: "CartConfigureCell") as! CartConfigureCell
-                cell.SetupPaymentcell()
+                cell.SetupPaymentcell(indexPath: indexPath)
                 cell.didDetailsActionBlock = {
                     let vc = HomeDetailsVC(nibName: "HomeDetailsVC", bundle: nil)
                     vc.DetailType = .Payment
@@ -509,7 +546,7 @@ extension CartManageVC: UITableViewDelegate, UITableViewDataSource {
             // Copuon Cell Defines
             else if indexPath.row == 2 {
                 let cell: CartConfigureCell = self.ListTBL.dequeueReusableCell(withIdentifier: "CartConfigureCell") as! CartConfigureCell
-                cell.SetupCouponcell()
+                cell.SetupCouponcell(indexPath: indexPath)
                 cell.didDetailsActionBlock = {
                     let vc = HomeDetailsVC(nibName: "HomeDetailsVC", bundle: nil)
                     vc.DetailType = .Coupon
@@ -528,7 +565,7 @@ extension CartManageVC: UITableViewDelegate, UITableViewDataSource {
             }
             else if indexPath.row == 3 {
                 let cell: CartConfigureCell = self.ListTBL.dequeueReusableCell(withIdentifier: "CartConfigureCell") as! CartConfigureCell
-                cell.SetupInvoicecell(invoiceObj: self.cartInvoice, Cartcoupon: self.Cartcoupon)
+                cell.SetupInvoicecell(invoiceObj: self.cartInvoice, Cartcoupon: self.Cartcoupon, indexPath: indexPath)
                 cell.didRemoveCouponActionBlock = {
                     self.Cartcoupon.code = ""
                     self.Cartcoupon.value = 0.0
@@ -539,7 +576,7 @@ extension CartManageVC: UITableViewDelegate, UITableViewDataSource {
             }
             else {
                 let cell: CartConfigureCell = self.ListTBL.dequeueReusableCell(withIdentifier: "CartConfigureCell") as! CartConfigureCell
-                cell.AgreeSetupView()
+                cell.AgreeSetupView(indexPath: indexPath)
                 cell.didCheckoutActionBlock = {
                     
                 }

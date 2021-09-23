@@ -21,6 +21,7 @@ class BaseClassVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.Listsubviews()
+        self.statusBarColorChange()
         self.view.backgroundColor = ModeBG_Color
         self.setupUI()
 //        UIView.appearance().semanticContentAttribute = .forceRightToLeft

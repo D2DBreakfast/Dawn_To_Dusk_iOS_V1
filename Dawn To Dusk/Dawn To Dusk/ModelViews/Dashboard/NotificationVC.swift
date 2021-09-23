@@ -56,9 +56,7 @@ class NotificationVC: BaseClassVC {
     }()
     
     var notificationarry: [NotificationModels] = []
-    var Bannerarry: [BannerModelClass] = [
-        BannerModelClass.init(id: 0, bannerName: "Package 0", bannerImage: "https://source.unsplash.com/random/200x200", bannerdes: randomString(), bannerTitle: "Package 0")
-    ]
+    var Bannerarry: [BannerModels] = []
     
     //    MARK:- View Cycle
     //    MARK:-
@@ -68,6 +66,7 @@ class NotificationVC: BaseClassVC {
         toogleTabbar(hide: false)
         self.navigationController?.navigationBar.isHidden = false
         self.ListTBL.layoutSubviews()
+        NotificationCenter.default.post(name: Notification.Name(RemoveBdgeNotification), object: nil)
     }
     
     override func viewDidLoad() {
@@ -116,6 +115,17 @@ class NotificationVC: BaseClassVC {
         
         self.ListTBL.rowHeight = UITableView.automaticDimension
         self.ListTBL.estimatedRowHeight = UITableView.automaticDimension
+        
+        NetworkingRequests.shared.GetbannerListing { (responseObject, status) in
+            if status || responseObject.status {
+                self.Bannerarry = responseObject.data.banner
+            }
+            else {
+                self.navigationController?.view.makeToast(responseObject.message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
+            }
+        } onFailure: { (message) in
+            self.navigationController?.view.makeToast(message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
+        }
         
         NetworkingRequests.shared.GetNotificationListing { (responseObject, status) in
             if status || responseObject.status {
@@ -251,7 +261,7 @@ extension NotificationVC: UITableViewDelegate, UITableViewDataSource {
         }
         else {
             let cell: HomeBannerCell = self.ListTBL.dequeueReusableCell(withIdentifier: "HomeBannerCell") as! HomeBannerCell
-            cell.setupBannercell(food: self.Bannerarry[indexPath.row])
+            cell.setupBannercell(banner: self.Bannerarry[indexPath.row])
             
             let tap = AppGesture(target: self, action: #selector(self.didSelectRowAt(sender:)))
             tap.indexPath = indexPath

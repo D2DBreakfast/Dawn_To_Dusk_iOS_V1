@@ -10,6 +10,7 @@ class FoodData : NSObject, NSCoding{
     
     var currenctPage : Int!
     var lastPage : Int!
+    var paybleamount : String!
     var orders : [FoodModels]!
     var meals : [MealsModels]!
     
@@ -23,6 +24,7 @@ class FoodData : NSObject, NSCoding{
         }
         currenctPage = json["currenct_page"].intValue
         lastPage = json["last_page"].intValue
+        paybleamount = json["paybleamount"].stringValue
         orders = [FoodModels]()
         let orderArray = json["orders"].arrayValue
         for orderJson in orderArray{
@@ -49,6 +51,9 @@ class FoodData : NSObject, NSCoding{
         if lastPage != nil{
             dictionary["last_page"] = lastPage
         }
+        if paybleamount != nil{
+            dictionary["paybleamount"] = paybleamount
+        }
         if orders != nil{
             var dictionaryElements = [[String:Any]]()
             for orderElement in orders {
@@ -74,6 +79,7 @@ class FoodData : NSObject, NSCoding{
     {
         currenctPage = aDecoder.decodeObject(forKey: "currenct_page") as? Int
         lastPage = aDecoder.decodeObject(forKey: "last_page") as? Int
+        paybleamount = aDecoder.decodeObject(forKey: "paybleamount") as? String
         orders = aDecoder.decodeObject(forKey: "orders") as? [FoodModels]
         meals = aDecoder.decodeObject(forKey: "meals") as? [MealsModels]
     }
@@ -89,6 +95,9 @@ class FoodData : NSObject, NSCoding{
         }
         if lastPage != nil{
             aCoder.encode(lastPage, forKey: "last_page")
+        }
+        if paybleamount != nil{
+            aCoder.encode(paybleamount, forKey: "paybleamount")
         }
         if orders != nil{
             aCoder.encode(orders, forKey: "orders")

@@ -26,6 +26,7 @@ class HomeListingVC: BaseClassVC {
     @IBOutlet weak var filter_LBL: UILabel!
     @IBOutlet weak var FilterSwitch: UISwitch!
     @IBOutlet weak var SubCatView: PinterestSegment!
+    @IBOutlet weak var SubCatView2: UICollectionView!
     
     @IBOutlet weak var NodataFoundView: NodataView!
     @IBOutlet weak var FoodListTBL: TPKeyboardAvoidingTableView!
@@ -59,10 +60,10 @@ class HomeListingVC: BaseClassVC {
     
     var SelectedSubCat: CategoryModels!
     var SubCatArry: [CategoryModels] = []
+    var SelectedSubCatArry: [CategoryModels] = []
+    var MultipleSelect: Bool = true
     
-    var Bannerarry: [BannerModelClass] = [
-        BannerModelClass.init(id: 0, bannerName: "Package 0", bannerImage: "https://source.unsplash.com/random/200x200", bannerdes: randomString(), bannerTitle: "Package 0")
-    ]
+    var Bannerarry: [BannerModels] = []
     
     var FilterWithSub: Bool = true
     
@@ -113,9 +114,9 @@ class HomeListingVC: BaseClassVC {
         switch status {
         case .unknown, .offline:
             print("Not connected")
-//            self.NodataFoundView.fillinfo(title: "No Internet", Notes: "There is no internet available in device. Please check your setting and try it again!", image: "NoInternetIMG", enable: true)
-//            self.NodataFoundView.isHidden = false
-//            self.FoodListTBL.isHidden = true
+            //            self.NodataFoundView.fillinfo(title: "No Internet", Notes: "There is no internet available in device. Please check your setting and try it again!", image: "NoInternetIMG", enable: true)
+            //            self.NodataFoundView.isHidden = false
+            //            self.FoodListTBL.isHidden = true
             break;
             
         case .online(.wwan):
@@ -131,6 +132,17 @@ class HomeListingVC: BaseClassVC {
     }
     
     override func setupUI() {
+        
+        NetworkingRequests.shared.GetbannerListing { (responseObject, status) in
+            if status || responseObject.status {
+                self.Bannerarry = responseObject.data.banner
+            }
+            else {
+                self.navigationController?.view.makeToast(responseObject.message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
+            }
+        } onFailure: { (message) in
+            self.navigationController?.view.makeToast(message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
+        }
         
         NetworkingRequests.shared.GetFoodListing(param: ListingParamDict.init(page: 1, count: 20)) { (responseObject, status) in
             if status {
@@ -148,7 +160,7 @@ class HomeListingVC: BaseClassVC {
         } onFailure: { (message) in
             self.navigationController?.view.makeToast(message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
         }
-
+        
         self.SearchBar.delegate = self
         
         self.setupCategoryView()
@@ -172,7 +184,7 @@ class HomeListingVC: BaseClassVC {
             self.NodataFoundView.isHidden = true
             self.FoodListTBL.isHidden = false
         }
-            
+        
     }
     
     func hasLocationPermission() -> Bool {
@@ -195,7 +207,7 @@ class HomeListingVC: BaseClassVC {
                 }
                 hasPermission = true
             @unknown default:
-                    break
+                break
             }
         } else {
             hasPermission = false
@@ -204,6 +216,7 @@ class HomeListingVC: BaseClassVC {
         return hasPermission
     }
     
+    // TODO: Setup Category
     func setupCategoryView() {
         
         NetworkingRequests.shared.GetCategoryListing { (catData, status) in
@@ -218,7 +231,7 @@ class HomeListingVC: BaseClassVC {
         } onFailure: { (message) in
             self.navigationController?.view.makeToast(message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
         }
-
+        
         self.CategoryView.backgroundColor = ModeBG_Color
         self.CategoryView.indicatorColor = UIColor.colorWithHexString(hexStr: GetDefaultTheme()!)
         self.CategoryView.titleFont = UIFont.boldSystemFont(ofSize: 17)
@@ -227,7 +240,7 @@ class HomeListingVC: BaseClassVC {
         self.CategoryView.titles = self.getCatNameArray()!
         self.CategoryView.valueChange = { index in
             self.SelectedMainCat = self.getMaincatOBJ(name: index)
-            if index.id == self.SelectedMainCat.id && index.title?.uppercased() == "Order".uppercased() {
+            if index.id == self.SelectedMainCat.id && index.title?.uppercased() == "A la Carte".uppercased() {
                 self.SubCat_Height.constant = 55
                 self.subHeaderView.isHidden = false
                 self.FilterSwitch.isOn = false
@@ -259,8 +272,9 @@ class HomeListingVC: BaseClassVC {
         return Singleobj.first
     }
     
+    // TODO: Setup SubCategory
     func setupsubcatview() {
-
+        
         NetworkingRequests.shared.GetSubCategoryListing(param: SubCatParamDict.init(id: self.SelectedMainCat.id)) { (subcatData, status) in
             if status {
                 if subcatData.data.category.count != 0 {
@@ -274,27 +288,46 @@ class HomeListingVC: BaseClassVC {
             self.navigationController?.view.makeToast(message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
         }
         
-        self.FilterSwitch.onTintColor = UIColor.colorWithHexString(hexStr: GetDefaultTheme()!)
-        self.subHeaderView.backgroundColor = ModeBG_Color
-        self.FilterView.backgroundColor = ModeBG_Color
-        self.SubCatView.backgroundColor = ModeBG_Color
-        self.SubCatView.indicatorColor = UIColor.colorWithHexString(hexStr: GetDefaultTheme()!)
-        self.SubCatView.titleFont = UIFont.boldSystemFont(ofSize: 17)
-        self.SubCatView.normalTitleColor = UIColor.colorWithHexString(hexStr: GetDefaultTheme()!)
-        self.SubCatView.selectedTitleColor = UIColor.white
-        self.SubCatView.titles = self.getSubCatNameArray()!
-        self.SubCatView.valueChange = { index in
-            self.SelectedSubCat = self.getSubcatOBJ(name: index)
-            self.FoodListTBL.reloadData()
+        if self.MultipleSelect {
+            self.SubCatView.isHidden = true
+            self.SubCatView2.isHidden = false
+            self.SubCatView2.allowsSelection = true
+            self.SubCatView2.register(UINib(nibName:"SubCategoryCells", bundle: nil), forCellWithReuseIdentifier: "SubCategoryCells")
+            
+            self.SubCatView2.delegate = self
+            self.SubCatView2.dataSource = self
+            self.SubCatView2.reloadData()
         }
+        else  {
+            self.SubCatView.isHidden = false
+            self.SubCatView2.isHidden = true
+            self.FilterSwitch.onTintColor = UIColor.colorWithHexString(hexStr: GetDefaultTheme()!)
+            self.subHeaderView.backgroundColor = ModeBG_Color
+            self.FilterView.backgroundColor = ModeBG_Color
+            self.SubCatView.backgroundColor = ModeBG_Color
+            self.SubCatView.indicatorColor = UIColor.colorWithHexString(hexStr: GetDefaultTheme()!)
+            self.SubCatView.titleFont = UIFont.boldSystemFont(ofSize: 17)
+            self.SubCatView.normalTitleColor = UIColor.colorWithHexString(hexStr: GetDefaultTheme()!)
+            self.SubCatView.selectedTitleColor = UIColor.white
+            self.SubCatView.titles = self.getSubCatNameArray()!
+            self.SubCatView.valueChange = { index in
+                self.SelectedSubCat = self.getSubcatOBJ(name: index)
+                self.FoodListTBL.reloadData()
+            }
+            self.SubCatView.CheckUncheckvalueChange = { index in
+                self.SelectedSubCat = nil
+                self.FoodListTBL.reloadData()
+            }
+        }
+        
     }
     
     func getSubCatNameArray() -> [PintrestTitle]? {
-        let array = self.SubCatArry.compactMap { obj in
+        var final: [PintrestTitle] = [PintrestTitle.init(id: 1, title: "All")]
+        final.append(contentsOf: self.SubCatArry.compactMap { obj in
             return PintrestTitle.init(id: obj.id, title: obj.catName)
-        }
-        self.SelectedSubCat = self.getSubcatOBJ(name: array.first!)
-        return array
+        })
+        return final
     }
     
     func getSubcatOBJ(name: PintrestTitle) -> CategoryModels? {
@@ -334,34 +367,143 @@ class HomeListingVC: BaseClassVC {
         return self.foodArry
     }
     
-    func GetFinalFoodwithSubArry() -> [FoodModels] {
+    func GetFoodMultiArry() -> [FoodModels]? {
         var filter: [FoodModels] = []
         if self.FilterSwitch.isOn {
-            let data = self.getVegfoodOnly().filter { obj in
-                return ((obj.subCattegory?.id == self.SelectedSubCat.id || obj.subCattegory?.catName?.uppercased() == self.SelectedSubCat.catName?.uppercased()) && (obj.cattegory?.id == self.SelectedMainCat.id || obj.cattegory?.catName?.uppercased() == self.SelectedMainCat.catName?.uppercased()) && obj.isveg == true)
-            }
-            if self.IsSearching && self.SearchSTR.count > 0 {
-                let searchData = data.filter { obj in
-                    return (obj.title?.lowercased().contains(self.SearchSTR.lowercased()))!
+            if self.MultipleSelect {
+                if self.SelectedSubCatArry.count == 0 {
+                    let data = self.getVegfoodOnly().filter { obj in
+                        if self.SelectedSubCat == nil {
+                            return ((obj.cattegory?.id == self.SelectedMainCat.id) && obj.isveg == true)
+                        }
+                        else {
+                            return ((self.SelectedSubCatArry.first(where: { $0.id == obj.subCattegory?.id }) != nil) && (obj.cattegory?.id == self.SelectedMainCat.id) && obj.isveg == true)
+                        }
+                    }
+                    if self.IsSearching && self.SearchSTR.count > 0 {
+                        let searchData = data.filter { obj in
+                            return (obj.title?.lowercased().contains(self.SearchSTR.lowercased()))!
+                        }
+                        filter = searchData
+                    }
+                    else {
+                        filter = data
+                    }
                 }
-                filter = searchData
-            }
-            else {
-                filter = data
+                else {
+                    let data = self.getVegfoodOnly().filter { obj in
+                        if self.SelectedSubCatArry.count == 0 {
+                            return ((obj.cattegory?.id == self.SelectedMainCat.id) && obj.isveg == true)
+                        }
+                        else {
+                            return (self.SelectedSubCatArry.first(where: { $0.id == obj.subCattegory?.id }) != nil)
+                        }
+                    }
+                    if self.IsSearching && self.SearchSTR.count > 0 {
+                        let searchData = data.filter { obj in
+                            return (obj.title?.lowercased().contains(self.SearchSTR.lowercased()))!
+                        }
+                        filter = searchData
+                    }
+                    else {
+                        filter = data
+                    }
+                }
             }
         }
         else {
-            let data = self.foodArry.filter { obj in
-                return ((obj.subCattegory?.id == self.SelectedSubCat.id || obj.subCattegory?.catName?.uppercased() == self.SelectedSubCat.catName?.uppercased()) && (obj.cattegory?.id == self.SelectedMainCat.id || obj.cattegory?.catName?.uppercased() == self.SelectedMainCat.catName?.uppercased()))
-            }
-            if self.IsSearching && self.SearchSTR.count > 0 {
-                let searchData = data.filter { obj in
-                    return (obj.title?.lowercased().contains(self.SearchSTR.lowercased()))!
+            if self.MultipleSelect {
+                let data = self.getVegfoodOnly().filter { obj in
+                    if self.SelectedSubCat == nil {
+                        return ((obj.cattegory?.id == self.SelectedMainCat.id))
+                    }
+                    else {
+                        return ((self.SelectedSubCatArry.first(where: { $0.id == obj.subCattegory?.id }) != nil) && (obj.cattegory?.id == self.SelectedMainCat.id))
+                    }
                 }
-                filter = searchData
+                if self.IsSearching && self.SearchSTR.count > 0 {
+                    let searchData = data.filter { obj in
+                        return (obj.title?.lowercased().contains(self.SearchSTR.lowercased()))!
+                    }
+                    filter = searchData
+                }
+                else {
+                    filter = data
+                }
             }
             else {
-                filter = data
+                var data: [FoodModels] = []
+                if self.SelectedSubCat == nil {
+                    data = self.foodArry
+                }
+                else {
+                    data = self.foodArry.filter { obj in
+                        return ((self.SelectedSubCatArry.first(where: { $0.id == obj.subCattegory?.id }) != nil) && (obj.cattegory?.id == self.SelectedMainCat.id))
+                    }
+                }
+                if self.IsSearching && self.SearchSTR.count > 0 {
+                    let searchData = data.filter { obj in
+                        return (obj.title?.lowercased().contains(self.SearchSTR.lowercased()))!
+                    }
+                    filter = searchData
+                }
+                else {
+                    filter = data
+                }
+            }
+        }
+        return filter
+    }
+    
+    func GetFinalFoodwithSubArry() -> [FoodModels] {
+        var filter: [FoodModels] = []
+        if self.FilterSwitch.isOn {
+            if self.MultipleSelect {
+                filter = self.GetFoodMultiArry()!
+            }
+            else {
+                let data = self.getVegfoodOnly().filter { obj in
+                    if self.SelectedSubCat == nil {
+                        return ((obj.cattegory?.id == self.SelectedMainCat.id) && obj.isveg == true)
+                    }
+                    else {
+                        return ((obj.subCattegory?.id == self.SelectedSubCat.id) && (obj.cattegory?.id == self.SelectedMainCat.id) && obj.isveg == true)
+                    }
+                }
+                if self.IsSearching && self.SearchSTR.count > 0 {
+                    let searchData = data.filter { obj in
+                        return (obj.title?.lowercased().contains(self.SearchSTR.lowercased()))!
+                    }
+                    filter = searchData
+                }
+                else {
+                    filter = data
+                }
+            }
+        }
+        else {
+            if self.MultipleSelect {
+                filter = self.GetFoodMultiArry()!
+            }
+            else {
+                var data: [FoodModels] = []
+                if self.SelectedSubCat == nil {
+                    data = self.foodArry
+                }
+                else {
+                    data = self.foodArry.filter { obj in
+                        return ((obj.subCattegory?.id == self.SelectedSubCat.id) && (obj.cattegory?.id == self.SelectedMainCat.id))
+                    }
+                }
+                if self.IsSearching && self.SearchSTR.count > 0 {
+                    let searchData = data.filter { obj in
+                        return (obj.title?.lowercased().contains(self.SearchSTR.lowercased()))!
+                    }
+                    filter = searchData
+                }
+                else {
+                    filter = data
+                }
             }
         }
         return filter
@@ -532,7 +674,7 @@ extension HomeListingVC: UITableViewDelegate, UITableViewDataSource {
     
     func SetupBannerCell(indexPath: IndexPath) -> UITableViewCell {
         let cell: HomeBannerCell = self.FoodListTBL.dequeueReusableCell(withIdentifier: "HomeBannerCell") as! HomeBannerCell
-        cell.setupBannercell(food: self.Bannerarry[indexPath.row])
+        cell.setupBannercell(banner: self.Bannerarry[indexPath.row])
         let tap = AppGesture(target: self, action: #selector(self.didSelectRowAt(sender:)))
         tap.indexPath = indexPath
         cell.addGestureRecognizer(tap)
@@ -544,10 +686,10 @@ extension HomeListingVC: UITableViewDelegate, UITableViewDataSource {
         cell.setupfoodcell(food: self.GetFinalFoodwithSubArry()[indexPath.row])
         cell.didCartActionBlock = {
             if SharedUserInfo.shared.IsUserLoggedin()! {
-//                cell.AddCartBTN.isHidden = true
-//                cell.QTY_View.isHidden = false
-//                cell.QTY_Count = 1
-//                cell.QTY_LBL.text = String.init(format: "%d", cell.QTY_Count)
+                //                cell.AddCartBTN.isHidden = true
+                //                cell.QTY_View.isHidden = false
+                //                cell.QTY_Count = 1
+                //                cell.QTY_LBL.text = String.init(format: "%d", cell.QTY_Count)
                 self.tableView(self.FoodListTBL, didSelectRowAt: indexPath)
             }
             else {
@@ -582,6 +724,73 @@ extension HomeListingVC: UITableViewDelegate, UITableViewDataSource {
         cell.addGestureRecognizer(tap)
         
         return cell
+    }
+    
+}
+
+//MARK:- CollectionView Delegate and Datasource
+//MARK:-
+extension HomeListingVC: UICollectionViewDataSource, UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.SubCatArry.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        return self.configCell(indexPath: indexPath)
+    }
+    
+    @objc func didSelectSubcatRowAt(sender : AppGesture) {
+        self.collectionView(self.SubCatView2, didSelectItemAt: sender.indexPath)
+    }
+    
+    func configCell(indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = self.SubCatView2.dequeueReusableCell(withReuseIdentifier: "SubCategoryCells", for: indexPath as IndexPath) as! SubCategoryCells
+        let tap = AppGesture(target: self, action: #selector(self.didSelectSubcatRowAt(sender:)))
+        tap.indexPath = indexPath
+        cell.addGestureRecognizer(tap)
+        let obj = self.SubCatArry[indexPath.row]
+        cell.TitleLBL.text = obj.catName
+        if self.SelectedSubCatArry.count != 0 {
+            let element = self.SelectedSubCatArry.filter { item in
+                return item.id == obj.id
+            }.first
+            if element?.id == obj.id {
+                cell.View.backgroundColor = UIColor.colorWithHexString(hexStr: GetDefaultTheme()!)
+                cell.TitleLBL.textColor = .white
+                cell.TitleLBL.font = UIFont.boldSystemFont(ofSize: 17)
+            }
+            else {
+                cell.View.backgroundColor = UIColor.clear
+                cell.TitleLBL.textColor = .label
+                cell.TitleLBL.font = UIFont.systemFont(ofSize: 15)
+            }
+        }
+        else {
+            cell.View.backgroundColor = UIColor.clear
+            cell.TitleLBL.textColor = .label
+            cell.TitleLBL.font = UIFont.systemFont(ofSize: 15)
+        }
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let data = self.SubCatArry[indexPath.row]
+        if self.SelectedSubCatArry.count == 0 {
+            self.SelectedSubCatArry.append(data)
+        }
+        else {
+            let index = self.SelectedSubCatArry.enumerated().filter({ $0.element.id == data.id }).map({ $0.offset }).first
+            if index == nil {
+                self.SelectedSubCatArry.append(data)
+            }
+            else {
+                self.SelectedSubCatArry.remove(at: index!)
+            }
+        }
+        self.FoodListTBL.reloadData()
+        self.SubCatView2.reloadData()
     }
     
 }

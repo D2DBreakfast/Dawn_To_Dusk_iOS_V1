@@ -72,13 +72,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 extension SceneDelegate {
     
     @objc public func GetinitialView() {
-        let isFirsttime = SharedUserInfo.shared.isFirstLaunch
-        if isFirsttime {
-            self.GetStarted()
-        }
-        else {
+//        let isFirsttime = SharedUserInfo.shared.isFirstLaunch
+//        if isFirsttime {
+//            self.GetStarted()
+//        }
+//        else {
             self.SetDashboard()
-        }
+//        }
     }
     
     @objc public func SetDashboard() {

@@ -453,7 +453,7 @@ extension NetworkingRequests {
         }
     }
     
-    func GetNotificationListing(onSuccess successCallback: ((_ response: NotificationRootClass2, _ status: Bool) -> Void)?, onFailure failureCallback: ((_ errorMessage: String) -> Void)?) {
+    func GetNotificationListing(onSuccess successCallback: ((_ response: NotificationRootClass, _ status: Bool) -> Void)?, onFailure failureCallback: ((_ errorMessage: String) -> Void)?) {
         if self.rechability.isReachable() || NetworkingRequests.isInternetAvailable() || self.checkNetworkStatus()! {
             guard let jsonData = readLocalFile(forName: "notification") else { return }
             guard let prettyPrintedJson = String(data: jsonData, encoding: .utf8) else {
@@ -462,7 +462,7 @@ extension NetworkingRequests {
                 return
             }
             let jsonObject = JSON(prettyPrintedJson.data(using: .utf8)!)
-            let obj = NotificationRootClass2.init(fromJson: jsonObject)
+            let obj = NotificationRootClass.init(fromJson: jsonObject)
             if obj.status! && obj.code == 200 {
                 successCallback?(obj, true)
             }
@@ -507,6 +507,72 @@ extension NetworkingRequests {
             }
             let jsonObject = JSON(prettyPrintedJson.data(using: .utf8)!)
             let obj = PaymentModeRootClass.init(fromJson: jsonObject)
+            if obj.status! && obj.code == 200 {
+                successCallback?(obj, true)
+            }
+            else {
+                failureCallback?(obj.message!)
+            }
+        }
+        else {
+            
+        }
+    }
+    
+    func GetCartListing(onSuccess successCallback: ((_ response: OrderHistoryRootClass, _ status: Bool) -> Void)?, onFailure failureCallback: ((_ errorMessage: String) -> Void)?) {
+        if self.rechability.isReachable() || NetworkingRequests.isInternetAvailable() || self.checkNetworkStatus()! {
+            guard let jsonData = readLocalFile(forName: "cartlist") else { return }
+            guard let prettyPrintedJson = String(data: jsonData, encoding: .utf8) else {
+                print("Error: Could print JSON in String")
+                failureCallback!("Error: Could print JSON in String")
+                return
+            }
+            let jsonObject = JSON(prettyPrintedJson.data(using: .utf8)!)
+            let obj = OrderHistoryRootClass.init(fromJson: jsonObject)
+            if obj.status! && obj.code == 200 {
+                successCallback?(obj, true)
+            }
+            else {
+                failureCallback?(obj.message!)
+            }
+        }
+        else {
+            
+        }
+    }
+    
+    func GetCartHistoryListing(onSuccess successCallback: ((_ response: OrderHistoryRootClass, _ status: Bool) -> Void)?, onFailure failureCallback: ((_ errorMessage: String) -> Void)?) {
+        if self.rechability.isReachable() || NetworkingRequests.isInternetAvailable() || self.checkNetworkStatus()! {
+            guard let jsonData = readLocalFile(forName: "OrderHistory") else { return }
+            guard let prettyPrintedJson = String(data: jsonData, encoding: .utf8) else {
+                print("Error: Could print JSON in String")
+                failureCallback!("Error: Could print JSON in String")
+                return
+            }
+            let jsonObject = JSON(prettyPrintedJson.data(using: .utf8)!)
+            let obj = OrderHistoryRootClass.init(fromJson: jsonObject)
+            if obj.status! && obj.code == 200 {
+                successCallback?(obj, true)
+            }
+            else {
+                failureCallback?(obj.message!)
+            }
+        }
+        else {
+            
+        }
+    }
+    
+    func GetCouponsListing(onSuccess successCallback: ((_ response: CouponModelsRootClass, _ status: Bool) -> Void)?, onFailure failureCallback: ((_ errorMessage: String) -> Void)?) {
+        if self.rechability.isReachable() || NetworkingRequests.isInternetAvailable() || self.checkNetworkStatus()! {
+            guard let jsonData = readLocalFile(forName: "couponlist") else { return }
+            guard let prettyPrintedJson = String(data: jsonData, encoding: .utf8) else {
+                print("Error: Could print JSON in String")
+                failureCallback!("Error: Could print JSON in String")
+                return
+            }
+            let jsonObject = JSON(prettyPrintedJson.data(using: .utf8)!)
+            let obj = CouponModelsRootClass.init(fromJson: jsonObject)
             if obj.status! && obj.code == 200 {
                 successCallback?(obj, true)
             }
