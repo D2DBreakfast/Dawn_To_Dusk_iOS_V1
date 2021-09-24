@@ -345,6 +345,7 @@ class HomeListingVC: BaseClassVC {
         else {
             count = self.filtermealArry.count
         }
+        print("Total Food array: \(count)")
         if count == 0 {
             self.NodataFoundView.isHidden = false
             self.FoodListTBL.isHidden = true
@@ -373,7 +374,7 @@ class HomeListingVC: BaseClassVC {
             if self.MultipleSelect {
                 if self.SelectedSubCatArry.count == 0 {
                     let data = self.getVegfoodOnly().filter { obj in
-                        if self.SelectedSubCat == nil {
+                        if self.SelectedSubCatArry.count == 0 {
                             return ((obj.cattegory?.id == self.SelectedMainCat.id) && obj.isveg == true)
                         }
                         else {
@@ -412,44 +413,23 @@ class HomeListingVC: BaseClassVC {
             }
         }
         else {
-            if self.MultipleSelect {
-                let data = self.getVegfoodOnly().filter { obj in
-                    if self.SelectedSubCat == nil {
-                        return ((obj.cattegory?.id == self.SelectedMainCat.id))
-                    }
-                    else {
-                        return ((self.SelectedSubCatArry.first(where: { $0.id == obj.subCattegory?.id }) != nil) && (obj.cattegory?.id == self.SelectedMainCat.id))
-                    }
-                }
-                if self.IsSearching && self.SearchSTR.count > 0 {
-                    let searchData = data.filter { obj in
-                        return (obj.title?.lowercased().contains(self.SearchSTR.lowercased()))!
-                    }
-                    filter = searchData
-                }
-                else {
-                    filter = data
-                }
+            var data: [FoodModels] = []
+            if self.SelectedSubCatArry.count == 0 {
+                data = self.foodArry
             }
             else {
-                var data: [FoodModels] = []
-                if self.SelectedSubCat == nil {
-                    data = self.foodArry
+                data = self.foodArry.filter { obj in
+                    return ((self.SelectedSubCatArry.first(where: { $0.id == obj.subCattegory?.id }) != nil) && (obj.cattegory?.id == self.SelectedMainCat.id))
                 }
-                else {
-                    data = self.foodArry.filter { obj in
-                        return ((self.SelectedSubCatArry.first(where: { $0.id == obj.subCattegory?.id }) != nil) && (obj.cattegory?.id == self.SelectedMainCat.id))
-                    }
+            }
+            if self.IsSearching && self.SearchSTR.count > 0 {
+                let searchData = data.filter { obj in
+                    return (obj.title?.lowercased().contains(self.SearchSTR.lowercased()))!
                 }
-                if self.IsSearching && self.SearchSTR.count > 0 {
-                    let searchData = data.filter { obj in
-                        return (obj.title?.lowercased().contains(self.SearchSTR.lowercased()))!
-                    }
-                    filter = searchData
-                }
-                else {
-                    filter = data
-                }
+                filter = searchData
+            }
+            else {
+                filter = data
             }
         }
         return filter

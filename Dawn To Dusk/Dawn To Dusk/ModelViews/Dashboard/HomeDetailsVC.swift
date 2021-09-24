@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Lottie
 
 
 enum ShowDetailType {
@@ -31,6 +32,10 @@ class HomeDetailsVC: BaseClassVC {
     @IBOutlet weak var DateLBL: UILabel!
     @IBOutlet weak var DateIMG: UIImageView!
     @IBOutlet weak var DateBTN: UIButton!
+    
+    @IBOutlet weak var AgreeView: UIView!
+    @IBOutlet weak var CheckBoxBTN: UIButton!
+    @IBOutlet weak var AgreeLBL: UILabel!
     
     @IBOutlet weak var Price_cart_View: UIView!
     @IBOutlet weak var CartStack: UIStackView!
@@ -161,6 +166,10 @@ class HomeDetailsVC: BaseClassVC {
             self.SetupNavBarforback()
             self.NodataFoundView.isHidden = false
             self.DetailTBL.isHidden = true
+            self.DateView.isHidden = true
+            self.Price_cart_View.isHidden = true
+            self.BottomStack.isHidden = true
+            self.AgreeView.isHidden = true
             break
             
         case .Food:
@@ -172,7 +181,7 @@ class HomeDetailsVC: BaseClassVC {
                 self.carouselView.reloadData()
             }
             self.title = self.FoodDetails.title
-            self.SetupNavBarwithBack_cart()
+            self.SetupNavBarforback()
             self.setupBottomOption()
             break
             
@@ -185,7 +194,7 @@ class HomeDetailsVC: BaseClassVC {
                 self.carouselView.reloadData()
             }
             self.title = self.MealDetails.title
-            self.SetupNavBarwithBack_cart()
+            self.SetupNavBarforback()
             self.setupBottomOption()
             break
             
@@ -196,7 +205,9 @@ class HomeDetailsVC: BaseClassVC {
             self.title = self.BannerDetails.bannerTitle
             self.DateView.isHidden = true
             self.Price_cart_View.isHidden = true
-            self.SetupNavBarwithBack_cart()
+            self.BottomStack.isHidden = true
+            self.AgreeView.isHidden = true
+            self.SetupNavBarforback()
             break
             
         case .Notification:
@@ -210,7 +221,9 @@ class HomeDetailsVC: BaseClassVC {
             }
             self.DateView.isHidden = true
             self.Price_cart_View.isHidden = true
-            self.SetupNavBarwithBack_cart()
+            self.BottomStack.isHidden = true
+            self.AgreeView.isHidden = true
+            self.SetupNavBarforback()
             self.DetailTBL.reloadData()
             break
             
@@ -222,6 +235,10 @@ class HomeDetailsVC: BaseClassVC {
             self.SetupNavBarforback()
             self.NodataFoundView.isHidden = true
             self.DetailTBL.isHidden = false
+            self.DateView.isHidden = true
+            self.Price_cart_View.isHidden = true
+            self.BottomStack.isHidden = true
+            self.AgreeView.isHidden = true
             
             NetworkingRequests.shared.GetCartHistoryListing { (responseObjects, status) in
                 if status || responseObjects.status {
@@ -244,6 +261,11 @@ class HomeDetailsVC: BaseClassVC {
             self.SetupNavBarforback()
             self.NodataFoundView.isHidden = true
             self.DetailTBL.isHidden = false
+            
+            self.DateView.isHidden = true
+            self.Price_cart_View.isHidden = true
+            self.BottomStack.isHidden = true
+            self.AgreeView.isHidden = true
             
             NetworkingRequests.shared.GetAddressListing { (responseObject, status) in
                 if status || responseObject.status {
@@ -271,6 +293,11 @@ class HomeDetailsVC: BaseClassVC {
             self.NodataFoundView.isHidden = true
             self.DetailTBL.isHidden = false
             
+            self.DateView.isHidden = true
+            self.Price_cart_View.isHidden = true
+            self.BottomStack.isHidden = true
+            self.AgreeView.isHidden = true
+            
             NetworkingRequests.shared.GetPaymentmodeListing { (responseObject, status) in
                 if status || responseObject.status {
                     self.paymentarry = responseObject.data.payment
@@ -295,6 +322,11 @@ class HomeDetailsVC: BaseClassVC {
             self.SetupNavBarforback()
             self.NodataFoundView.isHidden = true
             self.DetailTBL.isHidden = false
+            
+            self.DateView.isHidden = true
+            self.Price_cart_View.isHidden = true
+            self.BottomStack.isHidden = true
+            self.AgreeView.isHidden = true
             break
             
         case .Supports:
@@ -306,6 +338,11 @@ class HomeDetailsVC: BaseClassVC {
             self.SetupNavBarforback()
             self.NodataFoundView.isHidden = true
             self.DetailTBL.isHidden = false
+            
+            self.DateView.isHidden = true
+            self.Price_cart_View.isHidden = true
+            self.BottomStack.isHidden = true
+            self.AgreeView.isHidden = true
             break
             
         case .Settings:
@@ -317,6 +354,11 @@ class HomeDetailsVC: BaseClassVC {
             self.SetupNavBarforback()
             self.NodataFoundView.isHidden = false
             self.DetailTBL.isHidden = true
+            
+            self.DateView.isHidden = true
+            self.Price_cart_View.isHidden = true
+            self.BottomStack.isHidden = true
+            self.AgreeView.isHidden = true
             break
             
         case .HistoryDetails:
@@ -327,6 +369,11 @@ class HomeDetailsVC: BaseClassVC {
             self.SetupNavBarforback()
             self.NodataFoundView.isHidden = true
             self.DetailTBL.isHidden = false
+            
+            self.DateView.isHidden = true
+            self.Price_cart_View.isHidden = true
+            self.BottomStack.isHidden = true
+            self.AgreeView.isHidden = true
             break
             
         case .TrackOrder:
@@ -337,6 +384,11 @@ class HomeDetailsVC: BaseClassVC {
             self.SetupNavBarforback()
             self.NodataFoundView.isHidden = true
             self.DetailTBL.isHidden = false
+            
+            self.DateView.isHidden = true
+            self.Price_cart_View.isHidden = true
+            self.BottomStack.isHidden = true
+            self.AgreeView.isHidden = true
             break
             
         default:
@@ -346,6 +398,11 @@ class HomeDetailsVC: BaseClassVC {
             self.SetupNavBarforback()
             self.NodataFoundView.isHidden = false
             self.DetailTBL.isHidden = true
+            
+            self.DateView.isHidden = true
+            self.Price_cart_View.isHidden = true
+            self.BottomStack.isHidden = true
+            self.AgreeView.isHidden = true
             break
         }
         self.DetailTBL.reloadData()
@@ -353,8 +410,14 @@ class HomeDetailsVC: BaseClassVC {
     
     func setupBottomOption() {
         
+        self.BottomStack.isHidden = false
         self.DateView.isHidden = false
         self.Price_cart_View.isHidden = false
+        
+        self.AgreeLBL.text = "Food will not be delivered on Friday and Saturday. I agree with the Terms of Service."
+        self.AgreeLBL.font = .boldSystemFont(ofSize: 17)
+        self.AgreeLBL.textColor = .red
+        self.AgreeView.isHidden = false
         
         if self.DetailType == .Meals {
             self.DateLBL.text = "Plan Start-End date"
@@ -398,6 +461,20 @@ class HomeDetailsVC: BaseClassVC {
             else {
                 let vc = LoginVC(nibName: "LoginVC", bundle: nil)
                 self.navigationController!.pushViewController(vc, animated: true)
+            }
+        }
+        else if sender == self.CheckBoxBTN {
+            if sender.isSelected {
+                self.AddCartBTN.isEnabled = false
+                self.AddCartBTN.alpha = 0.5
+                sender.isSelected = false
+                self.CheckBoxBTN.setImage(UIImage.init(systemName: "circlebadge"), for: .normal)
+            }
+            else {
+                self.AddCartBTN.isEnabled = true
+                self.AddCartBTN.alpha = 1.0
+                sender.isSelected = true
+                self.CheckBoxBTN.setImage(UIImage.init(systemName: "checkmark.circle.fill"), for: .normal)
             }
         }
         else {
@@ -1044,16 +1121,16 @@ extension HomeDetailsVC: WWCalendarTimeSelectorProtocol {
         calendarVC.optionCurrentDate = singleDate
         calendarVC.optionCurrentDateRange.setStartDate(multipleDates.first ?? singleDate)
         calendarVC.optionCurrentDateRange.setEndDate(multipleDates.last ?? singleDate)
-        if self.DetailType == .Food {
+//        if self.DetailType == .Food {
             calendarVC.optionStyles.showDateMonth(true)
             calendarVC.optionStyles.showMonth(false)
             calendarVC.optionStyles.showYear(false)
             calendarVC.optionStyles.showTime(false)
-        }
-        else if self.DetailType == .Meals {
-            calendarVC.optionSelectionType = WWCalendarTimeSelectorSelection.range
-            calendarVC.optionCurrentDates = Set(multipleDates)
-        }
+//        }
+//        else if self.DetailType == .Meals {
+//            calendarVC.optionSelectionType = WWCalendarTimeSelectorSelection.range
+//            calendarVC.optionCurrentDates = Set(multipleDates)
+//        }
         present(calendarVC, animated: true, completion: nil)
     }
     
@@ -1068,8 +1145,10 @@ extension HomeDetailsVC: WWCalendarTimeSelectorProtocol {
     func WWCalendarTimeSelectorDone(_ selector: WWCalendarTimeSelector, dates: [Date]) {
         print("Selected Multiple Dates \n\(dates)\n---")
         multipleDates = dates
-        self.AddCartBTN.isEnabled = true
-        self.AddCartBTN.alpha = 1.0
+//        if self.DetailType == .Food {
+//            self.AddCartBTN.isEnabled = true
+//            self.AddCartBTN.alpha = 1.0
+//        }
         self.DateLBL.text = dates.first?.convertDaterang(dt1: self.multipleDates.first!, dt2: self.multipleDates.last!)
     }
     

@@ -175,6 +175,12 @@ func getdefaultCountry(countryCode: String? = "AE") -> Country?  {
     return country.first
 }
 
+
+func randomString(length: Int? = Int.random(in: 11..<9999)) -> String {
+    let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+    return String((0..<length!).map{ _ in letters.randomElement()! })
+}
+
 //https://www.simplifiedcoding.net/php-restful-api-framework-slim-tutorial-1/
 //https://github.com/slimphp/Slim
 //https://www.w3jar.com/php-login-and-registration-restful-api/

@@ -111,8 +111,8 @@ public class BadgeHub: NSObject {
         
         setCircleAtFrame(CGRect(x: (frame?.size.width ?? 0.0) - ((Constants.notificHubDefaultDiameter) * 2 / 3),
                                 y: (-Constants.notificHubDefaultDiameter) / 3,
-                                width: CGFloat(Constants.notificHubDefaultDiameter),
-                                height: CGFloat(Constants.notificHubDefaultDiameter)))
+                                width: CGFloat(Constants.notificHubDefaultDiameter - 7),
+                                height: CGFloat(Constants.notificHubDefaultDiameter - 7)))
         
         view?.addSubview(redCircle)
         view?.addSubview(countLabel!)

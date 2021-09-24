@@ -70,7 +70,7 @@ class FloatingBarView: UIView {
         for (index, button) in buttons.enumerated() {
             if index == indexBD {
                 self.hub = BadgeHub(view: button)
-                self.hub?.moveCircleBy(x: 60, y: 15)
+                self.hub?.moveCircleBy(x: 65, y: 20)
                 self.hub?.blink()
                 self.hub?.increment(by: Counts)
             }

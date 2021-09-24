@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="dark"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -11,8 +12,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeDetailsVC" customModule="Dawn_To_Dusk" customModuleProvider="target">
             <connections>
                 <outlet property="AddCartBTN" destination="7aA-Qs-Ova" id="TwK-gf-TD8"/>
+                <outlet property="AgreeLBL" destination="3xR-QJ-4eT" id="EeQ-lI-P8Y"/>
+                <outlet property="AgreeView" destination="K0r-5C-0Bl" id="4DN-86-JFB"/>
                 <outlet property="BottomStack" destination="ZjK-2I-ovl" id="r8q-7A-Egj"/>
                 <outlet property="CartStack" destination="syI-ol-vSN" id="q9O-Mu-9yA"/>
+                <outlet property="CheckBoxBTN" destination="nQo-me-Y0V" id="1uS-vX-1bf"/>
                 <outlet property="DateBTN" destination="TNJ-60-1qz" id="K88-Hi-HTa"/>
                 <outlet property="DateIMG" destination="dAm-9F-0t1" id="6pL-yL-ckO"/>
                 <outlet property="DateLBL" destination="WTf-lQ-bNS" id="vPw-9n-mXl"/>
@@ -31,9 +35,9 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ZjK-2I-ovl">
-                    <rect key="frame" x="0.0" y="862" width="414" height="0.0"/>
+                    <rect key="frame" x="0.0" y="571" width="414" height="291"/>
                     <subviews>
-                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pzi-Mu-x1C">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pzi-Mu-x1C">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Pj-Nd-dKa">
@@ -59,7 +63,7 @@
                                             </connections>
                                         </button>
                                     </subviews>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="bottom" secondItem="TNJ-60-1qz" secondAttribute="bottom" id="592-sU-rz3"/>
                                         <constraint firstItem="TNJ-60-1qz" firstAttribute="leading" secondItem="4Pj-Nd-dKa" secondAttribute="leading" id="70P-2g-HWw"/>
@@ -74,7 +78,7 @@
                                     </constraints>
                                 </view>
                             </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstItem="4Pj-Nd-dKa" firstAttribute="leading" secondItem="pzi-Mu-x1C" secondAttribute="leading" constant="20" id="NBH-SU-zd2"/>
                                 <constraint firstAttribute="bottom" secondItem="4Pj-Nd-dKa" secondAttribute="bottom" id="T5W-qa-HRS"/>
@@ -82,8 +86,41 @@
                                 <constraint firstItem="4Pj-Nd-dKa" firstAttribute="top" secondItem="pzi-Mu-x1C" secondAttribute="top" constant="20" id="o7Y-yj-sEe"/>
                             </constraints>
                         </view>
-                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vMi-LS-o4C">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="90"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K0r-5C-0Bl" userLabel="AgreeView">
+                            <rect key="frame" x="0.0" y="90" width="414" height="91"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I am agree with above all selection and delivery address which is mention above place." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3xR-QJ-4eT">
+                                    <rect key="frame" x="70" y="15" width="324" height="61"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nQo-me-Y0V">
+                                    <rect key="frame" x="20" y="30.5" width="30" height="30"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="30" id="LqN-zt-JFR"/>
+                                        <constraint firstAttribute="width" constant="30" id="vW4-xs-43j"/>
+                                    </constraints>
+                                    <state key="normal" image="circle" catalog="system"/>
+                                    <connections>
+                                        <action selector="Tappedbuttons:" destination="-1" eventType="touchUpInside" id="Kcr-HG-98V"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="3xR-QJ-4eT" firstAttribute="centerY" secondItem="nQo-me-Y0V" secondAttribute="centerY" id="2oi-WK-tIY"/>
+                                <constraint firstAttribute="bottom" secondItem="3xR-QJ-4eT" secondAttribute="bottom" constant="15" id="3Lu-0w-Cug"/>
+                                <constraint firstItem="3xR-QJ-4eT" firstAttribute="top" secondItem="K0r-5C-0Bl" secondAttribute="top" constant="15" id="3ch-sY-lLK"/>
+                                <constraint firstAttribute="trailing" secondItem="3xR-QJ-4eT" secondAttribute="trailing" constant="20" id="ZBi-gr-MfY"/>
+                                <constraint firstItem="nQo-me-Y0V" firstAttribute="leading" secondItem="K0r-5C-0Bl" secondAttribute="leading" constant="20" id="Zek-vA-XP0"/>
+                                <constraint firstItem="3xR-QJ-4eT" firstAttribute="leading" secondItem="nQo-me-Y0V" secondAttribute="trailing" constant="20" id="rL9-uv-j3C"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vMi-LS-o4C">
+                            <rect key="frame" x="0.0" y="201" width="414" height="90"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="syI-ol-vSN">
                                     <rect key="frame" x="20" y="10" width="374" height="50"/>
@@ -107,7 +144,7 @@
                                     </subviews>
                                 </stackView>
                             </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstItem="syI-ol-vSN" firstAttribute="top" secondItem="vMi-LS-o4C" secondAttribute="top" constant="10" id="REF-59-FVp"/>
                                 <constraint firstAttribute="bottom" secondItem="syI-ol-vSN" secondAttribute="bottom" constant="30" id="XyX-JK-7pr"/>
@@ -116,9 +153,15 @@
                             </constraints>
                         </view>
                     </subviews>
+                    <constraints>
+                        <constraint firstItem="K0r-5C-0Bl" firstAttribute="top" secondItem="pzi-Mu-x1C" secondAttribute="bottom" constant="20" id="EG2-VG-9LL"/>
+                        <constraint firstItem="vMi-LS-o4C" firstAttribute="top" secondItem="K0r-5C-0Bl" secondAttribute="bottom" constant="20" id="G5t-b2-yKJ"/>
+                        <constraint firstItem="pzi-Mu-x1C" firstAttribute="top" secondItem="ZjK-2I-ovl" secondAttribute="top" id="MtS-Y0-Qdq"/>
+                        <constraint firstAttribute="bottom" secondItem="vMi-LS-o4C" secondAttribute="bottom" id="zUJ-ar-dmN"/>
+                    </constraints>
                 </stackView>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QCn-Xv-lGJ">
-                    <rect key="frame" x="0.0" y="54" width="414" height="808"/>
+                    <rect key="frame" x="0.0" y="54" width="414" height="517"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rBR-cs-dEY" customClass="NodataView" customModule="Dawn_To_Dusk" customModuleProvider="target">
@@ -150,6 +193,7 @@
     <resources>
         <image name="NodataIMG" width="639" height="374"/>
         <image name="calendar" catalog="system" width="128" height="106"/>
+        <image name="circle" catalog="system" width="128" height="121"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
