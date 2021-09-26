@@ -64,10 +64,12 @@ struct SendotpParamDict {
 
 struct OTPcodeParamDict {
     var code: String?
+    var mobile: String?
+    var countryCode: String?
     
     var description: [String: Any] {
         get {
-            return ["code":code!]
+            return ["code":code!, "mobile":mobile!, "countryCode":countryCode! ]
          }
     }
 }

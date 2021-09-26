@@ -110,6 +110,8 @@ class LoginVC: BaseClassVC {
                 if status {
                     let vc = OTPVerifyVC(nibName: "OTPVerifyVC", bundle: nil)
                     vc.OTP_Type = .Login
+                    vc.mobile = self.TXTMobileno.text!
+                    vc.countrycode = self.SelectedCountry.phoneExtension
                     vc.Message = String.init(format: "Please, enter the OTP which was we shared on +%@ %@?", self.SelectedCountry.phoneExtension, self.TXTMobileno.text!)
                     self.navigationController!.pushViewController(vc, animated: true)
                 }

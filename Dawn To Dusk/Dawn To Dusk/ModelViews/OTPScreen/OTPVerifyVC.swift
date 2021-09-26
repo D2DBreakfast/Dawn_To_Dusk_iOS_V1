@@ -138,7 +138,8 @@ class OTPVerifyVC: BaseClassVC {
     @IBAction func TappedVerifyBTN(_ sender: UIButton) {
         if self.EnteredOTP.count == self.OTP_count {
             self.showLoaderActivity()
-            NetworkingRequests.shared.Request_UserVerifyOTP(param: OTPcodeParamDict.init(code: self.EnteredOTP)) { (responseObject, status) in
+            let param = OTPcodeParamDict.init(code: self.EnteredOTP, mobile: self.mobile, countryCode: self.countrycode)
+            NetworkingRequests.shared.Request_UserVerifyOTP(param: param) { (responseObject, status) in
                 if status && ((responseObject.data?.accessToken?.IsStrEmpty()) != nil) {
                     SharedUserInfo.shared.SaveUserInfodata(info: responseObject.data!)
                     let vc = HomeDashboardVC()
