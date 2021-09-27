@@ -131,8 +131,32 @@ class OTPVerifyVC: BaseClassVC {
     //    MARK:-
     
     @IBAction func TappedResendBTN(_ sender: UIButton) {
-        self.countdown = 60
-        self.OTPtimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updatetimers), userInfo: nil, repeats: true)
+        if self.mobile.count != 0 && self.countrycode.count != 0 {
+            self.showLoaderActivity()
+            let param = SendotpParamDict.init(mobile: self.mobile, countryCode: self.countrycode)
+            
+            NetworkingRequests.shared.Request_SendOTP(param: param) { (responseObject, status) in
+                if status {
+                    if responseObject.status && responseObject.code == 200 {
+                        self.navigationController?.view.makeToast(responseObject.message!, duration: 3.0, position: .top)
+                        self.countdown = 60
+                        self.OTPtimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.updatetimers), userInfo: nil, repeats: true)
+                    }
+                }
+                else {
+                    self.navigationController?.view.makeToast(responseObject.message!, duration: 3.0, position: .top)
+                }
+                self.hideLoaderActivity()
+            } onFailure: { message in
+                if IsInternetIssue(message: message) {
+                    
+                }
+                else {
+                    self.navigationController?.view.makeToast(message, duration: 3.0, position: .top)
+                    self.hideLoaderActivity()
+                }
+            }
+        }
     }
     
     @IBAction func TappedVerifyBTN(_ sender: UIButton) {
