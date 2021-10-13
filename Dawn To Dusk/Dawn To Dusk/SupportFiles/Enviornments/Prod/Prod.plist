@@ -30,10 +30,6 @@
 	<true/>
 	<key>LoginApi</key>
 	<string>${LoginApi}</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Request permission to use location service when the apps is in background.</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>$(PRODUCT_NAME) uses your Photo Library to update Profile Picture and Upload Documents.</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
@@ -42,21 +38,22 @@
 		<true/>
 		<key>NSExceptionDomains</key>
 		<dict>
-			<key>127.0.0.1</key>
+			<key>https://d2dbackendmain.azurewebsites.net</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
 				<true/>
-			</dict>
-			<key>localhost</key>
-			<dict>
-				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<key>NSIncludesSubdomains</key>
 				<true/>
 			</dict>
 		</dict>
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>$(PRODUCT_NAME) uses your Camera to capture photos to update Profile Picture and Upload Documents.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Request permission to use location service when the apps is in background.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>$(PRODUCT_NAME) uses your Photo Library to update Profile Picture and Upload Documents.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
 	<string>$(PRODUCT_NAME) uses your Photo Library to update Profile Picture and Upload Documents.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>

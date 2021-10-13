@@ -252,6 +252,10 @@
 		B79210B826C27ED300D014B1 /* LocationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79210A826C27ED300D014B1 /* LocationItem.swift */; };
 		B79210B926C27ED300D014B1 /* LocationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79210A826C27ED300D014B1 /* LocationItem.swift */; };
 		B79210BA26C27ED300D014B1 /* LocationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79210A826C27ED300D014B1 /* LocationItem.swift */; };
+		B79C5C6E2702CD0E00473A1C /* CompleteOrderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79C5C6C2702CD0E00473A1C /* CompleteOrderVC.swift */; };
+		B79C5C6F2702CD0E00473A1C /* CompleteOrderVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B79C5C6D2702CD0E00473A1C /* CompleteOrderVC.xib */; };
+		B79C5C712702E44600473A1C /* DetailsBottomOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79C5C702702E44600473A1C /* DetailsBottomOptionView.swift */; };
+		B79C5C732702E46100473A1C /* DetailsBottomOptionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B79C5C722702E46100473A1C /* DetailsBottomOptionView.xib */; };
 		B79E193626B7D67B007F67DA /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79E192D26B7D67B007F67DA /* Extentions.swift */; };
 		B79E193726B7D67B007F67DA /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79E192D26B7D67B007F67DA /* Extentions.swift */; };
 		B79E193826B7D67B007F67DA /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79E192D26B7D67B007F67DA /* Extentions.swift */; };
@@ -569,6 +573,10 @@
 		B79210A626C27ED300D014B1 /* StyleKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleKit.swift; sourceTree = "<group>"; };
 		B79210A726C27ED300D014B1 /* LocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
 		B79210A826C27ED300D014B1 /* LocationItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationItem.swift; sourceTree = "<group>"; };
+		B79C5C6C2702CD0E00473A1C /* CompleteOrderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteOrderVC.swift; sourceTree = "<group>"; };
+		B79C5C6D2702CD0E00473A1C /* CompleteOrderVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CompleteOrderVC.xib; sourceTree = "<group>"; };
+		B79C5C702702E44600473A1C /* DetailsBottomOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsBottomOptionView.swift; sourceTree = "<group>"; };
+		B79C5C722702E46100473A1C /* DetailsBottomOptionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailsBottomOptionView.xib; sourceTree = "<group>"; };
 		B79E192D26B7D67B007F67DA /* Extentions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
 		B79E192E26B7D67B007F67DA /* NSDateComponents+Timepiece.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDateComponents+Timepiece.swift"; sourceTree = "<group>"; };
 		B79E192F26B7D67B007F67DA /* NSCalendar+Timepiece.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSCalendar+Timepiece.swift"; sourceTree = "<group>"; };
@@ -904,6 +912,7 @@
 				B745BAC326AEA0E50048ECA8 /* NotificationVC.swift */,
 				973CBAE126BAEEB800334064 /* SupportVC.swift */,
 				B745BAC726AEA0F80048ECA8 /* UserAccountVC.swift */,
+				B79C5C6C2702CD0E00473A1C /* CompleteOrderVC.swift */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -935,6 +944,7 @@
 		B745BACB26AEB5CF0048ECA8 /* CommonViews */ = {
 			isa = PBXGroup;
 			children = (
+				B79C5C722702E46100473A1C /* DetailsBottomOptionView.xib */,
 				B792108226C25D1C00D014B1 /* LocationPickerVC.xib */,
 				B745BAD226AEBFA40048ECA8 /* NavHeaderView.xib */,
 				97609F8526B30F1D00BF422A /* NodataView.xib */,
@@ -954,6 +964,7 @@
 		B745BAD126AEBFA40048ECA8 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B79C5C702702E44600473A1C /* DetailsBottomOptionView.swift */,
 				B745BAD326AEBFA40048ECA8 /* NavHeaderView.swift */,
 				97609F8326B30ED000BF422A /* NodataView.swift */,
 			);
@@ -1045,6 +1056,7 @@
 		B77BA49326AADFF500E408B1 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
+				B79C5C6D2702CD0E00473A1C /* CompleteOrderVC.xib */,
 				B762BE4A26CE1B1500F17AB1 /* AddPaymentVC.xib */,
 				971D10A526C1776A0031E532 /* AddressAddVC.xib */,
 				B76315DF26B3FF1D000BA46E /* CartManageVC.xib */,
@@ -1410,6 +1422,7 @@
 				B745BAC626AEA0E50048ECA8 /* NotificationVC.xib in Resources */,
 				B731C82F26A6EFB900379CCB /* LaunchScreen.storyboard in Resources */,
 				B7E6F0E026CE662500CD5428 /* RunningOrderTrackCell.xib in Resources */,
+				B79C5C6F2702CD0E00473A1C /* CompleteOrderVC.xib in Resources */,
 				B7812EBD26B7FB8C001D3F2A /* WWCalendarTimeSelector.storyboard in Resources */,
 				B745BAD426AEBFA40048ECA8 /* NavHeaderView.xib in Resources */,
 				97A0510F26F0FC5E00E65862 /* paymentmode.json in Resources */,
@@ -1428,6 +1441,7 @@
 				B722A14F26EA271600A336CD /* foodlisting.json in Resources */,
 				B722A14926EA271600A336CD /* sub-categorylist.json in Resources */,
 				B78A623D26A93251002DBD7C /* Colors.xcassets in Resources */,
+				B79C5C732702E46100473A1C /* DetailsBottomOptionView.xib in Resources */,
 				9744C79D26B1BDE300807478 /* HomeBannerCell.xib in Resources */,
 				971D10A926C1776A0031E532 /* AddressAddVC.xib in Resources */,
 				B745BAC226AEA0D40048ECA8 /* GlobalSearchVC.xib in Resources */,
@@ -1544,6 +1558,7 @@
 				B7EE5CFA26D6442500FDD52F /* CategoryData.swift in Sources */,
 				B745BAC526AEA0E50048ECA8 /* NotificationVC.swift in Sources */,
 				B77BA48426AAC1BC00E408B1 /* OTPVerifyVC.swift in Sources */,
+				B79C5C6E2702CD0E00473A1C /* CompleteOrderVC.swift in Sources */,
 				B7F70ABB26F0B26100C7721A /* UserInfoAddresRootClass.swift in Sources */,
 				9762EFA826BAC656002F1328 /* UserOptionCell.swift in Sources */,
 				97866C2A26BDB2AE007F88A9 /* AddressCell.swift in Sources */,
@@ -1566,6 +1581,7 @@
 				B731C82726A6EFB800379CCB /* HomeLoginVC.swift in Sources */,
 				B77BA44D26AAA07E00E408B1 /* Environment.swift in Sources */,
 				B722A10726E9E83D00A336CD /* PaymentModeData.swift in Sources */,
+				B79C5C712702E44600473A1C /* DetailsBottomOptionView.swift in Sources */,
 				B716B3CE26CB80BE00B6D4C7 /* RRAlamofireRxAPI.swift in Sources */,
 				B7EE5CEA26D6425F00FDD52F /* UserInfoCommunity.swift in Sources */,
 				B7EE5D4626D64A2F00FDD52F /* NotificationListRootClass.swift in Sources */,
@@ -1999,9 +2015,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Dawn To Dusk/Dawn To Dusk.entitlements";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/Dawn To Dusk/SupportFiles/Enviornments/Dev/Dev.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2009,6 +2027,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.utico.Dawn-To-Dusk";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = Dev_DEBUG;
 				SWIFT_OBJC_BRIDGING_HEADER = "Dawn To Dusk/SupportFiles/Dawn To Dusk-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -2023,9 +2042,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Dawn To Dusk/Dawn To Dusk.entitlements";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/Dawn To Dusk/SupportFiles/Enviornments/Dev/Dev.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2033,6 +2054,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.utico.Dawn-To-Dusk";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = Dev_RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "Dawn To Dusk/SupportFiles/Dawn To Dusk-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -2203,9 +2225,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Dawn To Dusk/Dawn To Dusk.entitlements";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/Dawn To Dusk/SupportFiles/Enviornments/QAT/QAT.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2213,6 +2237,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.utico.Dawn-To-Dusk";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = QAT_DEBUG;
 				SWIFT_OBJC_BRIDGING_HEADER = "Dawn To Dusk/SupportFiles/Dawn To Dusk-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -2338,9 +2363,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Dawn To Dusk/Dawn To Dusk.entitlements";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/Dawn To Dusk/SupportFiles/Enviornments/Prod/Prod.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2348,6 +2375,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.utico.Dawn-To-Dusk";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = Prod_DEBUG;
 				SWIFT_OBJC_BRIDGING_HEADER = "Dawn To Dusk/SupportFiles/Dawn To Dusk-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -2467,9 +2495,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Dawn To Dusk/Dawn To Dusk.entitlements";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/Dawn To Dusk/SupportFiles/Enviornments/QAT/QAT.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2477,6 +2507,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.utico.Dawn-To-Dusk";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = QAT_RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "Dawn To Dusk/SupportFiles/Dawn To Dusk-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -2593,9 +2624,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Dawn To Dusk/Dawn To Dusk.entitlements";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/Dawn To Dusk/SupportFiles/Enviornments/Prod/Prod.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2603,6 +2636,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.utico.Dawn-To-Dusk";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = Prod_RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "Dawn To Dusk/SupportFiles/Dawn To Dusk-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="s5S-P6-TJX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="s5S-P6-TJX">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -33,8 +34,8 @@
                                     <action selector="TappedStarted:" destination="BYZ-38-t0r" eventType="touchUpInside" id="T57-hJ-pgG"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eWK-qV-qou">
-                                <rect key="frame" x="30" y="368" width="160" height="160"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HomeLogo" translatesAutoresizingMaskIntoConstraints="NO" id="eWK-qV-qou">
+                                <rect key="frame" x="127" y="194" width="160" height="160"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="160" id="6tP-OV-kzy"/>
                                     <constraint firstAttribute="height" constant="160" id="kqW-DL-0s4"/>
@@ -61,11 +62,11 @@
                             <constraint firstItem="6ih-xj-sMt" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="9ZE-WH-f7D"/>
                             <constraint firstAttribute="trailing" secondItem="6ih-xj-sMt" secondAttribute="trailing" id="AT0-HC-52I"/>
                             <constraint firstItem="6ih-xj-sMt" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="EYT-kF-0tX"/>
+                            <constraint firstItem="eWK-qV-qou" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="150" id="EdS-4Y-9dx"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="pT6-zA-K2C" secondAttribute="trailing" constant="30" id="JZg-5D-kDh"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="UIe-hj-9AA" secondAttribute="trailing" constant="30" id="aPI-Co-NNg"/>
+                            <constraint firstItem="eWK-qV-qou" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="cGO-6l-Agq"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="UIe-hj-9AA" secondAttribute="bottom" constant="30" id="ggy-vd-O6P"/>
-                            <constraint firstItem="eWK-qV-qou" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="hMS-vT-3Yj"/>
-                            <constraint firstItem="eWK-qV-qou" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="sKv-Ap-29H"/>
                             <constraint firstAttribute="bottom" secondItem="6ih-xj-sMt" secondAttribute="bottom" id="stk-rF-qwr"/>
                         </constraints>
                     </view>
@@ -100,7 +101,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Backfround" width="411" height="823"/>
+        <image name="Backfround" width="640" height="480"/>
+        <image name="HomeLogo" width="1225" height="1225"/>
         <namedColor name="ModeColor">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

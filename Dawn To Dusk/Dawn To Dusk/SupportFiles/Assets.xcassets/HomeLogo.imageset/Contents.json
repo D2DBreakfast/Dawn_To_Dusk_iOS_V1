@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "logo.png",
+      "filename" : "Dawn_to_Dusk_FINAL.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "Dawn_to_Dusk_FINAL@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "Dawn_to_Dusk_FINAL@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

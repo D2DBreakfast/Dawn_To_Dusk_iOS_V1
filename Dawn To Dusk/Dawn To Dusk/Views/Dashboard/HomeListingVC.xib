@@ -41,6 +41,13 @@
                         <outlet property="delegate" destination="-1" id="VcB-nF-I1f"/>
                     </connections>
                 </searchBar>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5DO-M4-X7B" customClass="NodataView" customModule="Dawn_To_Dusk" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="95" width="414" height="767"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="image" keyPath="image" value="NodataIMG"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V6B-hx-M61">
                     <rect key="frame" x="0.0" y="95" width="414" height="100"/>
                     <subviews>
@@ -127,13 +134,6 @@
                         <constraint firstItem="JuJ-M9-AYt" firstAttribute="leading" secondItem="V6B-hx-M61" secondAttribute="leading" constant="20" id="tfZ-sz-g5J"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5DO-M4-X7B" customClass="NodataView" customModule="Dawn_To_Dusk" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="205" width="414" height="657"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="image" keyPath="image" value="NodataIMG"/>
-                    </userDefinedRuntimeAttributes>
-                </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" keyboardDismissMode="onDrag" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WwW-j1-Zx6" customClass="TPKeyboardAvoidingTableView">
                     <rect key="frame" x="0.0" y="205" width="414" height="657"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -144,8 +144,8 @@
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="5DO-M4-X7B" firstAttribute="width" secondItem="WwW-j1-Zx6" secondAttribute="width" id="2oI-Td-5JI"/>
-                <constraint firstItem="5DO-M4-X7B" firstAttribute="height" secondItem="WwW-j1-Zx6" secondAttribute="height" id="36V-MZ-cdg"/>
                 <constraint firstItem="WwW-j1-Zx6" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="7TJ-u6-giZ"/>
+                <constraint firstItem="5DO-M4-X7B" firstAttribute="top" secondItem="Jx4-ON-iYQ" secondAttribute="bottom" id="BTM-Wa-DAe"/>
                 <constraint firstItem="Jx4-ON-iYQ" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="IyU-L8-jCK"/>
                 <constraint firstItem="Jx4-ON-iYQ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="MrJ-hP-Egz"/>
                 <constraint firstItem="5DO-M4-X7B" firstAttribute="bottom" secondItem="WwW-j1-Zx6" secondAttribute="bottom" id="OZj-je-uap"/>
@@ -155,7 +155,6 @@
                 <constraint firstItem="V6B-hx-M61" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="fUc-VI-7D5"/>
                 <constraint firstItem="WwW-j1-Zx6" firstAttribute="top" secondItem="V6B-hx-M61" secondAttribute="bottom" constant="10" id="gbL-G0-fbb"/>
                 <constraint firstItem="5DO-M4-X7B" firstAttribute="leading" secondItem="WwW-j1-Zx6" secondAttribute="leading" id="mhY-T8-dMX"/>
-                <constraint firstItem="5DO-M4-X7B" firstAttribute="top" secondItem="WwW-j1-Zx6" secondAttribute="top" id="neW-P7-7KP"/>
                 <constraint firstItem="V6B-hx-M61" firstAttribute="top" secondItem="Jx4-ON-iYQ" secondAttribute="bottom" id="qGn-gR-SZx"/>
                 <constraint firstItem="WwW-j1-Zx6" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="uLG-K4-WqJ"/>
                 <constraint firstItem="5DO-M4-X7B" firstAttribute="trailing" secondItem="WwW-j1-Zx6" secondAttribute="trailing" id="xXc-iS-LjX"/>

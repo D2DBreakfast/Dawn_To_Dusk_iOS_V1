@@ -20,11 +20,15 @@ timeout_interval                = 120
 
 //http://localhost:5000/api/user/authenticate
 
-protocol                        = http
-server_url                      = localhost:5000
-DomainFolder                    = /api/user
+protocol                        = https
+server_url                      = d2dbackendmain.azurewebsites.net
+DomainFolder                    = /
 
-RegisterAPI                     = /register
-AuthenticationAPI               = /authenticate
-LoginAPI                        = /login
-VerifyOtpAPI                    = /varifyOtp
+RegisterAPI                     = register
+LoginAPI                        = userLogin
+VerifyOtpAPI                    = verifyOtp
+UpdateUserAPI                   = /user/updateUser
+
+GetFoodMenu                     = /menu/getmenu
+GetCatMenu                      = /menu/getcatmenu
+GetSub_CatMenu                  = /menu/getsub_catmenu

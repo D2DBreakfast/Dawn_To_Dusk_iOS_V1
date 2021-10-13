@@ -16,16 +16,27 @@ class OTPVerifyVC: BaseClassVC {
     //    MARK:- IBOutlets
     //    MARK:-
     
+    @IBOutlet weak var mainStack: UIStackView!
     @IBOutlet weak var BGimg: UIImageView!
     
+    @IBOutlet weak var TopView: UIView!
     @IBOutlet weak var LogoIMG: UIImageView!
-    @IBOutlet weak var TitleLBL: UILabel!
     
-    @IBOutlet weak var MessageLBL: UILabel!
+    @IBOutlet weak var OptionStack: UIStackView!
     
-    @IBOutlet weak var otpTextFieldView: OTPFieldView!
+    @IBOutlet weak var OTPStack: UIView!
+    @IBOutlet weak var OTPTitle: UILabel!
+    @IBOutlet weak var OTPSepratorLBL: UILabel!
+    @IBOutlet weak var OTPOption: UIButton!
+    
+    @IBOutlet weak var OptionsView: UIView!
     
     @IBOutlet weak var BackBTN: UIButton!
+    
+    @IBOutlet weak var CenterView: UIView!
+    @IBOutlet weak var MessageLBL: UILabel!
+    @IBOutlet weak var otpTextFieldView: OTPFieldView!
+    
     @IBOutlet weak var ResendBTN: UIButton!
     @IBOutlet weak var VerifyBTN: UIButton!
     
@@ -77,25 +88,27 @@ class OTPVerifyVC: BaseClassVC {
         
         self.view.backgroundColor = ModeBG_Color
         
+        self.TopView.backgroundColor = UIColor.colorWithHexString(hexStr: GetDefaultTheme()!)
+        self.TopView.clipsToBounds = true
+        self.TopView.layer.cornerRadius = 25
+        
         self.BackBTN.clipsToBounds = true
         self.BackBTN.layer.cornerRadius = 10
         self.BackBTN.backgroundColor = UIColor.colorWithHexString(hexStr: GetDefaultTheme()!).withAlphaComponent(0.40)
         
-        self.TitleLBL.text = "OTP Verify"
-        self.TitleLBL.textColor = UIColor.colorWithHexString(hexStr: GetDefaultTheme()!)
-        
         self.MessageLBL.text = self.Message
+        self.MessageLBL.textColor = .black
         
         self.VerifyBTN.setTitleColor(.white, for: .normal)
         self.VerifyBTN.clipsToBounds = true
-        self.VerifyBTN.layer.cornerRadius = 10
+        self.VerifyBTN.layer.cornerRadius = self.VerifyBTN.frame.height / 2
         self.VerifyBTN.layer.borderColor = WhiteBorderColor?.cgColor
         self.VerifyBTN.layer.borderWidth = 1
         self.VerifyBTN.isEnabled = false
         self.VerifyBTN.alpha = 0.5
         self.VerifyBTN.backgroundColor = UIColor.colorWithHexString(hexStr: GetDefaultTheme()!)
         
-        self.ResendBTN.setTitleColor(.white, for: .normal)
+        self.ResendBTN.setTitleColor(.black, for: .normal)
         self.ResendBTN.setTitle(timeFormatted(self.countdown), for: .normal)
         self.ResendBTN.isEnabled = false
         self.ResendBTN.alpha = 0.5

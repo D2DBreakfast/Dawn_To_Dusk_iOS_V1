@@ -200,6 +200,33 @@ class EditFormVC: BaseClassVC {
                     self.PriofileIMG.image = image
                 }
             }
+            else {
+                if self.isUpdateMode {
+                    self.showLoaderActivity()
+                    let param = UpdateProfileParamDict.init(fullname: self.TXTField1.text, email: self.TXTField2.text, mobile: SharedUserInfo.shared.GetUserInfodata()?.user.mobile)
+                    NetworkingRequests.shared.Request_UpdateProfile(param: param) { (responseObject, status) in
+                        if status && ((responseObject.data?.accessToken?.IsStrEmpty()) != nil) {
+                            SharedUserInfo.shared.SaveUserInfodata(info: responseObject.data!)
+                            self.navigationController?.view.makeToast(responseObject.message!, duration: 3.0, position: .top)
+                        }
+                        else {
+                            self.navigationController?.view.makeToast(responseObject.message!, duration: 3.0, position: .top)
+                        }
+                        self.hideLoaderActivity()
+                        self.navigationController?.popViewController(animated: true)
+                    } onFailure: { message in
+                        if IsInternetIssue(message: message) {
+                            
+                        }
+                        else {
+                            self.navigationController?.view.makeToast(message, duration: 3.0, position: .top)
+                            self.hideLoaderActivity()
+                        }
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                    
+                }
+            }
             break
             
         case .ContactHelp:

@@ -37,6 +37,7 @@ class GlobalSearchVC: BaseClassVC {
             }
             else {
                 let vc = LoginVC(nibName: "LoginVC", bundle: nil)
+                vc.LoginSelected = 100
                 self.navigationController!.pushViewController(vc, animated: true)
             }
         }

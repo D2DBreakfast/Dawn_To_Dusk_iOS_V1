@@ -58,6 +58,7 @@ class HomeLoginVC: BaseClassVC {
     
     @IBAction func TappedStarted(_ sender: UIButton) {
         let vc = LoginVC(nibName: "LoginVC", bundle: nil)
+        vc.LoginSelected = 100
         self.navigationController!.pushViewController(vc, animated: true)
     }
     

@@ -86,10 +86,24 @@ struct ListingParamDict {
 }
 
 struct SubCatParamDict {
-    var id: Int?
+    var id: String?
     
-    init(id: Int?) {
-        self.id = id
+    var description: [String: Any] {
+        get {
+            return ["id": id!]
+         }
+    }
+}
+
+struct UpdateProfileParamDict {
+    var fullname: String?
+    var email: String?
+    var mobile: String?
+    
+    var description: [String: Any] {
+        get {
+            return ["fullname": fullname!, "email":email!, "mobile":mobile!]
+         }
     }
 }
 

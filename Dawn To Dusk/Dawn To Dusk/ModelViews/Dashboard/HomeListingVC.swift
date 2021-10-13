@@ -49,6 +49,7 @@ class HomeListingVC: BaseClassVC {
             }
             else {
                 let vc = LoginVC(nibName: "LoginVC", bundle: nil)
+                vc.LoginSelected = 100
                 self.navigationController!.pushViewController(vc, animated: true)
             }
         }
@@ -144,6 +145,9 @@ class HomeListingVC: BaseClassVC {
             self.navigationController?.view.makeToast(message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
         }
         
+        self.setupCategoryView()
+        self.setupsubcatview()
+        
         NetworkingRequests.shared.GetFoodListing(param: ListingParamDict.init(page: 1, count: 20)) { (responseObject, status) in
             if status {
                 if responseObject.data.orders.count > 1 {
@@ -162,9 +166,6 @@ class HomeListingVC: BaseClassVC {
         }
         
         self.SearchBar.delegate = self
-        
-        self.setupCategoryView()
-        self.setupsubcatview()
         
         self.FoodListTBL.delegate = self
         self.FoodListTBL.dataSource = self
@@ -261,7 +262,9 @@ class HomeListingVC: BaseClassVC {
         let array = self.MainCatArry.compactMap { obj in
             return PintrestTitle.init(id: obj.id, title: obj.catName)
         }
-        self.SelectedMainCat = self.getMaincatOBJ(name: array.first!)
+        if array.count != 0 {
+            self.SelectedMainCat = self.getMaincatOBJ(name: array.first!)
+        }
         return array
     }
     
@@ -274,49 +277,55 @@ class HomeListingVC: BaseClassVC {
     
     // TODO: Setup SubCategory
     func setupsubcatview() {
-        
-        NetworkingRequests.shared.GetSubCategoryListing(param: SubCatParamDict.init(id: self.SelectedMainCat.id)) { (subcatData, status) in
-            if status {
-                if subcatData.data.category.count != 0 {
-                    self.SubCatArry = subcatData.data.category
+        if self.SelectedMainCat == nil {
+            self.subHeaderView.isHidden = true
+        }
+        else {
+            let param = SubCatParamDict.init(id: String.init(format: "%@", self.SelectedMainCat.id))
+            NetworkingRequests.shared.GetSubCategoryListing(param: param) { (subcatData, status) in
+                if status {
+                    if subcatData.data.category.count != 0 {
+                        self.SubCatArry = subcatData.data.category
+                    }
                 }
+                else {
+                    self.navigationController?.view.makeToast(subcatData.message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
+                }
+            } onFailure: { (message) in
+                self.navigationController?.view.makeToast(message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
             }
-            else {
-                self.navigationController?.view.makeToast(subcatData.message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
-            }
-        } onFailure: { (message) in
-            self.navigationController?.view.makeToast(message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
-        }
-        
-        if self.MultipleSelect {
-            self.SubCatView.isHidden = true
-            self.SubCatView2.isHidden = false
-            self.SubCatView2.allowsSelection = true
-            self.SubCatView2.register(UINib(nibName:"SubCategoryCells", bundle: nil), forCellWithReuseIdentifier: "SubCategoryCells")
             
-            self.SubCatView2.delegate = self
-            self.SubCatView2.dataSource = self
-            self.SubCatView2.reloadData()
-        }
-        else  {
-            self.SubCatView.isHidden = false
-            self.SubCatView2.isHidden = true
-            self.FilterSwitch.onTintColor = UIColor.colorWithHexString(hexStr: GetDefaultTheme()!)
-            self.subHeaderView.backgroundColor = ModeBG_Color
-            self.FilterView.backgroundColor = ModeBG_Color
-            self.SubCatView.backgroundColor = ModeBG_Color
-            self.SubCatView.indicatorColor = UIColor.colorWithHexString(hexStr: GetDefaultTheme()!)
-            self.SubCatView.titleFont = UIFont.boldSystemFont(ofSize: 17)
-            self.SubCatView.normalTitleColor = UIColor.colorWithHexString(hexStr: GetDefaultTheme()!)
-            self.SubCatView.selectedTitleColor = UIColor.white
-            self.SubCatView.titles = self.getSubCatNameArray()!
-            self.SubCatView.valueChange = { index in
-                self.SelectedSubCat = self.getSubcatOBJ(name: index)
-                self.FoodListTBL.reloadData()
+            if self.MultipleSelect {
+                self.SubCatView.isHidden = true
+                self.SubCatView2.isHidden = false
+                self.SubCatView2.allowsSelection = true
+                self.SubCatView2.register(UINib(nibName:"SubCategoryCells", bundle: nil), forCellWithReuseIdentifier: "SubCategoryCells")
+                
+                self.SubCatView2.delegate = self
+                self.SubCatView2.dataSource = self
+                self.SubCatView2.reloadData()
             }
-            self.SubCatView.CheckUncheckvalueChange = { index in
-                self.SelectedSubCat = nil
-                self.FoodListTBL.reloadData()
+            else  {
+                self.SubCatView.isHidden = false
+                self.SubCatView2.isHidden = true
+                self.FilterSwitch.onTintColor = UIColor.colorWithHexString(hexStr: GetDefaultTheme()!)
+                self.subHeaderView.backgroundColor = ModeBG_Color
+                self.FilterView.backgroundColor = ModeBG_Color
+                self.SubCatView.backgroundColor = ModeBG_Color
+                self.SubCatView.indicatorColor = UIColor.colorWithHexString(hexStr: GetDefaultTheme()!)
+                self.SubCatView.titleFont = UIFont.boldSystemFont(ofSize: 17)
+                self.SubCatView.normalTitleColor = UIColor.colorWithHexString(hexStr: GetDefaultTheme()!)
+                self.SubCatView.selectedTitleColor = UIColor.white
+                self.SubCatView.titles = self.getSubCatNameArray()!
+                self.SubCatView.valueChange = { index in
+                    self.SelectedSubCat = self.getSubcatOBJ(name: index)
+                    self.FoodListTBL.reloadData()
+                }
+                self.SubCatView.CheckUncheckvalueChange = { index in
+                    self.SelectedSubCat = nil
+                    self.FoodListTBL.reloadData()
+                }
+                self.subHeaderView.isHidden = false
             }
         }
         
@@ -674,6 +683,7 @@ extension HomeListingVC: UITableViewDelegate, UITableViewDataSource {
             }
             else {
                 let vc = LoginVC(nibName: "LoginVC", bundle: nil)
+                vc.LoginSelected = 100
                 self.navigationController!.pushViewController(vc, animated: true)
             }
         }

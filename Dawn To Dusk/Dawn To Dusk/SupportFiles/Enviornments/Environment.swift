@@ -18,6 +18,10 @@ public enum PlistKey {
     case AuthenticationAPI
     case LoginAPI
     case VerifyOtpAPI
+    case UpdateUserAPI
+    case GetFoodMenu
+    case GetCatMenu
+    case GetSub_CatMenu
     
     
     func value() -> String {
@@ -38,6 +42,14 @@ public enum PlistKey {
             return "LoginAPI"
         case .VerifyOtpAPI:
             return "VerifyOtpAPI"
+        case .UpdateUserAPI:
+            return "UpdateUserAPI"
+        case .GetFoodMenu:
+            return "GetFoodMenu"
+        case .GetCatMenu:
+            return "GetCatMenu"
+        case .GetSub_CatMenu:
+            return "GetSub_CatMenu"
         }
     }
 }
@@ -77,6 +89,14 @@ public struct Environments {
                 return infoDict[PlistKey.LoginAPI.value()] as! String
             case .VerifyOtpAPI:
                 return infoDict[PlistKey.VerifyOtpAPI.value()] as! String
+            case .UpdateUserAPI:
+                return infoDict[PlistKey.UpdateUserAPI.value()] as! String
+            case .GetFoodMenu:
+                return infoDict[PlistKey.GetFoodMenu.value()] as! String
+            case .GetCatMenu:
+                return infoDict[PlistKey.GetCatMenu.value()] as! String
+            case .GetSub_CatMenu:
+                return infoDict[PlistKey.GetSub_CatMenu.value()] as! String
             }
         } else {
             print("The key is not present in the Infodictionary")
