@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>AuthenticationAPI</key>
-	<string>${AuthenticationAPI}</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -20,12 +18,8 @@
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
-	<key>DomainFolder</key>
-	<string>${DomainFolder}</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>LoginAPI</key>
-	<string>${LoginAPI}</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
@@ -43,8 +37,6 @@
 	<string>$(PRODUCT_NAME) uses your Photo Library to update Profile Picture and Upload Documents.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>$(PRODUCT_NAME) uses your Photo Library to update Profile Picture and Upload Documents.</string>
-	<key>RegisterAPI</key>
-	<string>${RegisterAPI}</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -92,12 +84,20 @@
 	</array>
 	<key>UpdateUserAPI</key>
 	<string>${UpdateUserAPI}</string>
-	<key>GetFoodMenu</key>
-	<string>${GetFoodMenu}</string>
-	<key>GetCatMenu</key>
-	<string>${GetCatMenu}</string>
-	<key>GetSub_CatMenu</key>
-	<string>${GetSub_CatMenu}</string>
+	<key>GetMenuListing</key>
+	<string>${GetMenuListing}</string>
+	<key>GlobalSearchURL</key>
+	<string>${GlobalSearchURL}</string>
+	<key>LoginAPI</key>
+	<string>${LoginAPI}</string>
+	<key>GetMainCategory</key>
+	<string>${GetMainCategory}</string>
+	<key>GetSubCategory</key>
+	<string>${GetSubCategory}</string>
+	<key>RegisterAPI</key>
+	<string>${RegisterAPI}</string>
+	<key>DomainFolder</key>
+	<string>${DomainFolder}</string>
 	<key>VerifyOtpAPI</key>
 	<string>${VerifyOtpAPI}</string>
 	<key>protocol</key>

@@ -8,36 +8,6 @@
 
 import Foundation
 
-struct UserRegisterParam: Encodable {
-    var name: String?
-    var email: String?
-    var countrycode: String?
-    var phone: String?
-    var OTP: String?
-    
-    var description: [String : Any] {
-        get {
-            return ["name": name!, "email": email!, "countrycode": countrycode!, "phone": phone!, "otp": OTP!]
-        }
-    }
-    
-}
-
-// MARK:- Login And Register Parameters
-struct AuthenticationParamDict {
-    var fullname: String?
-    var email: String?
-    var mobile: String?
-    var countryCode: String?
-    var otp: String?
-    
-    var description: [String: Any] {
-        get {
-            return ["fullname": fullname!, "email":email!, "mobile":mobile!, "countryCode":countryCode!, "otp":otp!]
-         }
-    }
-}
-
 struct RegisterParamDict {
     var fullname: String?
     var email: String?
@@ -46,7 +16,7 @@ struct RegisterParamDict {
     
     var description: [String: Any] {
         get {
-            return ["fullname": fullname!, "email":email!, "mobile":mobile!, "countryCode":countryCode! ]
+            return ["fullName": fullname!, "email":email!, "mobileNo":mobile!, "countryCode":countryCode! ]
          }
     }
 }
@@ -57,7 +27,7 @@ struct SendotpParamDict {
     
     var description: [String: Any] {
         get {
-            return ["mobile":mobile!, "countryCode":countryCode! ]
+            return ["mobileNo":mobile!, "countryCode":countryCode! ]
          }
     }
 }
@@ -69,18 +39,19 @@ struct OTPcodeParamDict {
     
     var description: [String: Any] {
         get {
-            return ["code":code!, "mobile":mobile!, "countryCode":countryCode! ]
+            return ["mobileOtp":code!, "mobileNo":mobile!, "countryCode":countryCode! ]
          }
     }
 }
 
 struct ListingParamDict {
-    var page: Int?
-    var count: Int?
+    var CatName: String?
+    var SubCatName: String?
+    var foodType: String?
     
     var description: [String: Any] {
         get {
-            return ["page": page!, "count": count!]
+            return ["itemMainCategoryName": CatName!, "itemSubCategoryName": SubCatName!, "itemFoodType": foodType!]
          }
     }
 }
@@ -90,7 +61,16 @@ struct SubCatParamDict {
     
     var description: [String: Any] {
         get {
-            return ["id": id!]
+            return ["mainCategoryId": id!]
+         }
+    }
+}
+
+struct GlobalSearcgDict {
+    var itemSearchKey: String?
+    var description: [String: Any] {
+        get {
+            return ["itemSearchKey": itemSearchKey!]
          }
     }
 }
@@ -102,7 +82,7 @@ struct UpdateProfileParamDict {
     
     var description: [String: Any] {
         get {
-            return ["fullname": fullname!, "email":email!, "mobile":mobile!]
+            return ["fullName": fullname!, "email":email!, "mobileNo":mobile!]
          }
     }
 }

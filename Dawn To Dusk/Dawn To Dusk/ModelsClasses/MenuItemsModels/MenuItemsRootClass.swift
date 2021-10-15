@@ -1,15 +1,15 @@
 //
-//	GetOTPRootClass.swift
-//	Model file generated using JSONExport: https://github.com/Ahmed-Ali/JSONExport
+//    MenuItemsRootClass.swift
+//    Model file generated using JSONExport: https://github.com/Ahmed-Ali/JSONExport
 
-import Foundation 
+import Foundation
 import SwiftyJSON
 
 
-class GetOTPRootClass : NSObject, NSCoding {
-    
+class MenuItemsRootClass : NSObject, NSCoding{
+
+    var menuData : MenuItemsMenuData!
     var message : String!
-    var otpData : GetOTPData!
     var status : Bool!
     var statusCode : Int!
 
@@ -21,11 +21,11 @@ class GetOTPRootClass : NSObject, NSCoding {
         if json.isEmpty{
             return
         }
-        message = json["message"].stringValue
-        let otpDataJson = json["otpData"]
-        if !otpDataJson.isEmpty{
-            otpData = GetOTPData(fromJson: otpDataJson)
+        let menuDataJson = json["menuData"]
+        if !menuDataJson.isEmpty{
+            menuData = MenuItemsMenuData(fromJson: menuDataJson)
         }
+        message = json["message"].stringValue
         status = json["status"].boolValue
         statusCode = json["statusCode"].intValue
     }
@@ -36,11 +36,11 @@ class GetOTPRootClass : NSObject, NSCoding {
     func toDictionary() -> [String:Any]
     {
         var dictionary = [String:Any]()
+        if menuData != nil{
+            dictionary["menuData"] = menuData.toDictionary()
+        }
         if message != nil{
             dictionary["message"] = message
-        }
-        if otpData != nil{
-            dictionary["otpData"] = otpData.toDictionary()
         }
         if status != nil{
             dictionary["status"] = status
@@ -57,8 +57,8 @@ class GetOTPRootClass : NSObject, NSCoding {
     */
     @objc required init(coder aDecoder: NSCoder)
     {
+         menuData = aDecoder.decodeObject(forKey: "menuData") as? MenuItemsMenuData
          message = aDecoder.decodeObject(forKey: "message") as? String
-         otpData = aDecoder.decodeObject(forKey: "otpData") as? GetOTPData
          status = aDecoder.decodeObject(forKey: "status") as? Bool
          statusCode = aDecoder.decodeObject(forKey: "statusCode") as? Int
 
@@ -70,11 +70,11 @@ class GetOTPRootClass : NSObject, NSCoding {
     */
     func encode(with aCoder: NSCoder)
     {
+        if menuData != nil{
+            aCoder.encode(menuData, forKey: "menuData")
+        }
         if message != nil{
             aCoder.encode(message, forKey: "message")
-        }
-        if otpData != nil{
-            aCoder.encode(otpData, forKey: "otpData")
         }
         if status != nil{
             aCoder.encode(status, forKey: "status")

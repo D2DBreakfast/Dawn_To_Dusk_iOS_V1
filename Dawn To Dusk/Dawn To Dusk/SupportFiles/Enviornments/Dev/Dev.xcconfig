@@ -29,6 +29,7 @@ LoginAPI                        = userLogin
 VerifyOtpAPI                    = verifyOtp
 UpdateUserAPI                   = /user/updateUser
 
-GetFoodMenu                     = /menu/getmenu
-GetCatMenu                      = /menu/getcatmenu
-GetSub_CatMenu                  = /menu/getsub_catmenu
+GetMenuListing                  = fetchMenuDetails
+GlobalSearchURL                 = menuQuickSearch
+GetMainCategory                 = admin/fetchMainCategory
+GetSubCategory                  = admin/fetchSubCategory

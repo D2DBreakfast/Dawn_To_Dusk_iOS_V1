@@ -40,7 +40,7 @@ import UIKit
     
     func IsUserLoggedin() -> Bool? {
         let info = GetUserInfodata()
-        if info == nil || info?.accessToken == nil || info?.accessToken?.count == 0 {
+        if info == nil || info?.token == nil || info?.token?.count == 0 {
             return false
         }
         else {
@@ -48,7 +48,7 @@ import UIKit
         }
     }
     
-    func SaveUserInfodata(info: UserInfoData) {
+    func SaveUserInfodata(info: UserInfoUser) {
 //        let encoder = JSONEncoder()
 //        if let encoded = try? encoder.encode(info) {
 //            self.mydefault.set(encoded, forKey: LoginUserData)
@@ -60,7 +60,7 @@ import UIKit
         }
     }
 
-    func GetUserInfodata() -> UserInfoData? {
+    func GetUserInfodata() -> UserInfoUser? {
 //        if let savedPerson = self.mydefault.object(forKey: LoginUserData) as? Data {
 //            let decoder = JSONDecoder()
 //            if let loadedPerson = try? decoder.decode(UserInfoData.self, from: savedPerson) {
@@ -75,7 +75,7 @@ import UIKit
         else {
             do {
 //                let info = try! NSKeyedUnarchiver.unarchivedObject(ofClass: UserInfoData.self, from: personData! as Data)
-                let info = NSKeyedUnarchiver.unarchiveObject(with: personData! as Data) as! UserInfoData
+                let info = NSKeyedUnarchiver.unarchiveObject(with: personData! as Data) as! UserInfoUser
                 return info
             }
         }
@@ -111,7 +111,7 @@ import UIKit
         guard let rootdata = SharedUserInfo.shared.GetUserInfodata() else {
             return ""
         }
-        guard token == rootdata.accessToken else {
+        guard token == rootdata.token else {
             return ""
         }
         return token

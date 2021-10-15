@@ -88,14 +88,6 @@ extension SceneDelegate {
         self.window?.makeKeyAndVisible()
     }
     
-    @objc public func GetStarted() {
-        let vc = loadViewController("Main", "HomeLoginVC")
-        let navigationController = UINavigationController(rootViewController: vc)
-        navigationController.navigationBar.isHidden = true
-        self.window?.rootViewController = navigationController
-        self.window?.makeKeyAndVisible()
-    }
-    
     @objc public func GetLogin() {
         let vc = LoginVC.init(nibName: "LoginVC", bundle: nil)
         let navigationController = UINavigationController(rootViewController: vc)

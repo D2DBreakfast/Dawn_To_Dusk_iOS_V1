@@ -25,16 +25,19 @@ public struct PinterestSegmentStyle {
 }
 
 public class PintrestTitle: Codable {
-    var id: Int?
+    var id: Double?
+    var sub_id: String?
     var title: String?
 
     enum CodingKeys: String, CodingKey {
         case id = "id"
+        case sub_id = "sub_id"
         case title = "title"
     }
     
-    init(id: Int?, title: String?) {
+    init(id: Double?, sub_id: String?, title: String?) {
         self.id = id
+        self.sub_id = sub_id
         self.title = title
     }
 }

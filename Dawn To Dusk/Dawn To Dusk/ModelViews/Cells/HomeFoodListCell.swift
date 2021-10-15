@@ -131,15 +131,16 @@ class HomeFoodListCell: UITableViewCell {
         self.HideSkeleton()
     }
     
-    func setupfoodcell(food: FoodModels) {
+    func setupfoodcell(food: MenuItemsData) {
         self.FilterView.isHidden = false
         self.OptionView.isHidden = false
-        self.FilterIMG.tintColor = food.isveg! ? UIColor.colorWithHexString(hexStr: GreenTheme) : .red
-        self.FoodIMG.downloadedFrom(url: URL.init(string: food.itemimage!)!)
+//        self.FilterIMG.tintColor = food.isveg! ? UIColor.colorWithHexString(hexStr: GreenTheme) : .red
+        self.FoodIMG.downloadedFrom(url: URL.init(string: food.itemImageUrl!)!)
         self.FoodIMG.contentMode = .scaleToFill
-        self.TitleLBL.text = food.title
-        self.DescLBL.text = food.shortdesc
-        let priceSTR: String = String.init(format: "%@ %@", (getdefaultCountry()?.symbol)!, food.price.formatprice())
+        self.TitleLBL.text = food.itemName
+        self.DescLBL.text = food.itemDescription
+//        let priceSTR: String = String.init(format: "%@ %@", (getdefaultCountry()?.symbol)!, food.itemPrice.formatprice())
+        let priceSTR: String = String.init(format: "%@ %@", (getdefaultCountry()?.symbol)!, food.itemPrice)
         self.PriceLBL.text = priceSTR
         self.AddCartBTN.isHidden = false
         self.PriceLBL.isHidden = false

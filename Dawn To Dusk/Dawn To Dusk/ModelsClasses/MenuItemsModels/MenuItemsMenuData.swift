@@ -1,14 +1,14 @@
 //
-//	GetOTPData.swift
-//	Model file generated using JSONExport: https://github.com/Ahmed-Ali/JSONExport
+//    MenuItemsMenuData.swift
+//    Model file generated using JSONExport: https://github.com/Ahmed-Ali/JSONExport
 
-import Foundation 
+import Foundation
 import SwiftyJSON
 
 
-class GetOTPData : NSObject, NSCoding {
-    
-    var otp : String!
+class MenuItemsMenuData : NSObject, NSCoding{
+
+    var data : [MenuItemsData]!
 
 
     /**
@@ -18,7 +18,12 @@ class GetOTPData : NSObject, NSCoding {
         if json.isEmpty{
             return
         }
-        otp = json["otp"].stringValue
+        data = [MenuItemsData]()
+        let dataArray = json["data"].arrayValue
+        for dataJson in dataArray{
+            let value = MenuItemsData(fromJson: dataJson)
+            data.append(value)
+        }
     }
 
     /**
@@ -27,8 +32,12 @@ class GetOTPData : NSObject, NSCoding {
     func toDictionary() -> [String:Any]
     {
         var dictionary = [String:Any]()
-        if otp != nil{
-            dictionary["otp"] = otp
+        if data != nil{
+            var dictionaryElements = [[String:Any]]()
+            for dataElement in data {
+                dictionaryElements.append(dataElement.toDictionary())
+            }
+            dictionary["data"] = dictionaryElements
         }
         return dictionary
     }
@@ -39,7 +48,7 @@ class GetOTPData : NSObject, NSCoding {
     */
     @objc required init(coder aDecoder: NSCoder)
     {
-         otp = aDecoder.decodeObject(forKey: "otp") as? String
+         data = aDecoder.decodeObject(forKey: "data") as? [MenuItemsData]
 
     }
 
@@ -49,8 +58,8 @@ class GetOTPData : NSObject, NSCoding {
     */
     func encode(with aCoder: NSCoder)
     {
-        if otp != nil{
-            aCoder.encode(otp, forKey: "otp")
+        if data != nil{
+            aCoder.encode(data, forKey: "data")
         }
 
     }

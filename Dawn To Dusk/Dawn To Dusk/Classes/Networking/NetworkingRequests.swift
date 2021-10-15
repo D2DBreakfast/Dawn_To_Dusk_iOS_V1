@@ -22,14 +22,12 @@ struct SetupHTTP_Header {
             if SharedUserInfo.shared.IsUserLoggedin()! {
                 return [
                     HTTPHeader.init(name: "Content-Type", value: "application/json"),
-                    HTTPHeader.init(name: "api_key", value: "JPcopEq16fyQGjnzY3QXVDnGDZrgQAs1"),
-                    HTTPHeader.init(name: "accessToken", value: (SharedUserInfo.shared.GetUserToken())!)
+                    HTTPHeader.init(name: "token", value: (SharedUserInfo.shared.GetUserToken())!)
                 ]
             }
             else {
                 return [
                     HTTPHeader.init(name: "Content-Type", value: "application/json"),
-                    HTTPHeader.init(name: "api_key", value: "JPcopEq16fyQGjnzY3QXVDnGDZrgQAs1")
                 ]
             }
         }
@@ -205,7 +203,7 @@ extension NetworkingRequests {
                             let jsonData = prettyPrintedJson.data(using: .utf8)!
                             let json = JSON(jsonData)
                             let obj = GetOTPRootClass.init(fromJson: json)
-                            if obj.status! && obj.code == 200 {
+                            if obj.status! && obj.statusCode == 200 {
                                 successCallback?(obj, true)
                             }
                             else {
@@ -240,7 +238,7 @@ extension NetworkingRequests {
     }
     
     func Request_RegisterUser(param: RegisterParamDict,
-                              onSuccess successCallback: ((_ response: GetOTPRootClass, _ status: Bool) -> Void)?,
+                              onSuccess successCallback: ((_ response: UserInfoRootClass, _ status: Bool) -> Void)?,
                               onFailure failureCallback: ((_ errorMessage: String) -> Void)?) {
         
         if self.rechability.isReachable() || NetworkingRequests.isInternetAvailable() || self.checkNetworkStatus()! {
@@ -267,8 +265,8 @@ extension NetworkingRequests {
                             print(results)
                             let jsonData = prettyPrintedJson.data(using: .utf8)!
                             let json = JSON(jsonData)
-                            let obj = GetOTPRootClass.init(fromJson: json)
-                            if obj.status! && obj.code == 200 {
+                            let obj = UserInfoRootClass.init(fromJson: json)
+                            if obj.status! && obj.statusCode == 200 {
                                 successCallback?(obj, true)
                             }
                             else {
@@ -302,7 +300,7 @@ extension NetworkingRequests {
     }
     
     func Request_UserVerifyOTP(param: OTPcodeParamDict,
-                               onSuccess successCallback: ((_ response: UserInfoRootClass, _ status: Bool) -> Void)?,
+                               onSuccess successCallback: ((_ response: GetOTPRootClass, _ status: Bool) -> Void)?,
                                onFailure failureCallback: ((_ errorMessage: String) -> Void)?) {
         
         if self.rechability.isReachable() || NetworkingRequests.isInternetAvailable() || self.checkNetworkStatus()! {
@@ -329,8 +327,8 @@ extension NetworkingRequests {
                             print(results)
                             let jsonData = prettyPrintedJson.data(using: .utf8)!
                             let json = JSON(jsonData)
-                            let obj = UserInfoRootClass.init(fromJson: json)
-                            if obj.status! && obj.code == 200 {
+                            let obj = GetOTPRootClass.init(fromJson: json)
+                            if obj.status! && obj.statusCode == 200 {
                                 successCallback?(obj, true)
                             }
                             else {
@@ -392,7 +390,7 @@ extension NetworkingRequests {
                             let jsonData = prettyPrintedJson.data(using: .utf8)!
                             let json = JSON(jsonData)
                             let obj = UserInfoRootClass.init(fromJson: json)
-                            if obj.status! && obj.code == 200 {
+                            if obj.status! && obj.statusCode == 200 {
                                 successCallback?(obj, true)
                             }
                             else {
@@ -480,12 +478,13 @@ extension NetworkingRequests {
         
     }
     
-    func GetCategoryListing(onSuccess successCallback: ((_ response: CategoryRootClass, _ status: Bool) -> Void)?, onFailure failureCallback: ((_ errorMessage: String) -> Void)?) {
+    func GetCategoryListing(onSuccess successCallback: ((_ response: MenuCategoryRootClass, _ status: Bool) -> Void)?,
+                            onFailure failureCallback: ((_ errorMessage: String) -> Void)?) {
         if self.rechability.isReachable() || NetworkingRequests.isInternetAvailable() || self.checkNetworkStatus()! {
-            let url = String.init(format: "%@", Environments.shared.GetDomainURL(.GetCatMenu))
+            let url = String.init(format: "%@", Environments.shared.GetDomainURL(.GetMainCategory))
             self.post_RequestAPI_calling(URL_Str: url, param: [:]) { response, status in
-                let obj = CategoryRootClass.init(fromJson: response)
-                if obj.status! && obj.code == 200 {
+                let obj = MenuCategoryRootClass.init(fromJson: response)
+                if obj.status! && obj.statusCode == 200 {
                     successCallback?(obj, true)
                 }
                 else {
@@ -501,12 +500,12 @@ extension NetworkingRequests {
         }
     }
     
-    func GetSubCategoryListing(param: SubCatParamDict, onSuccess successCallback: ((_ response: CategoryRootClass, _ status: Bool) -> Void)?, onFailure failureCallback: ((_ errorMessage: String) -> Void)?) {
+    func GetSubCategoryListing(param: SubCatParamDict, onSuccess successCallback: ((_ response: MenuCategoryRootClass, _ status: Bool) -> Void)?, onFailure failureCallback: ((_ errorMessage: String) -> Void)?) {
         if self.rechability.isReachable() || NetworkingRequests.isInternetAvailable() || self.checkNetworkStatus()! {
-            let url = String.init(format: "%@", Environments.shared.GetDomainURL(.GetSub_CatMenu))
+            let url = String.init(format: "%@", Environments.shared.GetDomainURL(.GetSubCategory))
             self.post_RequestAPI_calling(URL_Str: url, param: param.description) { response, status in
-                let obj = CategoryRootClass.init(fromJson: response)
-                if obj.status! && obj.code == 200 {
+                let obj = MenuCategoryRootClass.init(fromJson: response)
+                if obj.status! && obj.statusCode == 200 {
                     successCallback?(obj, true)
                 }
                 else {
@@ -523,13 +522,36 @@ extension NetworkingRequests {
     }
     
     func GetFoodListing(param: ListingParamDict,
-                        onSuccess successCallback: ((_ response: FoodRootClass, _ status: Bool) -> Void)?,
+                        onSuccess successCallback: ((_ response: MenuItemsRootClass, _ status: Bool) -> Void)?,
                         onFailure failureCallback: ((_ errorMessage: String) -> Void)?) {
         if self.rechability.isReachable() || NetworkingRequests.isInternetAvailable() || self.checkNetworkStatus()! {
-            let url = String.init(format: "%@", Environments.shared.GetDomainURL(.GetSub_CatMenu))
-            self.post_RequestAPI_calling(URL_Str: url, param: [:]) { response, status in
-                let obj = FoodRootClass.init(fromJson: response)
-                if obj.status! && obj.code == 200 {
+            let url = String.init(format: "%@", Environments.shared.GetDomainURL(.GetMenuListing))
+            self.post_RequestAPI_calling(URL_Str: url, param: param.description) { response, status in
+                let obj = MenuItemsRootClass.init(fromJson: response)
+                if obj.status! && obj.statusCode == 200 {
+                    successCallback?(obj, true)
+                }
+                else {
+                    failureCallback?(obj.message!)
+                }
+            } onFailure: { errorMessage in
+                print("Error: Could print JSON in String")
+                failureCallback!("Error: Could print JSON in String")
+            }
+        }
+        else {
+            failureCallback!(APIError.InternetConnection.toNSError().localizedDescription)
+        }
+    }
+    
+    func GlobalSearchlist(param: GlobalSearcgDict,
+                        onSuccess successCallback: ((_ response: MenuItemsRootClass, _ status: Bool) -> Void)?,
+                        onFailure failureCallback: ((_ errorMessage: String) -> Void)?) {
+        if self.rechability.isReachable() || NetworkingRequests.isInternetAvailable() || self.checkNetworkStatus()! {
+            let url = String.init(format: "%@", Environments.shared.GetDomainURL(.GlobalSearchURL))
+            self.post_RequestAPI_calling(URL_Str: url, param: param.description) { response, status in
+                let obj = MenuItemsRootClass.init(fromJson: response)
+                if obj.status! && obj.statusCode == 200 {
                     successCallback?(obj, true)
                 }
                 else {

@@ -15,14 +15,13 @@ public enum PlistKey {
     case ServerURL
     case DomainFolder
     case RegisterAPI
-    case AuthenticationAPI
     case LoginAPI
     case VerifyOtpAPI
     case UpdateUserAPI
-    case GetFoodMenu
-    case GetCatMenu
-    case GetSub_CatMenu
-    
+    case GetMenuListing
+    case GlobalSearchURL
+    case GetMainCategory
+    case GetSubCategory
     
     func value() -> String {
         switch self {
@@ -36,20 +35,20 @@ public enum PlistKey {
             return "DomainFolder"
         case .RegisterAPI:
             return "RegisterAPI"
-        case .AuthenticationAPI:
-            return "AuthenticationAPI"
         case .LoginAPI:
             return "LoginAPI"
         case .VerifyOtpAPI:
             return "VerifyOtpAPI"
         case .UpdateUserAPI:
             return "UpdateUserAPI"
-        case .GetFoodMenu:
-            return "GetFoodMenu"
-        case .GetCatMenu:
-            return "GetCatMenu"
-        case .GetSub_CatMenu:
-            return "GetSub_CatMenu"
+        case .GetMenuListing:
+            return "GetMenuListing"
+        case .GlobalSearchURL:
+            return "GlobalSearchURL"
+        case .GetMainCategory:
+            return "GetMainCategory"
+        case .GetSubCategory:
+            return "GetSubCategory"
         }
     }
 }
@@ -83,20 +82,20 @@ public struct Environments {
                 return infoDict[PlistKey.DomainFolder.value()] as! String
             case .RegisterAPI:
                 return infoDict[PlistKey.RegisterAPI.value()] as! String
-            case .AuthenticationAPI:
-                return infoDict[PlistKey.AuthenticationAPI.value()] as! String
             case .LoginAPI:
                 return infoDict[PlistKey.LoginAPI.value()] as! String
             case .VerifyOtpAPI:
                 return infoDict[PlistKey.VerifyOtpAPI.value()] as! String
             case .UpdateUserAPI:
                 return infoDict[PlistKey.UpdateUserAPI.value()] as! String
-            case .GetFoodMenu:
-                return infoDict[PlistKey.GetFoodMenu.value()] as! String
-            case .GetCatMenu:
-                return infoDict[PlistKey.GetCatMenu.value()] as! String
-            case .GetSub_CatMenu:
-                return infoDict[PlistKey.GetSub_CatMenu.value()] as! String
+            case .GetMenuListing:
+                return infoDict[PlistKey.GetMenuListing.value()] as! String
+            case .GlobalSearchURL:
+                return infoDict[PlistKey.GlobalSearchURL.value()] as! String
+            case .GetMainCategory:
+                return infoDict[PlistKey.GetMainCategory.value()] as! String
+            case .GetSubCategory:
+                return infoDict[PlistKey.GetSubCategory.value()] as! String
             }
         } else {
             print("The key is not present in the Infodictionary")

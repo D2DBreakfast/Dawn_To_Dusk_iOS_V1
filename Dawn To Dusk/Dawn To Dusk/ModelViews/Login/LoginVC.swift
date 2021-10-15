@@ -181,6 +181,7 @@ class LoginVC: BaseClassVC {
                 let param = SendotpParamDict.init(mobile: self.TXTMobileno.text, countryCode: self.SelectedCountry.phoneExtension)
                 NetworkingRequests.shared.Request_SendOTP(param: param) { (responseObject, status) in
                     if status {
+//                        SharedUserInfo.shared.SaveUserInfodata(info: responseObject.loginData!)
                         let vc = OTPVerifyVC(nibName: "OTPVerifyVC", bundle: nil)
                         vc.OTP_Type = .Login
                         vc.mobile = self.TXTMobileno.text!
@@ -206,7 +207,8 @@ class LoginVC: BaseClassVC {
                 self.showLoaderActivity()
                 let param = RegisterParamDict.init(fullname: self.TXTName.text, email: self.TXTEmail.text, mobile: self.TXTMobileno.text, countryCode: self.SelectedCountry.phoneExtension)
                 NetworkingRequests.shared.Request_RegisterUser(param: param) { (responseObject, status) in
-                    if status {
+                    if status && responseObject.status && responseObject.statusCode == 200 {
+                        SharedUserInfo.shared.SaveUserInfodata(info: responseObject.loginData!)
                         let vc = OTPVerifyVC(nibName: "OTPVerifyVC", bundle: nil)
                         vc.OTP_Type = .Register
                         vc.Message = String.init(format: "Please, enter the OTP which was we shared on +%@ %@?", self.SelectedCountry.phoneExtension, self.TXTMobileno.text!)
@@ -239,12 +241,14 @@ class LoginVC: BaseClassVC {
             self.RegisterSepratorLBL.backgroundColor = .clear
             self.RegisterView.isHidden = true
             self.LoginView.isHidden = false
+            self.LoginSelected = 100
         }
         else {
             self.RegisterSepratorLBL.backgroundColor = UIColor.colorWithHexString(hexStr: OrangeTheme)
             self.LoginSepratorLBL.backgroundColor = .clear
             self.RegisterView.isHidden = false
             self.LoginView.isHidden = false
+            self.LoginSelected = 200
         }
     }
     

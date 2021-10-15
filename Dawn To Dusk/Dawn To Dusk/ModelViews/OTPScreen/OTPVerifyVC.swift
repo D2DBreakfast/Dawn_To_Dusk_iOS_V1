@@ -150,7 +150,7 @@ class OTPVerifyVC: BaseClassVC {
             
             NetworkingRequests.shared.Request_SendOTP(param: param) { (responseObject, status) in
                 if status {
-                    if responseObject.status && responseObject.code == 200 {
+                    if responseObject.status && responseObject.statusCode == 200 {
                         self.navigationController?.view.makeToast(responseObject.message!, duration: 3.0, position: .top)
                         self.countdown = 60
                         self.OTPtimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.updatetimers), userInfo: nil, repeats: true)
@@ -177,8 +177,8 @@ class OTPVerifyVC: BaseClassVC {
             self.showLoaderActivity()
             let param = OTPcodeParamDict.init(code: self.EnteredOTP, mobile: self.mobile, countryCode: self.countrycode)
             NetworkingRequests.shared.Request_UserVerifyOTP(param: param) { (responseObject, status) in
-                if status && ((responseObject.data?.accessToken?.IsStrEmpty()) != nil) {
-                    SharedUserInfo.shared.SaveUserInfodata(info: responseObject.data!)
+                if status && responseObject.status && responseObject.statusCode == 200 {
+//                    SharedUserInfo.shared.SaveUserInfodata(info: responseObject.loginData!)
                     let vc = HomeDashboardVC()
                     self.navigationController!.pushViewController(vc, animated: true)
                 }
