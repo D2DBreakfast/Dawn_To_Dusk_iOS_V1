@@ -6,14 +6,14 @@ import Foundation
 import SwiftyJSON
 
 
-class GetOTPRootClass : NSObject, NSCoding{
+class GetOTPRootClass : NSObject, NSCoding {
     
-    var code : Int!
-    var data : GetOTPData!
-    var status : Bool!
     var message : String!
-    
-    
+    var otpData : GetOTPData!
+    var status : Bool!
+    var statusCode : Int!
+
+
     /**
      * Instantiate the instance using the passed json values to set the properties values
      */
@@ -21,68 +21,68 @@ class GetOTPRootClass : NSObject, NSCoding{
         if json.isEmpty{
             return
         }
-        code = json["code"].intValue
-        let dataJson = json["data"]
-        if !dataJson.isEmpty{
-            data = GetOTPData(fromJson: dataJson)
+        message = json["message"].stringValue
+        let otpDataJson = json["otpData"]
+        if !otpDataJson.isEmpty{
+            otpData = GetOTPData(fromJson: otpDataJson)
         }
         status = json["status"].boolValue
-        message = json["message"].stringValue
+        statusCode = json["statusCode"].intValue
     }
-    
+
     /**
      * Returns all the available property values in the form of [String:Any] object where the key is the approperiate json key and the value is the value of the corresponding property
      */
     func toDictionary() -> [String:Any]
     {
         var dictionary = [String:Any]()
-        if code != nil{
-            dictionary["code"] = code
+        if message != nil{
+            dictionary["message"] = message
         }
-        if data != nil{
-            dictionary["data"] = data.toDictionary()
+        if otpData != nil{
+            dictionary["otpData"] = otpData.toDictionary()
         }
         if status != nil{
             dictionary["status"] = status
         }
-        if message != nil{
-            dictionary["message"] = message
+        if statusCode != nil{
+            dictionary["statusCode"] = statusCode
         }
         return dictionary
     }
-    
+
     /**
-     * NSCoding required initializer.
-     * Fills the data from the passed decoder
-     */
+    * NSCoding required initializer.
+    * Fills the data from the passed decoder
+    */
     @objc required init(coder aDecoder: NSCoder)
     {
-        code = aDecoder.decodeObject(forKey: "code") as? Int
-        data = aDecoder.decodeObject(forKey: "data") as? GetOTPData
-        status = aDecoder.decodeObject(forKey: "status") as? Bool
-        message = aDecoder.decodeObject(forKey: "message") as? String
-        
+         message = aDecoder.decodeObject(forKey: "message") as? String
+         otpData = aDecoder.decodeObject(forKey: "otpData") as? GetOTPData
+         status = aDecoder.decodeObject(forKey: "status") as? Bool
+         statusCode = aDecoder.decodeObject(forKey: "statusCode") as? Int
+
     }
-    
+
     /**
-     * NSCoding required method.
-     * Encodes mode properties into the decoder
-     */
+    * NSCoding required method.
+    * Encodes mode properties into the decoder
+    */
     func encode(with aCoder: NSCoder)
     {
-        if code != nil{
-            aCoder.encode(code, forKey: "code")
+        if message != nil{
+            aCoder.encode(message, forKey: "message")
         }
-        if data != nil{
-            aCoder.encode(data, forKey: "data")
+        if otpData != nil{
+            aCoder.encode(otpData, forKey: "otpData")
         }
         if status != nil{
             aCoder.encode(status, forKey: "status")
         }
-        if message != nil{
-            aCoder.encode(message, forKey: "message")
+        if statusCode != nil{
+            aCoder.encode(statusCode, forKey: "statusCode")
         }
-        
+
     }
-    
+
 }

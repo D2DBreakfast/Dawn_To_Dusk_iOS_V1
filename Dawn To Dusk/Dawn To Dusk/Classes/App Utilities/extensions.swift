@@ -351,9 +351,9 @@ extension UIViewController {
         backbtn.addTarget(self, action: #selector(TappedBackBTN(_:)), for: .touchUpInside)
         navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: backbtn)
         
-//        let cartBTN = UIButton().NavCartButton()
-//        cartBTN.addTarget(self, action: #selector(TappedCartBTN(_:)), for: .touchUpInside)
-//        navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: cartBTN)
+        let cartBTN = UIButton().NavCartButton()
+        cartBTN.addTarget(self, action: #selector(TappedCartBTN(_:)), for: .touchUpInside)
+        navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: cartBTN)
     }
     
     func SetupNavBarforback() {

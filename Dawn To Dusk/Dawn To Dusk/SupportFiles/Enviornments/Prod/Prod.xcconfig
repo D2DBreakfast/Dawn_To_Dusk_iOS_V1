@@ -12,15 +12,24 @@
 
 timeout_interval                = 120
 
+//protocol                        = http
+//server_url                      = 10.12.15.122
+//DomainFolder                    = :3000
+//
+//RegisterAPI                     = /signup
+
+//http://localhost:5000/api/user/authenticate
+
 protocol                        = https
-server_url                      = gxauth.apimachine.com
-DomainFolder                    = /gx/user
+server_url                      = d2dbackendmain.azurewebsites.net
+DomainFolder                    = /
 
-LoginApi                        = /login
+RegisterAPI                     = register
+LoginAPI                        = userLogin
+VerifyOtpAPI                    = verifyOtp
+UpdateUserAPI                   = /user/updateUser
 
-ForgotpasswordRequestAPI        = /password/forgot/request
-ForgotpasswordConfirmAPI        = /password/forgot/confirm
-
-SignupApi                       = /signup
-
-ChangePasswordAPI               = /password/change
+GetMenuListing                  = fetchMenuDetails
+GlobalSearchURL                 = menuQuickSearch
+GetMainCategory                 = admin/fetchMainCategory
+GetSubCategory                  = admin/fetchSubCategory

@@ -12,7 +12,6 @@ class ProfileInfoCell: UITableViewCell {
     @IBOutlet weak var ProfileUserView: UIView!
     
     @IBOutlet weak var UserInfoStack: UIStackView!
-    @IBOutlet weak var AvatarIMG: UIImageView!
     @IBOutlet weak var InfoView: UIView!
     @IBOutlet weak var NameLBL: UILabel!
     @IBOutlet weak var EmailLBL: UILabel!
@@ -36,8 +35,6 @@ class ProfileInfoCell: UITableViewCell {
         
         self.ProfileUserView.clipsToBounds = true
         self.ProfileUserView.layer.cornerRadius = 20
-        self.AvatarIMG.clipsToBounds = true
-        self.AvatarIMG.layer.cornerRadius = 20
         
         self.ProfileUserView.backgroundColor = ModeBG_Color
         
@@ -73,23 +70,13 @@ class ProfileInfoCell: UITableViewCell {
     
     func SetupUserInfoCell(IndexPath: IndexPath) {
         let userinfo = SharedUserInfo.shared.GetUserInfodata()
-        if ((userinfo?.user.profileimg?.isEmpty) != nil) {
-            self.AvatarIMG.image = UIImage.init(named: "HomeLogo")
-        }
-        else {
-            self.AvatarIMG.downloadedFrom(url: URL.init(string: (userinfo?.user.profileimg)!)!)
-        }
-        self.AvatarIMG.contentMode = .scaleAspectFill
-        self.NameLBL.text = userinfo?.user.fullname
-        self.emailValue.text = userinfo?.user.email
-        guard let code = userinfo?.user.countrycode, let mobile = userinfo?.user.mobile else {
+        self.NameLBL.text = userinfo?.fullName
+        self.emailValue.text = userinfo?.email
+        guard let code = userinfo?.countryCode, let mobile = userinfo?.mobileNo else {
             return
         }
         self.MobileValue.text = String.init(format: "%@ %@", code, mobile)
-        guard let address = userinfo?.user.address, let addstr = address.address else {
-            return
-        }
-        self.AddressValue.text = addstr
+        self.AddressValue.text = ""
     }
     
     //    MARK:- IBAction Methods Defines

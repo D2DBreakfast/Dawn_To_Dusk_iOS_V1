@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Lottie
 
 
 enum ShowDetailType {
@@ -23,19 +24,8 @@ class HomeDetailsVC: BaseClassVC {
     //    MARK:- IBOutlets
     //    MARK:-
     
+    @IBOutlet weak var StackView: UIStackView!
     @IBOutlet weak var DetailTBL: UITableView!
-    
-    @IBOutlet weak var BottomStack: UIStackView!
-    @IBOutlet weak var DateView: UIView!
-    @IBOutlet weak var DateSelection: UIView!
-    @IBOutlet weak var DateLBL: UILabel!
-    @IBOutlet weak var DateIMG: UIImageView!
-    @IBOutlet weak var DateBTN: UIButton!
-    
-    @IBOutlet weak var Price_cart_View: UIView!
-    @IBOutlet weak var CartStack: UIStackView!
-    @IBOutlet weak var PriceLBL: UILabel!
-    @IBOutlet weak var AddCartBTN: UIButton!
     
     @IBOutlet weak var NodataFoundView: NodataView! {
         didSet {
@@ -47,10 +37,10 @@ class HomeDetailsVC: BaseClassVC {
         }
     }
     
-    //    MARK:- Variable Defines
+    //    MARK:- Variable Definesua
     //    MARK:-
     
-    var FoodDetails: FoodModels!
+    var FoodDetails: MenuItemsData!
     var MealDetails: MealsModels!
     var BannerDetails: BannerModels!
     
@@ -92,6 +82,40 @@ class HomeDetailsVC: BaseClassVC {
         lbl.font = UIFont.boldSystemFont(ofSize: 24)
         lbl.textColor = UIColor.label
         return lbl
+    }()
+    
+    lazy var setupBottomOption : DetailsBottomOptionView = {
+        let bottom = DetailsBottomOptionView.init(frame: CGRect.init(x: 0, y: 0, width: Screen_width, height: 150))
+        bottom.setupBottomOption(DetailType: self.DetailType, FoodDetails: self.FoodDetails, MealDetails: self.MealDetails)
+        bottom.didcallDateAction = {
+            self.CalendarSelection()
+        }
+        bottom.didcallAgreeAction = {
+            if bottom.CheckBoxBTN.isSelected {
+                bottom.AddCartBTN.isEnabled = false
+                bottom.AddCartBTN.alpha = 0.5
+                bottom.CheckBoxBTN.isSelected = false
+                bottom.CheckBoxBTN.setImage(UIImage.init(systemName: "circlebadge"), for: .normal)
+            }
+            else {
+                bottom.AddCartBTN.isEnabled = true
+                bottom.AddCartBTN.alpha = 1.0
+                bottom.CheckBoxBTN.isSelected = true
+                bottom.CheckBoxBTN.setImage(UIImage.init(systemName: "checkmark.circle.fill"), for: .normal)
+            }
+        }
+        bottom.didcallAddCartAction = {
+            if SharedUserInfo.shared.IsUserLoggedin()! {
+                NotificationCenter.default.post(name: Notification.Name(BdgeNotification), object: nil)
+//                self.TappedCartBTN(self.AddCartBTN)
+            }
+            else {
+                let vc = LoginVC(nibName: "LoginVC", bundle: nil)
+                vc.LoginSelected = 100
+                self.navigationController!.pushViewController(vc, animated: true)
+            }
+        }
+        return bottom
     }()
     
     fileprivate var singleDate: Date = Date()
@@ -145,7 +169,6 @@ class HomeDetailsVC: BaseClassVC {
         self.DetailTBL.register(UINib.init(nibName: "PaymentModeCell", bundle: nil), forCellReuseIdentifier: "PaymentModeCell")
         self.DetailTBL.allowsSelection = true
         
-        
         self.DetailTBL.rowHeight = UITableView.automaticDimension
         self.DetailTBL.estimatedRowHeight = UITableView.automaticDimension
         
@@ -167,26 +190,31 @@ class HomeDetailsVC: BaseClassVC {
             self.DetailTBL.backgroundColor = ModeBG_Color
             self.DetailTBL.separatorStyle = .none
             self.view.backgroundColor = ModeBG_Color
-            if self.getcarouselCell() > 0 {
+            if self.FoodDetails.itemImageUrl.count != 0 {
                 self.DetailTBL.tableHeaderView = self.carouselView
                 self.carouselView.reloadData()
             }
-            self.title = self.FoodDetails.title
-            self.SetupNavBarwithBack_cart()
-            self.setupBottomOption()
+//            if self.getcarouselCell() > 0 {
+//                self.DetailTBL.tableHeaderView = self.carouselView
+//                self.carouselView.reloadData()
+//            }
+            self.title = self.FoodDetails.itemName
+            self.SetupNavBarforback()
+//            self.DetailTBL.tableFooterView = self.setupBottomOption
+            self.StackView.addArrangedSubview(self.setupBottomOption)
             break
             
         case .Meals:
             self.DetailTBL.backgroundColor = ModeBG_Color
             self.DetailTBL.separatorStyle = .none
             self.view.backgroundColor = ModeBG_Color
-            if self.getcarouselCell() > 0 {
-                self.DetailTBL.tableHeaderView = self.carouselView
-                self.carouselView.reloadData()
-            }
+//            if self.getcarouselCell() > 0 {
+//                self.DetailTBL.tableHeaderView = self.carouselView
+//                self.carouselView.reloadData()
+//            }
             self.title = self.MealDetails.title
-            self.SetupNavBarwithBack_cart()
-            self.setupBottomOption()
+            self.SetupNavBarforback()
+//            self.DetailTBL.tableFooterView = self.setupBottomOption
             break
             
         case .Banner:
@@ -194,9 +222,7 @@ class HomeDetailsVC: BaseClassVC {
             self.DetailTBL.separatorStyle = .none
             self.view.backgroundColor = ModeBG_Color
             self.title = self.BannerDetails.bannerTitle
-            self.DateView.isHidden = true
-            self.Price_cart_View.isHidden = true
-            self.SetupNavBarwithBack_cart()
+            self.SetupNavBarforback()
             break
             
         case .Notification:
@@ -208,9 +234,7 @@ class HomeDetailsVC: BaseClassVC {
                 self.DetailTBL.tableHeaderView = self.carouselView
                 self.carouselView.reloadData()
             }
-            self.DateView.isHidden = true
-            self.Price_cart_View.isHidden = true
-            self.SetupNavBarwithBack_cart()
+            self.SetupNavBarforback()
             self.DetailTBL.reloadData()
             break
             
@@ -351,58 +375,11 @@ class HomeDetailsVC: BaseClassVC {
         self.DetailTBL.reloadData()
     }
     
-    func setupBottomOption() {
-        
-        self.DateView.isHidden = false
-        self.Price_cart_View.isHidden = false
-        
-        if self.DetailType == .Meals {
-            self.DateLBL.text = "Plan Start-End date"
-        }
-        else {
-            self.DateLBL.text = "Select Delivery Date"
-        }
-        
-        let priceSTR: String = String.init(format: "%@ %@", (getdefaultCountry()?.symbol)!, self.DetailType == .Food ? self.FoodDetails.price!.formatprice() : self.MealDetails.price!.formatprice())
-        self.PriceLBL.text = priceSTR
-        
-        self.BottomStack.backgroundColor = ModeBG_Color
-        self.DateView.backgroundColor = ModeBG_Color
-        self.DateSelection.backgroundColor = ModeBG_Color
-        
-        self.DateIMG.tintColor = UIColor.colorWithHexString(hexStr: GetDefaultTheme()!)
-        self.DateLBL.textColor = UIColor.colorWithHexString(hexStr: GetDefaultTheme()!)
-        
-        self.DateSelection.clipsToBounds = true
-        self.DateSelection.layer.cornerRadius = 10
-        self.DateSelection.layer.borderColor = UIColor.colorWithHexString(hexStr: GetDefaultTheme()!).cgColor
-        self.DateSelection.layer.borderWidth = 1
-        
-        self.AddCartBTN.GetThemeButtonwithBorder()
-        self.AddCartBTN.isEnabled = false
-        self.AddCartBTN.alpha = 0.5
-        
-        self.Price_cart_View.backgroundColor = ModeBG_Color
-        self.CartStack.backgroundColor = ModeBG_Color
-    }
-    
     //    MARK:- IBAction Methods
     //    MARK:-
     
     @IBAction func Tappedbuttons(_ sender: UIButton) {
-        if sender == self.AddCartBTN {
-            if SharedUserInfo.shared.IsUserLoggedin()! {
-                NotificationCenter.default.post(name: Notification.Name(BdgeNotification), object: nil)
-//                self.TappedCartBTN(self.AddCartBTN)
-            }
-            else {
-                let vc = LoginVC(nibName: "LoginVC", bundle: nil)
-                self.navigationController!.pushViewController(vc, animated: true)
-            }
-        }
-        else {
-            self.CalendarSelection()
-        }
+        
     }
     
     @IBAction func TappedAddBTN(_ sender: UIButton) {
@@ -425,7 +402,7 @@ extension HomeDetailsVC: iCarouselDataSource, iCarouselDelegate {
     func getcarouselCell() -> Int {
         switch self.DetailType {
         case .Food:
-            return (self.FoodDetails.gallery?.count)!
+            return 1 //(self.FoodDetails.gallery?.count)!
             
         case .Meals:
             return (self.MealDetails.gallery?.count)!
@@ -442,7 +419,7 @@ extension HomeDetailsVC: iCarouselDataSource, iCarouselDelegate {
         var imageURL: String = ""
         switch self.DetailType {
         case .Food:
-            imageURL = self.FoodDetails.gallery![index]
+            imageURL = self.FoodDetails.itemImageUrl//self.FoodDetails.gallery![index]
             break
             
         case .Meals:
@@ -548,7 +525,7 @@ extension HomeDetailsVC {
             return 0
             
         case .Food:
-            return 3
+            return 1
             
         case .Meals:
             return section == 0 ? 4 : (self.MealDetails.items?.count)!
@@ -1044,33 +1021,35 @@ extension HomeDetailsVC: WWCalendarTimeSelectorProtocol {
         calendarVC.optionCurrentDate = singleDate
         calendarVC.optionCurrentDateRange.setStartDate(multipleDates.first ?? singleDate)
         calendarVC.optionCurrentDateRange.setEndDate(multipleDates.last ?? singleDate)
-        if self.DetailType == .Food {
+//        if self.DetailType == .Food {
             calendarVC.optionStyles.showDateMonth(true)
             calendarVC.optionStyles.showMonth(false)
             calendarVC.optionStyles.showYear(false)
             calendarVC.optionStyles.showTime(false)
-        }
-        else if self.DetailType == .Meals {
-            calendarVC.optionSelectionType = WWCalendarTimeSelectorSelection.range
-            calendarVC.optionCurrentDates = Set(multipleDates)
-        }
+//        }
+//        else if self.DetailType == .Meals {
+//            calendarVC.optionSelectionType = WWCalendarTimeSelectorSelection.range
+//            calendarVC.optionCurrentDates = Set(multipleDates)
+//        }
         present(calendarVC, animated: true, completion: nil)
     }
     
     func WWCalendarTimeSelectorDone(_ selector: WWCalendarTimeSelector, date: Date) {
         print("Selected \n\(date)\n---")
         singleDate = date
-        self.AddCartBTN.isEnabled = true
-        self.AddCartBTN.alpha = 1.0
-        self.DateLBL.text = String.init(format: "%@", self.singleDate.convertDateFormater())
+        self.setupBottomOption.AddCartBTN.isEnabled = true
+        self.setupBottomOption.AddCartBTN.alpha = 1.0
+        self.setupBottomOption.DateLBL.text = String.init(format: "%@", self.singleDate.convertDateFormater())
     }
     
     func WWCalendarTimeSelectorDone(_ selector: WWCalendarTimeSelector, dates: [Date]) {
         print("Selected Multiple Dates \n\(dates)\n---")
         multipleDates = dates
-        self.AddCartBTN.isEnabled = true
-        self.AddCartBTN.alpha = 1.0
-        self.DateLBL.text = dates.first?.convertDaterang(dt1: self.multipleDates.first!, dt2: self.multipleDates.last!)
+        if self.DetailType == .Food {
+            self.setupBottomOption.AddCartBTN.isEnabled = true
+            self.setupBottomOption.AddCartBTN.alpha = 1.0
+        }
+        self.setupBottomOption.DateLBL.text = dates.first?.convertDaterang(dt1: self.multipleDates.first!, dt2: self.multipleDates.last!)
     }
     
     func WWCalendarTimeSelectorShouldSelectDate(_ selector: WWCalendarTimeSelector, date: Date) -> Bool {

@@ -86,6 +86,7 @@ let RemoveBdgeNotification              = "RemoveBdgeNotification"
 
 // MARK:- REST Services Keys <UserInfoData>
 let LoginUserData                       = "LoginUserInfo"
+let isUserLogedIn                       = "isUserLogedIn"
 
 // MARK: - -------------------- Storyboard --------------------
 // MARK: -
@@ -173,6 +174,12 @@ func getdefaultCountry(countryCode: String? = "AE") -> Country?  {
         COU.countryCode.uppercased().contains(countryCode!.uppercased())
     }
     return country.first
+}
+
+
+func randomString(length: Int? = Int.random(in: 11..<9999)) -> String {
+    let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+    return String((0..<length!).map{ _ in letters.randomElement()! })
 }
 
 //https://www.simplifiedcoding.net/php-restful-api-framework-slim-tutorial-1/

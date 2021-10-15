@@ -6,19 +6,18 @@ import Foundation
 import SwiftyJSON
 
 
-class UserInfoUser : NSObject, NSCoding{
+class UserInfoUser : NSObject, NSCoding {
     
-    var address : UserInfoAddres!
-    var community : UserInfoCommunity!
-    var countrycode : String!
+    var countryCode : String!
     var email : String!
-    var fullname : String!
-    var id : Int!
-    var mobile : String!
-    var paymentmode : PaymentModePayment!
-    var profileimg : String!
-    
-    
+    var fullName : String!
+    var mobileNo : String!
+    var mobileOtp : String!
+    var registerDate : String!
+    var token : String!
+    var userId : String!
+
+
     /**
      * Instantiate the instance using the passed json values to set the properties values
      */
@@ -26,114 +25,97 @@ class UserInfoUser : NSObject, NSCoding{
         if json.isEmpty{
             return
         }
-        let addressJson = json["address"]
-        if !addressJson.isEmpty{
-            address = UserInfoAddres(fromJson: addressJson)
-        }
-        let communityJson = json["community"]
-        if !communityJson.isEmpty{
-            community = UserInfoCommunity(fromJson: communityJson)
-        }
-        countrycode = json["countrycode"].stringValue
+        countryCode = json["countryCode"].stringValue
         email = json["email"].stringValue
-        fullname = json["fullname"].stringValue
-        id = json["id"].intValue
-        mobile = json["mobile"].stringValue
-        let paymentmodeJson = json["paymentmode"]
-        if !paymentmodeJson.isEmpty{
-            paymentmode = PaymentModePayment(fromJson: paymentmodeJson)
-        }
-        profileimg = json["profileimg"].stringValue
+        fullName = json["fullName"].stringValue
+        mobileNo = json["mobileNo"].stringValue
+        mobileOtp = json["mobileOtp"].stringValue
+        registerDate = json["registerDate"].stringValue
+        token = json["token"].stringValue
+        userId = json["userId"].stringValue
     }
-    
+
     /**
      * Returns all the available property values in the form of [String:Any] object where the key is the approperiate json key and the value is the value of the corresponding property
      */
     func toDictionary() -> [String:Any]
     {
         var dictionary = [String:Any]()
-        if address != nil{
-            dictionary["address"] = address.toDictionary()
-        }
-        if community != nil{
-            dictionary["community"] = community.toDictionary()
-        }
-        if countrycode != nil{
-            dictionary["countrycode"] = countrycode
+        if countryCode != nil{
+            dictionary["countryCode"] = countryCode
         }
         if email != nil{
             dictionary["email"] = email
         }
-        if fullname != nil{
-            dictionary["fullname"] = fullname
+        if fullName != nil{
+            dictionary["fullName"] = fullName
         }
-        if id != nil{
-            dictionary["id"] = id
+        if mobileNo != nil{
+            dictionary["mobileNo"] = mobileNo
         }
-        if mobile != nil{
-            dictionary["mobile"] = mobile
+        if mobileOtp != nil{
+            dictionary["mobileOtp"] = mobileOtp
         }
-        if paymentmode != nil{
-            dictionary["paymentmode"] = paymentmode.toDictionary()
+        if registerDate != nil{
+            dictionary["registerDate"] = registerDate
         }
-        if profileimg != nil{
-            dictionary["profileimg"] = profileimg
+        if token != nil{
+            dictionary["token"] = token
+        }
+        if userId != nil{
+            dictionary["userId"] = userId
         }
         return dictionary
     }
-    
+
     /**
-     * NSCoding required initializer.
-     * Fills the data from the passed decoder
-     */
+    * NSCoding required initializer.
+    * Fills the data from the passed decoder
+    */
     @objc required init(coder aDecoder: NSCoder)
     {
-        address = aDecoder.decodeObject(forKey: "address") as? UserInfoAddres
-        community = aDecoder.decodeObject(forKey: "community") as? UserInfoCommunity
-        countrycode = aDecoder.decodeObject(forKey: "countrycode") as? String
-        email = aDecoder.decodeObject(forKey: "email") as? String
-        fullname = aDecoder.decodeObject(forKey: "fullname") as? String
-        id = aDecoder.decodeObject(forKey: "id") as? Int
-        mobile = aDecoder.decodeObject(forKey: "mobile") as? String
-        paymentmode = aDecoder.decodeObject(forKey: "paymentmode") as? PaymentModePayment
-        profileimg = aDecoder.decodeObject(forKey: "profileimg") as? String
-        
+         countryCode = aDecoder.decodeObject(forKey: "countryCode") as? String
+         email = aDecoder.decodeObject(forKey: "email") as? String
+         fullName = aDecoder.decodeObject(forKey: "fullName") as? String
+         mobileNo = aDecoder.decodeObject(forKey: "mobileNo") as? String
+         mobileOtp = aDecoder.decodeObject(forKey: "mobileOtp") as? String
+         registerDate = aDecoder.decodeObject(forKey: "registerDate") as? String
+         token = aDecoder.decodeObject(forKey: "token") as? String
+         userId = aDecoder.decodeObject(forKey: "userId") as? String
+
     }
-    
+
     /**
-     * NSCoding required method.
-     * Encodes mode properties into the decoder
-     */
+    * NSCoding required method.
+    * Encodes mode properties into the decoder
+    */
     func encode(with aCoder: NSCoder)
     {
-        if address != nil{
-            aCoder.encode(address, forKey: "address")
-        }
-        if community != nil{
-            aCoder.encode(community, forKey: "community")
-        }
-        if countrycode != nil{
-            aCoder.encode(countrycode, forKey: "countrycode")
+        if countryCode != nil{
+            aCoder.encode(countryCode, forKey: "countryCode")
         }
         if email != nil{
             aCoder.encode(email, forKey: "email")
         }
-        if fullname != nil{
-            aCoder.encode(fullname, forKey: "fullname")
+        if fullName != nil{
+            aCoder.encode(fullName, forKey: "fullName")
         }
-        if id != nil{
-            aCoder.encode(id, forKey: "id")
+        if mobileNo != nil{
+            aCoder.encode(mobileNo, forKey: "mobileNo")
         }
-        if mobile != nil{
-            aCoder.encode(mobile, forKey: "mobile")
+        if mobileOtp != nil{
+            aCoder.encode(mobileOtp, forKey: "mobileOtp")
         }
-        if paymentmode != nil{
-            aCoder.encode(paymentmode, forKey: "paymentmode")
+        if registerDate != nil{
+            aCoder.encode(registerDate, forKey: "registerDate")
         }
-        if profileimg != nil{
-            aCoder.encode(profileimg, forKey: "profileimg")
+        if token != nil{
+            aCoder.encode(token, forKey: "token")
         }
-        
+        if userId != nil{
+            aCoder.encode(userId, forKey: "userId")
+        }
+
     }
-    
+
 }

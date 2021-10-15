@@ -40,15 +40,25 @@ import UIKit
     
     func IsUserLoggedin() -> Bool? {
         let info = GetUserInfodata()
-        if info == nil || info?.accessToken == nil || info?.accessToken?.count == 0 {
-            return false
+        let islogin = self.mydefault.bool(forKey: isUserLogedIn)
+        if islogin {
+            if info == nil || info?.token == nil || info?.token?.count == 0 {
+                return false
+            }
+            else {
+                return true
+            }
         }
         else {
-            return true
+            return false
         }
     }
     
-    func SaveUserInfodata(info: UserInfoData) {
+    func SetLoginBool() {
+        self.mydefault.set(true, forKey: isUserLogedIn)
+    }
+    
+    func SaveUserInfodata(info: UserInfoUser) {
 //        let encoder = JSONEncoder()
 //        if let encoded = try? encoder.encode(info) {
 //            self.mydefault.set(encoded, forKey: LoginUserData)
@@ -57,10 +67,11 @@ import UIKit
             let personData = try! NSKeyedArchiver.archivedData(withRootObject: info, requiringSecureCoding: false)
 //            let personData = NSKeyedArchiver.archivedData(withRootObject: info)
             self.mydefault.set(personData, forKey: LoginUserData)
+            self.SetLoginBool()
         }
     }
 
-    func GetUserInfodata() -> UserInfoData? {
+    func GetUserInfodata() -> UserInfoUser? {
 //        if let savedPerson = self.mydefault.object(forKey: LoginUserData) as? Data {
 //            let decoder = JSONDecoder()
 //            if let loadedPerson = try? decoder.decode(UserInfoData.self, from: savedPerson) {
@@ -75,7 +86,7 @@ import UIKit
         else {
             do {
 //                let info = try! NSKeyedUnarchiver.unarchivedObject(ofClass: UserInfoData.self, from: personData! as Data)
-                let info = NSKeyedUnarchiver.unarchiveObject(with: personData! as Data) as! UserInfoData
+                let info = NSKeyedUnarchiver.unarchiveObject(with: personData! as Data) as! UserInfoUser
                 return info
             }
         }
@@ -85,8 +96,10 @@ import UIKit
 //        let domain = Bundle.main.bundleIdentifier!
 //        self.mydefault.removePersistentDomain(forName: domain)
         
-        self.mydefault.removeObject(forKey: LoginUserData)
-        self.mydefault.synchronize()
+        self.mydefault.set(false, forKey: isUserLogedIn)
+        NotificationCenter.default.post(name: Notification.Name(RemoveBdgeNotification), object: nil)
+//        self.mydefault.removeObject(forKey: LoginUserData)
+//        self.mydefault.synchronize()
         
 //        let randomInt = Int.random(in: 0..<3)
 //        UserDefaults.standard.setValue(randomInt, forKey: DefaultThemeValue)
@@ -111,7 +124,7 @@ import UIKit
         guard let rootdata = SharedUserInfo.shared.GetUserInfodata() else {
             return ""
         }
-        guard token == rootdata.accessToken else {
+        guard token == rootdata.token else {
             return ""
         }
         return token

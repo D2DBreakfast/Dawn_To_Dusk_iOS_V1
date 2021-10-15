@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -16,19 +17,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Backfround" translatesAutoresizingMaskIntoConstraints="NO" id="ZVT-QG-boe">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HomeLogo" translatesAutoresizingMaskIntoConstraints="NO" id="7lJ-Gl-dPv">
-                                <rect key="frame" x="132" y="373" width="150" height="150"/>
+                                <rect key="frame" x="82" y="323" width="250" height="250"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="150" id="3fD-gw-hif"/>
-                                    <constraint firstAttribute="height" constant="150" id="L2q-G1-P3l"/>
+                                    <constraint firstAttribute="width" constant="250" id="3fD-gw-hif"/>
+                                    <constraint firstAttribute="height" constant="250" id="L2q-G1-P3l"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="ZVT-QG-boe" secondAttribute="trailing" id="36G-sd-gop"/>
+                            <constraint firstItem="ZVT-QG-boe" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="9xk-eB-8hq"/>
                             <constraint firstItem="7lJ-Gl-dPv" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="HiT-6O-slw"/>
                             <constraint firstItem="7lJ-Gl-dPv" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="jig-Qe-eBf"/>
+                            <constraint firstItem="ZVT-QG-boe" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="oP1-2O-Vgl"/>
+                            <constraint firstAttribute="bottom" secondItem="ZVT-QG-boe" secondAttribute="bottom" id="pb5-Xd-rK2"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -38,7 +46,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="HomeLogo" width="186" height="186"/>
+        <image name="Backfround" width="640" height="480"/>
+        <image name="HomeLogo" width="1225" height="1225"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

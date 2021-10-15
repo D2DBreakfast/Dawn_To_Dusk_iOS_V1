@@ -57,6 +57,7 @@ class UserAccountVC: BaseClassVC {
             }
             else {
                 let vc = LoginVC(nibName: "LoginVC", bundle: nil)
+                vc.LoginSelected = 100
                 self.navigationController!.pushViewController(vc, animated: true)
             }
         }
@@ -221,11 +222,13 @@ extension UserAccountVC: UITableViewDelegate, UITableViewDataSource {
                 let cell: UserOptionCell = tableView.dequeueReusableCell(withIdentifier: "UserOptionCell") as! UserOptionCell
                 cell.setupSession()
                 cell.didTappedAction1Block = {
-                    let vc = RegisterVC(nibName: "RegisterVC", bundle: nil)
+                    let vc = LoginVC(nibName: "LoginVC", bundle: nil)
+                    vc.LoginSelected = 200
                     self.navigationController!.pushViewController(vc, animated: true)
                 }
                 cell.didTappedAction2Block = {
                     let vc = LoginVC(nibName: "LoginVC", bundle: nil)
+                    vc.LoginSelected = 100
                     self.navigationController!.pushViewController(vc, animated: true)
                 }
                 return cell
@@ -290,6 +293,7 @@ extension UserAccountVC: UITableViewDelegate, UITableViewDataSource {
         }
         else {
             let vc = LoginVC(nibName: "LoginVC", bundle: nil)
+            vc.LoginSelected = 100
             self.navigationController!.pushViewController(vc, animated: true)
         }
     }

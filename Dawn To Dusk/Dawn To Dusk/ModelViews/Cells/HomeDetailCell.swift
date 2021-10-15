@@ -59,19 +59,19 @@ class HomeDetailCell: UITableViewCell {
     //    MARK:- Custom Defines
     //    MARK:-
     
-    func setupfoodcell(food: FoodModels, indexPath: IndexPath) {
+    func setupfoodcell(food: MenuItemsData, indexPath: IndexPath) {
         if indexPath.section == 0 && indexPath.row == 0 {
-            self.TitleLBL.text = food.title
-            self.DetailsLBL.text = food.longdesc
+            self.TitleLBL.text = food.itemName
+            self.DetailsLBL.text = food.itemDescription
         }
-        else if indexPath.section == 0 && indexPath.row == 1 {
-            self.TitleLBL.text = "Nutritional Info."
-            self.DetailsLBL.text = food.nutriInfo
-        }
-        else if indexPath.section == 0 && indexPath.row == 2 {
-            self.TitleLBL.text = "Terms & Conditions"
-            self.DetailsLBL.text = food.info
-        }
+//        else if indexPath.section == 0 && indexPath.row == 1 {
+//            self.TitleLBL.text = "Nutritional Info."
+//            self.DetailsLBL.text = food.nutriInfo
+//        }
+//        else if indexPath.section == 0 && indexPath.row == 2 {
+//            self.TitleLBL.text = "Terms & Conditions"
+//            self.DetailsLBL.text = food.info
+//        }
         self.ButtonView.isHidden = true
         self.HideSkeleton()
     }

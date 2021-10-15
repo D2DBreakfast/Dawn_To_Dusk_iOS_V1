@@ -72,7 +72,6 @@ class HomeDashboardVC: UITabBarController {
         SharedUserInfo.shared.isFirstLaunch = true
         viewControllers = [
             createNavViewController(viewController: HomeListingVC.init(nibName: "HomeListingVC", bundle: nil), title: "Home", imageName: "Home.tab"),
-//            createNavViewController(viewController: GlobalSearchVC.init(nibName: "GlobalSearchVC", bundle: nil), title: "Search", imageName: "Search.tab"),
             createNavViewController(viewController: CartManageVC.init(nibName: "CartManageVC", bundle: nil), title: "Cart", imageName: "CartIC"),
             createNavViewController(viewController: NotificationVC.init(nibName: "NotificationVC", bundle: nil), title: "Notification", imageName: "Bell.tab"),
             createNavViewController(viewController: UserAccountVC.init(nibName: "UserAccountVC", bundle: nil), title: "Profile", imageName: "Profile.tab")
@@ -177,9 +176,7 @@ class HomeDashboardVC: UITabBarController {
     }
     
     @objc func Setupremovebadgecount() {
-        if SharedUserInfo.shared.IsUserLoggedin()! {
-            self.floatingTabbarView.removeBadgeHub(indexBD: 1, Counts: 0)
-        }
+        self.floatingTabbarView.removeBadgeHub(indexBD: 1, Counts: 0)
     }
     
     //    MARK:- IBAction Methods

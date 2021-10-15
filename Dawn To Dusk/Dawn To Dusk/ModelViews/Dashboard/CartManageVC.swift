@@ -56,6 +56,7 @@ class CartManageVC: BaseClassVC {
             }
             else {
                 let vc = LoginVC(nibName: "LoginVC", bundle: nil)
+                vc.LoginSelected = 100
                 self.navigationController!.pushViewController(vc, animated: true)
             }
         }
@@ -107,6 +108,7 @@ class CartManageVC: BaseClassVC {
         }
         
         if SharedUserInfo.shared.IsUserLoggedin()! {
+            
             NetworkingRequests.shared.GetAddressListing { (responseObject, status) in
                 if status || responseObject.status {
                     self.CommunityArry = responseObject.data.community

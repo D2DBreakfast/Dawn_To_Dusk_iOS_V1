@@ -6,23 +6,27 @@
     "category": [
       {
         "id": 10010,
-        "cat_name": "Sandwich"
+        "cat_name": "All Day Breakfast"
       },
       {
         "id": 10020,
-        "cat_name": "Continental"
+        "cat_name": "Perfect Vegan"
       },
       {
         "id": 10030,
-        "cat_name": "Healthy"
+        "cat_name": "Cereals"
       },
       {
         "id": 10040,
-        "cat_name": "Burgers"
+        "cat_name": "Pan Cakes"
       },
       {
         "id": 10050,
-        "cat_name": "Indian"
+        "cat_name": "Waffles"
+      },
+      {
+        "id": 10060,
+        "cat_name": "Kids"
       }
     ]
   }

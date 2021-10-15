@@ -104,7 +104,7 @@ class EditFormVC: BaseClassVC {
         case .EditProfile:
             
             self.title = "User Profile"
-            self.PriofileView.isHidden = false
+            self.PriofileView.isHidden = true
             self.TXTField1.isHidden = false
             self.TXTField2.isHidden = false
             self.OptionView.isHidden = false
@@ -114,15 +114,11 @@ class EditFormVC: BaseClassVC {
             self.ActionBTN.setTitle("Update Info", for: .normal)
             
             let userinfo = SharedUserInfo.shared.GetUserInfodata()
-            if ((userinfo?.user.profileimg?.IsStrEmpty()) != nil) {
-                self.PriofileIMG.image = UIImage.init(named: "HomeLogo")
-            }
-            else {
-                self.PriofileIMG.downloadedFrom(url: URL.init(string: (userinfo?.user.profileimg)!)!)
-            }
+            self.PriofileIMG.image = UIImage.init(named: "HomeLogo")
+            
             self.PriofileIMG.contentMode = .scaleAspectFill
-            self.TXTField1.text = userinfo?.user.fullname
-            self.TXTField2.text = userinfo?.user?.email
+            self.TXTField1.text = userinfo?.fullName
+            self.TXTField2.text = userinfo?.email
             
             self.Comment_height.constant = 0
             
@@ -163,8 +159,6 @@ class EditFormVC: BaseClassVC {
             break
         }
         
-        
-        
     }
     
     //    MARK:- IBActions Methods
@@ -198,6 +192,33 @@ class EditFormVC: BaseClassVC {
                 AttachmentHandler.shared.ShowSelectedAttachOption(vc: self, constant: [.camera, .photoLibrary])
                 AttachmentHandler.shared.imagePickedBlock = { (image) in
                     self.PriofileIMG.image = image
+                }
+            }
+            else {
+                if self.isUpdateMode {
+                    self.showLoaderActivity()
+                    let param = UpdateProfileParamDict.init(fullname: self.TXTField1.text, email: self.TXTField2.text, mobile: SharedUserInfo.shared.GetUserInfodata()?.mobileNo)
+                    NetworkingRequests.shared.Request_UpdateProfile(param: param) { (responseObject, status) in
+                        if status && ((responseObject.loginData?.token.IsStrEmpty()) != nil) {
+                            SharedUserInfo.shared.SaveUserInfodata(info: responseObject.loginData!)
+                            self.navigationController?.view.makeToast(responseObject.message!, duration: 3.0, position: .top)
+                        }
+                        else {
+                            self.navigationController?.view.makeToast(responseObject.message!, duration: 3.0, position: .top)
+                        }
+                        self.hideLoaderActivity()
+                        self.navigationController?.popViewController(animated: true)
+                    } onFailure: { message in
+                        if IsInternetIssue(message: message) {
+                            
+                        }
+                        else {
+                            self.navigationController?.view.makeToast(message, duration: 3.0, position: .top)
+                            self.hideLoaderActivity()
+                        }
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                    
                 }
             }
             break
