@@ -24,6 +24,7 @@ class HomeDetailsVC: BaseClassVC {
     //    MARK:- IBOutlets
     //    MARK:-
     
+    @IBOutlet weak var StackView: UIStackView!
     @IBOutlet weak var DetailTBL: UITableView!
     
     @IBOutlet weak var NodataFoundView: NodataView! {
@@ -39,7 +40,7 @@ class HomeDetailsVC: BaseClassVC {
     //    MARK:- Variable Definesua
     //    MARK:-
     
-    var FoodDetails: FoodModels!
+    var FoodDetails: MenuItemsData!
     var MealDetails: MealsModels!
     var BannerDetails: BannerModels!
     
@@ -84,7 +85,7 @@ class HomeDetailsVC: BaseClassVC {
     }()
     
     lazy var setupBottomOption : DetailsBottomOptionView = {
-        let bottom = DetailsBottomOptionView.init(frame: CGRect.init(x: 0, y: 0, width: Screen_width, height: 180))
+        let bottom = DetailsBottomOptionView.init(frame: CGRect.init(x: 0, y: 0, width: Screen_width, height: 150))
         bottom.setupBottomOption(DetailType: self.DetailType, FoodDetails: self.FoodDetails, MealDetails: self.MealDetails)
         bottom.didcallDateAction = {
             self.CalendarSelection()
@@ -94,13 +95,13 @@ class HomeDetailsVC: BaseClassVC {
                 bottom.AddCartBTN.isEnabled = false
                 bottom.AddCartBTN.alpha = 0.5
                 bottom.CheckBoxBTN.isSelected = false
-                bottom.AddCartBTN.setImage(UIImage.init(systemName: "circlebadge"), for: .normal)
+                bottom.CheckBoxBTN.setImage(UIImage.init(systemName: "circlebadge"), for: .normal)
             }
             else {
                 bottom.AddCartBTN.isEnabled = true
                 bottom.AddCartBTN.alpha = 1.0
                 bottom.CheckBoxBTN.isSelected = true
-                bottom.AddCartBTN.setImage(UIImage.init(systemName: "checkmark.circle.fill"), for: .normal)
+                bottom.CheckBoxBTN.setImage(UIImage.init(systemName: "checkmark.circle.fill"), for: .normal)
             }
         }
         bottom.didcallAddCartAction = {
@@ -168,7 +169,6 @@ class HomeDetailsVC: BaseClassVC {
         self.DetailTBL.register(UINib.init(nibName: "PaymentModeCell", bundle: nil), forCellReuseIdentifier: "PaymentModeCell")
         self.DetailTBL.allowsSelection = true
         
-        
         self.DetailTBL.rowHeight = UITableView.automaticDimension
         self.DetailTBL.estimatedRowHeight = UITableView.automaticDimension
         
@@ -190,26 +190,31 @@ class HomeDetailsVC: BaseClassVC {
             self.DetailTBL.backgroundColor = ModeBG_Color
             self.DetailTBL.separatorStyle = .none
             self.view.backgroundColor = ModeBG_Color
-            if self.getcarouselCell() > 0 {
+            if self.FoodDetails.itemImageUrl.count != 0 {
                 self.DetailTBL.tableHeaderView = self.carouselView
                 self.carouselView.reloadData()
             }
-            self.title = self.FoodDetails.title
+//            if self.getcarouselCell() > 0 {
+//                self.DetailTBL.tableHeaderView = self.carouselView
+//                self.carouselView.reloadData()
+//            }
+            self.title = self.FoodDetails.itemName
             self.SetupNavBarforback()
-            self.DetailTBL.tableFooterView = self.setupBottomOption
+//            self.DetailTBL.tableFooterView = self.setupBottomOption
+            self.StackView.addArrangedSubview(self.setupBottomOption)
             break
             
         case .Meals:
             self.DetailTBL.backgroundColor = ModeBG_Color
             self.DetailTBL.separatorStyle = .none
             self.view.backgroundColor = ModeBG_Color
-            if self.getcarouselCell() > 0 {
-                self.DetailTBL.tableHeaderView = self.carouselView
-                self.carouselView.reloadData()
-            }
+//            if self.getcarouselCell() > 0 {
+//                self.DetailTBL.tableHeaderView = self.carouselView
+//                self.carouselView.reloadData()
+//            }
             self.title = self.MealDetails.title
             self.SetupNavBarforback()
-            self.DetailTBL.tableFooterView = self.setupBottomOption
+//            self.DetailTBL.tableFooterView = self.setupBottomOption
             break
             
         case .Banner:
@@ -397,7 +402,7 @@ extension HomeDetailsVC: iCarouselDataSource, iCarouselDelegate {
     func getcarouselCell() -> Int {
         switch self.DetailType {
         case .Food:
-            return (self.FoodDetails.gallery?.count)!
+            return 1 //(self.FoodDetails.gallery?.count)!
             
         case .Meals:
             return (self.MealDetails.gallery?.count)!
@@ -414,7 +419,7 @@ extension HomeDetailsVC: iCarouselDataSource, iCarouselDelegate {
         var imageURL: String = ""
         switch self.DetailType {
         case .Food:
-            imageURL = self.FoodDetails.gallery![index]
+            imageURL = self.FoodDetails.itemImageUrl//self.FoodDetails.gallery![index]
             break
             
         case .Meals:
@@ -520,7 +525,7 @@ extension HomeDetailsVC {
             return 0
             
         case .Food:
-            return 3
+            return 1
             
         case .Meals:
             return section == 0 ? 4 : (self.MealDetails.items?.count)!

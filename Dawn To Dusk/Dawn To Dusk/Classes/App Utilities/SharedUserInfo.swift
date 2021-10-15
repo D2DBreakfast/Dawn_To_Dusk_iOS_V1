@@ -40,12 +40,22 @@ import UIKit
     
     func IsUserLoggedin() -> Bool? {
         let info = GetUserInfodata()
-        if info == nil || info?.token == nil || info?.token?.count == 0 {
-            return false
+        let islogin = self.mydefault.bool(forKey: isUserLogedIn)
+        if islogin {
+            if info == nil || info?.token == nil || info?.token?.count == 0 {
+                return false
+            }
+            else {
+                return true
+            }
         }
         else {
-            return true
+            return false
         }
+    }
+    
+    func SetLoginBool() {
+        self.mydefault.set(true, forKey: isUserLogedIn)
     }
     
     func SaveUserInfodata(info: UserInfoUser) {
@@ -57,6 +67,7 @@ import UIKit
             let personData = try! NSKeyedArchiver.archivedData(withRootObject: info, requiringSecureCoding: false)
 //            let personData = NSKeyedArchiver.archivedData(withRootObject: info)
             self.mydefault.set(personData, forKey: LoginUserData)
+            self.SetLoginBool()
         }
     }
 
@@ -85,8 +96,10 @@ import UIKit
 //        let domain = Bundle.main.bundleIdentifier!
 //        self.mydefault.removePersistentDomain(forName: domain)
         
-        self.mydefault.removeObject(forKey: LoginUserData)
-        self.mydefault.synchronize()
+        self.mydefault.set(false, forKey: isUserLogedIn)
+        NotificationCenter.default.post(name: Notification.Name(RemoveBdgeNotification), object: nil)
+//        self.mydefault.removeObject(forKey: LoginUserData)
+//        self.mydefault.synchronize()
         
 //        let randomInt = Int.random(in: 0..<3)
 //        UserDefaults.standard.setValue(randomInt, forKey: DefaultThemeValue)

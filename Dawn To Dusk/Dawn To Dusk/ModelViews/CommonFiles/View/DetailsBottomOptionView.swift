@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class DetailsBottomOptionView: UIView {
     
@@ -96,7 +97,7 @@ class DetailsBottomOptionView: UIView {
         self.imageView.tintColor = UIColor.colorWithHexString(hexStr: GetDefaultTheme()!)
     }
     
-    func setupBottomOption(DetailType: ShowDetailType!, FoodDetails: FoodModels!, MealDetails: MealsModels!) {
+    func setupBottomOption(DetailType: ShowDetailType!, FoodDetails: MenuItemsData!, MealDetails: MealsModels!) {
         
         self.BottomStack.isHidden = false
         self.DateView.isHidden = false
@@ -107,6 +108,9 @@ class DetailsBottomOptionView: UIView {
         self.AgreeLBL.textColor = .red
         self.AgreeView.isHidden = false
         
+//        let tapGest = UITapGestureRecognizer.init(target: self, action: #selector(self.TapGesture()))
+//        self.AgreeView.addGestureRecognizer(tapGest)
+        
         if DetailType == .Meals {
             self.DateLBL.text = "Plan Start-End date"
         }
@@ -114,7 +118,7 @@ class DetailsBottomOptionView: UIView {
             self.DateLBL.text = "Select Delivery Date"
         }
         
-        let priceSTR: String = String.init(format: "%@ %@", (getdefaultCountry()?.symbol)!, DetailType == .Food ? FoodDetails.price!.formatprice() : MealDetails.price!.formatprice())
+        let priceSTR: String = String.init(format: "%@ %@", (getdefaultCountry()?.symbol)!, DetailType == .Food ? FoodDetails.itemPrice : MealDetails.price!.formatprice())
         self.PriceLBL.text = priceSTR
         
         self.BottomStack.backgroundColor = ModeBG_Color
@@ -137,10 +141,26 @@ class DetailsBottomOptionView: UIView {
         self.CartStack.backgroundColor = ModeBG_Color
     }
     
+    @objc func TapGesture() {
+        self.TappedButton(self.CheckBoxBTN)
+    }
     
     // MARK: - Actions
     
-    @IBAction func TappedButton(_ sender: UIButton) {
-        
+    @objc @IBAction func TappedButton(_ sender: UIButton) {
+        if self.DateBTN == sender {
+            if self.didcallDateAction != nil {
+                self.didcallDateAction!()
+            }
+        }
+        else if sender == self.CheckBoxBTN {
+            if self.didcallAgreeAction != nil {
+                self.didcallAgreeAction!()
+            }
+        } else {
+            if self.didcallAddCartAction != nil {
+                self.didcallAddCartAction!()
+            }
+        }
     }
 }

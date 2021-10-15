@@ -86,6 +86,7 @@ let RemoveBdgeNotification              = "RemoveBdgeNotification"
 
 // MARK:- REST Services Keys <UserInfoData>
 let LoginUserData                       = "LoginUserInfo"
+let isUserLogedIn                       = "isUserLogedIn"
 
 // MARK: - -------------------- Storyboard --------------------
 // MARK: -

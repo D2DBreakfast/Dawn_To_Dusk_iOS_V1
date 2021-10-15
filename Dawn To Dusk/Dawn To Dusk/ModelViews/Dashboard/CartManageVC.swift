@@ -108,6 +108,7 @@ class CartManageVC: BaseClassVC {
         }
         
         if SharedUserInfo.shared.IsUserLoggedin()! {
+            
             NetworkingRequests.shared.GetAddressListing { (responseObject, status) in
                 if status || responseObject.status {
                     self.CommunityArry = responseObject.data.community

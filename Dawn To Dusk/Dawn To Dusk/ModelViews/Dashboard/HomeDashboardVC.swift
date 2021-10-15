@@ -176,9 +176,7 @@ class HomeDashboardVC: UITabBarController {
     }
     
     @objc func Setupremovebadgecount() {
-        if SharedUserInfo.shared.IsUserLoggedin()! {
-            self.floatingTabbarView.removeBadgeHub(indexBD: 1, Counts: 0)
-        }
+        self.floatingTabbarView.removeBadgeHub(indexBD: 1, Counts: 0)
     }
     
     //    MARK:- IBAction Methods

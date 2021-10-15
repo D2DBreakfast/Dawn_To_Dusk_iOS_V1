@@ -179,6 +179,7 @@ class OTPVerifyVC: BaseClassVC {
             NetworkingRequests.shared.Request_UserVerifyOTP(param: param) { (responseObject, status) in
                 if status && responseObject.status && responseObject.statusCode == 200 {
 //                    SharedUserInfo.shared.SaveUserInfodata(info: responseObject.loginData!)
+                    SharedUserInfo.shared.SetLoginBool()
                     let vc = HomeDashboardVC()
                     self.navigationController!.pushViewController(vc, animated: true)
                 }

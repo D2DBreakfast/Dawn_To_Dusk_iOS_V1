@@ -316,7 +316,7 @@ class HomeListingVC: BaseClassVC {
                         self.FoodListTBL.reloadData()
                     }
                     self.SubCatView.CheckUncheckvalueChange = { index in
-                        self.SelectedSubCat = nil
+                        self.SelectedSubCat = self.getSubcatOBJ(dataObj: index)
                         self.FoodListTBL.reloadData()
                     }
                     self.subHeaderView.isHidden = false
@@ -708,17 +708,17 @@ extension HomeListingVC: UITableViewDelegate, UITableViewDataSource {
         }
         else {
             if self.FilterWithSub {
-//                let food = self.GetFinalFoodwithSubArry()[indexPath.row]
-//                vc.FoodDetails = food
+                let food = self.GetFinalFoodwithSubArry()[indexPath.row]
+                vc.FoodDetails = food
                 vc.DetailType = .Food
             }
             else {
 //                let meal = self.MenuItems_arry[indexPath.row]
-                vc.DetailType = .Meals
+//                vc.DetailType = .Meals
 //                vc.MealDetails = meal
             }
         }
-//        self.navigationController!.pushViewController(vc, animated: true)
+        self.navigationController!.pushViewController(vc, animated: true)
     }
     
     func SetupBannerCell(indexPath: IndexPath) -> UITableViewCell {
