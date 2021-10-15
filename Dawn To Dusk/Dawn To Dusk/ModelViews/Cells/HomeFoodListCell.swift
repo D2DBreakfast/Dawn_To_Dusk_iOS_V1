@@ -134,7 +134,7 @@ class HomeFoodListCell: UITableViewCell {
     func setupfoodcell(food: MenuItemsData) {
         self.FilterView.isHidden = false
         self.OptionView.isHidden = false
-//        self.FilterIMG.tintColor = food.isveg! ? UIColor.colorWithHexString(hexStr: GreenTheme) : .red
+        self.FilterIMG.tintColor = food.itemFoodType.uppercased() == "Veg".uppercased() ? UIColor.colorWithHexString(hexStr: GreenTheme) : .red
         self.FoodIMG.downloadedFrom(url: URL.init(string: food.itemImageUrl!)!)
         self.FoodIMG.contentMode = .scaleToFill
         self.TitleLBL.text = food.itemName

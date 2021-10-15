@@ -358,8 +358,7 @@ class HomeListingVC: BaseClassVC {
             self.navigationController?.view.makeToast(message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
         }
         
-//        let params = ListingParamDict.init(CatName: self.SelectedMainCat.mainCategoryName, SubCatName: self.SelectedSubCat.subCategoryName, foodType: "plain")
-        let params = ListingParamDict.init(CatName: "Breakfast", SubCatName: "All Day Breakfast", foodType: "Veg")
+        let params = ListingParamDict.init(CatName: self.SelectedMainCat.mainCategoryName, SubCatName: self.SelectedSubCat.subCategoryName, foodType: "Veg")
         NetworkingRequests.shared.GetFoodListing(param: params) { (responseObject, status) in
             if status {
                 if responseObject.menuData.data.count > 1 {
