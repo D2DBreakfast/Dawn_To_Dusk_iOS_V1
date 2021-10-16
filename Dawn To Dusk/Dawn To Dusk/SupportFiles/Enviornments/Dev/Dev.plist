@@ -88,12 +88,18 @@
 	<string>${GetMenuListing}</string>
 	<key>GlobalSearchURL</key>
 	<string>${GlobalSearchURL}</string>
+	<key>PlaceOrderAPI</key>
+	<string>${PlaceOrderAPI}</string>
+	<key>AddToCartAPI</key>
+	<string>${AddToCartAPI}</string>
 	<key>LoginAPI</key>
 	<string>${LoginAPI}</string>
 	<key>GetMainCategory</key>
 	<string>${GetMainCategory}</string>
 	<key>GetSubCategory</key>
 	<string>${GetSubCategory}</string>
+	<key>MyCartListAPI</key>
+	<string>${MyCartListAPI}</string>
 	<key>RegisterAPI</key>
 	<string>${RegisterAPI}</string>
 	<key>DomainFolder</key>

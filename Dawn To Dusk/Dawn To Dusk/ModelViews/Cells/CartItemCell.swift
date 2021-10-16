@@ -81,13 +81,15 @@ class CartItemCell: UITableViewCell {
     //    MARK:- Custom Defines
     //    MARK:-
     
-    func setupfoodcell(food: FoodModels) {
-        self.ItemIMG.tintColor = food.isveg! ? UIColor.colorWithHexString(hexStr: GreenTheme) : .red
-        self.ItemIMG.downloadedFrom(url: URL.init(string: food.itemimage!)!)
+    func setupfoodcell(food: MyCartCartData) {
+//        self.ItemIMG.tintColor = food.isveg! ? UIColor.colorWithHexString(hexStr: GreenTheme) : .red
+        self.ItemIMG.isHidden = true
+//        self.ItemIMG.downloadedFrom(url: URL.init(string: "")!)
         self.ItemIMG.contentMode = .scaleToFill
-        self.TitleLBL.text = food.title
-        self.DescLBL.text = food.shortdesc
-        let result:Double = Double(((food.price)! * Double(QTY_Count)))
+        self.TitleLBL.text = food.itemName
+        self.DescLBL.text = ""
+        let price = Double.init(food.itemPrice)!
+        let result:Double = Double(price * Double(QTY_Count))
         let priceSTR: String = String.init(format: "%@ %@", (getdefaultCountry()?.symbol)!, result.formatprice())
         self.PriceLBL.text = priceSTR
     }

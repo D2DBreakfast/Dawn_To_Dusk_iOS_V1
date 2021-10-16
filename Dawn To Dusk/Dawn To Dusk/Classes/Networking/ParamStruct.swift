@@ -87,6 +87,44 @@ struct UpdateProfileParamDict {
     }
 }
 
+struct Place_ToCart_OrderParamDict {
+    var itemMainCategoryName: String!
+    var itemSubCategoryName: String!
+    var itemFoodType: String!
+    var itemName: String!
+    var itemId: String!
+    var itemQuantity: String!
+    var itemPrice: String!
+    var userId: String!
+    
+    var description: [String: Any] {
+        get {
+            return [
+                "itemMainCategoryName": itemMainCategoryName!,
+                "itemSubCategoryName": itemSubCategoryName!,
+                "itemFoodType": itemFoodType!,
+                "itemName": itemName!,
+                "itemId": itemId!,
+                "itemQuantity": itemQuantity!,
+                "itemPrice": itemPrice!,
+                "userId": userId!
+            ]
+         }
+    }
+}
+
+struct MyCartParamDict {
+    var userId: String!
+    
+    var description: [String: Any] {
+        get {
+            return [
+                "userId": userId!
+            ]
+         }
+    }
+}
+
 //MARK:- Struct Define for Cart Manage
 //MARK:-
 
@@ -104,12 +142,12 @@ struct CartLocation {
 }
 
 struct Cartitems {
-    var id: Int?
+    var id: String?
     var title: String?
     var price: Double?
     var qty: Int?
     
-    init(id: Int?, title: String?, price: Double?, qty: Int? = 1) {
+    init(id: String?, title: String?, price: Double?, qty: Int? = 1) {
         self.id = id
         self.title = title
         self.price = price

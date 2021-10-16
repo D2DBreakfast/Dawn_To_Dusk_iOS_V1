@@ -22,6 +22,9 @@ public enum PlistKey {
     case GlobalSearchURL
     case GetMainCategory
     case GetSubCategory
+    case PlaceOrderAPI
+    case AddToCartAPI
+    case MyCartListAPI
     
     func value() -> String {
         switch self {
@@ -49,6 +52,12 @@ public enum PlistKey {
             return "GetMainCategory"
         case .GetSubCategory:
             return "GetSubCategory"
+        case .PlaceOrderAPI:
+            return "PlaceOrderAPI"
+        case .AddToCartAPI:
+            return "AddToCartAPI"
+        case .MyCartListAPI:
+            return "MyCartListAPI"
         }
     }
 }
@@ -96,6 +105,12 @@ public struct Environments {
                 return infoDict[PlistKey.GetMainCategory.value()] as! String
             case .GetSubCategory:
                 return infoDict[PlistKey.GetSubCategory.value()] as! String
+            case .PlaceOrderAPI:
+                return infoDict[PlistKey.PlaceOrderAPI.value()] as! String
+            case .AddToCartAPI:
+                return infoDict[PlistKey.AddToCartAPI.value()] as! String
+            case .MyCartListAPI:
+                return infoDict[PlistKey.MyCartListAPI.value()] as! String
             }
         } else {
             print("The key is not present in the Infodictionary")

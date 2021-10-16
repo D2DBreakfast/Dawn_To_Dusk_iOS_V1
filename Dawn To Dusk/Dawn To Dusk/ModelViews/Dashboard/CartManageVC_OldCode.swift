@@ -126,9 +126,6 @@ class CartManageVC: BaseClassVC {
                     self.ListTBL.isHidden = false
                     self.NodataFoundView.isHidden = true
                     self.CartItems = responseObjects.cartData.first
-                    self.ListTBL.delegate = self
-                    self.ListTBL.dataSource = self
-                    self.ListTBL.reloadData()
                 }
                 else {
                     self.ListTBL.isHidden = true
@@ -138,20 +135,20 @@ class CartManageVC: BaseClassVC {
                 self.navigationController?.view.makeToast(message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
             }
             
-//            if self.CartItems == nil {
-//                self.NodataFoundView.backgroundColor = ModeBG_Color
-//                self.NodataFoundView.fillinfo(title: "No data available!", Notes: "There are no Data available yet!", image: "", enable: false)
-//                self.NodataFoundView.isHidden = false
-//                self.ListTBL.isHidden = true
-//            }
-//            else {
-//                self.NodataFoundView.isHidden = true
-//                self.ListTBL.isHidden = false
-//
-//                self.ListTBL.delegate = self
-//                self.ListTBL.dataSource = self
-//                self.ListTBL.reloadData()
-//            }
+            if self.CartItems == nil {
+                self.NodataFoundView.backgroundColor = ModeBG_Color
+                self.NodataFoundView.fillinfo(title: "No data available!", Notes: "There are no Data available yet!", image: "", enable: false)
+                self.NodataFoundView.isHidden = false
+                self.ListTBL.isHidden = true
+            }
+            else {
+                self.NodataFoundView.isHidden = true
+                self.ListTBL.isHidden = false
+                
+                self.ListTBL.delegate = self
+                self.ListTBL.dataSource = self
+                self.ListTBL.reloadData()
+            }
             self.reloadcart()
             self.SetupCommunityPopup()
         }
@@ -229,14 +226,14 @@ class CartManageVC: BaseClassVC {
 //            self.NodataFoundView.isHidden = true
 //            self.ListTBL.isHidden = false
 //        }
-//        if self.CartItems != nil {
-//            self.NodataFoundView.isHidden = false
-//            self.ListTBL.isHidden = true
-//        }
-//        else {
-//            self.NodataFoundView.isHidden = true
-//            self.ListTBL.isHidden = false
-//        }
+        if self.CartItems != nil {
+            self.NodataFoundView.isHidden = false
+            self.ListTBL.isHidden = true
+        }
+        else {
+            self.NodataFoundView.isHidden = true
+            self.ListTBL.isHidden = false
+        }
         self.ListTBL.reloadData()
     }
     
@@ -378,6 +375,9 @@ extension CartManageVC: UITableViewDelegate, UITableViewDataSource {
             return self.FOOD_ConfigCellFor(indexPath: indexPath)
             
         case 1:
+            return self.MEAL_ConfigCellFor(indexPath: indexPath)
+            
+        case 2:
             return self.CART_ConfigCellFor(indexPath: indexPath)
             
         default:
@@ -392,57 +392,57 @@ extension CartManageVC: UITableViewDelegate, UITableViewDataSource {
     
     func FOOD_ConfigCellFor(indexPath: IndexPath) -> UITableViewCell {
         
-        if self.CartItems != nil {
+        if (self.CartItems?.ordersitems!.count)! >= 1 {
             let cell: CartItemCell = self.ListTBL.dequeueReusableCell(withIdentifier: "CartItemCell") as! CartItemCell
-//            let food = self.CartItems?.ordersitems![indexPath.row]
-            let food = self.CartItems
+            let food = self.CartItems?.ordersitems![indexPath.row]
             
             cell.setupfoodcell(food: food!)
-            let price = Double.init(food!.itemPrice)!
             if self.cartInvoice == nil {
-                self.cartInvoice = CartInvoice.init(item: [Cartitems.init(id: food?.itemId, title: food?.itemName, price: price, qty: 1)])
+                self.cartInvoice = CartInvoice.init(item: [Cartitems.init(id: food?.id, title: food?.title, price: food?.price, qty: 1)])
             }
             else {
                 let old = self.cartInvoice.items.filter { (obj) in
-                    return obj.id == food?.itemId && obj.title?.uppercased() == food?.itemName?.uppercased()
+                    return obj.id == food?.id && obj.title?.uppercased() == food?.title?.uppercased()
                 }
                 if old.count == 0 {
-                    self.cartInvoice.items.append(Cartitems.init(id: food?.itemId, title: food?.itemName, price: price, qty: 1))
+                    self.cartInvoice.items.append(Cartitems.init(id: food?.id, title: food?.title, price: food?.price, qty: 1))
                 }
                 else {
                     cell.QTY_Count = (old.first?.qty)!
-                    let result:Double = Double((price * Double((old.first?.qty)!)))
+                    let result:Double = Double(((food!.price)! * Double((old.first?.qty)!)))
                     let priceSTR: String = String.init(format: "%@ %@", (getdefaultCountry()?.symbol)!, result.formatprice())
                     cell.PriceLBL.text = priceSTR
                     cell.QTY_LBL.text = String.init(format: "%d", cell.QTY_Count)
                 }
             }
             
-            let CartIndex = self.cartInvoice.items.enumerated().filter({$0.element.id == food?.itemId && $0.element.title?.uppercased() == food?.itemName?.uppercased()}).map({ $0.offset }).first
+            let CartIndex = self.cartInvoice.items.enumerated().filter({$0.element.id == food?.id && $0.element.title?.uppercased() == food?.title?.uppercased()}).map({ $0.offset }).first
             
             cell.didMinusActionBlock = {
-                if cell.QTY_Count != 1 {
-                    cell.QTY_Count -= 1
+                cell.QTY_Count -= 1
+                self.cartInvoice.items.remove(at: CartIndex!)
+                self.cartInvoice.items.append(Cartitems.init(id: food?.id, title: food?.title, price: food?.price, qty: cell.QTY_Count))
+                cell.QTY_LBL.text = String.init(format: "%d", cell.QTY_Count)
+                let result:Double = Double(((food?.price)! * Double(cell.QTY_Count)))
+                let priceSTR: String = String.init(format: "%@ %@", (getdefaultCountry()?.symbol)!, result.formatprice())
+                cell.PriceLBL.text = priceSTR
+                if cell.QTY_Count <= 0 {
+                    self.CartItems?.ordersitems?.remove(at: indexPath.row)
                     self.cartInvoice.items.remove(at: CartIndex!)
-                    self.cartInvoice.items.append(Cartitems.init(id: food?.itemId, title: food?.itemName, price: price, qty: cell.QTY_Count))
-                    cell.QTY_LBL.text = String.init(format: "%d", cell.QTY_Count)
-                    let result:Double = Double((price * Double(cell.QTY_Count)))
-                    let priceSTR: String = String.init(format: "%@ %@", (getdefaultCountry()?.symbol)!, result.formatprice())
-                    cell.PriceLBL.text = priceSTR
-                    self.reloadcart()
                 }
+                self.reloadcart()
             }
             cell.didDeleteActionBlock = {
-//                self.CartItems?.ordersitems?.remove(at: indexPath.row)
-//                self.cartInvoice.items.remove(at: CartIndex!)
-//                self.reloadcart()
+                self.CartItems?.ordersitems?.remove(at: indexPath.row)
+                self.cartInvoice.items.remove(at: CartIndex!)
+                self.reloadcart()
             }
             cell.didPlusActionBlock = {
                 cell.QTY_Count += 1
                 self.cartInvoice.items.remove(at: CartIndex!)
-                self.cartInvoice.items.append(Cartitems.init(id: food?.itemId, title: food?.itemName, price: price, qty: cell.QTY_Count))
+                self.cartInvoice.items.append(Cartitems.init(id: food?.id, title: food?.title, price: food?.price, qty: cell.QTY_Count))
                 cell.QTY_LBL.text = String.init(format: "%d", cell.QTY_Count)
-                let result:Double = Double((price * Double(cell.QTY_Count)))
+                let result:Double = Double(((food?.price)! * Double(cell.QTY_Count)))
                 let priceSTR: String = String.init(format: "%@ %@", (getdefaultCountry()?.symbol)!, result.formatprice())
                 cell.PriceLBL.text = priceSTR
                 self.reloadcart()
@@ -456,12 +456,12 @@ extension CartManageVC: UITableViewDelegate, UITableViewDataSource {
     }
     
 //    func MEAL_ConfigCellFor(indexPath: IndexPath) -> UITableViewCell {
-//
+//        
 //        if (self.CartItems?.mealsitems!.count)! >= 1 {
 //            let cell: CartItemCell = self.ListTBL.dequeueReusableCell(withIdentifier: "CartItemCell") as! CartItemCell
 //            let meal = self.CartItems?.mealsitems![indexPath.row]
 //            cell.setupmealcell(meal: meal!)
-//
+//            
 //            if self.cartInvoice == nil {
 //                self.cartInvoice = CartInvoice.init(item: [Cartitems.init(id: meal?.id, title: meal?.title, price: meal?.price, qty: 1)])
 //            }
@@ -480,9 +480,9 @@ extension CartManageVC: UITableViewDelegate, UITableViewDataSource {
 //                    cell.QTY_LBL.text = String.init(format: "%d", cell.QTY_Count)
 //                }
 //            }
-//
+//            
 //            let CartIndex = self.cartInvoice.items.enumerated().filter({$0.element.id == meal?.id && $0.element.title?.uppercased() == meal?.title?.uppercased()}).map({ $0.offset }).first
-//
+//            
 //            cell.didMinusActionBlock = {
 //                cell.QTY_Count -= 1
 //                self.cartInvoice.items.remove(at: CartIndex!)
@@ -517,12 +517,12 @@ extension CartManageVC: UITableViewDelegate, UITableViewDataSource {
 //        else {
 //            return self.BlankCell(indexPath: indexPath)
 //        }
-//
+//        
 //    }
     
     func CART_ConfigCellFor(indexPath: IndexPath) -> UITableViewCell {
         // Shipping Cell Defines
-        if self.CartItems != nil {
+        if (self.CartItems?.mealsitems!.count)! >= 1 || (self.CartItems?.ordersitems!.count)! >= 1 {
             if indexPath.row == 0 {
                 let cell: CartConfigureCell = self.ListTBL.dequeueReusableCell(withIdentifier: "CartConfigureCell") as! CartConfigureCell
                 cell.Setupshoppingcell(indexPath: indexPath)
@@ -540,7 +540,7 @@ extension CartManageVC: UITableViewDelegate, UITableViewDataSource {
                     self.navigationController!.pushViewController(vc, animated: true)
                 }
                 cell.didDropDownActionBlock = { (isStatus) in
-//                    self.CommunityPopup.isHidden = isStatus!
+                    self.CommunityPopup.isHidden = isStatus!
                 }
                 cell.didTextupdateBlock = { (string, type) in
                     if type == .Line1 {
@@ -599,14 +599,7 @@ extension CartManageVC: UITableViewDelegate, UITableViewDataSource {
                 let cell: CartConfigureCell = self.ListTBL.dequeueReusableCell(withIdentifier: "CartConfigureCell") as! CartConfigureCell
                 cell.AgreeSetupView(indexPath: indexPath)
                 cell.didCheckoutActionBlock = {
-                    print(self.cartInvoice.items)
-                    let priceresult:Double = Double(((self.cartInvoice.items.first?.price)! * Double((self.cartInvoice.items.first?.qty)!)))
-                    let param = Place_ToCart_OrderParamDict.init(itemMainCategoryName: self.CartItems?.itemMainCategoryName, itemSubCategoryName: self.CartItems?.itemSubCategoryName, itemFoodType: "Veg", itemName: self.CartItems?.itemName, itemId: self.CartItems?.itemId, itemQuantity: String.init(format: "%d", (self.cartInvoice.items.first?.qty)!), itemPrice: String.init(format: "%f", priceresult), userId: SharedUserInfo.shared.GetUserInfoFromEnum(enums: .UserID))
-                    NetworkingRequests.shared.PlaceOrderFromUser(param: param) { (response, status) in
-                        print(response)
-                    } onFailure: { errorMessage in
-                        
-                    }
+                    
                 }
                 return cell
             }

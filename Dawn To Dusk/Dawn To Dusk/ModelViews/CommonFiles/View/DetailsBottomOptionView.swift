@@ -99,8 +99,8 @@ class DetailsBottomOptionView: UIView {
     
     func setupBottomOption(DetailType: ShowDetailType!, FoodDetails: MenuItemsData!, MealDetails: MealsModels!) {
         
+        self.DateView.isHidden = true
         self.BottomStack.isHidden = false
-        self.DateView.isHidden = false
         self.Price_cart_View.isHidden = false
         
         self.AgreeLBL.text = "Food will not be delivered on Friday and Saturday. I agree with the Terms of Service."

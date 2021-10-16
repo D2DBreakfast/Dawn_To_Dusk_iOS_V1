@@ -9,7 +9,7 @@ import SwiftyJSON
 
 class BasicServicesRootClass: NSObject, NSCoding {
     
-    var code : Int!
+    var statusCode : Int!
     var data : BasicServicesData!
     var status : Bool!
     var message : String!
@@ -22,7 +22,7 @@ class BasicServicesRootClass: NSObject, NSCoding {
         if json.isEmpty {
             return
         }
-        code = json["code"].intValue
+        statusCode = json["statusCode"].intValue
         let dataJson = json["data"]
         if !dataJson.isEmpty{
             data = BasicServicesData(fromJson: dataJson)
@@ -37,8 +37,8 @@ class BasicServicesRootClass: NSObject, NSCoding {
     func toDictionary() -> [String:Any]
     {
         var dictionary = [String:Any]()
-        if code != nil{
-            dictionary["code"] = code
+        if statusCode != nil{
+            dictionary["statusCode"] = statusCode
         }
         if data != nil{
             dictionary["data"] = data.toDictionary()
@@ -58,7 +58,7 @@ class BasicServicesRootClass: NSObject, NSCoding {
      */
     @objc required init(coder aDecoder: NSCoder)
     {
-        code = aDecoder.decodeObject(forKey: "code") as? Int
+        statusCode = aDecoder.decodeObject(forKey: "statusCode") as? Int
         data = aDecoder.decodeObject(forKey: "data") as? BasicServicesData
         status = aDecoder.decodeObject(forKey: "status") as? Bool
         message = aDecoder.decodeObject(forKey: "message") as? String
@@ -70,8 +70,8 @@ class BasicServicesRootClass: NSObject, NSCoding {
      */
     func encode(with aCoder: NSCoder)
     {
-        if code != nil{
-            aCoder.encode(code, forKey: "code")
+        if statusCode != nil{
+            aCoder.encode(statusCode, forKey: "statusCode")
         }
         if data != nil{
             aCoder.encode(data, forKey: "data")

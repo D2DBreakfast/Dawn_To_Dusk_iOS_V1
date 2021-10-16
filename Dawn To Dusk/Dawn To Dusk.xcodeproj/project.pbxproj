@@ -145,6 +145,8 @@
 		B722A14F26EA271600A336CD /* foodlisting.json in Resources */ = {isa = PBXBuildFile; fileRef = B722A14826EA271600A336CD /* foodlisting.json */; };
 		B722A15026EA271600A336CD /* foodlisting.json in Resources */ = {isa = PBXBuildFile; fileRef = B722A14826EA271600A336CD /* foodlisting.json */; };
 		B722A15126EA271600A336CD /* foodlisting.json in Resources */ = {isa = PBXBuildFile; fileRef = B722A14826EA271600A336CD /* foodlisting.json */; };
+		B72C5F13271AB4300016A330 /* MyCartCartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72C5F11271AB4300016A330 /* MyCartCartData.swift */; };
+		B72C5F14271AB4300016A330 /* MyCartRootClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72C5F12271AB4300016A330 /* MyCartRootClass.swift */; };
 		B731C82326A6EFB800379CCB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B731C82226A6EFB800379CCB /* AppDelegate.swift */; };
 		B731C82526A6EFB800379CCB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B731C82426A6EFB800379CCB /* SceneDelegate.swift */; };
 		B731C82A26A6EFB800379CCB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B731C82826A6EFB800379CCB /* Main.storyboard */; };
@@ -509,6 +511,8 @@
 		B722A14626EA271600A336CD /* sub-categorylist.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "sub-categorylist.json"; sourceTree = "<group>"; };
 		B722A14726EA271600A336CD /* categorylist.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = categorylist.json; sourceTree = "<group>"; };
 		B722A14826EA271600A336CD /* foodlisting.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = foodlisting.json; sourceTree = "<group>"; };
+		B72C5F11271AB4300016A330 /* MyCartCartData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCartCartData.swift; sourceTree = "<group>"; };
+		B72C5F12271AB4300016A330 /* MyCartRootClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCartRootClass.swift; sourceTree = "<group>"; };
 		B731C81F26A6EFB800379CCB /* Dawn To Dusk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dawn To Dusk.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B731C82226A6EFB800379CCB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B731C82426A6EFB800379CCB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -835,6 +839,15 @@
 				B7E8B62426F1BE32009EC4FD /* couponlist.json */,
 			);
 			path = Jsondata;
+			sourceTree = "<group>";
+		};
+		B72C5F10271AB4300016A330 /* MyCartModels */ = {
+			isa = PBXGroup;
+			children = (
+				B72C5F11271AB4300016A330 /* MyCartCartData.swift */,
+				B72C5F12271AB4300016A330 /* MyCartRootClass.swift */,
+			);
+			path = MyCartModels;
 			sourceTree = "<group>";
 		};
 		B731C81626A6EFB800379CCB = {
@@ -1215,6 +1228,7 @@
 		B7EE5CF526D643DB00FDD52F /* ModelsClasses */ = {
 			isa = PBXGroup;
 			children = (
+				B72C5F10271AB4300016A330 /* MyCartModels */,
 				B71BCBD727172E40001C5911 /* MenuCatModels */,
 				B71BCBCA2716D1A3001C5911 /* MenuItemsModels */,
 				B722A13C26E9F2AA00A336CD /* CouponsModels */,
@@ -1547,11 +1561,13 @@
 				B7EE5D2D26D6483100FDD52F /* MealsModels.swift in Sources */,
 				B716B3F326CBAAA900B6D4C7 /* GetOTPRootClass.swift in Sources */,
 				B79210B226C27ED300D014B1 /* StyleKit.swift in Sources */,
+				B72C5F13271AB4300016A330 /* MyCartCartData.swift in Sources */,
 				B792108326C25D1D00D014B1 /* LocationPickerVC.swift in Sources */,
 				B79E194B26B7D67B007F67DA /* String+Timepiece.swift in Sources */,
 				B745BAAE26AE9E7B0048ECA8 /* Autolayout.swift in Sources */,
 				B7C069A326C655F800048B54 /* EditFormVC.swift in Sources */,
 				B716B3DC26CB854800B6D4C7 /* Toast.swift in Sources */,
+				B72C5F14271AB4300016A330 /* MyCartRootClass.swift in Sources */,
 				B71BCBD12716D1A4001C5911 /* MenuItemsMenuData.swift in Sources */,
 				B76315E026B3FF1D000BA46E /* CartManageVC.swift in Sources */,
 				B745BAD526AEBFA40048ECA8 /* NavHeaderView.swift in Sources */,

@@ -315,10 +315,10 @@ class HomeListingVC: BaseClassVC {
                         self.SelectedSubCat = self.getSubcatOBJ(dataObj: index)
                         self.FoodListTBL.reloadData()
                     }
-                    self.SubCatView.CheckUncheckvalueChange = { index in
-                        self.SelectedSubCat = self.getSubcatOBJ(dataObj: index)
-                        self.FoodListTBL.reloadData()
-                    }
+//                    self.SubCatView.CheckUncheckvalueChange = { index in
+//                        self.SelectedSubCat = self.getSubcatOBJ(dataObj: index)
+//                        self.FoodListTBL.reloadData()
+//                    }
                     self.subHeaderView.isHidden = false
                     self.GettingDataFromServer()
                 }
@@ -418,7 +418,7 @@ class HomeListingVC: BaseClassVC {
                         }
                         else {
 //                            return ((self.SelectedSubCatArry.first(where: { $0.id == obj.subCattegory?.id }) != nil) && (obj.cattegory?.id == self.SelectedMainCat.id) && obj.isveg == true)
-                            return ((self.SelectedSubCatArry.first(where: { $0.subCategoryName.uppercased() == obj.itemSubCategoryName.uppercased() }) != nil) && (obj.itemMainCategoryName?.uppercased() == self.SelectedMainCat.mainCategoryName.uppercased()))
+                            return ((self.SelectedSubCatArry.first(where: { $0.subCategoryName.uppercased() == obj.itemSubCategoryName.uppercased() }) != nil) && (obj.itemMainCategoryName?.uppercased() == self.SelectedMainCat.mainCategoryName.uppercased()) && obj.itemFoodType.uppercased() == "Veg".uppercased())
                         }
                     }
                     if self.IsSearching && self.SearchSTR.count > 0 {
@@ -435,7 +435,7 @@ class HomeListingVC: BaseClassVC {
                     let data = self.getVegfoodOnly().filter { obj in
                         if self.SelectedSubCatArry.count == 0 {
 //                            return ((obj.cattegory?.id == self.SelectedMainCat.id) && obj.isveg == true)
-                            return (obj.itemMainCategoryName.uppercased() == self.SelectedMainCat.mainCategoryName.uppercased())
+                            return (obj.itemMainCategoryName.uppercased() == self.SelectedMainCat.mainCategoryName.uppercased() && obj.itemFoodType.uppercased() == "Veg".uppercased())
                         }
                         else {
                             return (self.SelectedSubCatArry.first(where: { $0.subCategoryName.uppercased() == obj.itemSubCategoryName.uppercased() }) != nil)
@@ -487,11 +487,11 @@ class HomeListingVC: BaseClassVC {
                 let data = self.getVegfoodOnly().filter { obj in
                     if self.SelectedSubCat == nil {
 //                        return ((obj.cattegory?.id == self.SelectedMainCat.id) && obj.isveg == true)
-                        return (obj.itemMainCategoryName.uppercased() == self.SelectedMainCat.mainCategoryName.uppercased())
+                        return (obj.itemMainCategoryName.uppercased() == self.SelectedMainCat.mainCategoryName.uppercased() && obj.itemFoodType.uppercased() == "Veg".uppercased())
                     }
                     else {
 //                        return ((obj.subCattegory?.id == self.SelectedSubCat.id) && (obj.cattegory?.id == self.SelectedMainCat.id) && obj.isveg == true)
-                        return ((obj.itemSubCategoryName.uppercased() == self.SelectedSubCat.subCategoryName.uppercased()) && (obj.itemMainCategoryName.uppercased() == self.SelectedMainCat.mainCategoryName.uppercased()))
+                        return ((obj.itemSubCategoryName.uppercased() == self.SelectedSubCat.subCategoryName.uppercased()) && (obj.itemMainCategoryName.uppercased() == self.SelectedMainCat.mainCategoryName.uppercased() && obj.itemFoodType.uppercased() == "Veg".uppercased()))
                     }
                 }
                 if self.IsSearching && self.SearchSTR.count > 0 {

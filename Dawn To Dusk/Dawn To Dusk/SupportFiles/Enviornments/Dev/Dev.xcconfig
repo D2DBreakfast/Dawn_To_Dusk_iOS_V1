@@ -33,3 +33,6 @@ GetMenuListing                  = fetchMenuDetails
 GlobalSearchURL                 = menuQuickSearch
 GetMainCategory                 = admin/fetchMainCategory
 GetSubCategory                  = admin/fetchSubCategory
+PlaceOrderAPI                   = Placeorder
+AddToCartAPI                    = myCart
+MyCartListAPI                   = fetchCartDetails

@@ -7,6 +7,10 @@
 
 import UIKit
 
+enum SharedUserInfoEnum {
+    case UserToken, UserMobileNo, UserEmail, UserID
+}
+
 @objc public class SharedUserInfo: NSObject {
 
     var isFirstLaunch: Bool {
@@ -128,6 +132,22 @@ import UIKit
             return ""
         }
         return token
+    }
+    
+    func GetUserInfoFromEnum(enums: SharedUserInfoEnum) -> String? {
+        guard let rootdata = SharedUserInfo.shared.GetUserInfodata() else {
+            return ""
+        }
+        switch enums {
+        case .UserToken:
+            return self.GetUserToken()
+        case .UserMobileNo:
+            return String.init(format: "%@ %@", rootdata.countryCode, rootdata.mobileNo)
+        case .UserEmail:
+            return self.GetUserEmail()
+        case .UserID:
+            return String.init(format: "%@", rootdata.userId)
+        }
     }
     
 }

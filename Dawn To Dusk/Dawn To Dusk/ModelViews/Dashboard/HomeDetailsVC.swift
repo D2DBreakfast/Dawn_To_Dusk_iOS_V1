@@ -58,6 +58,7 @@ class HomeDetailsVC: BaseClassVC {
     ]
     
     var DetailType: ShowDetailType!
+    var DateSelected: Bool = true
     
     lazy var carouselView : iCarousel = {
         let header = iCarousel.init(frame: CGRect.init(x: 0, y: 0, width: Screen_width, height: 200))
@@ -92,22 +93,37 @@ class HomeDetailsVC: BaseClassVC {
         }
         bottom.didcallAgreeAction = {
             if bottom.CheckBoxBTN.isSelected {
-                bottom.AddCartBTN.isEnabled = false
-                bottom.AddCartBTN.alpha = 0.5
                 bottom.CheckBoxBTN.isSelected = false
                 bottom.CheckBoxBTN.setImage(UIImage.init(systemName: "circlebadge"), for: .normal)
             }
             else {
-                bottom.AddCartBTN.isEnabled = true
-                bottom.AddCartBTN.alpha = 1.0
                 bottom.CheckBoxBTN.isSelected = true
                 bottom.CheckBoxBTN.setImage(UIImage.init(systemName: "checkmark.circle.fill"), for: .normal)
+            }
+            if self.DateSelected && self.setupBottomOption.CheckBoxBTN.isSelected {
+                bottom.AddCartBTN.isEnabled = true
+                bottom.AddCartBTN.alpha = 1.0
+            }
+            else {
+                bottom.AddCartBTN.isEnabled = false
+                bottom.AddCartBTN.alpha = 0.5
             }
         }
         bottom.didcallAddCartAction = {
             if SharedUserInfo.shared.IsUserLoggedin()! {
                 NotificationCenter.default.post(name: Notification.Name(BdgeNotification), object: nil)
 //                self.TappedCartBTN(self.AddCartBTN)
+                let param = Place_ToCart_OrderParamDict.init(itemMainCategoryName: self.FoodDetails.itemMainCategoryName, itemSubCategoryName: self.FoodDetails.itemSubCategoryName, itemFoodType: self.FoodDetails.itemFoodType, itemName: self.FoodDetails.itemName, itemId: self.FoodDetails.itemId, itemQuantity: "1", itemPrice: self.FoodDetails.itemPrice, userId: SharedUserInfo.shared.GetUserInfoFromEnum(enums: .UserID))
+                print(param)
+                NetworkingRequests.shared.Call_AddtoCartAPI(param: param) { (responseObject, status) in
+                    print(responseObject)
+                    if status && responseObject.status && responseObject.statusCode == 200 {
+                        self.navigationController?.view.makeToast(responseObject.message.localized(), duration: 3.0, position: .top, title: "Items Added into Cart.".localized(), image: nil)
+                    }
+                    self.navigationController?.popViewController(animated: true)
+                } onFailure: { message in
+                    self.navigationController?.view.makeToast(message.localized(), duration: 3.0, position: .top, title: "Something went Wrong!".localized(), image: nil)
+                }
             }
             else {
                 let vc = LoginVC(nibName: "LoginVC", bundle: nil)
@@ -306,9 +322,9 @@ class HomeDetailsVC: BaseClassVC {
                 self.navigationController?.view.makeToast(message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
             }
             
-            let payBTN = UIButton().NavAddButton()
-            payBTN.addTarget(self, action: #selector(TappedAddPaymentBTN(_:)), for: .touchUpInside)
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: payBTN)
+//            let payBTN = UIButton().NavAddButton()
+//            payBTN.addTarget(self, action: #selector(TappedAddPaymentBTN(_:)), for: .touchUpInside)
+//            self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: payBTN)
             break
             
         case .Coupon:
@@ -905,8 +921,7 @@ extension HomeDetailsVC {
         
         if (self.CartItems?.ordersitems!.count)! >= 1 {
             let cell: CartItemCell = self.DetailTBL.dequeueReusableCell(withIdentifier: "CartItemCell") as! CartItemCell
-            let food = self.CartItems?.ordersitems![indexPath.row]
-            cell.setupfoodcell(food: food!)
+//            cell.setupfoodcell(food: self.CartItems!)
             cell.DeleteBTN.isHidden = true
             return cell
         }
@@ -958,7 +973,7 @@ extension HomeDetailsVC {
             // Invoice Cell Defines
             else if indexPath.row == 3 {
                 let cell: CartConfigureCell = self.DetailTBL.dequeueReusableCell(withIdentifier: "CartConfigureCell") as! CartConfigureCell
-                cell.SetupInvoicecell(invoiceObj: CartInvoice.init(item: [Cartitems.init(id: 0, title: "fadfsadf", price: 20, qty: 5)]), Cartcoupon: CartCoupon.init(id: 2, code: "ffsfsa", value: 20, isApply: false), indexPath: indexPath)
+                cell.SetupInvoicecell(invoiceObj: CartInvoice.init(item: [Cartitems.init(id: "0", title: "fadfsadf", price: 20, qty: 5)]), Cartcoupon: CartCoupon.init(id: 2, code: "ffsfsa", value: 20, isApply: false), indexPath: indexPath)
                 cell.HeaderView.isHidden = false
                 cell.DetailBTN.isHidden = true
                 return cell
@@ -1036,18 +1051,29 @@ extension HomeDetailsVC: WWCalendarTimeSelectorProtocol {
     
     func WWCalendarTimeSelectorDone(_ selector: WWCalendarTimeSelector, date: Date) {
         print("Selected \n\(date)\n---")
-        singleDate = date
-        self.setupBottomOption.AddCartBTN.isEnabled = true
-        self.setupBottomOption.AddCartBTN.alpha = 1.0
+        self.singleDate = date
+        self.DateSelected = true
+        if self.DateSelected && self.setupBottomOption.CheckBoxBTN.isSelected {
+            self.setupBottomOption.AddCartBTN.isEnabled = true
+            self.setupBottomOption.AddCartBTN.alpha = 1.0
+        }
+        else {
+            self.setupBottomOption.AddCartBTN.isEnabled = false
+            self.setupBottomOption.AddCartBTN.alpha = 0.5
+        }
         self.setupBottomOption.DateLBL.text = String.init(format: "%@", self.singleDate.convertDateFormater())
     }
     
     func WWCalendarTimeSelectorDone(_ selector: WWCalendarTimeSelector, dates: [Date]) {
         print("Selected Multiple Dates \n\(dates)\n---")
         multipleDates = dates
-        if self.DetailType == .Food {
+        if self.singleDate != nil && self.setupBottomOption.CheckBoxBTN.isSelected {
             self.setupBottomOption.AddCartBTN.isEnabled = true
             self.setupBottomOption.AddCartBTN.alpha = 1.0
+        }
+        else {
+            self.setupBottomOption.AddCartBTN.isEnabled = false
+            self.setupBottomOption.AddCartBTN.alpha = 0.5
         }
         self.setupBottomOption.DateLBL.text = dates.first?.convertDaterang(dt1: self.multipleDates.first!, dt2: self.multipleDates.last!)
     }
