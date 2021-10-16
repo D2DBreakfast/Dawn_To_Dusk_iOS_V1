@@ -149,16 +149,21 @@ class HomeDashboardVC: UITabBarController {
     
     @objc func SetupbadgeCount() {
         if SharedUserInfo.shared.IsUserLoggedin()! {
-            NetworkingRequests.shared.GetCartHistoryListing { (responseObject, status) in
-                if status || responseObject.status {
-                    let count = responseObject.data?.first
-                    self.floatingTabbarView.setupBadgeHub(indexBD: 1, Counts: responseObject.data.count)
+            let param = MyCartParamDict.init(userId: SharedUserInfo.shared.GetUserInfoFromEnum(enums: .UserID))
+            NetworkingRequests.shared.GetCartListingAPI(param: param) { (responseObjects, status) in
+                if status && responseObjects.status && responseObjects.statusCode == 200 {
+                    if responseObjects.cartData.count == 0 {
+                        self.floatingTabbarView.removeBadgeHub(indexBD: 1, Counts: 0)
+                    }
+                    else {
+                        self.floatingTabbarView.setupBadgeHub(indexBD: 1, Counts: responseObjects.cartData.count)
+                    }
                 }
                 else {
                     self.floatingTabbarView.removeBadgeHub(indexBD: 1, Counts: 0)
                 }
-            } onFailure: { (message) in
-                self.floatingTabbarView.removeBadgeHub(indexBD: 1, Counts: 0)
+            } onFailure: { message in
+                self.navigationController?.view.makeToast(message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
             }
             
             NetworkingRequests.shared.GetNotificationListing { (responseObject, status) in
@@ -166,10 +171,10 @@ class HomeDashboardVC: UITabBarController {
                     self.floatingTabbarView.setupBadgeHub(indexBD: 2, Counts: responseObject.data.notification.count)
                 }
                 else {
-                    self.floatingTabbarView.removeBadgeHub(indexBD: 1, Counts: 0)
+                    self.floatingTabbarView.removeBadgeHub(indexBD: 2, Counts: 0)
                 }
             } onFailure: { (message) in
-                self.floatingTabbarView.removeBadgeHub(indexBD: 1, Counts: 0)
+                self.floatingTabbarView.removeBadgeHub(indexBD: 2, Counts: 0)
             }
             
         }
@@ -177,6 +182,7 @@ class HomeDashboardVC: UITabBarController {
     
     @objc func Setupremovebadgecount() {
         self.floatingTabbarView.removeBadgeHub(indexBD: 1, Counts: 0)
+        self.floatingTabbarView.removeBadgeHub(indexBD: 2, Counts: 0)
     }
     
     //    MARK:- IBAction Methods

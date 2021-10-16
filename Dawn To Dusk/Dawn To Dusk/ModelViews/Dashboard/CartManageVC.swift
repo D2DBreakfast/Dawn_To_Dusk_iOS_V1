@@ -8,6 +8,7 @@
 import UIKit
 import MapKit
 import CoreLocation
+import SwiftyJSON
 
 
 class CartManageVC: BaseClassVC {
@@ -123,12 +124,18 @@ class CartManageVC: BaseClassVC {
             let param = MyCartParamDict.init(userId: SharedUserInfo.shared.GetUserInfoFromEnum(enums: .UserID))
             NetworkingRequests.shared.GetCartListingAPI(param: param) { (responseObjects, status) in
                 if status && responseObjects.status && responseObjects.statusCode == 200 {
-                    self.ListTBL.isHidden = false
-                    self.NodataFoundView.isHidden = true
-                    self.CartItems = responseObjects.cartData.first
-                    self.ListTBL.delegate = self
-                    self.ListTBL.dataSource = self
-                    self.ListTBL.reloadData()
+                    if responseObjects.cartData.count == 0 {
+                        self.ListTBL.isHidden = true
+                        self.NodataFoundView.isHidden = false
+                    }
+                    else {
+                        self.ListTBL.isHidden = false
+                        self.NodataFoundView.isHidden = true
+                        self.CartItems = responseObjects.cartData.first
+                        self.ListTBL.delegate = self
+                        self.ListTBL.dataSource = self
+                        self.ListTBL.reloadData()
+                    }
                 }
                 else {
                     self.ListTBL.isHidden = true
@@ -152,8 +159,8 @@ class CartManageVC: BaseClassVC {
 //                self.ListTBL.dataSource = self
 //                self.ListTBL.reloadData()
 //            }
-            self.reloadcart()
-            self.SetupCommunityPopup()
+//            self.reloadcart()
+//            self.SetupCommunityPopup()
         }
         else {
             self.ListTBL.isHidden = true
@@ -541,6 +548,10 @@ extension CartManageVC: UITableViewDelegate, UITableViewDataSource {
                 }
                 cell.didDropDownActionBlock = { (isStatus) in
 //                    self.CommunityPopup.isHidden = isStatus!
+                    let vc = HomeDetailsVC(nibName: "HomeDetailsVC", bundle: nil)
+                    vc.DetailType = .Address
+                    vc.DetailsDelegates = self
+                    self.navigationController!.pushViewController(vc, animated: true)
                 }
                 cell.didTextupdateBlock = { (string, type) in
                     if type == .Line1 {
@@ -631,6 +642,18 @@ extension CartManageVC: UITableViewDelegate, UITableViewDataSource {
 extension CartManageVC: DetailsShowingDelegates {
     
     func didselectedAddress(data: UserInfoAddres?) {
+        let dict: [String : Any] = (data?.toDictionary())!
+        guard let prettyJsonData = try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted) else {
+            print("Error: Cannot convert JSON object to Pretty JSON data")
+            return
+        }
+        guard let prettyPrintedJson = String(data: prettyJsonData, encoding: .utf8) else {
+            print("Error: Could print JSON in String")
+            return
+        }
+        let jsonData = prettyPrintedJson.data(using: .utf8)!
+        let json = JSON(jsonData)
+        self.CartCommunity = UserInfoCommunity.init(fromJson: json)
         self.reloadcart()
     }
     

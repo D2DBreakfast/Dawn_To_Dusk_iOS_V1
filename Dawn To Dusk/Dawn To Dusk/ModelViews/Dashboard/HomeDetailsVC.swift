@@ -119,6 +119,7 @@ class HomeDetailsVC: BaseClassVC {
                     print(responseObject)
                     if status && responseObject.status && responseObject.statusCode == 200 {
                         self.navigationController?.view.makeToast(responseObject.message.localized(), duration: 3.0, position: .top, title: "Items Added into Cart.".localized(), image: nil)
+                        NotificationCenter.default.post(name: Notification.Name(BdgeNotification), object: nil)
                     }
                     self.navigationController?.popViewController(animated: true)
                 } onFailure: { message in
