@@ -603,9 +603,16 @@ extension CartManageVC: UITableViewDelegate, UITableViewDataSource {
                     let priceresult:Double = Double(((self.cartInvoice.items.first?.price)! * Double((self.cartInvoice.items.first?.qty)!)))
                     let param = Place_ToCart_OrderParamDict.init(itemMainCategoryName: self.CartItems?.itemMainCategoryName, itemSubCategoryName: self.CartItems?.itemSubCategoryName, itemFoodType: "Veg", itemName: self.CartItems?.itemName, itemId: self.CartItems?.itemId, itemQuantity: String.init(format: "%d", (self.cartInvoice.items.first?.qty)!), itemPrice: String.init(format: "%f", priceresult), userId: SharedUserInfo.shared.GetUserInfoFromEnum(enums: .UserID))
                     NetworkingRequests.shared.PlaceOrderFromUser(param: param) { (response, status) in
-                        print(response)
+                        if status && response.status && response.statusCode == 200 {
+                            self.navigationController?.view.makeToast(response.message.localized(), duration: 3.0, position: .top, title: "Order Placed Successfully".localized(), image: nil)
+                            NotificationCenter.default.post(name: Notification.Name(RemoveBdgeNotification), object: nil)
+//                            self.setupUI()
+                        }
+                        else {
+                            self.navigationController?.view.makeToast(response.message.localized(), duration: 3.0, position: .top, title: "Something went wrongs".localized(), image: nil)
+                        }
                     } onFailure: { errorMessage in
-                        
+                        self.navigationController?.view.makeToast("We are unable to get your current location please, try it again!".localized(), duration: 3.0, position: .top, title: "User Location failed".localized(), image: nil)
                     }
                 }
                 return cell
