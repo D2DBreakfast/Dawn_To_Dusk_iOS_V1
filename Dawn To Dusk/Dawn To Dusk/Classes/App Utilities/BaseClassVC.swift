@@ -114,6 +114,12 @@ class BaseClassVC: UIViewController {
         tabBar.toggle(hide: hide)
     }
     
+    func setupMainScreen(index: Int, message: String) {
+        guard let tabBar = tabBarController as? HomeDashboardVC else { return }
+        tabBar.selectedIndex = index
+        self.navigationController?.view.makeToast(message.localized(), duration: 3.0, position: .top, title: "Order Placed Successfully".localized(), image: nil)
+    }
+    
     func showLoaderActivity() {
         self.navigationController?.view.makeToastActivity(.center)
         self.view.isUserInteractionEnabled = false

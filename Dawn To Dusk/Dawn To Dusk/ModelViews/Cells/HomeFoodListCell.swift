@@ -121,7 +121,8 @@ class HomeFoodListCell: UITableViewCell {
         self.FilterView.isHidden = false
         self.OptionView.isHidden = false
         self.FilterIMG.tintColor = meals.isveg! ? UIColor.colorWithHexString(hexStr: GreenTheme) : .red
-        self.FoodIMG.downloadedFrom(url: URL.init(string: food.itemimage!)!)
+//        self.FoodIMG.downloadedFrom(url: URL.init(string: food.itemimage!)!)
+        self.FoodIMG.image = UIImage.init(named: "DefaultImage")
         self.FoodIMG.contentMode = .scaleToFill
         self.TitleLBL.text = food.title
         self.DescLBL.text = food.shortdesc
@@ -135,7 +136,8 @@ class HomeFoodListCell: UITableViewCell {
         self.FilterView.isHidden = false
         self.OptionView.isHidden = false
         self.FilterIMG.tintColor = food.itemFoodType.uppercased() == "Veg".uppercased() ? UIColor.colorWithHexString(hexStr: GreenTheme) : .red
-        self.FoodIMG.downloadedFrom(url: URL.init(string: food.itemImageUrl!)!)
+//        self.FoodIMG.downloadedFrom(url: URL.init(string: food.itemImageUrl!)!)
+        self.FoodIMG.image = UIImage.init(named: "DefaultImage")
         self.FoodIMG.contentMode = .scaleToFill
         self.TitleLBL.text = food.itemName
         self.DescLBL.text = food.itemDescription
@@ -151,7 +153,8 @@ class HomeFoodListCell: UITableViewCell {
         self.FilterView.isHidden = false
         self.OptionView.isHidden = false
         self.FilterIMG.tintColor = meal.isveg! ? UIColor.colorWithHexString(hexStr: GreenTheme) : .red
-        self.FoodIMG.downloadedFrom(url: URL.init(string: meal.itemimage!)!)
+//        self.FoodIMG.downloadedFrom(url: URL.init(string: meal.itemimage!)!)
+        self.FoodIMG.image = UIImage.init(named: "DefaultImage")
         self.FoodIMG.contentMode = .scaleToFill
         self.TitleLBL.text = meal.title
         self.DescLBL.text = meal.shortdesc
@@ -165,7 +168,8 @@ class HomeFoodListCell: UITableViewCell {
     func setupHistorycell(history: OrderHistoryData, indexPath: IndexPath) {
         self.FilterView.isHidden = true
         self.OptionView.isHidden = true
-        self.FoodIMG.downloadedFrom(url: URL.init(string: history.ordersitems[indexPath.row].itemimage)!)
+//        self.FoodIMG.downloadedFrom(url: URL.init(string: history.ordersitems[indexPath.row].itemimage)!)
+        self.FoodIMG.image = UIImage.init(named: "DefaultImage")
         self.FoodIMG.contentMode = .scaleToFill
         self.TitleLBL.text = history.title
         self.DescLBL.text = history.ordersitems[indexPath.row].shortdesc

@@ -99,7 +99,7 @@ class DetailsBottomOptionView: UIView {
     
     func setupBottomOption(DetailType: ShowDetailType!, FoodDetails: MenuItemsData!, MealDetails: MealsModels!) {
         
-        self.DateView.isHidden = true
+        self.DateView.isHidden = false
         self.BottomStack.isHidden = false
         self.Price_cart_View.isHidden = false
         

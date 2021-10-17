@@ -58,7 +58,7 @@ class HomeDetailsVC: BaseClassVC {
     ]
     
     var DetailType: ShowDetailType!
-    var DateSelected: Bool = true
+    var DateSelected: Bool = false
     
     lazy var carouselView : iCarousel = {
         let header = iCarousel.init(frame: CGRect.init(x: 0, y: 0, width: Screen_width, height: 200))
@@ -466,8 +466,9 @@ extension HomeDetailsVC: iCarouselDataSource, iCarouselDelegate {
             itemView = view
         } else {
             itemView = UIImageView(frame: CGRect(x: 0, y: 0, width: self.carouselView.frame.height, height: self.carouselView.frame.height))
-            let imageURL: String = self.getCarouselImageURL(index: index)
-            itemView.downloadedFrom(url: URL.init(string: imageURL)!)
+//            let imageURL: String = self.getCarouselImageURL(index: index)
+//            itemView.downloadedFrom(url: URL.init(string: imageURL)!)
+            itemView.image = UIImage.init(named: "bannarimage")
             itemView.contentMode = .center
         }
         

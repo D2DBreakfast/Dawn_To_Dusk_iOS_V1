@@ -361,7 +361,7 @@ class HomeListingVC: BaseClassVC {
         let params = ListingParamDict.init(CatName: self.SelectedMainCat.mainCategoryName, SubCatName: self.SelectedSubCat.subCategoryName, foodType: "Veg")
         NetworkingRequests.shared.GetFoodListing(param: params) { (responseObject, status) in
             if status {
-                if responseObject.menuData.data.count > 1 {
+                if responseObject.menuData.data.count >= 1 {
                     self.MenuItems_arry = responseObject.menuData.data
                     self.filter_MenuItems = self.MenuItems_arry
                     self.FoodListTBL.reloadData()

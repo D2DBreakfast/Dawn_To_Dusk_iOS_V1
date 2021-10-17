@@ -615,8 +615,11 @@ extension CartManageVC: UITableViewDelegate, UITableViewDataSource {
                     let param = Place_ToCart_OrderParamDict.init(itemMainCategoryName: self.CartItems?.itemMainCategoryName, itemSubCategoryName: self.CartItems?.itemSubCategoryName, itemFoodType: "Veg", itemName: self.CartItems?.itemName, itemId: self.CartItems?.itemId, itemQuantity: String.init(format: "%d", (self.cartInvoice.items.first?.qty)!), itemPrice: String.init(format: "%f", priceresult), userId: SharedUserInfo.shared.GetUserInfoFromEnum(enums: .UserID))
                     NetworkingRequests.shared.PlaceOrderFromUser(param: param) { (response, status) in
                         if status && response.status && response.statusCode == 200 {
-                            self.navigationController?.view.makeToast(response.message.localized(), duration: 3.0, position: .top, title: "Order Placed Successfully".localized(), image: nil)
+                            self.navigationController?.view.makeToast(response.message.localized(), duration: 2.0, position: .top, title: "Order Placed Successfully".localized(), image: nil)
                             NotificationCenter.default.post(name: Notification.Name(RemoveBdgeNotification), object: nil)
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+                                self.setupMainScreen(index: 0, message: response.message.localized())
+                            }
 //                            self.setupUI()
                         }
                         else {

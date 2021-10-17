@@ -146,7 +146,7 @@ class CartConfigureCell: UITableViewCell {
         self.CouponValueLBL.addGestureRecognizer(tap)
         self.CouponValueLBL.textColor = UIColor.colorWithHexString(hexStr: "#D81919")
         
-        self.AgreeLBL.text = "I am agree with above all selection and delivery address which is mention above place."
+        self.AgreeLBL.text = "I agree with all the above selections."
         self.CheckBoxBTN.setImage(UIImage.init(systemName: "circlebadge"), for: .normal)
         self.CheckBoxBTN.tintColor = UIColor.colorWithHexString(hexStr: GetDefaultTheme()!)
         self.CheckOutBTN.GetThemeButtonwithBorder()
@@ -184,8 +184,8 @@ class CartConfigureCell: UITableViewCell {
         self.DeliveryDateView.isHidden = true
         
         self.TitleLBL.text = "Delivery Details"
-        self.CommunityLBL.text = "Community"
-        self.SelectedCommunityLBL.text = "Select the Community"
+        self.CommunityLBL.text = "Delivery Address"
+        self.SelectedCommunityLBL.text = "Select the address"
         self.Line1LBL.text = "Landmark 1"
         self.TXTVilla.placeholder = "Enter Landmark 1"
         self.Line2LBL.text = "Landmark 2"
