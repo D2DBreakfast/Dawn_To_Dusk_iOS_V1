@@ -231,6 +231,11 @@ extension String
         }
         return myMutableString
     }
+    
+    func formatprice() -> String {
+        let priceDouble = Double.init(self)
+        return (priceDouble?.formatprice())!
+    }
 }
 
 //MARK:- Date Fomrat

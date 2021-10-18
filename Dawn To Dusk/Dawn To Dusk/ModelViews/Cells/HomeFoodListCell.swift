@@ -165,15 +165,16 @@ class HomeFoodListCell: UITableViewCell {
         self.HideSkeleton()
     }
     
-    func setupHistorycell(history: OrderHistoryData, indexPath: IndexPath) {
+    func setupHistorycell(history: OrderDetailsOrderDetail, indexPath: IndexPath) {
         self.FilterView.isHidden = true
         self.OptionView.isHidden = true
 //        self.FoodIMG.downloadedFrom(url: URL.init(string: history.ordersitems[indexPath.row].itemimage)!)
         self.FoodIMG.image = UIImage.init(named: "DefaultImage")
         self.FoodIMG.contentMode = .scaleToFill
-        self.TitleLBL.text = history.title
-        self.DescLBL.text = history.ordersitems[indexPath.row].shortdesc
-        let priceSTR: String = String.init(format: "%@ %@", (getdefaultCountry()?.symbol)!, history.ordersitems[indexPath.row].price.formatprice())
+        self.TitleLBL.text = history.itemName
+        self.DescLBL.text = "history.ordersitems[indexPath.row].shortdesc"
+//        let priceSTR: String = String.init(format: "%@ %@", (getdefaultCountry()?.symbol)!, history.ordersitems[indexPath.row].price.formatprice())
+        let priceSTR: String = String.init(format: "%@ %@", (getdefaultCountry()?.symbol)!, history.itemPrice.formatprice())
         self.PriceLBL.text = priceSTR
         self.HideSkeleton()
     }

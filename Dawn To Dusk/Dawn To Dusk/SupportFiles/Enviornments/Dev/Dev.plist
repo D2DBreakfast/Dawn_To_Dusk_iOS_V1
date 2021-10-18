@@ -92,6 +92,8 @@
 	<string>${PlaceOrderAPI}</string>
 	<key>AddToCartAPI</key>
 	<string>${AddToCartAPI}</string>
+	<key>GetOrderHistory</key>
+	<string>${GetOrderHistory}</string>
 	<key>LoginAPI</key>
 	<string>${LoginAPI}</string>
 	<key>GetMainCategory</key>

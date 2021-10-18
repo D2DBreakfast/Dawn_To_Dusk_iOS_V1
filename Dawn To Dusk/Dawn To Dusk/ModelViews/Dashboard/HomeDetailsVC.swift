@@ -138,11 +138,9 @@ class HomeDetailsVC: BaseClassVC {
     fileprivate var singleDate: Date = Date()
     fileprivate var multipleDates: [Date] = []
     
-//    var CartItems: CartListModelClass? = DummCartdata()
-//    var HistoryArry: [OrderHistoryModelData]? = DummyOrderHistory()
-    
     var CartItems: OrderHistoryData?
     var HistoryArry: [OrderHistoryData]? = []
+    var NewHistory_Arry: [OrderDetailsOrderDetail]? = []
     
     //    MARK:- View Cycle
     //    MARK:-
@@ -264,16 +262,40 @@ class HomeDetailsVC: BaseClassVC {
             self.NodataFoundView.isHidden = true
             self.DetailTBL.isHidden = false
             
-            NetworkingRequests.shared.GetCartHistoryListing { (responseObjects, status) in
-                if status || responseObjects.status {
-                    self.HistoryArry = responseObjects.data
+            let param = MyCartParamDict.init(userId: SharedUserInfo.shared.GetUserInfoFromEnum(enums: .UserID))
+            NetworkingRequests.shared.GetOrderHistoryAPI(param: param) { (responseObject, status) in
+                if status && responseObject.status && responseObject.statusCode == 200 {
+                    let userdata = responseObject.data.filter { obj in
+                        return obj.userId == param.userId
+                    }
+                    self.NewHistory_Arry = userdata.first?.orderDetails
+                    if self.NewHistory_Arry!.count >= 1 {
+                        self.NodataFoundView.isHidden = true
+                        self.DetailTBL.isHidden = false
+                        self.DetailTBL.reloadData()
+                    }
+                    else {
+                        self.NodataFoundView.isHidden = false
+                        self.DetailTBL.isHidden = true
+                    }
                 }
                 else {
-                    self.navigationController?.view.makeToast(responseObjects.message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
+                    self.navigationController?.view.makeToast(responseObject.message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
                 }
-            } onFailure: { (message) in
+            } onFailure: { message in
                 self.navigationController?.view.makeToast(message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
             }
+
+//            NetworkingRequests.shared.GetCartHistoryListing { (responseObjects, status) in
+//                if status || responseObjects.status {
+//                    self.HistoryArry = responseObjects.data
+//                }
+//                else {
+//                    self.navigationController?.view.makeToast(responseObjects.message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
+//                }
+//            } onFailure: { (message) in
+//                self.navigationController?.view.makeToast(message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
+//            }
             break
             
         case .Address:
@@ -508,7 +530,7 @@ extension HomeDetailsVC {
             return 1
             
         case .History:
-            return 2
+            return 1
             
         case .Address:
             return 1
@@ -570,7 +592,7 @@ extension HomeDetailsVC {
             return 1
             
         case .History:
-            return section == 0 ? self.HistoryArry?.count : self.HistoryArry?.count
+            return section == 0 ? self.NewHistory_Arry?.count : self.NewHistory_Arry?.count
             
         case .HistoryDetails:
             return self.GetRowFromSection(section: section)
@@ -621,7 +643,8 @@ extension HomeDetailsVC: UITableViewDelegate, UITableViewDataSource {
         case .Meals:
             return section == 1 ? 40 : 0
         case .History:
-            return 40
+//            return 40
+            return 0
         default:
             return 0
         }
@@ -639,8 +662,9 @@ extension HomeDetailsVC: UITableViewDelegate, UITableViewDataSource {
             }
             
         case .History:
-            self.Sectiontitle.text = section == 0 ? "Running Orders" : "Completed Orders"
-            return self.SectionHeader
+//            self.Sectiontitle.text = section == 0 ? "Running Orders" : "Completed Orders"
+//            return self.SectionHeader
+            return nil
             
         default:
             return nil
@@ -735,17 +759,17 @@ extension HomeDetailsVC: UITableViewDelegate, UITableViewDataSource {
             break
             
         case .History:
-            if indexPath.section == 0 {
-                let vc = HomeDetailsVC(nibName: "HomeDetailsVC", bundle: nil)
-                vc.DetailType = .TrackOrder
-                self.navigationController!.pushViewController(vc, animated: true)
-            }
-            else {
-                let details = HomeDetailsVC.init(nibName: "HomeDetailsVC", bundle: nil)
-                details.DetailType = .HistoryDetails
-                details.CartItems = self.HistoryArry?[indexPath.row]
-                self.navigationController?.pushViewController(details, animated: true)
-            }
+//            if indexPath.section == 0 {
+//                let vc = HomeDetailsVC(nibName: "HomeDetailsVC", bundle: nil)
+//                vc.DetailType = .TrackOrder
+//                self.navigationController!.pushViewController(vc, animated: true)
+//            }
+//            else {
+//                let details = HomeDetailsVC.init(nibName: "HomeDetailsVC", bundle: nil)
+//                details.DetailType = .HistoryDetails
+//                details.CartItems = self.HistoryArry?[indexPath.row]
+//                self.navigationController?.pushViewController(details, animated: true)
+//            }
             break
             
         case .Address:
@@ -901,21 +925,21 @@ extension HomeDetailsVC {
     
     //    TODO:- History Config Cells
     func HistoryConfigCell(indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
-            let cell: RunningOrderCell = self.DetailTBL.dequeueReusableCell(withIdentifier: "RunningOrderCell") as! RunningOrderCell
-            cell.setuptrackdata()
-            cell.didTappedActionBlock = {
-                let vc = HomeDetailsVC(nibName: "HomeDetailsVC", bundle: nil)
-                vc.DetailType = .TrackOrder
-                self.navigationController!.pushViewController(vc, animated: true)
-            }
-            return cell
-        }
-        else {
+//        if indexPath.section == 0 {
+//            let cell: RunningOrderCell = self.DetailTBL.dequeueReusableCell(withIdentifier: "RunningOrderCell") as! RunningOrderCell
+//            cell.setuptrackdata()
+//            cell.didTappedActionBlock = {
+//                let vc = HomeDetailsVC(nibName: "HomeDetailsVC", bundle: nil)
+//                vc.DetailType = .TrackOrder
+//                self.navigationController!.pushViewController(vc, animated: true)
+//            }
+//            return cell
+//        }
+//        else {
             let cell: HomeFoodListCell = self.DetailTBL.dequeueReusableCell(withIdentifier: "HomeFoodListCell") as! HomeFoodListCell
-            cell.setupHistorycell(history: self.HistoryArry![indexPath.row], indexPath: indexPath)
+            cell.setupHistorycell(history: self.NewHistory_Arry![indexPath.row], indexPath: indexPath)
             return cell
-        }
+//        }
     }
     
     //    TODO:- Cart History Details Cells

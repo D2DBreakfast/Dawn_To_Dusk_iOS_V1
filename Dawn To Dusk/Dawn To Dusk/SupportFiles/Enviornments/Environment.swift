@@ -25,6 +25,7 @@ public enum PlistKey {
     case PlaceOrderAPI
     case AddToCartAPI
     case MyCartListAPI
+    case GetOrderHistory
     
     func value() -> String {
         switch self {
@@ -58,6 +59,8 @@ public enum PlistKey {
             return "AddToCartAPI"
         case .MyCartListAPI:
             return "MyCartListAPI"
+        case .GetOrderHistory:
+            return "GetOrderHistory"
         }
     }
 }
@@ -111,6 +114,8 @@ public struct Environments {
                 return infoDict[PlistKey.AddToCartAPI.value()] as! String
             case .MyCartListAPI:
                 return infoDict[PlistKey.MyCartListAPI.value()] as! String
+            case .GetOrderHistory:
+                return infoDict[PlistKey.GetOrderHistory.value()] as! String
             }
         } else {
             print("The key is not present in the Infodictionary")

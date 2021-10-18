@@ -36,3 +36,4 @@ GetSubCategory                  = admin/fetchSubCategory
 PlaceOrderAPI                   = Placeorder
 AddToCartAPI                    = myCart
 MyCartListAPI                   = fetchCartDetails
+GetOrderHistory                 = admin/userDetails
