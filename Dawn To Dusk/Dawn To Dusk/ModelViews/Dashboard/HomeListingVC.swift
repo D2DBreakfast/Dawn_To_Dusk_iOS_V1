@@ -349,6 +349,7 @@ class HomeListingVC: BaseClassVC {
     func GettingDataFromServer() {
         NetworkingRequests.shared.GetbannerListing { (responseObject, status) in
             if status || responseObject.status {
+                self.Bannerarry.removeAll()
                 self.Bannerarry = responseObject.data.banner
             }
             else {
@@ -362,6 +363,7 @@ class HomeListingVC: BaseClassVC {
         NetworkingRequests.shared.GetFoodListing(param: params) { (responseObject, status) in
             if status {
                 if responseObject.menuData.data.count >= 1 {
+                    self.MenuItems_arry.removeAll()
                     self.MenuItems_arry = responseObject.menuData.data
                     self.filter_MenuItems = self.MenuItems_arry
                     self.FoodListTBL.reloadData()
@@ -592,7 +594,7 @@ extension HomeListingVC: UISearchBarDelegate {
         let params = GlobalSearcgDict.init(itemSearchKey: self.SearchSTR)
         NetworkingRequests.shared.GlobalSearchlist(param: params) { (responseObject, status) in
             if status {
-                if responseObject.menuData.data.count > 1 {
+                if responseObject.menuData.data.count >= 1 {
                     self.MenuItems_arry = responseObject.menuData.data
                     self.filter_MenuItems = self.MenuItems_arry
                 }
@@ -658,6 +660,7 @@ extension HomeListingVC: UISearchBarDelegate {
             self.filter_MenuItems.removeAll()
             self.filter_MenuItems = self.MenuItems_arry
         }
+        self.GettingDataFromServer()
         self.SearchBar.resignFirstResponder()
         self.FoodListTBL.reloadData()
     }

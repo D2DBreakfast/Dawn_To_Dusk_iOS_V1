@@ -25,6 +25,10 @@ class MenuItemsRootClass : NSObject, NSCoding{
         if !menuDataJson.isEmpty{
             menuData = MenuItemsMenuData(fromJson: menuDataJson)
         }
+        let menuSearchDataJson = json["menuSearchData"]
+        if !menuSearchDataJson.isEmpty{
+            menuData = MenuItemsMenuData(fromJson: menuSearchDataJson)
+        }
         message = json["message"].stringValue
         status = json["status"].boolValue
         statusCode = json["statusCode"].intValue
@@ -38,6 +42,9 @@ class MenuItemsRootClass : NSObject, NSCoding{
         var dictionary = [String:Any]()
         if menuData != nil{
             dictionary["menuData"] = menuData.toDictionary()
+        }
+        if menuData != nil{
+            dictionary["menuSearchData"] = menuData.toDictionary()
         }
         if message != nil{
             dictionary["message"] = message
@@ -58,6 +65,7 @@ class MenuItemsRootClass : NSObject, NSCoding{
     @objc required init(coder aDecoder: NSCoder)
     {
          menuData = aDecoder.decodeObject(forKey: "menuData") as? MenuItemsMenuData
+        menuData = aDecoder.decodeObject(forKey: "menuSearchData") as? MenuItemsMenuData
          message = aDecoder.decodeObject(forKey: "message") as? String
          status = aDecoder.decodeObject(forKey: "status") as? Bool
          statusCode = aDecoder.decodeObject(forKey: "statusCode") as? Int
@@ -72,6 +80,9 @@ class MenuItemsRootClass : NSObject, NSCoding{
     {
         if menuData != nil{
             aCoder.encode(menuData, forKey: "menuData")
+        }
+        if menuData != nil{
+            aCoder.encode(menuData, forKey: "menuSearchData")
         }
         if message != nil{
             aCoder.encode(message, forKey: "message")
