@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-let ImageDomainURL                      = ""
+let ImageDomainURL                      = "https://d2dbreakfasthouse.azurewebsites.net/manager/assets/menuimg/"
 
 let ThemeSpace                          = ""
 

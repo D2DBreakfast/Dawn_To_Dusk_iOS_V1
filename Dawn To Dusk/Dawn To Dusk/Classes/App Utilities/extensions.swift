@@ -238,7 +238,12 @@ extension String
     }
     
     func ImageURL_str() -> String {
-        return String.init(format: "%@%@", ImageDomainURL, self)
+        if self.contains(ImageDomainURL) {
+            return String.init(format: "%@", self)
+        }
+        else {
+            return String.init(format: "%@%@", ImageDomainURL, self)
+        }
     }
     
 }
