@@ -86,6 +86,8 @@
 	<string>${UpdateUserAPI}</string>
 	<key>GetMenuListing</key>
 	<string>${GetMenuListing}</string>
+	<key>GetSubCatMenuListing</key>
+	<string>${GetSubCatMenuListing}</string>
 	<key>GlobalSearchURL</key>
 	<string>${GlobalSearchURL}</string>
 	<key>PlaceOrderAPI</key>

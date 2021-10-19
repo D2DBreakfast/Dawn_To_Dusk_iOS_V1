@@ -1005,6 +1005,7 @@
 		B75C3BD926AFD3B000272E2C /* App Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				B7C069A926C680B000048B54 /* AttachmentHandler.swift */,
 				9777160A26B67DD90018F379 /* AlertView.swift */,
 				B77BA47D26AAB2FC00E408B1 /* AppUtillity.swift */,
 				B7EC692E26A976A9007BEE3E /* BaseClassVC.swift */,
@@ -1156,7 +1157,6 @@
 			children = (
 				B7E8B62826F1C334009EC4FD /* BadgeHub */,
 				B75C3BD926AFD3B000272E2C /* App Utilities */,
-				B7C069A926C680B000048B54 /* AttachmentHandler.swift */,
 				B783990926A9851400747324 /* CountryList */,
 				B761FD5F26C53948001EAEF5 /* FloatRatingView.swift */,
 				B7371D8D26B41927003C5851 /* iCarousel */,

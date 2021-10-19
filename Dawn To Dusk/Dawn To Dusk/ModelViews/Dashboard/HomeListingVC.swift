@@ -256,6 +256,7 @@ class HomeListingVC: BaseClassVC {
                 self.SubCatArry.removeAll()
                 if subcatData.subCategoryData.count != 0 && subcatData.status {
                     self.SubCatArry = subcatData.subCategoryData
+                    self.FoodListTBL.reloadData()
                 }
             }
             else {
@@ -359,7 +360,7 @@ class HomeListingVC: BaseClassVC {
             self.navigationController?.view.makeToast(message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
         }
         
-        let params = ListingParamDict.init(CatName: self.SelectedMainCat.mainCategoryName, SubCatName: self.SelectedSubCat.subCategoryName, foodType: "Veg")
+        let params = ListingParamDict.init(CatName: self.SelectedMainCat.mainCategoryName, SubCatName: self.SelectedSubCat.subCategoryName)
         NetworkingRequests.shared.GetFoodListing(param: params) { (responseObject, status) in
             if status {
                 if responseObject.menuData.data.count >= 1 {

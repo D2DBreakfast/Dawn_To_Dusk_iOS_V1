@@ -121,7 +121,7 @@ class HomeFoodListCell: UITableViewCell {
         self.FilterView.isHidden = false
         self.OptionView.isHidden = false
         self.FilterIMG.tintColor = meals.isveg! ? UIColor.colorWithHexString(hexStr: GreenTheme) : .red
-//        self.FoodIMG.downloadedFrom(url: URL.init(string: food.itemimage!)!)
+//        self.FoodIMG.downloadedFrom(url: URL.init(string: food.itemimage!.ImageURL_str())!)
         self.FoodIMG.image = UIImage.init(named: "DefaultImage")
         self.FoodIMG.contentMode = .scaleToFill
         self.TitleLBL.text = food.title
@@ -136,13 +136,13 @@ class HomeFoodListCell: UITableViewCell {
         self.FilterView.isHidden = false
         self.OptionView.isHidden = false
         self.FilterIMG.tintColor = food.itemFoodType.uppercased() == "Veg".uppercased() ? UIColor.colorWithHexString(hexStr: GreenTheme) : .red
-//        self.FoodIMG.downloadedFrom(url: URL.init(string: food.itemImageUrl!)!)
+//        self.FoodIMG.downloadedFrom(url: URL.init(string: food.itemImageUrl!.ImageURL_str())!)
         self.FoodIMG.image = UIImage.init(named: "DefaultImage")
         self.FoodIMG.contentMode = .scaleToFill
         self.TitleLBL.text = food.itemName
         self.DescLBL.text = food.itemDescription
 //        let priceSTR: String = String.init(format: "%@ %@", (getdefaultCountry()?.symbol)!, food.itemPrice.formatprice())
-        let priceSTR: String = String.init(format: "%@ %@", (getdefaultCountry()?.symbol)!, food.itemPrice)
+        let priceSTR: String = String.init(format: "%@ %@", (getdefaultCountry()?.symbol)!, food.itemPrice.formatprice())
         self.PriceLBL.text = priceSTR
         self.AddCartBTN.isHidden = false
         self.PriceLBL.isHidden = false
@@ -153,7 +153,7 @@ class HomeFoodListCell: UITableViewCell {
         self.FilterView.isHidden = false
         self.OptionView.isHidden = false
         self.FilterIMG.tintColor = meal.isveg! ? UIColor.colorWithHexString(hexStr: GreenTheme) : .red
-//        self.FoodIMG.downloadedFrom(url: URL.init(string: meal.itemimage!)!)
+//        self.FoodIMG.downloadedFrom(url: URL.init(string: meal.itemimage!.ImageURL_str())!)
         self.FoodIMG.image = UIImage.init(named: "DefaultImage")
         self.FoodIMG.contentMode = .scaleToFill
         self.TitleLBL.text = meal.title
@@ -168,7 +168,7 @@ class HomeFoodListCell: UITableViewCell {
     func setupHistorycell(history: OrderDetailsOrderDetail, indexPath: IndexPath) {
         self.FilterView.isHidden = true
         self.OptionView.isHidden = true
-//        self.FoodIMG.downloadedFrom(url: URL.init(string: history.ordersitems[indexPath.row].itemimage)!)
+//        self.FoodIMG.downloadedFrom(url: URL.init(string: history.ordersitems[indexPath.row].itemimage.ImageURL_str())!)
         self.FoodIMG.image = UIImage.init(named: "DefaultImage")
         self.FoodIMG.contentMode = .scaleToFill
         self.TitleLBL.text = history.itemName

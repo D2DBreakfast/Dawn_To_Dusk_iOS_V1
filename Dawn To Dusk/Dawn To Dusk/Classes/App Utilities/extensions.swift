@@ -236,6 +236,11 @@ extension String
         let priceDouble = Double.init(self)
         return (priceDouble?.formatprice())!
     }
+    
+    func ImageURL_str() -> String {
+        return String.init(format: "%@%@", ImageDomainURL, self)
+    }
+    
 }
 
 //MARK:- Date Fomrat

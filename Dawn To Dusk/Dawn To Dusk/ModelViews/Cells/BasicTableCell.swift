@@ -42,7 +42,7 @@ class BasicTableCell: UITableViewCell {
         self.textLabel!.text = data.title
         self.detailTextLabel!.text = data.shortdesc
 //        if data.gallery!.count >= 1 {
-//            self.imageView?.downloadedFrom(url: URL.init(string: (data.gallery?.first)!)!)
+//        self.imageView?.downloadedFrom(url: URL.init(string: (data.gallery?.first)!.ImageURL_str())!)
 //            self.imageView!.contentMode = .scaleAspectFill
 //        }
         self.HideSkeleton()

@@ -113,7 +113,7 @@ class HomeDetailsVC: BaseClassVC {
             if SharedUserInfo.shared.IsUserLoggedin()! {
                 NotificationCenter.default.post(name: Notification.Name(BdgeNotification), object: nil)
 //                self.TappedCartBTN(self.AddCartBTN)
-                let param = Place_ToCart_OrderParamDict.init(itemMainCategoryName: self.FoodDetails.itemMainCategoryName, itemSubCategoryName: self.FoodDetails.itemSubCategoryName, itemFoodType: self.FoodDetails.itemFoodType, itemName: self.FoodDetails.itemName, itemId: self.FoodDetails.itemId, itemQuantity: "1", itemPrice: self.FoodDetails.itemPrice, userId: SharedUserInfo.shared.GetUserInfoFromEnum(enums: .UserID))
+                let param = Place_ToCart_OrderParamDict.init(itemMainCategoryName: self.FoodDetails.itemMainCategoryName, itemSubCategoryName: self.FoodDetails.itemSubCategoryName, itemFoodType: self.FoodDetails.itemFoodType, itemName: self.FoodDetails.itemName, itemId: self.FoodDetails.itemId, itemQuantity: "1", itemPrice: self.FoodDetails.itemPrice.formatprice(), userId: SharedUserInfo.shared.GetUserInfoFromEnum(enums: .UserID))
                 print(param)
                 NetworkingRequests.shared.Call_AddtoCartAPI(param: param) { (responseObject, status) in
                     print(responseObject)
@@ -489,7 +489,7 @@ extension HomeDetailsVC: iCarouselDataSource, iCarouselDelegate {
         } else {
             itemView = UIImageView(frame: CGRect(x: 0, y: 0, width: self.carouselView.frame.height, height: self.carouselView.frame.height))
 //            let imageURL: String = self.getCarouselImageURL(index: index)
-//            itemView.downloadedFrom(url: URL.init(string: imageURL)!)
+//            itemView.downloadedFrom(url: URL.init(string: imageURL.ImageURL_str())!)
             itemView.image = UIImage.init(named: "bannarimage")
             itemView.contentMode = .center
         }

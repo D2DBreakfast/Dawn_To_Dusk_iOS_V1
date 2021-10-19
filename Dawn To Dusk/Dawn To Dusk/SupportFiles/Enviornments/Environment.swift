@@ -19,6 +19,7 @@ public enum PlistKey {
     case VerifyOtpAPI
     case UpdateUserAPI
     case GetMenuListing
+    case GetSubCatMenuListing
     case GlobalSearchURL
     case GetMainCategory
     case GetSubCategory
@@ -47,6 +48,8 @@ public enum PlistKey {
             return "UpdateUserAPI"
         case .GetMenuListing:
             return "GetMenuListing"
+        case .GetSubCatMenuListing:
+            return "GetSubCatMenuListing"
         case .GlobalSearchURL:
             return "GlobalSearchURL"
         case .GetMainCategory:
@@ -102,6 +105,8 @@ public struct Environments {
                 return infoDict[PlistKey.UpdateUserAPI.value()] as! String
             case .GetMenuListing:
                 return infoDict[PlistKey.GetMenuListing.value()] as! String
+            case .GetSubCatMenuListing:
+                return infoDict[PlistKey.GetSubCatMenuListing.value()] as! String
             case .GlobalSearchURL:
                 return infoDict[PlistKey.GlobalSearchURL.value()] as! String
             case .GetMainCategory:

@@ -118,7 +118,7 @@ class DetailsBottomOptionView: UIView {
             self.DateLBL.text = "Select Delivery Date"
         }
         
-        let priceSTR: String = String.init(format: "%@ %@", (getdefaultCountry()?.symbol)!, DetailType == .Food ? FoodDetails.itemPrice : MealDetails.price!.formatprice())
+        let priceSTR: String = String.init(format: "%@ %@", (getdefaultCountry()?.symbol)!, DetailType == .Food ? FoodDetails.itemPrice.formatprice() : MealDetails.price!.formatprice())
         self.PriceLBL.text = priceSTR
         
         self.BottomStack.backgroundColor = ModeBG_Color

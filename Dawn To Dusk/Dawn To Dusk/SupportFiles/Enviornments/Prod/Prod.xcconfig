@@ -30,6 +30,11 @@ VerifyOtpAPI                    = verifyOtp
 UpdateUserAPI                   = /user/updateUser
 
 GetMenuListing                  = fetchMenuDetails
+GetSubCatMenuListing            = fetchSubCategoryMenusDetails
 GlobalSearchURL                 = menuQuickSearch
 GetMainCategory                 = admin/fetchMainCategory
 GetSubCategory                  = admin/fetchSubCategory
+PlaceOrderAPI                   = Placeorder
+AddToCartAPI                    = myCart
+MyCartListAPI                   = fetchCartDetails
+GetOrderHistory                 = admin/userDetails

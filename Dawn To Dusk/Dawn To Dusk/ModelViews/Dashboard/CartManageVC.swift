@@ -612,7 +612,12 @@ extension CartManageVC: UITableViewDelegate, UITableViewDataSource {
                 cell.didCheckoutActionBlock = {
                     print(self.cartInvoice.items)
                     let priceresult:Double = Double(((self.cartInvoice.items.first?.price)! * Double((self.cartInvoice.items.first?.qty)!)))
-                    let param = Place_ToCart_OrderParamDict.init(itemMainCategoryName: self.CartItems?.itemMainCategoryName, itemSubCategoryName: self.CartItems?.itemSubCategoryName, itemFoodType: "Veg", itemName: self.CartItems?.itemName, itemId: self.CartItems?.itemId, itemQuantity: String.init(format: "%d", (self.cartInvoice.items.first?.qty)!), itemPrice: String.init(format: "%f", priceresult), userId: SharedUserInfo.shared.GetUserInfoFromEnum(enums: .UserID))
+                    
+                    let shiping = 18.0
+                    let vat = (priceresult * 5 ) / 100
+                    let finalprice = (priceresult + shiping + vat)
+                    
+                    let param = Place_ToCart_OrderParamDict.init(itemMainCategoryName: self.CartItems?.itemMainCategoryName, itemSubCategoryName: self.CartItems?.itemSubCategoryName, itemFoodType: "Veg", itemName: self.CartItems?.itemName, itemId: self.CartItems?.itemId, itemQuantity: String.init(format: "%d", (self.cartInvoice.items.first?.qty)!), itemPrice: String.init(format: "%@", finalprice.formatprice()), userId: SharedUserInfo.shared.GetUserInfoFromEnum(enums: .UserID))
                     NetworkingRequests.shared.PlaceOrderFromUser(param: param) { (response, status) in
                         if status && response.status && response.statusCode == 200 {
                             self.navigationController?.view.makeToast(response.message.localized(), duration: 2.0, position: .top, title: "Order Placed Successfully".localized(), image: nil)

@@ -47,11 +47,12 @@ struct OTPcodeParamDict {
 struct ListingParamDict {
     var CatName: String?
     var SubCatName: String?
-    var foodType: String?
+//    var foodType: String?
     
     var description: [String: Any] {
         get {
-            return ["itemMainCategoryName": CatName!, "itemSubCategoryName": SubCatName!, "itemFoodType": foodType!]
+//            return ["itemMainCategoryName": CatName!, "itemSubCategoryName": SubCatName!, "itemFoodType": foodType!]
+            return ["itemMainCategoryName": CatName!, "itemSubCategoryName": SubCatName!]
          }
     }
 }

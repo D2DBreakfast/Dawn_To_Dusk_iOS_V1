@@ -8,6 +8,8 @@
 import Foundation
 import UIKit
 
+let ImageDomainURL                      = ""
+
 let ThemeSpace                          = ""
 
 let GreenTheme                          = "#127C10"
