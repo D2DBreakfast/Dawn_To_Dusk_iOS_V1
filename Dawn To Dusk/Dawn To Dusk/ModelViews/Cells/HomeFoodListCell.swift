@@ -121,8 +121,8 @@ class HomeFoodListCell: UITableViewCell {
         self.FilterView.isHidden = false
         self.OptionView.isHidden = false
         self.FilterIMG.tintColor = meals.isveg! ? UIColor.colorWithHexString(hexStr: GreenTheme) : .red
-//        self.FoodIMG.downloadedFrom(url: URL.init(string: food.itemimage!.ImageURL_str())!)
-        self.FoodIMG.image = UIImage.init(named: "DefaultImage")
+        self.FoodIMG.downloadedFrom(url: URL.init(string: food.itemimage!.ImageURL_str())!)
+//        self.FoodIMG.image = UIImage.init(named: "DefaultImage")
         self.FoodIMG.contentMode = .scaleToFill
         self.TitleLBL.text = food.title
         self.DescLBL.text = food.shortdesc
@@ -136,8 +136,8 @@ class HomeFoodListCell: UITableViewCell {
         self.FilterView.isHidden = false
         self.OptionView.isHidden = false
         self.FilterIMG.tintColor = food.itemFoodType.uppercased() == "Veg".uppercased() ? UIColor.colorWithHexString(hexStr: GreenTheme) : .red
-//        self.FoodIMG.downloadedFrom(url: URL.init(string: food.itemImageUrl!.ImageURL_str())!)
-        self.FoodIMG.image = UIImage.init(named: "DefaultImage")
+        self.FoodIMG.downloadedFrom(url: URL.init(string: food.itemImageUrl!.ImageURL_str())!)
+//        self.FoodIMG.image = UIImage.init(named: "DefaultImage")
         self.FoodIMG.contentMode = .scaleToFill
         self.TitleLBL.text = food.itemName
         self.DescLBL.text = food.itemDescription
@@ -153,8 +153,8 @@ class HomeFoodListCell: UITableViewCell {
         self.FilterView.isHidden = false
         self.OptionView.isHidden = false
         self.FilterIMG.tintColor = meal.isveg! ? UIColor.colorWithHexString(hexStr: GreenTheme) : .red
-//        self.FoodIMG.downloadedFrom(url: URL.init(string: meal.itemimage!.ImageURL_str())!)
-        self.FoodIMG.image = UIImage.init(named: "DefaultImage")
+        self.FoodIMG.downloadedFrom(url: URL.init(string: meal.itemimage!.ImageURL_str())!)
+//        self.FoodIMG.image = UIImage.init(named: "DefaultImage")
         self.FoodIMG.contentMode = .scaleToFill
         self.TitleLBL.text = meal.title
         self.DescLBL.text = meal.shortdesc

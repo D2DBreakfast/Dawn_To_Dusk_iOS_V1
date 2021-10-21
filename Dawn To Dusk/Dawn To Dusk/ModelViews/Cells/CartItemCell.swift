@@ -82,7 +82,7 @@ class CartItemCell: UITableViewCell {
     //    MARK:-
     
     func setupfoodcell(food: MyCartCartData) {
-//        self.ItemIMG.tintColor = food.isveg! ? UIColor.colorWithHexString(hexStr: GreenTheme) : .red
+//        self.ItemIMG.tintColor = food.itemFootype.uppercased() == "Veg".uppercased() ? UIColor.colorWithHexString(hexStr: GreenTheme) : .red
         self.ItemIMG.isHidden = true
 //        self.ItemIMG.downloadedFrom(url: URL.init(string: "".ImageURL_str())!)
         self.ItemIMG.image = UIImage.init(named: "DefaultImage")
@@ -97,8 +97,8 @@ class CartItemCell: UITableViewCell {
     
     func setupmealcell(meal: MealsModels) {
         self.ItemIMG.tintColor = meal.isveg! ? UIColor.colorWithHexString(hexStr: GreenTheme) : .red
-//        self.ItemIMG.downloadedFrom(url: URL.init(string: meal.itemimage!.ImageURL_str())!)
-        self.ItemIMG.image = UIImage.init(named: "DefaultImage")
+        self.ItemIMG.downloadedFrom(url: URL.init(string: meal.itemimage!.ImageURL_str())!)
+//        self.ItemIMG.image = UIImage.init(named: "DefaultImage")
         self.ItemIMG.contentMode = .scaleToFill
         self.TitleLBL.text = meal.title
         self.DescLBL.text = meal.shortdesc
