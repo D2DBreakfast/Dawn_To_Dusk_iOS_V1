@@ -169,7 +169,6 @@ class HomeDashboardVC: UITabBarController {
             } onFailure: { message in
                 self.navigationController?.view.makeToast(message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
             }
-            
 //            NetworkingRequests.shared.GetNotificationListing { (responseObject, status) in
 //                if status || responseObject.status {
 //                    self.floatingTabbarView.setupBadgeHub(indexBD: 1, Counts: responseObject.data.notification.count)
@@ -180,7 +179,6 @@ class HomeDashboardVC: UITabBarController {
 //            } onFailure: { (message) in
 //                self.floatingTabbarView.removeBadgeHub(indexBD: 1, Counts: 0)
 //            }
-            
         }
     }
     
