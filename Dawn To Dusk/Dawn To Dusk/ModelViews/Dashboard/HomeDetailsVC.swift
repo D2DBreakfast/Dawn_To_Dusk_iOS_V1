@@ -112,7 +112,6 @@ class HomeDetailsVC: BaseClassVC {
         bottom.didcallAddCartAction = {
             if SharedUserInfo.shared.IsUserLoggedin()! {
                 NotificationCenter.default.post(name: Notification.Name(BdgeNotification), object: nil)
-//                self.TappedCartBTN(self.AddCartBTN)
                 let param = Place_ToCart_OrderParamDict.init(itemMainCategoryName: self.FoodDetails.itemMainCategoryName, itemSubCategoryName: self.FoodDetails.itemSubCategoryName, itemFoodType: self.FoodDetails.itemFoodType, itemName: self.FoodDetails.itemName, itemId: self.FoodDetails.itemId, itemQuantity: "1", itemPrice: self.FoodDetails.itemPrice.formatprice(), userId: SharedUserInfo.shared.GetUserInfoFromEnum(enums: .UserID))
                 print(param)
                 NetworkingRequests.shared.Call_AddtoCartAPI(param: param) { (responseObject, status) in
