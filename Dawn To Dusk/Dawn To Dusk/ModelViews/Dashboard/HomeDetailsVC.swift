@@ -281,21 +281,14 @@ class HomeDetailsVC: BaseClassVC {
                 }
                 else {
                     self.navigationController?.view.makeToast(responseObject.message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
+                    self.NodataFoundView.isHidden = false
+                    self.DetailTBL.isHidden = true
                 }
             } onFailure: { message in
                 self.navigationController?.view.makeToast(message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
+                self.NodataFoundView.isHidden = false
+                self.DetailTBL.isHidden = true
             }
-
-//            NetworkingRequests.shared.GetCartHistoryListing { (responseObjects, status) in
-//                if status || responseObjects.status {
-//                    self.HistoryArry = responseObjects.data
-//                }
-//                else {
-//                    self.navigationController?.view.makeToast(responseObjects.message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
-//                }
-//            } onFailure: { (message) in
-//                self.navigationController?.view.makeToast(message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
-//            }
             break
             
         case .Address:

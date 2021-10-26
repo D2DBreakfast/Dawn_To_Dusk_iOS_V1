@@ -360,21 +360,29 @@ class HomeListingVC: BaseClassVC {
             self.navigationController?.view.makeToast(message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
         }
         
-        let params = ListingParamDict.init(CatName: self.SelectedMainCat.mainCategoryName, SubCatName: self.SelectedSubCat.subCategoryName)
-        NetworkingRequests.shared.GetFoodListing(param: params) { (responseObject, status) in
-            if status {
-                if responseObject.menuData.data.count >= 1 {
-                    self.MenuItems_arry.removeAll()
-                    self.MenuItems_arry = responseObject.menuData.data
-                    self.filter_MenuItems = self.MenuItems_arry
-                    self.FoodListTBL.reloadData()
+        if self.SelectedMainCat != nil && self.SelectedSubCat != nil {
+            let params = ListingParamDict.init(CatName: self.SelectedMainCat.mainCategoryName, SubCatName: self.SelectedSubCat.subCategoryName)
+            NetworkingRequests.shared.GetFoodListing(param: params) { (responseObject, status) in
+                if status {
+                    if responseObject.menuData.data.count >= 1 {
+                        self.MenuItems_arry.removeAll()
+                        self.MenuItems_arry = responseObject.menuData.data
+                        self.filter_MenuItems = self.MenuItems_arry
+                        self.FoodListTBL.reloadData()
+                    }
                 }
+                else {
+                    self.navigationController?.view.makeToast(responseObject.message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
+                }
+            } onFailure: { (message) in
+                self.navigationController?.view.makeToast(message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
             }
-            else {
-                self.navigationController?.view.makeToast(responseObject.message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
-            }
-        } onFailure: { (message) in
-            self.navigationController?.view.makeToast(message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
+            self.NodataFoundView.isHidden = true
+            self.FoodListTBL.isHidden = false
+        }
+        else {
+            self.NodataFoundView.isHidden = false
+            self.FoodListTBL.isHidden = true
         }
     }
     

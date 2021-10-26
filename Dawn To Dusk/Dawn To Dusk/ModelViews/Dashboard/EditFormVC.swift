@@ -197,7 +197,7 @@ class EditFormVC: BaseClassVC {
             else {
                 if self.isUpdateMode {
                     self.showLoaderActivity()
-                    let param = UpdateProfileParamDict.init(fullname: self.TXTField1.text, email: self.TXTField2.text, mobile: SharedUserInfo.shared.GetUserInfodata()?.mobileNo)
+                    let param = UpdateProfileParamDict.init(fullname: self.TXTField1.text, email: self.TXTField2.text, userId: SharedUserInfo.shared.GetUserInfoFromEnum(enums: .UserID))
                     NetworkingRequests.shared.Request_UpdateProfile(param: param) { (responseObject, status) in
                         if status && ((responseObject.loginData?.token.IsStrEmpty()) != nil) {
                             SharedUserInfo.shared.SaveUserInfodata(info: responseObject.loginData!)

@@ -143,6 +143,8 @@ class CartManageVC: BaseClassVC {
                 }
             } onFailure: { message in
                 self.navigationController?.view.makeToast(message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
+                self.ListTBL.isHidden = true
+                self.NodataFoundView.isHidden = false
             }
             
 //            if self.CartItems == nil {
@@ -251,7 +253,7 @@ class CartManageVC: BaseClassVC {
         self.CommunityPopup.isHidden = true
         self.CommunityPopup.backgroundColor = UIColor.black.withAlphaComponent(0.5)
         self.popupview.backgroundColor = ModeBG_Color
-        self.popupheaderview.backgroundColor = UIColor.colorWithHexString(hexStr: SecondaryBlackColor)
+        self.popupheaderview.backgroundColor = SecondaryText_Color
         self.popuptitle.text = "Community Listing"
         self.communityPicker.delegate = self
         self.communityPicker.dataSource = self

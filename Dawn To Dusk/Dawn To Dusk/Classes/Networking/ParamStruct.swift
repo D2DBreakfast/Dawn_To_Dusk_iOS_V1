@@ -79,11 +79,11 @@ struct GlobalSearcgDict {
 struct UpdateProfileParamDict {
     var fullname: String?
     var email: String?
-    var mobile: String?
+    var userId: String?
     
     var description: [String: Any] {
         get {
-            return ["fullName": fullname!, "email":email!, "mobileNo":mobile!]
+            return ["fullName": fullname!, "email":email!, "userId":userId!]
          }
     }
 }

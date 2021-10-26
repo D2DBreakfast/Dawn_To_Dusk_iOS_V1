@@ -64,7 +64,7 @@ extension String
     
     func IsStrEmpty() -> Bool {
         if self.isEmpty && self.isBlank && self.isZero {
-           return true
+            return true
         }
         else {
             return false
@@ -252,18 +252,41 @@ extension String
 
 extension Date {
     
-    func convertDateFormater() -> String
-    {
+    func convertDateFormater() -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd-MM-yyyy"
         return dateFormatter.string(from: self)
     }
     
-    func convertDaterang(dt1: Date, dt2: Date) -> String
-    {
+    func convertDaterang(dt1: Date, dt2: Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd-MM-yyyy"
         return String.init(format: "%@ To %@", dateFormatter.string(from: dt1), dateFormatter.string(from: dt2))
+    }
+    
+    func dateAt(hours: Int, minutes: Int) -> Date {
+        let calendar = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)!
+        //get the month/day/year componentsfor today's date.
+        
+        var dateFormatter:DateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "HH:mm"
+//        var dateInFormat:String = dateFormatter.string(from: Date())
+        dateFormatter.timeZone = TimeZone(abbreviation: "GST")
+        
+        var date_components = calendar.components(
+            [NSCalendar.Unit.year,
+             NSCalendar.Unit.month,
+             NSCalendar.Unit.day],
+            from: self)
+        
+        //Create an NSDate for the specified time today.
+        date_components.hour = hours
+        date_components.minute = minutes
+        date_components.second = 0
+        date_components.timeZone = TimeZone.init(abbreviation: "GST")
+        
+        let newDate = calendar.date(from: date_components)!
+        return newDate
     }
     
 }
@@ -343,7 +366,7 @@ extension UIViewController {
             statusBar?.backgroundColor = ModeBG_Color // UIColor.systemBackground
         }
     }
-
+    
     func hideKeyboardWhenTappedAround() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
         tap.cancelsTouchesInView = false
@@ -359,6 +382,8 @@ extension UIViewController {
         self.navigationController?.navigationBar.backgroundColor = ModeBG_Color
         self.navigationController?.navigationBar.isHidden = false
         self.navigationController?.navigationBar.barTintColor = ModeBG_Color
+        self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: PrimaryText_Color as Any]
+        self.navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: PrimaryText_Color as Any]
         self.navigationController?.navigationBar.barStyle = .default
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationItem.hidesBackButton = true
@@ -376,6 +401,8 @@ extension UIViewController {
         self.navigationController?.navigationBar.backgroundColor = ModeBG_Color
         self.navigationController?.navigationBar.isHidden = false
         self.navigationController?.navigationBar.barTintColor = ModeBG_Color
+        self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: PrimaryText_Color as Any]
+        self.navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: PrimaryText_Color as Any]
         self.navigationController?.navigationBar.barStyle = .default
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationItem.hidesBackButton = true
@@ -643,4 +670,4 @@ extension UITabBar {
         }
     }
     
- }
+}

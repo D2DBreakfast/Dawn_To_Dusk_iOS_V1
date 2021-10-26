@@ -236,7 +236,6 @@
 		B783991726A9851400747324 /* CountryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B783990D26A9851400747324 /* CountryCell.swift */; };
 		B783991826A9851400747324 /* CountryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B783990D26A9851400747324 /* CountryCell.swift */; };
 		B783991926A9851400747324 /* CountryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B783990D26A9851400747324 /* CountryCell.swift */; };
-		B78A623D26A93251002DBD7C /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B78A623C26A93251002DBD7C /* Colors.xcassets */; };
 		B792108326C25D1D00D014B1 /* LocationPickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B792108126C25D1C00D014B1 /* LocationPickerVC.swift */; };
 		B792108426C25D1D00D014B1 /* LocationPickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B792108126C25D1C00D014B1 /* LocationPickerVC.swift */; };
 		B792108526C25D1D00D014B1 /* LocationPickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B792108126C25D1C00D014B1 /* LocationPickerVC.swift */; };
@@ -301,6 +300,7 @@
 		B7B13F0D26E77AC200CAB869 /* RunningOrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7B13F0926E77AC200CAB869 /* RunningOrderCell.xib */; };
 		B7B13F0E26E77AC200CAB869 /* RunningOrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7B13F0926E77AC200CAB869 /* RunningOrderCell.xib */; };
 		B7B13F0F26E77AC200CAB869 /* RunningOrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7B13F0926E77AC200CAB869 /* RunningOrderCell.xib */; };
+		B7C028592727DCD800EFA314 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B78A623C26A93251002DBD7C /* Colors.xcassets */; };
 		B7C069A326C655F800048B54 /* EditFormVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C069A126C655F800048B54 /* EditFormVC.swift */; };
 		B7C069A626C655F800048B54 /* EditFormVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7C069A226C655F800048B54 /* EditFormVC.xib */; };
 		B7C069A726C655F800048B54 /* EditFormVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7C069A226C655F800048B54 /* EditFormVC.xib */; };
@@ -1464,6 +1464,7 @@
 				B745BACA26AEA0F80048ECA8 /* UserAccountVC.xib in Resources */,
 				B70202A126CD088900DADBDF /* PaymentModeCell.xib in Resources */,
 				B7F70AB226F0910A00C7721A /* cartlist.json in Resources */,
+				B7C028592727DCD800EFA314 /* Colors.xcassets in Resources */,
 				974F63D926B4407A0087C183 /* HomeDetailCell.xib in Resources */,
 				B7F089FE26BA9CF0008A06BF /* ProfileInfoCell.xib in Resources */,
 				9744C7A126B1BDF800807478 /* HomeFoodListCell.xib in Resources */,
@@ -1475,7 +1476,6 @@
 				97866C2B26BDB2AE007F88A9 /* AddressCell.xib in Resources */,
 				B722A14F26EA271600A336CD /* foodlisting.json in Resources */,
 				B722A14926EA271600A336CD /* sub-categorylist.json in Resources */,
-				B78A623D26A93251002DBD7C /* Colors.xcassets in Resources */,
 				B79C5C732702E46100473A1C /* DetailsBottomOptionView.xib in Resources */,
 				9744C79D26B1BDE300807478 /* HomeBannerCell.xib in Resources */,
 				971D10A926C1776A0031E532 /* AddressAddVC.xib in Resources */,

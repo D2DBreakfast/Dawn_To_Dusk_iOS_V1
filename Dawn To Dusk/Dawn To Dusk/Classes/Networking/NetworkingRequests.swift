@@ -639,6 +639,9 @@ extension NetworkingRequests {
     func PlaceOrderFromUser(param: Place_ToCart_OrderParamDict,
                             onSuccess successCallback: ((_ response: BasicServicesRootClass, _ status: Bool) -> Void)?,
                             onFailure failureCallback: ((_ errorMessage: String) -> Void)?) {
+        let now = Date()
+        let order_dead_line = now.dateAt(hours: 10, minutes: 0)
+        if now >= order_dead_line {
             if self.rechability.isReachable() || NetworkingRequests.isInternetAvailable() || self.checkNetworkStatus()! {
                 let url = String.init(format: "%@", Environments.shared.GetDomainURL(.PlaceOrderAPI))
                 self.post_RequestAPI_calling(URL_Str: url, param: param.description) { response, status in
@@ -657,6 +660,10 @@ extension NetworkingRequests {
             else {
                 failureCallback!(APIError.InternetConnection.toNSError().localizedDescription)
             }
+        }
+        else {
+            failureCallback!("You can place the order before 10. Now the restaurent is closed. Please try by tomorrow!")
+        }
     }
     
     func GlobalSearchlist(param: GlobalSearcgDict,

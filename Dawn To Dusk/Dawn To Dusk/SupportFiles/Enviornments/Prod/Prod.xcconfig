@@ -27,7 +27,7 @@ DomainFolder                    = /
 RegisterAPI                     = register
 LoginAPI                        = userLogin
 VerifyOtpAPI                    = verifyOtp
-UpdateUserAPI                   = /user/updateUser
+UpdateUserAPI                   = updateUserDetails
 
 GetMenuListing                  = fetchMenuDetails
 GetSubCatMenuListing            = fetchSubCategoryMenusDetails
