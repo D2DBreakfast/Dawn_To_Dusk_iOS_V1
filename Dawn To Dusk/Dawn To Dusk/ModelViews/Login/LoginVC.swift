@@ -96,7 +96,7 @@ class LoginVC: BaseClassVC {
         self.BackBTN.layer.cornerRadius = 10
         self.BackBTN.backgroundColor = UIColor.colorWithHexString(hexStr: GetDefaultTheme()!).withAlphaComponent(0.40)
         
-        self.LogoIMG.image = UIImage.init(named: "HomeLogo")
+        self.LogoIMG.image = UIImage.init(named: "HomeLogo-1")
         
         self.RegisterView.isHidden = true
         self.LoginView.isHidden = false
@@ -160,7 +160,7 @@ class LoginVC: BaseClassVC {
     }
     
     func messge_title(phoneno: String) {
-        self.NoteLBL.text = String.init(format: "We will send you a OTP message on +%@ %@ to set your Mobile login with system. Please don't share that OTP somebody else.", self.SelectedCountry.phoneExtension, phoneno)
+        self.NoteLBL.text = String.init(format: "We will send you a OTP message on your registered mobile number for verification.")
     }
     
     //    MARK:- IBAction Methods

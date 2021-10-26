@@ -10,11 +10,11 @@ class UserInfoCommunity : NSObject, NSCoding{
     var address : String!
     var title : String!
     var id : Int!
-    var lat : Float!
+    var lat : Double!
     var location : String!
     var line1 : String!
     var line2 : String!
-    var longField : Float!
+    var longField : Double!
     
     
     /**
@@ -29,9 +29,9 @@ class UserInfoCommunity : NSObject, NSCoding{
         line1 = json["line1"].stringValue
         line2 = json["line2"].stringValue
         id = json["id"].intValue
-        lat = json["lat"].floatValue
+        lat = json["lat"].doubleValue
         location = json["location"].stringValue
-        longField = json["long"].floatValue
+        longField = json["long"].doubleValue
     }
     
     /**
@@ -76,9 +76,9 @@ class UserInfoCommunity : NSObject, NSCoding{
         address = aDecoder.decodeObject(forKey: "address") as? String
         title = aDecoder.decodeObject(forKey: "title") as? String
         id = aDecoder.decodeObject(forKey: "id") as? Int
-        lat = aDecoder.decodeObject(forKey: "lat") as? Float
+        lat = aDecoder.decodeObject(forKey: "lat") as? Double
         location = aDecoder.decodeObject(forKey: "location") as? String
-        longField = aDecoder.decodeObject(forKey: "long") as? Float
+        longField = aDecoder.decodeObject(forKey: "long") as? Double
         line1 = aDecoder.decodeObject(forKey: "line1") as? String
         line2 = aDecoder.decodeObject(forKey: "line2") as? String
     }

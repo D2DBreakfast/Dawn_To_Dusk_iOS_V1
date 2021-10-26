@@ -86,14 +86,24 @@
     <string>${UpdateUserAPI}</string>
     <key>GetMenuListing</key>
     <string>${GetMenuListing}</string>
+    <key>GetSubCatMenuListing</key>
+    <string>${GetSubCatMenuListing}</string>
     <key>GlobalSearchURL</key>
     <string>${GlobalSearchURL}</string>
+    <key>PlaceOrderAPI</key>
+    <string>${PlaceOrderAPI}</string>
+    <key>AddToCartAPI</key>
+    <string>${AddToCartAPI}</string>
+    <key>GetOrderHistory</key>
+    <string>${GetOrderHistory}</string>
     <key>LoginAPI</key>
     <string>${LoginAPI}</string>
     <key>GetMainCategory</key>
     <string>${GetMainCategory}</string>
     <key>GetSubCategory</key>
     <string>${GetSubCategory}</string>
+    <key>MyCartListAPI</key>
+    <string>${MyCartListAPI}</string>
     <key>RegisterAPI</key>
     <string>${RegisterAPI}</string>
     <key>DomainFolder</key>
@@ -108,4 +118,3 @@
     <string>${timeout_interval}</string>
 </dict>
 </plist>
-

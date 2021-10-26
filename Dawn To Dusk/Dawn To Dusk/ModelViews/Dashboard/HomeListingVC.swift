@@ -256,6 +256,7 @@ class HomeListingVC: BaseClassVC {
                 self.SubCatArry.removeAll()
                 if subcatData.subCategoryData.count != 0 && subcatData.status {
                     self.SubCatArry = subcatData.subCategoryData
+                    self.FoodListTBL.reloadData()
                 }
             }
             else {
@@ -315,10 +316,10 @@ class HomeListingVC: BaseClassVC {
                         self.SelectedSubCat = self.getSubcatOBJ(dataObj: index)
                         self.FoodListTBL.reloadData()
                     }
-                    self.SubCatView.CheckUncheckvalueChange = { index in
-                        self.SelectedSubCat = self.getSubcatOBJ(dataObj: index)
-                        self.FoodListTBL.reloadData()
-                    }
+//                    self.SubCatView.CheckUncheckvalueChange = { index in
+//                        self.SelectedSubCat = self.getSubcatOBJ(dataObj: index)
+//                        self.FoodListTBL.reloadData()
+//                    }
                     self.subHeaderView.isHidden = false
                     self.GettingDataFromServer()
                 }
@@ -349,6 +350,7 @@ class HomeListingVC: BaseClassVC {
     func GettingDataFromServer() {
         NetworkingRequests.shared.GetbannerListing { (responseObject, status) in
             if status || responseObject.status {
+                self.Bannerarry.removeAll()
                 self.Bannerarry = responseObject.data.banner
             }
             else {
@@ -358,20 +360,29 @@ class HomeListingVC: BaseClassVC {
             self.navigationController?.view.makeToast(message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
         }
         
-        let params = ListingParamDict.init(CatName: self.SelectedMainCat.mainCategoryName, SubCatName: self.SelectedSubCat.subCategoryName, foodType: "Veg")
-        NetworkingRequests.shared.GetFoodListing(param: params) { (responseObject, status) in
-            if status {
-                if responseObject.menuData.data.count > 1 {
-                    self.MenuItems_arry = responseObject.menuData.data
-                    self.filter_MenuItems = self.MenuItems_arry
-                    self.FoodListTBL.reloadData()
+        if self.SelectedMainCat != nil && self.SelectedSubCat != nil {
+            let params = ListingParamDict.init(CatName: self.SelectedMainCat.mainCategoryName, SubCatName: self.SelectedSubCat.subCategoryName)
+            NetworkingRequests.shared.GetFoodListing(param: params) { (responseObject, status) in
+                if status {
+                    if responseObject.menuData.data.count >= 1 {
+                        self.MenuItems_arry.removeAll()
+                        self.MenuItems_arry = responseObject.menuData.data
+                        self.filter_MenuItems = self.MenuItems_arry
+                        self.FoodListTBL.reloadData()
+                    }
                 }
+                else {
+                    self.navigationController?.view.makeToast(responseObject.message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
+                }
+            } onFailure: { (message) in
+                self.navigationController?.view.makeToast(message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
             }
-            else {
-                self.navigationController?.view.makeToast(responseObject.message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
-            }
-        } onFailure: { (message) in
-            self.navigationController?.view.makeToast(message.localized(), duration: 3.0, position: .top, title: "The server failed to get data!".localized(), image: nil)
+            self.NodataFoundView.isHidden = true
+            self.FoodListTBL.isHidden = false
+        }
+        else {
+            self.NodataFoundView.isHidden = false
+            self.FoodListTBL.isHidden = true
         }
     }
     
@@ -418,7 +429,7 @@ class HomeListingVC: BaseClassVC {
                         }
                         else {
 //                            return ((self.SelectedSubCatArry.first(where: { $0.id == obj.subCattegory?.id }) != nil) && (obj.cattegory?.id == self.SelectedMainCat.id) && obj.isveg == true)
-                            return ((self.SelectedSubCatArry.first(where: { $0.subCategoryName.uppercased() == obj.itemSubCategoryName.uppercased() }) != nil) && (obj.itemMainCategoryName?.uppercased() == self.SelectedMainCat.mainCategoryName.uppercased()))
+                            return ((self.SelectedSubCatArry.first(where: { $0.subCategoryName.uppercased() == obj.itemSubCategoryName.uppercased() }) != nil) && (obj.itemMainCategoryName?.uppercased() == self.SelectedMainCat.mainCategoryName.uppercased()) && obj.itemFoodType.uppercased() == "Veg".uppercased())
                         }
                     }
                     if self.IsSearching && self.SearchSTR.count > 0 {
@@ -435,7 +446,7 @@ class HomeListingVC: BaseClassVC {
                     let data = self.getVegfoodOnly().filter { obj in
                         if self.SelectedSubCatArry.count == 0 {
 //                            return ((obj.cattegory?.id == self.SelectedMainCat.id) && obj.isveg == true)
-                            return (obj.itemMainCategoryName.uppercased() == self.SelectedMainCat.mainCategoryName.uppercased())
+                            return (obj.itemMainCategoryName.uppercased() == self.SelectedMainCat.mainCategoryName.uppercased() && obj.itemFoodType.uppercased() == "Veg".uppercased())
                         }
                         else {
                             return (self.SelectedSubCatArry.first(where: { $0.subCategoryName.uppercased() == obj.itemSubCategoryName.uppercased() }) != nil)
@@ -487,11 +498,11 @@ class HomeListingVC: BaseClassVC {
                 let data = self.getVegfoodOnly().filter { obj in
                     if self.SelectedSubCat == nil {
 //                        return ((obj.cattegory?.id == self.SelectedMainCat.id) && obj.isveg == true)
-                        return (obj.itemMainCategoryName.uppercased() == self.SelectedMainCat.mainCategoryName.uppercased())
+                        return (obj.itemMainCategoryName.uppercased() == self.SelectedMainCat.mainCategoryName.uppercased() && obj.itemFoodType.uppercased() == "Veg".uppercased())
                     }
                     else {
 //                        return ((obj.subCattegory?.id == self.SelectedSubCat.id) && (obj.cattegory?.id == self.SelectedMainCat.id) && obj.isveg == true)
-                        return ((obj.itemSubCategoryName.uppercased() == self.SelectedSubCat.subCategoryName.uppercased()) && (obj.itemMainCategoryName.uppercased() == self.SelectedMainCat.mainCategoryName.uppercased()))
+                        return ((obj.itemSubCategoryName.uppercased() == self.SelectedSubCat.subCategoryName.uppercased()) && (obj.itemMainCategoryName.uppercased() == self.SelectedMainCat.mainCategoryName.uppercased() && obj.itemFoodType.uppercased() == "Veg".uppercased()))
                     }
                 }
                 if self.IsSearching && self.SearchSTR.count > 0 {
@@ -592,7 +603,7 @@ extension HomeListingVC: UISearchBarDelegate {
         let params = GlobalSearcgDict.init(itemSearchKey: self.SearchSTR)
         NetworkingRequests.shared.GlobalSearchlist(param: params) { (responseObject, status) in
             if status {
-                if responseObject.menuData.data.count > 1 {
+                if responseObject.menuData.data.count >= 1 {
                     self.MenuItems_arry = responseObject.menuData.data
                     self.filter_MenuItems = self.MenuItems_arry
                 }
@@ -658,6 +669,7 @@ extension HomeListingVC: UISearchBarDelegate {
             self.filter_MenuItems.removeAll()
             self.filter_MenuItems = self.MenuItems_arry
         }
+        self.GettingDataFromServer()
         self.SearchBar.resignFirstResponder()
         self.FoodListTBL.reloadData()
     }

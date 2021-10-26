@@ -47,11 +47,12 @@ struct OTPcodeParamDict {
 struct ListingParamDict {
     var CatName: String?
     var SubCatName: String?
-    var foodType: String?
+//    var foodType: String?
     
     var description: [String: Any] {
         get {
-            return ["itemMainCategoryName": CatName!, "itemSubCategoryName": SubCatName!, "itemFoodType": foodType!]
+//            return ["itemMainCategoryName": CatName!, "itemSubCategoryName": SubCatName!, "itemFoodType": foodType!]
+            return ["itemMainCategoryName": CatName!, "itemSubCategoryName": SubCatName!]
          }
     }
 }
@@ -78,11 +79,49 @@ struct GlobalSearcgDict {
 struct UpdateProfileParamDict {
     var fullname: String?
     var email: String?
-    var mobile: String?
+    var userId: String?
     
     var description: [String: Any] {
         get {
-            return ["fullName": fullname!, "email":email!, "mobileNo":mobile!]
+            return ["fullName": fullname!, "email":email!, "userId":userId!]
+         }
+    }
+}
+
+struct Place_ToCart_OrderParamDict {
+    var itemMainCategoryName: String!
+    var itemSubCategoryName: String!
+    var itemFoodType: String!
+    var itemName: String!
+    var itemId: String!
+    var itemQuantity: String!
+    var itemPrice: String!
+    var userId: String!
+    
+    var description: [String: Any] {
+        get {
+            return [
+                "itemMainCategoryName": itemMainCategoryName!,
+                "itemSubCategoryName": itemSubCategoryName!,
+                "itemFoodType": itemFoodType!,
+                "itemName": itemName!,
+                "itemId": itemId!,
+                "itemQuantity": itemQuantity!,
+                "itemPrice": itemPrice!,
+                "userId": userId!
+            ]
+         }
+    }
+}
+
+struct MyCartParamDict {
+    var userId: String!
+    
+    var description: [String: Any] {
+        get {
+            return [
+                "userId": userId!
+            ]
          }
     }
 }
@@ -104,12 +143,12 @@ struct CartLocation {
 }
 
 struct Cartitems {
-    var id: Int?
+    var id: String?
     var title: String?
     var price: Double?
     var qty: Int?
     
-    init(id: Int?, title: String?, price: Double?, qty: Int? = 1) {
+    init(id: String?, title: String?, price: Double?, qty: Int? = 1) {
         self.id = id
         self.title = title
         self.price = price

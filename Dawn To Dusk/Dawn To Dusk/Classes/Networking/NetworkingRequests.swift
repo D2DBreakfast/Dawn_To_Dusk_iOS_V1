@@ -544,6 +544,128 @@ extension NetworkingRequests {
         }
     }
     
+    func GetSubcatFoodListing(param: ListingParamDict,
+                        onSuccess successCallback: ((_ response: MenuItemsRootClass, _ status: Bool) -> Void)?,
+                        onFailure failureCallback: ((_ errorMessage: String) -> Void)?) {
+        if self.rechability.isReachable() || NetworkingRequests.isInternetAvailable() || self.checkNetworkStatus()! {
+            let url = String.init(format: "%@", Environments.shared.GetDomainURL(.GetSubCatMenuListing))
+            self.post_RequestAPI_calling(URL_Str: url, param: param.description) { response, status in
+                let obj = MenuItemsRootClass.init(fromJson: response)
+                if obj.status! && obj.statusCode == 200 {
+                    successCallback?(obj, true)
+                }
+                else {
+                    failureCallback?(obj.message!)
+                }
+            } onFailure: { errorMessage in
+                print("Error: Could print JSON in String")
+                failureCallback!("Error: Could print JSON in String")
+            }
+        }
+        else {
+            failureCallback!(APIError.InternetConnection.toNSError().localizedDescription)
+        }
+    }
+    
+    func Call_AddtoCartAPI(param: Place_ToCart_OrderParamDict,
+                        onSuccess successCallback: ((_ response: BasicServicesRootClass, _ status: Bool) -> Void)?,
+                        onFailure failureCallback: ((_ errorMessage: String) -> Void)?) {
+        if self.rechability.isReachable() || NetworkingRequests.isInternetAvailable() || self.checkNetworkStatus()! {
+            let url = String.init(format: "%@", Environments.shared.GetDomainURL(.AddToCartAPI))
+            self.post_RequestAPI_calling(URL_Str: url, param: param.description) { response, status in
+                let obj = BasicServicesRootClass.init(fromJson: response)
+                if obj.status! && obj.statusCode == 200 {
+                    successCallback?(obj, true)
+                }
+                else {
+                    failureCallback?(obj.message!)
+                }
+            } onFailure: { errorMessage in
+                print("Error: Could print JSON in String")
+                failureCallback!("Error: Could print JSON in String")
+            }
+        }
+        else {
+            failureCallback!(APIError.InternetConnection.toNSError().localizedDescription)
+        }
+    }
+    
+    func GetCartListingAPI(param: MyCartParamDict,
+                        onSuccess successCallback: ((_ response: MyCartRootClass, _ status: Bool) -> Void)?,
+                        onFailure failureCallback: ((_ errorMessage: String) -> Void)?) {
+        if self.rechability.isReachable() || NetworkingRequests.isInternetAvailable() || self.checkNetworkStatus()! {
+            let url = String.init(format: "%@", Environments.shared.GetDomainURL(.MyCartListAPI))
+            self.post_RequestAPI_calling(URL_Str: url, param: param.description) { response, status in
+                let obj = MyCartRootClass.init(fromJson: response)
+                if obj.status! && obj.statusCode == 200 {
+                    successCallback?(obj, true)
+                }
+                else {
+                    failureCallback?(obj.message!)
+                }
+            } onFailure: { errorMessage in
+                print("Error: Could print JSON in String")
+                failureCallback!("Error: Could print JSON in String")
+            }
+        }
+        else {
+            failureCallback!(APIError.InternetConnection.toNSError().localizedDescription)
+        }
+    }
+    
+    func GetOrderHistoryAPI(param: MyCartParamDict,
+                        onSuccess successCallback: ((_ response: OrderDetailsRootClass, _ status: Bool) -> Void)?,
+                        onFailure failureCallback: ((_ errorMessage: String) -> Void)?) {
+        if self.rechability.isReachable() || NetworkingRequests.isInternetAvailable() || self.checkNetworkStatus()! {
+            let url = String.init(format: "%@", Environments.shared.GetDomainURL(.GetOrderHistory))
+            self.post_RequestAPI_calling(URL_Str: url, param: param.description) { response, status in
+                let obj = OrderDetailsRootClass.init(fromJson: response)
+                if obj.status! && obj.statusCode == 200 {
+                    successCallback?(obj, true)
+                }
+                else {
+                    failureCallback?(obj.message!)
+                }
+            } onFailure: { errorMessage in
+                print("Error: Could print JSON in String")
+                failureCallback!("Error: Could print JSON in String")
+            }
+        }
+        else {
+            failureCallback!(APIError.InternetConnection.toNSError().localizedDescription)
+        }
+    }
+    
+    func PlaceOrderFromUser(param: Place_ToCart_OrderParamDict,
+                            onSuccess successCallback: ((_ response: BasicServicesRootClass, _ status: Bool) -> Void)?,
+                            onFailure failureCallback: ((_ errorMessage: String) -> Void)?) {
+        let now = Date()
+        let order_dead_line = now.dateAt(hours: 10, minutes: 0)
+        if now >= order_dead_line {
+            if self.rechability.isReachable() || NetworkingRequests.isInternetAvailable() || self.checkNetworkStatus()! {
+                let url = String.init(format: "%@", Environments.shared.GetDomainURL(.PlaceOrderAPI))
+                self.post_RequestAPI_calling(URL_Str: url, param: param.description) { response, status in
+                    let obj = BasicServicesRootClass.init(fromJson: response)
+                    if obj.status! && obj.statusCode == 200 {
+                        successCallback?(obj, true)
+                    }
+                    else {
+                        failureCallback?(obj.message!)
+                    }
+                } onFailure: { errorMessage in
+                    print("Error: Could print JSON in String")
+                    failureCallback!("Error: Could print JSON in String")
+                }
+            }
+            else {
+                failureCallback!(APIError.InternetConnection.toNSError().localizedDescription)
+            }
+        }
+        else {
+            failureCallback!("You can place the order before 10. Now the restaurent is closed. Please try by tomorrow!")
+        }
+    }
+    
     func GlobalSearchlist(param: GlobalSearcgDict,
                         onSuccess successCallback: ((_ response: MenuItemsRootClass, _ status: Bool) -> Void)?,
                         onFailure failureCallback: ((_ errorMessage: String) -> Void)?) {

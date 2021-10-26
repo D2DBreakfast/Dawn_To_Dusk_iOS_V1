@@ -19,9 +19,14 @@ public enum PlistKey {
     case VerifyOtpAPI
     case UpdateUserAPI
     case GetMenuListing
+    case GetSubCatMenuListing
     case GlobalSearchURL
     case GetMainCategory
     case GetSubCategory
+    case PlaceOrderAPI
+    case AddToCartAPI
+    case MyCartListAPI
+    case GetOrderHistory
     
     func value() -> String {
         switch self {
@@ -43,12 +48,22 @@ public enum PlistKey {
             return "UpdateUserAPI"
         case .GetMenuListing:
             return "GetMenuListing"
+        case .GetSubCatMenuListing:
+            return "GetSubCatMenuListing"
         case .GlobalSearchURL:
             return "GlobalSearchURL"
         case .GetMainCategory:
             return "GetMainCategory"
         case .GetSubCategory:
             return "GetSubCategory"
+        case .PlaceOrderAPI:
+            return "PlaceOrderAPI"
+        case .AddToCartAPI:
+            return "AddToCartAPI"
+        case .MyCartListAPI:
+            return "MyCartListAPI"
+        case .GetOrderHistory:
+            return "GetOrderHistory"
         }
     }
 }
@@ -90,12 +105,22 @@ public struct Environments {
                 return infoDict[PlistKey.UpdateUserAPI.value()] as! String
             case .GetMenuListing:
                 return infoDict[PlistKey.GetMenuListing.value()] as! String
+            case .GetSubCatMenuListing:
+                return infoDict[PlistKey.GetSubCatMenuListing.value()] as! String
             case .GlobalSearchURL:
                 return infoDict[PlistKey.GlobalSearchURL.value()] as! String
             case .GetMainCategory:
                 return infoDict[PlistKey.GetMainCategory.value()] as! String
             case .GetSubCategory:
                 return infoDict[PlistKey.GetSubCategory.value()] as! String
+            case .PlaceOrderAPI:
+                return infoDict[PlistKey.PlaceOrderAPI.value()] as! String
+            case .AddToCartAPI:
+                return infoDict[PlistKey.AddToCartAPI.value()] as! String
+            case .MyCartListAPI:
+                return infoDict[PlistKey.MyCartListAPI.value()] as! String
+            case .GetOrderHistory:
+                return infoDict[PlistKey.GetOrderHistory.value()] as! String
             }
         } else {
             print("The key is not present in the Infodictionary")

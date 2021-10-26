@@ -27,9 +27,14 @@ DomainFolder                    = /
 RegisterAPI                     = register
 LoginAPI                        = userLogin
 VerifyOtpAPI                    = verifyOtp
-UpdateUserAPI                   = /user/updateUser
+UpdateUserAPI                   = updateUserDetails
 
 GetMenuListing                  = fetchMenuDetails
+GetSubCatMenuListing            = fetchSubCategoryMenusDetails
 GlobalSearchURL                 = menuQuickSearch
 GetMainCategory                 = admin/fetchMainCategory
 GetSubCategory                  = admin/fetchSubCategory
+PlaceOrderAPI                   = Placeorder
+AddToCartAPI                    = myCart
+MyCartListAPI                   = fetchCartDetails
+GetOrderHistory                 = admin/userDetails

@@ -99,8 +99,8 @@ class DetailsBottomOptionView: UIView {
     
     func setupBottomOption(DetailType: ShowDetailType!, FoodDetails: MenuItemsData!, MealDetails: MealsModels!) {
         
-        self.BottomStack.isHidden = false
         self.DateView.isHidden = false
+        self.BottomStack.isHidden = false
         self.Price_cart_View.isHidden = false
         
         self.AgreeLBL.text = "Food will not be delivered on Friday and Saturday. I agree with the Terms of Service."
@@ -118,7 +118,7 @@ class DetailsBottomOptionView: UIView {
             self.DateLBL.text = "Select Delivery Date"
         }
         
-        let priceSTR: String = String.init(format: "%@ %@", (getdefaultCountry()?.symbol)!, DetailType == .Food ? FoodDetails.itemPrice : MealDetails.price!.formatprice())
+        let priceSTR: String = String.init(format: "%@ %@", (getdefaultCountry()?.symbol)!, DetailType == .Food ? FoodDetails.itemPrice.formatprice() : MealDetails.price!.formatprice())
         self.PriceLBL.text = priceSTR
         
         self.BottomStack.backgroundColor = ModeBG_Color

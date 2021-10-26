@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -28,6 +29,30 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         self.UpdateTheme()
         UserDefaults.standard.setValue(0, forKey: DefaultThemeValue)
+        
+        
+//        let dict: [String : Any] = [
+//            "countryCode": "91",
+//            "email": "hiren.joshi@uticome.com",
+//            "fullName": "Hiren Joshi",
+//            "mobileNo": "8460777809",
+//            "mobileOtp": "123456",
+//            "registerDate": "",
+//            "token": "fsalkfhslakjfblskajfldsahjfisdauhflkjsdahlfkjhsdklafjhsladkfjhsldkajfhklsad",
+//            "userId": "23"
+//        ]
+//        guard let prettyJsonData = try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted) else {
+//            print("Error: Cannot convert JSON object to Pretty JSON data")
+//            return
+//        }
+//        guard let prettyPrintedJson = String(data: prettyJsonData, encoding: .utf8) else {
+//            print("Error: Could print JSON in String")
+//            return
+//        }
+//        let jsonData = prettyPrintedJson.data(using: .utf8)!
+//        let json = JSON(jsonData)
+//        let obj = UserInfoUser.init(fromJson: json)
+//        SharedUserInfo.shared.SaveUserInfodata(info: obj)
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
         self.window = UIWindow(windowScene: windowScene)
